@@ -1,0 +1,14 @@
+{
+  "technical_verification": "PASS",
+  "READY_TO_INIT_PUBLIC_REPO": false,
+  "PUBLIC_SNAPSHOT_READY": false,
+  "pending_P0_confirmations": [
+    "Legacy credential revocation confirmation",
+    "Team code and visual asset republication permission confirmation"
+  ],
+  "git_initialized": false,
+  "staged": false,
+  "committed": false,
+  "remote_added": false,
+  "pushed": false
+}

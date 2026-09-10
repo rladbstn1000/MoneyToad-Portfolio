@@ -1,0 +1,109 @@
+{
+  "commit": 6,
+  "status": "PASS",
+  "backend": {
+    "tests": 275,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cleanup_complete": true
+  },
+  "frontend": {
+    "status": "PASS",
+    "checks": [
+      {
+        "check": "node-version",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "npm-version",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "oauth-existing-tests",
+        "status": "PASS",
+        "exit_code": 0,
+        "tests": {
+          "numTotalTests": 125,
+          "numPassedTests": 125,
+          "numFailedTests": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0
+        }
+      },
+      {
+        "check": "demo-tests",
+        "status": "PASS",
+        "exit_code": 0,
+        "tests": {
+          "numTotalTests": 51,
+          "numPassedTests": 51,
+          "numFailedTests": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0
+        }
+      },
+      {
+        "check": "test-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "e2e-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "oauth-default-build",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "demo-build",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "invalid-mode-build",
+        "status": "PASS",
+        "exit_code": 1
+      },
+      {
+        "check": "lint",
+        "status": "PASS",
+        "exit_code": 0,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  },
+  "browser": {
+    "status": "PASS",
+    "expected_runs": 2,
+    "runs": [
+      {
+        "evidence_file": "browser-a40f17391085-summary.json",
+        "status": "PASS",
+        "cases": 4,
+        "external_attempts": 0,
+        "cleanup_complete": true
+      },
+      {
+        "evidence_file": "browser-7feaad9fd2bd-summary.json",
+        "status": "PASS",
+        "cases": 4,
+        "external_attempts": 0,
+        "cleanup_complete": true
+      }
+    ],
+    "workers": 1,
+    "retries": 0,
+    "product_api_mocks": false,
+    "font_policy": "test-only system fallback"
+  },
+  "public_verification_unit_tests": 14,
+  "product_and_existing_test_changes_this_task": 0,
+  "automatic_retries": 0
+}

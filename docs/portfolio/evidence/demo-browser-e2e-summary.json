@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "expected_runs": 2,
+  "runs": [
+    {
+      "evidence_file": "browser-a40f17391085-summary.json",
+      "status": "PASS",
+      "cases": 4,
+      "external_attempts": 0,
+      "cleanup_complete": true
+    },
+    {
+      "evidence_file": "browser-7feaad9fd2bd-summary.json",
+      "status": "PASS",
+      "cases": 4,
+      "external_attempts": 0,
+      "cleanup_complete": true
+    }
+  ],
+  "workers": 1,
+  "retries": 0,
+  "product_api_mocks": false,
+  "font_policy": "test-only system fallback"
+}

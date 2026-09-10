@@ -1,0 +1,27 @@
+{
+  "commit": 1,
+  "status": "BUILD_PASS_WITH_KNOWN_BASELINE_LINT_DEBT",
+  "checks": [
+    {
+      "check": "be-compile",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "check": "oauth-build",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "check": "legacy-lint",
+      "status": "KNOWN_BASELINE_DEBT",
+      "exit_code": 1,
+      "errors": 34,
+      "warnings": 3
+    }
+  ],
+  "runtime_tests": "NOT_RUN: original service context not started; no legacy OAuth or AI request made",
+  "demo_checks": "NOT_APPLICABLE_YET",
+  "original_head_bytes_preserved": true,
+  "only_baseline_hygiene_overlay": "root ignore"
+}

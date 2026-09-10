@@ -1,0 +1,88 @@
+{
+  "commit": 5,
+  "status": "PASS",
+  "frontend": {
+    "status": "PASS",
+    "checks": [
+      {
+        "check": "node-version",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "npm-version",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "oauth-existing-tests",
+        "status": "PASS",
+        "exit_code": 0,
+        "tests": {
+          "numTotalTests": 125,
+          "numPassedTests": 125,
+          "numFailedTests": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0
+        }
+      },
+      {
+        "check": "demo-tests",
+        "status": "PASS",
+        "exit_code": 0,
+        "tests": {
+          "numTotalTests": 51,
+          "numPassedTests": 51,
+          "numFailedTests": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0
+        }
+      },
+      {
+        "check": "test-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "e2e-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "oauth-default-build",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "demo-build",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "invalid-mode-build",
+        "status": "PASS",
+        "exit_code": 1
+      },
+      {
+        "check": "lint",
+        "status": "PASS",
+        "exit_code": 0,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  },
+  "backend": "Production code identical to commit 3; final compile and full 275 executed in commit 6",
+  "package_install": "Exact final package/lock dependency set; Playwright isolated in this commit",
+  "verification_units": {
+    "checks": [
+      {
+        "check": "unit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests": 14
+      }
+    ],
+    "status": "PASS"
+  }
+}

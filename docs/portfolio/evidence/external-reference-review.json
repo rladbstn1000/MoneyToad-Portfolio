@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "references": [
+    {
+      "file": "be/src/main/java/com/potg/don/auth/oauth/OAuth2SuccessHandler.java",
+      "line": 61,
+      "host": "j13a409.p.ssafy.io",
+      "classification": "A: legacy OAuth only; CORS entries are not outbound requests"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/SecurityConfig.java",
+      "line": 122,
+      "host": "j13a409.p.ssafy.io",
+      "classification": "A: legacy OAuth only; CORS entries are not outbound requests"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/SecurityConfig.java",
+      "line": 122,
+      "host": "j13a409.p.ssafy.io",
+      "classification": "A: legacy OAuth only; CORS entries are not outbound requests"
+    },
+    {
+      "file": "fe/src/index.css",
+      "line": 3,
+      "host": "gcore.jsdelivr.net",
+      "classification": "B: original font asset CDN; test build uses system fallback"
+    },
+    {
+      "file": "fe/src/pages/ScrollLandingPage.tsx",
+      "line": 141,
+      "host": "j13a409.p.ssafy.io",
+      "classification": "A: legacy OAuth only; CORS entries are not outbound requests"
+    },
+    {
+      "file": "fe/src/pages/LeakPotPage.css",
+      "line": 4,
+      "host": "gcore.jsdelivr.net",
+      "classification": "B: original font asset CDN; test build uses system fallback"
+    },
+    {
+      "file": "fe/src/pages/ScrollLandingPage.css",
+      "line": 8,
+      "host": "gcore.jsdelivr.net",
+      "classification": "B: original font asset CDN; test build uses system fallback"
+    }
+  ],
+  "active_demo_application_api_dependency": false,
+  "font_asset_debt": true,
+  "original_ai_directory_included": false
+}

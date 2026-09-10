@@ -1,0 +1,10 @@
+{
+  "checks": [
+    {
+      "check": "browser",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

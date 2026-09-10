@@ -1,0 +1,10 @@
+{
+  "checks": [
+    {
+      "check": "fe",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

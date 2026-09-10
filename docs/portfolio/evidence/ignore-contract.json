@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "excluded_cases": 17,
+  "retained_cases": 7,
+  "blanket_json_png_sql_ignore": false
+}

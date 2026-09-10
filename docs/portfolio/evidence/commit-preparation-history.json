@@ -1,0 +1,20 @@
+{
+  "attempts": [
+    {
+      "phase": "backend preflight",
+      "status": "BLOCKED",
+      "tests": 0,
+      "reason": "Sandbox denied local Docker socket access",
+      "cleanup_complete": true,
+      "resolution": "Approved owned-resource execution; final BE275 PASS"
+    },
+    {
+      "phase": "browser series publication",
+      "status": "FAIL",
+      "product_scenarios_passed": 8,
+      "reason": "Aggregate summary retained previous invocation references",
+      "resolution": "Current-invocation allowlist summary and three regression tests; final two fresh independent executions PASS"
+    }
+  ],
+  "automatic_test_retries": 0
+}

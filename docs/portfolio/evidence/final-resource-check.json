@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "remaining_owned_resources": [
+    {
+      "kind": "a1",
+      "containers": 0,
+      "networks": 0
+    },
+    {
+      "kind": "browser",
+      "containers": 0,
+      "networks": 0
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "commit": 3,
+  "status": "PASS",
+  "backend": {
+    "status": "PASS",
+    "exit_code": 0,
+    "cleanup_complete": true,
+    "suites": [
+      {
+        "test": "com.potg.don.auth.DemoChartSeedHttpIntegrationTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "realLoginRepositoryAndChartPatchPreserveTotalsAndOtherVisitorEveryColumn()",
+            "status": "PASS"
+          },
+          {
+            "test": "loginMakesTheAnnualChartReadyWithTwelveSeededMonths()",
+            "status": "PASS"
+          },
+          {
+            "test": "demoCardMutationEndpointsDenyBeforeAnyDummyCsvOrJobWork()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.DemoChartSeedInstallationTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "ordinaryProfilesHaveNoSeedBeanAndKeepCurrentAnnualWindowAndCardDelete()",
+            "status": "PASS"
+          },
+          {
+            "test": "partialOrCorruptInstallationsAreRejectedWithoutRepairOrAnyWrite()",
+            "status": "PASS"
+          },
+          {
+            "test": "repeatedInstallationPreservesEveryColumnIncludingEditedCategoryAndBudget()",
+            "status": "PASS"
+          },
+          {
+            "test": "storedHistoricalAnchorDrivesActualAnnualApiAndNeverSeedsOnRead()",
+            "status": "PASS"
+          },
+          {
+            "test": "simultaneousSameUserFirstInstallsHaveAtMostOneCommitAndNoDuplicates()",
+            "status": "PASS"
+          },
+          {
+            "test": "realSchemaAllowsNullFinancialFieldsAndRequiresCallerTransaction()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.demo.seed.DemoSeedScenarioTest",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "v1HasExactlyTwelveMonthsTwentyTransactionsAndSixBudgetSlotsEach()",
+            "status": "PASS"
+          },
+          {
+            "test": "advancingTheAnchorChangesOnlyDatesAndKeepsTheRelativeScenario()",
+            "status": "PASS"
+          },
+          {
+            "test": "sameAnchorReproducesEveryFinancialFieldAndCannotMutateTheFixtureLists()",
+            "status": "PASS"
+          },
+          {
+            "test": "correctingThePracticeCategoryPreservesSpendingAndRemovesTheCurrentLeak()",
+            "status": "PASS"
+          },
+          {
+            "test": "authoredAmountsProduceTheApprovedMonthlyAndAnnualTotals()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          }
+        ]
+      }
+    ],
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS"
+  },
+  "frontend": "Byte-identical to commit 1; baseline build result applies; not separately re-executed",
+  "selection": "Focused 20 demo seed and actual login/API tests; all BE test sources compiled. Full 275 executed in commit 6."
+}

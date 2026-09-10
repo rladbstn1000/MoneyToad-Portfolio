@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "existing_projection_functions_unchanged": true,
+  "product_and_existing_test_changes": 0,
+  "new_series_regressions": 3,
+  "assertions_relaxed": false
+}

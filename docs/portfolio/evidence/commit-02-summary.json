@@ -1,0 +1,456 @@
+{
+  "commit": 2,
+  "status": "PASS",
+  "backend": {
+    "status": "PASS",
+    "exit_code": 0,
+    "cleanup_complete": true,
+    "suites": [
+      {
+        "test": "com.potg.don.transaction.client.CsvClientConfigTest",
+        "tests": 21,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "invalidBaseConfigurationFailsBeforeAnyRequest()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          },
+          {
+            "test": "case-12",
+            "status": "PASS"
+          },
+          {
+            "test": "case-13",
+            "status": "PASS"
+          },
+          {
+            "test": "case-14",
+            "status": "PASS"
+          },
+          {
+            "test": "case-15",
+            "status": "PASS"
+          },
+          {
+            "test": "case-16",
+            "status": "PASS"
+          },
+          {
+            "test": "case-17",
+            "status": "PASS"
+          },
+          {
+            "test": "case-18",
+            "status": "PASS"
+          },
+          {
+            "test": "mainYamlResolvesSyntheticAiBaseUrlWithoutFallback()",
+            "status": "PASS"
+          },
+          {
+            "test": "mainYamlWithoutAiBaseUrlFailsBeforeAnyRequest()",
+            "status": "PASS"
+          },
+          {
+            "test": "outboundGuardRejectsOtherDestinationsBeforeConnectorOrDns()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.transaction.service.CsvServiceOwnershipTest",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "case-1",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "uploadChecksOwnershipBeforeReadingAndCallingClient()",
+            "status": "PASS"
+          },
+          {
+            "test": "changeUsesTheValidatedUsersExistingFileId()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.transaction.CsvBoundaryIntegrationTest",
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "targetControllersAreAbsentAndAuthenticatedRequestsHaveNoEffects()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          },
+          {
+            "test": "case-12",
+            "status": "PASS"
+          },
+          {
+            "test": "case-13",
+            "status": "PASS"
+          },
+          {
+            "test": "case-14",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.transaction.CsvControllerRegistrationTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "case-1",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.card.controller.CardControllerCsvContractTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "absentBearerStopsBothCardMutationsAtExistingJwtFilter()",
+            "status": "PASS"
+          },
+          {
+            "test": "patchKeepsUser202AndCard101InTheirOwnArgumentsAndUsesUpload()",
+            "status": "PASS"
+          },
+          {
+            "test": "postKeepsUser101AndCard202InTheirOwnArguments()",
+            "status": "PASS"
+          },
+          {
+            "test": "postKeepsUser202AndCard101InTheirOwnArguments()",
+            "status": "PASS"
+          },
+          {
+            "test": "patchKeepsUser101AndCard202InTheirOwnArgumentsAndUsesUpload()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.budget.service.BudgetServiceOwnershipTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "rejectsMissingBudgetWithSameGenericNotFoundContract()",
+            "status": "PASS"
+          },
+          {
+            "test": "updatesOwnedBudgetAndPreservesPredictionAndOwnershipFields()",
+            "status": "PASS"
+          },
+          {
+            "test": "rejectsOtherUsersBudgetWithoutMutationOrSave()",
+            "status": "PASS"
+          },
+          {
+            "test": "rejectsMissingUserBeforeQueryingBudgets()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.budget.BudgetOwnershipIntegrationTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "ownerAUpdatesOnlyMutableFields()",
+            "status": "PASS"
+          },
+          {
+            "test": "foreignBudgetReturnsSameGeneric404AndPreservesEveryRow()",
+            "status": "PASS"
+          },
+          {
+            "test": "missingBudgetReturnsSameGeneric404AndPreservesEveryRow()",
+            "status": "PASS"
+          },
+          {
+            "test": "missingBearerIsRejectedByExistingJwtFilterWithoutWrites()",
+            "status": "PASS"
+          },
+          {
+            "test": "ownerBUpdatesOnlyMutableFields()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.DonApplicationTests",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "contextLoads()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.transaction.NotFoundContractIntegrationTest",
+        "tests": 16,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "case-1",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "unexpectedRuntimeExceptionRemainsGeneric500()",
+            "status": "PASS"
+          },
+          {
+            "test": "localOpenApiJsonStillSucceedsWithoutExternalNavigation()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          },
+          {
+            "test": "case-12",
+            "status": "PASS"
+          },
+          {
+            "test": "case-13",
+            "status": "PASS"
+          },
+          {
+            "test": "case-14",
+            "status": "PASS"
+          },
+          {
+            "test": "case-15",
+            "status": "PASS"
+          },
+          {
+            "test": "case-16",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.exception.GlobalExceptionHandlerContractTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "case-1",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          }
+        ]
+      }
+    ],
+    "tests": 87,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS"
+  },
+  "frontend": "Byte-identical to commit 1; baseline build result applies; not separately re-executed",
+  "selection": "All 87 backend boundary tests"
+}
