@@ -1,14 +1,10 @@
+import { SCENE_BG } from "../assets/pageAssets";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterCardMutation } from "../api/mutation/cardMutation";
 import { useUpdateUserBasicInfoMutation } from "../api/mutation/userMutation";
 import "./UserInfoInputPage.css";
 
-const SCENE_BG = "/userInfo/talk-scene.webp";
-
-export const userInfoAssets = [
-  SCENE_BG,
-];
 
 // 유틸
 const digitsOnly = (v: string, max?: number) =>

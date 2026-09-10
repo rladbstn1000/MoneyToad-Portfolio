@@ -1,6 +1,10 @@
 import axios from 'axios';
 import type { AxiosRequestConfig } from 'axios';
 import { setupAuthInterceptor } from './interceptors';
+import { setupDemoInterceptor } from './demoInterceptors';
+import { authMode } from '../auth/authMode';
+import { DemoAuthError } from '../auth/demoCoordinator';
+const installAuth = authMode === 'demo' ? setupDemoInterceptor : setupAuthInterceptor;
 
 const defaultHeaders = {
   'Content-Type': 'application/json',
@@ -22,7 +26,7 @@ const axiosInstance = axios.create({
 });
 
 // 인증 인터셉터 설정
-setupAuthInterceptor(axiosInstance);
+installAuth(axiosInstance);
 
 // 공통 응답 타입 (백엔드에 상황 보고 조정)
 type ApiResponseForm<T> = {
@@ -47,6 +51,7 @@ const request = async <ResponseType, RequestType = unknown>(
       await axiosInstance.request<ResponseType>(options);
     return data;
   } catch (error: unknown) {
+    if (error instanceof DemoAuthError) throw error;
     const { response } = error as {
       response?: { status: number; data?: { message?: string } };
     };
@@ -73,7 +78,7 @@ const aiAxiosInstance = axios.create({
 });
 
 // AI API 인스턴스에도 인증 인터셉터 설정
-setupAuthInterceptor(aiAxiosInstance);
+installAuth(aiAxiosInstance);
 
 // AI API 전용 request 함수 (인증 없이)
 const aiRequest = async <ResponseType, RequestType = unknown>(
@@ -84,6 +89,7 @@ const aiRequest = async <ResponseType, RequestType = unknown>(
       await aiAxiosInstance.request<ResponseType>(options);
     return data;
   } catch (error: unknown) {
+    if (error instanceof DemoAuthError) throw error;
     const { response } = error as {
       response?: { status: number; data?: { message?: string } };
     };

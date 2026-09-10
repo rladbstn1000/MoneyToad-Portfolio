@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import { authMode } from '../auth/authMode';
+import DemoAuthStatus from '../components/DemoAuthStatus';
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ScrollLandingPage.css";
 
@@ -18,22 +20,16 @@ type PageVars = React.CSSProperties & {
   "--bg"?: string;
 };
 
-export const scrollLandingAssets = [
-  "/landing/landing1.webp",
-  "/landing/landing2.webp",
-  "/landing/landing3.webp",
-  "/landing/landing4.webp",
-];
-
 export default function ScrollLandingPage() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const touchStartY = useRef(0);
-  const [loggedIn, setLoggedIn] = useState<boolean>(() => !!localStorage.getItem("accessToken"));
+  const [loggedIn, setLoggedIn] = useState<boolean>(() => authMode === 'oauth' && !!localStorage.getItem("accessToken"));
 
   useEffect(() => {
+    if (authMode === 'demo') return;
     const recheck = () => setLoggedIn(!!localStorage.getItem("accessToken"));
     window.addEventListener("storage", recheck);
     window.addEventListener("focus", recheck);
@@ -77,12 +73,12 @@ export default function ScrollLandingPage() {
 
   const total = pages.length;
 
-  const scrollToPage = (i: number) => {
+  const scrollToPage = useCallback((i: number) => {
     if (isScrolling) return;
     setIsScrolling(true);
     setCurrentPage(i);
     window.setTimeout(() => setIsScrolling(false), 700);
-  };
+  }, [isScrolling]);
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
@@ -123,12 +119,12 @@ export default function ScrollLandingPage() {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      el.removeEventListener("wheel", handleWheel as any);
-      el.removeEventListener("touchstart", handleTouchStart as any);
-      el.removeEventListener("touchend", handleTouchEnd as any);
-      window.removeEventListener("keydown", handleKeyDown as any);
+      el.removeEventListener("wheel", handleWheel);
+      el.removeEventListener("touchstart", handleTouchStart);
+      el.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentPage, isScrolling, total]);
+  }, [currentPage, isScrolling, total, scrollToPage]);
 
   const trackStyle: TrackVars = {
     "--track-h": `${total * 100}vh`,
@@ -148,9 +144,9 @@ export default function ScrollLandingPage() {
 
   return (
     <div ref={containerRef} className="dk-landing">
-      <button className="dk-login" onClick={handlePrimary}>
+      {authMode === 'demo' ? <DemoAuthStatus landing /> : <button className="dk-login" onClick={handlePrimary}>
         {loggedIn ? "장독대로 가기" : "로그인"}
-      </button>
+      </button>}
 
       {/* 슬라이드 트랙 */}
       <div className="dk-track" style={trackStyle}>

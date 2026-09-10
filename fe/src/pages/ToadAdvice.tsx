@@ -1,3 +1,4 @@
+import { CATEGORY_ICONS } from "../assets/pageAssets";
 import type { ReactNode } from "react";
 import { useCallback, useMemo, useState } from "react";
 import { useDoojoQuery } from "../api";
@@ -7,35 +8,8 @@ import type { YearlyBudgetLeakResponse } from '../types';
 import "./ToadAdvice.css";
 
 /* ===== 카테고리 아이콘 (.webp) ===== */
-const CATEGORY_ICONS: Record<string, string> = {
-  식비: "/toadAdvice/eat.webp",
-  카페: "/toadAdvice/tea.webp",
-  "마트/편의점": "/toadAdvice/market.webp",
-  문화생활: "/toadAdvice/culture.webp",
-  "교통 / 차량": "/toadAdvice/transport.webp",
-  "패션 / 미용": "/toadAdvice/fashion.webp",
-  생활용품: "/toadAdvice/living.webp",
-  "주거 / 통신": "/toadAdvice/house.webp",
-  "건강 / 병원": "/toadAdvice/health.webp",
-  교육: "/toadAdvice/edu.webp",
-  "경조사 / 회비": "/toadAdvice/event.webp",
-  "보험 / 세금": "/toadAdvice/tax.webp",
-  기타: "/toadAdvice/etc.webp",
-};
 const getCategoryImage = (category: string) =>
   CATEGORY_ICONS[category] ?? "/toadAdvice/etc.webp";
-
-/* ===== 프리로드 자산(.webp) ===== */
-export const toadAdviceAssets = [
-  ...Object.values(CATEGORY_ICONS),
-  "/toadAdvice/background.webp",
-  "/toadAdvice/total.webp",
-  "/toadAdvice/card.webp",
-  "/leakPot/good.webp",
-  "/leakPot/bad.webp",
-  "/leakPot/good_gray.webp",
-  "/leakPot/bad_gray.webp",
-];
 
 /* ===== 공통 유틸 ===== */
 const won = (n: number) =>
@@ -321,7 +295,7 @@ export default function ToadAdvice() {
   const selectedSheet = useMemo(() => {
     const sheets = doojoData?.doojo ?? [];
     if (sheets.length === 1) return sheets[0];
-    return sheets.find((s: any) => s.month === selectedMonth && s.year === selectedYear) ?? sheets[0];
+    return sheets.find((s) => s.month === selectedMonth && s.year === selectedYear) ?? sheets[0];
   }, [doojoData?.doojo, selectedMonth, selectedYear]);
 
   // 상세 맵
@@ -334,20 +308,19 @@ export default function ToadAdvice() {
     return out;
   }, [selectedSheet]);
 
-  // 예측 목록 (object/array 모두 지원)
+  // 현재 API와 adapter의 카테고리별 객체 계약
   const preds = useMemo(() => {
     if (!selectedSheet?.categoriesPrediction) return [];
-    const cp = selectedSheet.categoriesPrediction as any;
-    if (Array.isArray(cp)) return cp.map((x: any) => ({ title: x.title, ...x }));
-    return Object.entries(cp).map(([title, data]: any) => ({ title, ...data }));
+    const cp = selectedSheet.categoriesPrediction;
+    return Object.entries(cp).map(([title, data]) => ({ title, ...data }));
   }, [selectedSheet]);
 
   // 카드 데이터 (result=true)
   const advices = useMemo(() => {
     return preds
-      .filter((v: any) => v.result)
+      .filter((v): v is typeof v & { real: number } => v.result === true && typeof v.real === "number")
       .slice(0, 12)
-      .map((v: any) => {
+      .map((v) => {
         const avg = estimateAvg(v.min, v.max);
         const pct = avg > 0 ? ((v.real - avg) / avg) * 100 : 0;
         const over = Math.max(0, v.real - v.current);

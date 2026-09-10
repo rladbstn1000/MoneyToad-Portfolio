@@ -1,18 +1,21 @@
+import { scrollLandingAssets, leakPotAssets, userInfoAssets, chartAssets, mypageAssets, notFoundAssets, toadAdviceAssets } from "./assets/pageAssets";
+import { authMode } from './auth/authMode';
+import { DemoComingSoon } from './components/DemoAuthStatus';
 import { useEffect, useState } from "react";
-import { useLocation, Routes, Route } from "react-router-dom";
-import ScrollLandingPage, { scrollLandingAssets } from "./pages/ScrollLandingPage";
-import LeakPotPage, { leakPotAssets } from "./pages/LeakPotPage";
-import UserInfoInputPage, { userInfoAssets } from "./pages/UserInfoInputPage";
-import ChartPage, { chartAssets } from "./pages/ChartPage";
+import { useLocation, Routes, Route, Navigate } from "react-router-dom";
+import ScrollLandingPage from "./pages/ScrollLandingPage";
+import LeakPotPage from "./pages/LeakPotPage";
+import UserInfoInputPage from "./pages/UserInfoInputPage";
+import ChartPage from "./pages/ChartPage";
 import AuthCallback from "./pages/AuthCallback";
-import Mypage, { mypageAssets } from "./pages/Mypage";
-import NotFound, { notFoundAssets } from "./pages/NotFound";
+import Mypage from "./pages/Mypage";
+import NotFound from "./pages/NotFound";
 import RouteGuard from "./components/RouteGuard";
 import LoadingOverlay from "./components/LoadingOverlay";
-import ToadAdvice, { toadAdviceAssets } from "./pages/ToadAdvice";
+import ToadAdvice from "./pages/ToadAdvice";
 
 
-const allAssets = [
+const allAssets = authMode === 'demo' ? [...scrollLandingAssets, ...chartAssets] : [
   ...scrollLandingAssets,
   ...userInfoAssets,
   ...leakPotAssets,
@@ -53,7 +56,12 @@ export default function App() {
   return (
     <>
       {loading && <LoadingOverlay />}
-      <Routes>
+      {authMode === 'demo' ? <Routes>
+        <Route path="/" element={<ScrollLandingPage />} />
+        <Route path="/chart" element={<RouteGuard><ChartPage /></RouteGuard>} />
+        <Route path="/auth/callback" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<DemoComingSoon />} />
+      </Routes> : <Routes>
         <Route path="/" element={<ScrollLandingPage />} />
         <Route path="/userInfo" element={<RouteGuard><UserInfoInputPage /></RouteGuard>} />
         <Route path="/pot/:month" element={<RouteGuard><LeakPotPage /></RouteGuard>} />
@@ -62,7 +70,7 @@ export default function App() {
         <Route path="toadAdvice" element={<RouteGuard><ToadAdvice></ToadAdvice></RouteGuard>} />
         <Route path="/mypage" element={<RouteGuard><Mypage /></RouteGuard>} />
         <Route path="*" element={<NotFound />} />
-      </Routes>
+      </Routes>}
     </>
   );
 }

@@ -1,5 +1,10 @@
 /// <reference types="vite/client" />
 
+interface ImportMetaEnv {
+  readonly VITE_AUTH_MODE?: string;
+  readonly VITE_BACK_URL: string;
+}
+
 declare module "*.svg" {
   const content: string;
   export default content;

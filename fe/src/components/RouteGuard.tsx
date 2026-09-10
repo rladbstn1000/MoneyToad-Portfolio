@@ -7,7 +7,26 @@ interface RouteGuardProps {
   children: React.ReactNode;
 }
 
-export default function RouteGuard({ children }: RouteGuardProps) {
+import { authMode } from '../auth/authMode';
+import DemoAuthStatus from './DemoAuthStatus';
+
+export default function RouteGuard(props: RouteGuardProps) {
+  return authMode === 'demo' ? <DemoGuard {...props} /> : <OAuthGuard {...props} />;
+}
+
+function DemoGuard({ children }: RouteGuardProps) {
+  const status = useAuthStore(state => state.status);
+  return status === 'authenticated' ? <DemoUserGate>{children}</DemoUserGate> : <DemoAuthStatus />;
+}
+
+function DemoUserGate({ children }: RouteGuardProps) {
+  const user = useUserInfoQuery();
+  if (user.isPending) return <p role="status">체험 화면을 준비하고 있습니다.</p>;
+  if (user.isError || !user.data) return <section role="status">사용자 정보를 불러오지 못했습니다. <button onClick={() => void user.refetch()}>다시 시도</button></section>;
+  return children;
+}
+
+function OAuthGuard({ children }: RouteGuardProps) {
   const navigate = useNavigate();
   const { accessToken } = useAuthStore();
   const { data: userInfo, isLoading, isError } = useUserInfoQuery();

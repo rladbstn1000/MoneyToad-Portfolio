@@ -22,8 +22,8 @@ export interface ApiCategoryPrediction {
   min: number;
   max: number;
   current: number;
-  real: number;
-  result: boolean;
+  real: number | null;
+  result: boolean | null;
   avg: number;
 }
 
@@ -62,8 +62,8 @@ export interface CategoryPrediction {
   min: number;
   max: number;
   current: number;
-  real: number;
-  result: boolean;
+  real: number | null;
+  result: boolean | null;
   avg: number;
 }
 

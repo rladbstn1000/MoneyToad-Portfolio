@@ -1,0 +1,224 @@
+{
+  "files": [
+    {
+      "file": "fe/src/components/JPSelect.tsx",
+      "messages": [
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        }
+      ]
+    },
+    {
+      "file": "fe/src/pages/ChartPage.tsx",
+      "messages": [
+        {
+          "ruleId": "react-refresh/only-export-components",
+          "severity": 2,
+          "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+        },
+        {
+          "ruleId": "react-refresh/only-export-components",
+          "severity": 2,
+          "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/ban-ts-comment",
+          "severity": 2,
+          "message": "Use \"@ts-expect-error\" instead of \"@ts-ignore\", as \"@ts-ignore\" will do nothing if the following line is error-free."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        }
+      ]
+    },
+    {
+      "file": "fe/src/pages/LeakPotPage.tsx",
+      "messages": [
+        {
+          "ruleId": "react-refresh/only-export-components",
+          "severity": 2,
+          "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-unused-vars",
+          "severity": 2,
+          "message": "'_' is assigned a value but never used."
+        },
+        {
+          "ruleId": "react-hooks/exhaustive-deps",
+          "severity": 1,
+          "message": "The ref value 'debounceTimers.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'debounceTimers.current' to a variable inside the effect, and use that variable in the cleanup function."
+        }
+      ]
+    },
+    {
+      "file": "fe/src/pages/Mypage.tsx",
+      "messages": [
+        {
+          "ruleId": "react-refresh/only-export-components",
+          "severity": 2,
+          "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+        }
+      ]
+    },
+    {
+      "file": "fe/src/pages/NotFound.tsx",
+      "messages": [
+        {
+          "ruleId": "react-refresh/only-export-components",
+          "severity": 2,
+          "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+        }
+      ]
+    },
+    {
+      "file": "fe/src/pages/ScrollLandingPage.tsx",
+      "messages": [
+        {
+          "ruleId": "react-refresh/only-export-components",
+          "severity": 2,
+          "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "react-hooks/exhaustive-deps",
+          "severity": 1,
+          "message": "React Hook useEffect has a missing dependency: 'scrollToPage'. Either include it or remove the dependency array."
+        }
+      ]
+    },
+    {
+      "file": "fe/src/pages/ToadAdvice.tsx",
+      "messages": [
+        {
+          "ruleId": "react-refresh/only-export-components",
+          "severity": 2,
+          "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        },
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        }
+      ]
+    },
+    {
+      "file": "fe/src/pages/UserInfoInputPage.tsx",
+      "messages": [
+        {
+          "ruleId": "react-refresh/only-export-components",
+          "severity": 2,
+          "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components."
+        }
+      ]
+    },
+    {
+      "file": "fe/src/types/json.d.ts",
+      "messages": [
+        {
+          "ruleId": "@typescript-eslint/no-explicit-any",
+          "severity": 2,
+          "message": "Unexpected any. Specify a different type."
+        }
+      ]
+    }
+  ]
+}

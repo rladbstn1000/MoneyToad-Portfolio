@@ -1,0 +1,70 @@
+{
+  "scrollLandingAssets": [
+    "/landing/landing1.webp",
+    "/landing/landing2.webp",
+    "/landing/landing3.webp",
+    "/landing/landing4.webp"
+  ],
+  "userInfoAssets": [
+    "/userInfo/talk-scene.webp"
+  ],
+  "leakPotAssets": [
+    "/leakPot/cryingKongjwi.webp",
+    "/leakPot/happyKongjwi.webp",
+    "/leakPot/happyToad.webp",
+    "/leakPot/angryToad.webp",
+    "/leakPot/joseon-bg.webp",
+    "/leakPot/money.webp",
+    "/leakPot/paper.webp",
+    "/leakPot/pot.webp",
+    "/leakPot/broken.webp",
+    "/leakPot/good.webp",
+    "/leakPot/bad.webp",
+    "/leakPot/bad_gray.webp",
+    "/leakPot/good_gray.webp",
+    "/leakPot/water.json",
+    "/leakPot/tooltip.webp"
+  ],
+  "mypageAssets": [
+    "/mypage/close.webp",
+    "/mypage/open.webp",
+    "/mypage/sitting.webp",
+    "/mypage/paper.webp"
+  ],
+  "notFoundAssets": [
+    "/404.webp"
+  ],
+  "toadAdviceAssets": [
+    "/toadAdvice/eat.webp",
+    "/toadAdvice/tea.webp",
+    "/toadAdvice/market.webp",
+    "/toadAdvice/culture.webp",
+    "/toadAdvice/transport.webp",
+    "/toadAdvice/fashion.webp",
+    "/toadAdvice/living.webp",
+    "/toadAdvice/house.webp",
+    "/toadAdvice/health.webp",
+    "/toadAdvice/edu.webp",
+    "/toadAdvice/event.webp",
+    "/toadAdvice/tax.webp",
+    "/toadAdvice/etc.webp",
+    "/toadAdvice/background.webp",
+    "/toadAdvice/total.webp",
+    "/toadAdvice/card.webp",
+    "/leakPot/good.webp",
+    "/leakPot/bad.webp",
+    "/leakPot/good_gray.webp",
+    "/leakPot/bad_gray.webp"
+  ],
+  "chartAssets": [
+    "/charts/background.webp",
+    "/charts/detailBackground.webp",
+    "/charts/sitting_girl.webp",
+    "/charts/toad.webp",
+    "/charts/water.webp",
+    "/charts/flower.webp",
+    "/charts/leaf.webp",
+    "/charts/flower_gray.webp",
+    "/charts/leaf_gray.webp"
+  ]
+}

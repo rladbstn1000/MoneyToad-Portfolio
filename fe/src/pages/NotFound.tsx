@@ -1,10 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./NotFound.css";
 
-export const notFoundAssets = [
-  "/404.webp",
-];
-
 export default function NotFound() {
   const navigate = useNavigate();
 

@@ -22,13 +22,6 @@ const IMG_OPEN   = "/mypage/open.webp";
 const IMG_SIT    = "/mypage/sitting.webp";
 const IMG_PAPER  = "/mypage/paper.webp";
 
-export const mypageAssets = [
-  "/mypage/close.webp",
-  "/mypage/open.webp",
-  "/mypage/sitting.webp",
-  "/mypage/paper.webp",
-];
-
 // ---- utils (간단 버전) ----
 const digitsOnly = (v: string, max?: number) =>
   v.replace(/\D/g, "").slice(0, typeof max === "number" ? max : undefined);

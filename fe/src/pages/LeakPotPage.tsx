@@ -1,4 +1,5 @@
-import Lottie from "lottie-react";
+import { cryingKongjwi, happyKongjwi, happyToad, angryToad, bgImage, customPointer, paper, potImage, broken, monthGood, monthBad, badGray, goodGray, leakPotAssets } from "../assets/pageAssets";
+import Lottie, { type LottieComponentProps } from "lottie-react";
 import React, {
   useCallback,
   useEffect,
@@ -16,40 +17,6 @@ import Header from "../components/Header";
 import LoadingOverlay from "../components/LoadingOverlay";
 import type { MonthlyBudgetResponse, YearlyBudgetLeakResponse } from "../types";
 import "./LeakPotPage.css";
-
-/* ------------------------------ 이미지 & 애니메이션 ------------------------------ */
-const cryingKongjwi = "/leakPot/cryingKongjwi.webp";
-const happyKongjwi = "/leakPot/happyKongjwi.webp";
-const happyToad = "/leakPot/happyToad.webp";
-const angryToad = "/leakPot/angryToad.webp";
-const bgImage = "/leakPot/joseon-bg.webp";
-const customPointer = "/leakPot/money.webp";
-const paper = "/leakPot/paper.webp";
-const potImage = "/leakPot/pot.webp";
-const broken = "/leakPot/broken.webp";
-const monthGood = "/leakPot/good.webp";
-const monthBad = "/leakPot/bad.webp";
-const badGray = "/leakPot/bad_gray.webp";
-const goodGray = "/leakPot/good_gray.webp";
-const tooltipToad = "/leakPot/tooltip.webp";
-
-export const leakPotAssets = [
-  cryingKongjwi,
-  happyKongjwi,
-  happyToad,
-  angryToad,
-  bgImage,
-  customPointer,
-  paper,
-  potImage,
-  broken,
-  monthGood,
-  monthBad,
-  badGray,
-  goodGray,
-  "/leakPot/water.json",
-  tooltipToad,
-];
 
 /* ------------------------------ 타입 ------------------------------ */
 interface Category {
@@ -230,7 +197,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
   totalLeak,
   formatter,
 }) => {
-  const [waterAnim, setWaterAnim] = useState<any | null>(null);
+  const [waterAnim, setWaterAnim] = useState<LottieComponentProps["animationData"]>(null);
   useEffect(() => {
     fetch("/leakPot/water.json")
       .then((r) => r.json())
@@ -309,7 +276,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
       const ctm = potBodyRef.current.getScreenCTM();
       if (ctm) {
         const local = pt.matrixTransform(ctm.inverse());
-        const inside = (potBodyRef.current as any).isPointInFill(local);
+        const inside = potBodyRef.current.isPointInFill(local);
         if (!inside) {
           if (tooltip.visible)
             setTooltip({ visible: false, content: "", x: 0, y: 0 });
@@ -492,7 +459,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
                   style={{ overflow: "visible", pointerEvents: "none" }}
                 >
                   <div className={`water-animation ${isLeft ? "flip" : ""}`}>
-                    {waterAnim && (
+                    {Boolean(waterAnim) && (
                       <Lottie
                         animationData={waterAnim}
                         loop
@@ -671,7 +638,8 @@ const LeakPotPage = () => {
   // pending 상태 정리 콜백
   const handleMutationComplete = useCallback((budgetId: number) => {
     setPendingThresholds(prev => {
-      const { [budgetId]: _, ...rest } = prev;
+      const rest = { ...prev };
+      delete rest[budgetId];
       return rest;
     });
   }, []);
@@ -730,11 +698,12 @@ const LeakPotPage = () => {
     };
   }, []);
 
-  // 타이머 정리
+  // 타이머 정리: capture the stable Map, including timers added after setup.
   useEffect(() => {
+    const timers = debounceTimers.current;
     return () => {
-      debounceTimers.current.forEach((timerId) => clearTimeout(timerId));
-      debounceTimers.current.clear();
+      timers.forEach((timerId) => clearTimeout(timerId));
+      timers.clear();
     };
   }, []);
 

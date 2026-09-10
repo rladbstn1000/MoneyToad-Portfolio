@@ -413,3 +413,26 @@ td .jp-select-trigger {
 .jp-pie-panel .jp-pie-frame {
   min-height: 440px; /* 420~480 사이 취향껏 */
 }
+
+/* Query feedback stays local to the existing chart/detail panels. */
+.jp-query-status p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+.jp-detail-status {
+  color: #212a2d;
+}
+.jp-query-status button,
+.jp-detail-status button {
+  margin-left: 8px;
+  cursor: pointer;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  padding: 2px 8px;
+  background: transparent;
+  color: inherit;
+}
+.jp-table .jp-select-trigger:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

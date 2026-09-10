@@ -1,3 +1,4 @@
+import { chartAssets } from "../assets/pageAssets";
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import {
   ResponsiveContainer,
@@ -23,18 +24,14 @@ import {
 } from "../api/queries/transactionQuery";
 import { useUpdateTransactionCategoryMutation } from "../api/mutation/transactionMutation";
 import type { MonthlyTransaction } from "../types";
+import { useQueryClient } from "@tanstack/react-query";
+import { transactionQueryKeys } from "../api/queryKeys";
+import { belongsToPeriod, findEditableTransaction, isTransactionId } from "./chartDataBoundary";
+import type { ChartPeriod } from "./chartDataBoundary";
+import { authMode } from "../auth/authMode";
+import { parseDemoChartPeriod } from "./demoChartPeriod";
 
-export const chartAssets = [
-  "/charts/background.webp",
-  "/charts/detailBackground.webp",
-  "/charts/sitting_girl.webp",
-  "/charts/toad.webp",
-  "/charts/water.webp",
-  "/charts/flower.webp",
-  "/charts/leaf.webp",
-  "/charts/flower_gray.webp",
-  "/charts/leaf_gray.webp",
-];
+const isDemo = authMode === "demo";
 
 /* ------------------------------ 상수/타입 ------------------------------ */
 
@@ -57,7 +54,7 @@ const CATEGORIES = [
 type Category = (typeof CATEGORIES)[number];
 
 type Txn = {
-  id: string;
+  id: number;
   date: string;
   merchant: string;
   amount: number;
@@ -89,7 +86,7 @@ const JP_COLORS = [
   "#20B2AA", // 진한 청록
 ];
 
-export const CATEGORY_COLORS: Record<Category, string> = CATEGORIES.reduce(
+const CATEGORY_COLORS: Record<Category, string> = CATEGORIES.reduce(
   (acc, c, i) => {
     acc[c] = JP_COLORS[i % JP_COLORS.length];
     return acc;
@@ -103,11 +100,34 @@ const toNum = (v: unknown) => (typeof v === "number" ? v : Number(v) || 0);
 
 /* ------------------------------ Tooltip ------------------------------ */
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+// Recharts exposes loosely typed payloads. Narrow only fields this page reads.
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+const isConsumptionEntry = (value: unknown): value is { dataKey: string; value: number } =>
+  isRecord(value) && typeof value.dataKey === "string" &&
+  typeof value.value === "number" && Number.isFinite(value.value);
+const flag = (payload: unknown, key: "leaked" | "isLastYear") =>
+  isRecord(payload) && payload[key] === true;
+
+type ChartDotProps = {
+  cx?: number;
+  cy?: number;
+  index?: number;
+  payload?: unknown;
+};
+type ChartTooltipProps = {
+  active?: boolean;
+  payload?: readonly unknown[];
+  label?: React.ReactNode;
+};
+
+const CustomTooltip = ({ active, payload, label }: ChartTooltipProps) => {
   if (active && payload && payload.length) {
-    const me = payload.find((p: any) => p.dataKey === "me");
-    const peer = payload.find((p: any) => p.dataKey === "peers");
-    const leaked = payload[0]?.payload?.leaked || false;
+    const entries = payload.filter(isConsumptionEntry);
+    const me = entries.find((p) => p.dataKey === "me");
+    const peer = entries.find((p) => p.dataKey === "peers");
+    const first = payload[0];
+    const leaked = isRecord(first) && flag(first.payload, "leaked");
 
     return (
       <div
@@ -126,40 +146,14 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         <div style={{ color: "#817716" }}>
           내 소비 : {me ? KRW(me.value) : "-"}원
         </div>
-        <div style={{ color: "#BA5910" }}>
+        {!isDemo && <div style={{ color: "#BA5910" }}>
           또래 소비 : {peer ? KRW(peer.value) : "-"}원
-        </div>
+        </div>}
       </div>
     );
   }
   return null;
 };
-
-/* ------------------------------ 더미 생성 ------------------------------ */
-
-function seedMonth(monthIdx: number): Txn[] {
-  const rnd = (seed: number) => {
-    const x = Math.sin(seed * 991 + monthIdx * 37) * 10000;
-    return x - Math.floor(x);
-  };
-  const list: Txn[] = [];
-  const cnt = 14 + Math.floor(rnd(1) * 10);
-  for (let i = 0; i < cnt; i++) {
-    const amt = Math.round((30_000 + rnd(i + 2) * 220_000) / 100) * 100;
-    const cat = CATEGORIES[Math.floor(rnd(i + 3) * CATEGORIES.length)];
-    const d = 1 + Math.floor(rnd(i + 4) * 27);
-    list.push({
-      id: `${monthIdx}-${i}`,
-      date: `${monthIdx + 1}/${String(d).padStart(2, "0")}`,
-      merchant: ["방앗간", "주막", "장터", "포목점", "기와집", "전당포"][
-        Math.floor(rnd(i + 5) * 6)
-      ],
-      amount: amt,
-      category: cat,
-    });
-  }
-  return list;
-}
 
 /* ============================== 메인 컴포넌트 ============================== */
 
@@ -179,22 +173,34 @@ export default function ChartPage() {
   };
 
   /* API 데이터 가져오기 */
-  const { data: yearTransactionData } = useYearTransactionQuery();
-  const { data: peerYearTransactionData } = usePeerYearTransactionQuery();
-
-  /* 더미 트랜잭션 */
-  const [txnsByMonth, setTxnsByMonth] = useState<Txn[][]>(
-    Array.from({ length: 12 }, (_, i) => seedMonth(i))
-  );
+  const yearQuery = useYearTransactionQuery();
+  const peerQuery = usePeerYearTransactionQuery();
+  const yearTransactionData = yearQuery.data;
+  const peerYearTransactionData = peerQuery.data;
+  const demoPeriod = useMemo(() => isDemo ? parseDemoChartPeriod(yearTransactionData) : null, [yearTransactionData]);
+  const yearDataReady = yearQuery.isSuccess && (!isDemo || demoPeriod !== null);
 
   const apiMonthlyData = useMemo(() => {
-    if (!yearTransactionData) {
+    if (!yearTransactionData || isDemo && !demoPeriod) {
       return Array.from({ length: 12 }, (_, index) => ({
         amount: 0,
         isLastYear: false,
         leaked: false,
         month: index,
       }));
+    }
+
+    if (isDemo && demoPeriod) {
+      const monthlyData: MonthData[] = Array.from({ length: 12 }, (_, index) => ({
+        amount: 0, isLastYear: demoPeriod.yearsByMonth[index] < demoPeriod.year,
+        leaked: false, month: index,
+      }));
+      yearTransactionData.forEach(transaction => {
+        const monthIndex = Number(transaction.date.slice(5)) - 1;
+        monthlyData[monthIndex].amount = transaction.totalAmount;
+        monthlyData[monthIndex].leaked = transaction.leaked;
+      });
+      return monthlyData;
     }
 
     const { currentYear, currentMonth } = getCurrentDateInfo();
@@ -222,16 +228,13 @@ export default function ChartPage() {
     });
 
     return monthlyData;
-  }, [yearTransactionData]);
+  }, [yearTransactionData, demoPeriod]);
 
-  /* 월별 합계 - API 데이터 우선 사용 */
-  const myMonthly = useMemo(() => {
-    if (yearTransactionData && yearTransactionData.length > 0) {
-      return apiMonthlyData.map((monthData) => monthData.amount);
-    }
-    // API 데이터가 없으면 기존 더미 데이터 사용
-    return txnsByMonth.map((m) => m.reduce((a, t) => a + t.amount, 0));
-  }, [yearTransactionData, apiMonthlyData, txnsByMonth]);
+  // Unavailable data is unknown; a successful empty response represents zero.
+  const myMonthly = useMemo(
+    () => apiMonthlyData.map(month => yearDataReady ? month.amount : null),
+    [apiMonthlyData, yearDataReady]
+  );
   /* 또래 API 데이터를 월별 데이터로 변환 */
   const apiPeerMonthlyData = useMemo(() => {
     if (!peerYearTransactionData) {
@@ -267,15 +270,10 @@ export default function ChartPage() {
     return monthlyData;
   }, [peerYearTransactionData]);
 
-  const peerMonthly = useMemo(() => {
-    if (peerYearTransactionData && peerYearTransactionData.length > 0) {
-      return apiPeerMonthlyData.map((monthData) => monthData.amount);
-    }
-    // API 데이터가 없으면 기존 더미 계산 로직 사용
-    return myMonthly.map((v, i) =>
-      Math.round(v * (0.9 + ((i * 17) % 15) / 100))
-    );
-  }, [peerYearTransactionData, apiPeerMonthlyData, myMonthly]);
+  const peerMonthly = useMemo(
+    () => apiPeerMonthlyData.map(month => peerQuery.isSuccess ? month.amount : null),
+    [apiPeerMonthlyData, peerQuery.isSuccess]
+  );
 
   const lineData = useMemo(
     () =>
@@ -335,11 +333,12 @@ export default function ChartPage() {
   /* 연월 계산 */
   const selectedYear = useMemo(() => {
     if (selectedMonth === null) return null;
+    if (isDemo) return demoPeriod?.yearsByMonth[selectedMonth] ?? null;
     const { currentYear, currentMonth } = getCurrentDateInfo();
 
     // selectedMonth가 현재 달보다 큰 경우(미래 달) 작년으로 간주
     return selectedMonth > currentMonth ? currentYear - 1 : currentYear;
-  }, [selectedMonth]);
+  }, [selectedMonth, demoPeriod]);
 
   const selectedMonthNum = useMemo(() => {
     if (selectedMonth === null) return null;
@@ -347,42 +346,58 @@ export default function ChartPage() {
   }, [selectedMonth]);
 
   /* 월별 거래 내역 API */
-  const { data: monthlyTransactionsData } = useMonthlyTransactionsQuery(
+  const monthlyQuery = useMonthlyTransactionsQuery(
     selectedYear || 0,
     selectedMonthNum || 0
   );
 
   /* 카테고리별 거래 내역 API */
-  const { data: categoryTransactionsData } = useCategoryTransactionsQuery(
+  const categoryQuery = useCategoryTransactionsQuery(
     selectedYear || 0,
     selectedMonthNum || 0
   );
 
   /* 카테고리 업데이트 Mutation */
   const updateCategoryMutation = useUpdateTransactionCategoryMutation();
+  const queryClient = useQueryClient();
+  const activePeriod = useRef<ChartPeriod | null>(null);
+  const saving = useRef(false);
+  const [saveError, setSaveError] = useState<{ period: string; message: string } | null>(null);
+  const monthlyTransactionsData = monthlyQuery.data;
+  const categoryTransactionsData = categoryQuery.data;
+  const monthlyReady = selectedMonth !== null && (!isDemo || demoPeriod !== null) && monthlyQuery.isSuccess && !monthlyQuery.isPlaceholderData;
+  const canEdit = monthlyReady && monthlyQuery.fetchStatus === "idle" && !updateCategoryMutation.isPending;
 
   /* MonthlyTransaction을 Txn으로 변환 */
   const convertToTxn = (monthlyTxn: MonthlyTransaction): Txn => ({
-    id: monthlyTxn.id.toString(),
+    id: monthlyTxn.id,
     date: monthlyTxn.transactionDateTime.split("T")[0], // YYYY-MM-DD 형태로 변환
     merchant: monthlyTxn.merchantName,
     amount: monthlyTxn.amount,
     category: monthlyTxn.category as Category,
-    leaked: Boolean((monthlyTxn as any).leaked),
+    leaked: "leaked" in monthlyTxn && Boolean(monthlyTxn.leaked),
   });
 
   /* 안전 클릭 핸들러: index → payload.idx */
-  const onPointClickSafe = (props: any) => {
+  const onPointClickSafe = (props: ChartDotProps) => {
     const idx =
       typeof props?.index === "number"
         ? props.index
-        : typeof props?.payload?.idx === "number"
+        : isRecord(props.payload) && typeof props.payload.idx === "number"
         ? props.payload.idx
         : null;
 
-    if (idx !== null) {
+    if (idx !== null && Number.isInteger(idx) && idx >= 0 && idx < 12) {
+      if (isDemo) {
+        if (!demoPeriod) return;
+        activePeriod.current = { year: demoPeriod.yearsByMonth[idx], month: idx + 1 };
+      } else {
+        const { currentYear, currentMonth } = getCurrentDateInfo();
+        activePeriod.current = { year: idx > currentMonth ? currentYear - 1 : currentYear, month: idx + 1 };
+      }
       setSelectedMonth(idx);
       setSelectedCategory("전체");
+      setSaveError(null);
       requestAnimationFrame(() => {
         document
           .getElementById("screen2")
@@ -391,35 +406,41 @@ export default function ChartPage() {
     }
   };
 
-  /* 카테고리 수정 */
-  const updateTxnCategory = (month: number, id: string, cat: Category) => {
-    // API 호출
-    updateCategoryMutation.mutate({
-      transactionId: parseInt(id), // string을 number로 변환
-      data: { category: cat },
+  /* 서버 확정값을 표시하고, 호출 직전 현재 월/캐시/ID를 다시 검증한다. */
+  const updateTxnCategory = (period: ChartPeriod, id: number, cat: Category) => {
+    const state = queryClient.getQueryState<MonthlyTransaction[]>(
+      transactionQueryKeys.monthly(period.year, period.month)
+    );
+    const transaction = findEditableTransaction({
+      id, category: cat, period, activePeriod: activePeriod.current,
+      transactions: state?.data,
+      ready: monthlyReady && state?.status === "success" && state.data === monthlyTransactionsData,
+      fetching: monthlyQuery.isFetching || state?.fetchStatus !== "idle",
+      placeholder: monthlyQuery.isPlaceholderData,
+      saving: saving.current || updateCategoryMutation.isPending,
+      allowedCategories: CATEGORIES,
     });
+    if (!transaction) return;
 
-    // 로컬 상태 즉시 업데이트 (optimistic update)
-    setTxnsByMonth((prev) => {
-      const next = prev.map((arr) => arr.slice());
-      const idx = next[month].findIndex((t) => t.id === id);
-      if (idx >= 0) next[month][idx] = { ...next[month][idx], category: cat };
-      return next;
+    saving.current = true; // Close the interval before isPending triggers a render.
+    setSaveError(null);
+    updateCategoryMutation.mutate({
+      transactionId: transaction.id,
+      data: { category: cat },
+    }, {
+      onError: () => setSaveError({
+        period: String(period.year) + "/" + period.month,
+        message: "카테고리를 변경하지 못했습니다.",
+      }),
+      onSettled: () => { saving.current = false; },
     });
   };
 
-  /* 상세/필터링/합계 - API 데이터 우선 사용 */
-  const detailTxns = useMemo(() => {
-    if (selectedMonth === null) return [];
-
-    if (monthlyTransactionsData && monthlyTransactionsData.length > 0) {
-      // API 데이터를 Txn 형태로 변환
-      return monthlyTransactionsData.map(convertToTxn);
-    }
-
-    // API 데이터가 없으면 기존 더미 데이터 사용
-    return txnsByMonth[selectedMonth];
-  }, [selectedMonth, monthlyTransactionsData, txnsByMonth]);
+  /* 성공한 현재 월의 API 응답만 거래로 표시한다. */
+  const detailTxns = useMemo(
+    () => monthlyReady ? (monthlyTransactionsData ?? []).map(convertToTxn) : [],
+    [monthlyReady, monthlyTransactionsData]
+  );
 
   const filteredTxns =
     selectedMonth === null
@@ -428,33 +449,23 @@ export default function ChartPage() {
       ? detailTxns
       : detailTxns.filter((t) => t.category === selectedCategory);
   const monthTotal = useMemo(() => {
-    if (selectedMonth === null) return 0;
-
-    // 연간 집계 데이터가 있다면 → 라인차트와 동일한 집계값 사용
-    if (yearTransactionData && yearTransactionData.length > 0) {
+    if (!monthlyReady || selectedMonth === null) return null;
+    if (detailTxns.length === 0) return 0;
+    // Preserve the existing annual aggregate priority for a nonempty confirmed month.
+    if (yearQuery.isSuccess && yearTransactionData && yearTransactionData.length > 0) {
       return apiMonthlyData[selectedMonth].amount;
     }
+    return detailTxns.reduce((total, transaction) => total + transaction.amount, 0);
+  }, [monthlyReady, selectedMonth, yearQuery.isSuccess, yearTransactionData, apiMonthlyData, detailTxns]);
 
-    // 없을 때만 표의 개별 거래 합으로 폴백
-    return detailTxns.reduce((a, t) => a + t.amount, 0);
-  }, [selectedMonth, yearTransactionData, apiMonthlyData, detailTxns]);
-
-  // ★ 누수 합계: getCategoryTransactions API에서 leakedAmount 합산
   const leakTotal = useMemo(() => {
-    if (selectedMonth === null) return 0;
-    
-    // API 데이터가 있으면 카테고리별 leakedAmount 합산
-    if (categoryTransactionsData && categoryTransactionsData.length > 0) {
-      return categoryTransactionsData.reduce((total, category) => total + category.leakedAmount, 0);
-    }
-    
-    // API 데이터가 없으면 기존 로직 사용 (상세에 뜬 거래들 중 leaked=true인 금액만 합산)
-    return detailTxns.filter((t) => t.leaked).reduce((a, t) => a + t.amount, 0);
-  }, [selectedMonth, categoryTransactionsData, detailTxns]);
+    if (selectedMonth === null || !categoryQuery.isSuccess) return null;
+    return (categoryTransactionsData ?? []).reduce((total, category) => total + category.leakedAmount, 0);
+  }, [selectedMonth, categoryQuery.isSuccess, categoryTransactionsData]);
 
   /* 파이 데이터 */
   const pieData = useMemo(() => {
-    if (selectedMonth === null) return [];
+    if (!monthlyReady || selectedMonth === null || monthTotal === null) return [];
 
     if (selectedCategory === "전체") {
       const categoryData = CATEGORIES.map((c, i) => ({
@@ -486,19 +497,20 @@ export default function ChartPage() {
       },
       { name: "나머지", value: others, color: "#4a5568" },
     ];
-  }, [selectedMonth, selectedCategory, txnsByMonth, detailTxns, monthTotal]);
+  }, [monthlyReady, selectedMonth, selectedCategory, detailTxns, monthTotal]);
 
   /* 파이 라벨 */
   // 파이차트 커스텀 라벨 - 균일한 위치
   // 라벨: 이름 + 퍼센트 (>= 3%만 표시), 폰트 업
-  const renderCustomLabel = ({
-    cx,
-    cy,
-    midAngle,
-    outerRadius,
-    percent,
-    name,
-  }: any) => {
+  const renderCustomLabel = (props: unknown) => {
+    if (!isRecord(props)) return null;
+    const { cx, cy, midAngle, outerRadius, percent, name } = props;
+    if (typeof cx !== "number" || !Number.isFinite(cx) ||
+        typeof cy !== "number" || !Number.isFinite(cy) ||
+        typeof midAngle !== "number" || !Number.isFinite(midAngle) ||
+        typeof outerRadius !== "number" || !Number.isFinite(outerRadius) ||
+        typeof percent !== "number" || !Number.isFinite(percent) ||
+        typeof name !== "string") return null;
     if (percent < 0.03) return null; // 3% 미만 숨김
     const RADIAN = Math.PI / 180;
     const labelRadius = outerRadius + 52;
@@ -528,18 +540,18 @@ export default function ChartPage() {
   };
 
   /* 커스텀 점 */
-  const MyConsumptionDot = (props: any): React.ReactElement<SVGElement> => {
+  const MyConsumptionDot = (props: ChartDotProps): React.ReactElement<SVGElement> => {
     const { cx, cy, index, payload } = props;
-    if (cx == null || cy == null) return <g />;
+    if (cx == null || cy == null || !Number.isFinite(cx) || !Number.isFinite(cy)) return <g />;
 
     const flower = chartAssets[5];
     const leaf = chartAssets[6];
     const deadFlower = chartAssets[7];
     const deadLeaf = chartAssets[8];
 
-    const isCurrentMonth = index === getCurrentDateInfo().currentMonth;
-    const leaked = payload?.leaked || false;
-    const isLastYear = payload?.isLastYear || false;
+    const isCurrentMonth = index === (isDemo ? demoPeriod?.monthIndex : getCurrentDateInfo().currentMonth);
+    const leaked = flag(payload, "leaked");
+    const isLastYear = flag(payload, "isLastYear");
 
     const href = leaked
       ? isCurrentMonth
@@ -557,6 +569,7 @@ export default function ChartPage() {
       <g
         key={`dot-${index}`}
         transform={`translate(${x}, ${y})`}
+        aria-disabled={isDemo && !demoPeriod}
         style={{ cursor: "pointer", opacity: isLastYear ? 0.6 : 1 }}
         onClick={(e) => {
           e.stopPropagation();
@@ -568,9 +581,9 @@ export default function ChartPage() {
     );
   };
 
-  const PeerDot = (props: any): React.ReactElement<SVGElement> => {
+  const PeerDot = (props: ChartDotProps): React.ReactElement<SVGElement> => {
     const { cx, cy } = props;
-    if (cx == null || cy == null) return <g />;
+    if (cx == null || cy == null || !Number.isFinite(cx) || !Number.isFinite(cy)) return <g />;
     return (
       <g
         key={`dot-peer-${props.index}`}
@@ -631,6 +644,29 @@ export default function ChartPage() {
           <div className="jp-page-title-section">
             <h1>월간 소비 비교</h1>
             <p>연꽃과 잎을 클릭하면 해당 달의 상세 소비를 볼 수 있습니다!</p>
+            {isDemo && <>
+              <p>직접 작성한 합성 소비·기준 예산입니다. AI 예측이 아닙니다.{demoPeriod && ` 기준월 ${demoPeriod.anchor}`}</p>
+              <p>또래 비교 데이터는 이번 체험에서 제공하지 않습니다.</p>
+            </>}
+            <div className="jp-query-status">
+              {yearQuery.isError ? (
+                <p role="alert">연간 소비를 불러오지 못했습니다. <button onClick={() => void yearQuery.refetch()}>연간 소비 다시 시도</button></p>
+              ) : isDemo && yearQuery.isSuccess && !demoPeriod ? (
+                <p role="alert">체험 소비 기간을 확인하지 못했습니다. <button onClick={() => void yearQuery.refetch()}>연간 소비 다시 시도</button></p>
+              ) : yearQuery.isPending || yearQuery.fetchStatus !== "idle" ? (
+                <p role="status">연간 소비를 불러오는 중입니다.</p>
+              ) : yearQuery.isSuccess && yearTransactionData?.length === 0 ? (
+                <p role="status">연간 소비 내역이 없습니다.</p>
+              ) : null}
+              {!isDemo && (peerQuery.isError ? (
+                <p role="alert">또래 소비를 불러오지 못했습니다. <button onClick={() => void peerQuery.refetch()}>또래 소비 다시 시도</button></p>
+              ) : peerQuery.isPending || peerQuery.fetchStatus !== "idle" ? (
+                <p role="status">또래 소비를 불러오는 중입니다.</p>
+              ) : peerQuery.isSuccess && peerYearTransactionData?.length === 0 ? (
+                <p role="status">또래 소비 내역이 없습니다.</p>
+              ) : null)}
+              {selectedMonth === null && <p role="status">월을 선택해 주세요.</p>}
+            </div>
           </div>
 
           {/* 연못 바닥: onLoad에서 실제 비율로 교체 */}
@@ -656,7 +692,6 @@ export default function ChartPage() {
 
           {/* 라인차트 */}
           <div className="jp-linechart-wrap">
-            {/* @ts-ignore */}
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 className="jp-linechart"
@@ -682,7 +717,7 @@ export default function ChartPage() {
                 <Legend
                   wrapperStyle={{ color: "#E0FFFF", paddingTop: "10px" }}
                 />
-                <Line
+                {!isDemo && <Line
                   type="monotone"
                   dataKey="peers"
                   name="또래 소비"
@@ -690,7 +725,7 @@ export default function ChartPage() {
                   strokeWidth={3}
                   dot={PeerDot}
                   activeDot={{ r: 7 }}
-                />
+                />}
                 <Line
                   type="monotone"
                   dataKey="me"
@@ -708,20 +743,22 @@ export default function ChartPage() {
       </section>
 
       {/* ===== 화면 2: 상세(선택 시 나타남) ===== */}
-      {selectedMonth !== null && (
+      {selectedMonth !== null && (!isDemo || demoPeriod !== null) && (
         <section id="screen2" className="jp-screen jp-detail-screen">
           <div className="jp-card">
             <div className="jp-card-head">
               <h1>{monthLabel(selectedMonth)} 상세</h1>
               <div className="jp-head-actions">
-                <span className="jp-leak">누수 금액: {KRW(leakTotal)}원</span>
+                <span className="jp-leak">누수 금액: {leakTotal === null ? "—" : KRW(leakTotal) + "원"}</span>
                 <span className="jp-total">
-                  | 총 소비 금액: {KRW(monthTotal)}원
+                  | 총 소비 금액: {monthTotal === null ? "—" : KRW(monthTotal) + "원"}
                 </span>
                 <button
                   className="jp-close"
                   onClick={() => {
+                    activePeriod.current = null;
                     setSelectedMonth(null);
+                    setSaveError(null);
                     // 사용자가 위로 스크롤하여 라인차트로 올라가면 됨
                   }}
                 >
@@ -732,9 +769,22 @@ export default function ChartPage() {
 
             <div className="jp-grid">
               <div className="jp-panel">
+                <div className="jp-detail-status">
+                  {monthlyQuery.isError ? (
+                    <p role="alert">거래 내역을 불러오지 못했습니다. <button onClick={() => void monthlyQuery.refetch()}>거래 내역 다시 시도</button></p>
+                  ) : monthlyQuery.isPending || monthlyQuery.fetchStatus !== "idle" ? (
+                    <p role="status">거래 내역을 불러오는 중입니다.</p>
+                  ) : monthlyReady && detailTxns.length === 0 ? (
+                    <p role="status">거래 내역이 없습니다.</p>
+                  ) : null}
+                  {categoryQuery.isError && <p role="alert">누수 금액을 불러오지 못했습니다. <button onClick={() => void categoryQuery.refetch()}>누수 금액 다시 시도</button></p>}
+                  {updateCategoryMutation.isPending && <p role="status">카테고리를 저장하는 중입니다.</p>}
+                  {saveError?.period === String(selectedYear) + "/" + selectedMonthNum && <p role="alert">{saveError.message}</p>}
+                </div>
                 <div className="jp-toolbar">
                   <JPSelect
                     value={selectedCategory}
+                    disabled={!monthlyReady || monthlyQuery.fetchStatus !== "idle"}
                     onChange={(v) => setSelectedCategory(v as "전체" | Category)}
                     options={[
                       { label: "전체", value: "전체" },
@@ -754,17 +804,18 @@ export default function ChartPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredTxns.map((tx) => (
-                      <tr key={tx.id}>
+                    {filteredTxns.map((tx, index) => (
+                      <tr key={isTransactionId(tx.id) ? tx.id : "invalid-" + index}>
                         <td>{tx.date}</td>
                         <td className="left">{tx.merchant}</td>
                         <td>{KRW(tx.amount)} 냥</td>
                         <td>
                           <JPSelect
                             value={tx.category}
+                            disabled={!canEdit || !isTransactionId(tx.id) || !belongsToPeriod(tx.date, { year: selectedYear!, month: selectedMonthNum! })}
                             onChange={(v) =>
                               updateTxnCategory(
-                                selectedMonth!,
+                                { year: selectedYear!, month: selectedMonthNum! },
                                 tx.id,
                                 v as Category
                               )
@@ -814,7 +865,7 @@ export default function ChartPage() {
                         ))}
                       </Pie>
                       <Tooltip
-                        formatter={(value: any, name: any) => [
+                        formatter={(value, name) => [
                           `${KRW(toNum(value))}원`,
                           name,
                         ]}

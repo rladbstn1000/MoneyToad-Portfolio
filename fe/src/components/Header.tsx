@@ -3,7 +3,14 @@ import { useLogoutMutation } from "../api/services/auth";
 import "./Header.css";
 import axios from "axios";
 
+import { authMode } from '../auth/authMode';
+import DemoHeader from './DemoHeader';
+
 export default function Header() {
+  return authMode === 'demo' ? <DemoHeader /> : <OAuthHeader />;
+}
+
+function OAuthHeader() {
   const thisMonth = new Date().getMonth() + 1; // 1..12
   const potPath = `/pot/${thisMonth}`;
 

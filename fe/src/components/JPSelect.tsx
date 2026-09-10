@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import * as Select from '@radix-ui/react-select';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import './JPSelect.css';
@@ -25,6 +26,8 @@ export default function JPSelect({
   colorMap, // ← 추가
 }: JPSelectProps) {
   const currentColor = colorMap?.[value];
+  const chipStyle: (CSSProperties & { "--jp-chip-color"?: string }) | undefined =
+    currentColor ? { "--jp-chip-color": currentColor } : undefined;
 
   return (
     <Select.Root value={value} onValueChange={onChange} disabled={disabled}>
@@ -32,11 +35,7 @@ export default function JPSelect({
       <Select.Trigger
         aria-label="선택"
         className={`jp-select-trigger ${className || ''}`}
-        style={
-          currentColor
-            ? ({ ['--jp-chip-color' as any]: currentColor } as React.CSSProperties)
-            : undefined
-        }
+        style={chipStyle}
       >
         <Select.Value placeholder={placeholder} />
         <Select.Icon>
