@@ -11,6 +11,8 @@ import com.potg.don.budget.entity.Budget;
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
 	Optional<Budget> findByIdAndUser_Id(Long id, Long userId);
 
+	List<Budget> findAllByUserId(Long userId);
+
 	// 특정 사용자 + 특정 월(그 달의 1일) 전체 예산
 	List<Budget> findAllByUserIdAndBudgetDate(Long userId, LocalDate monthFirstDay);
 

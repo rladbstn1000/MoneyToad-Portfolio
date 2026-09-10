@@ -27,6 +27,7 @@ import com.potg.don.transaction.dto.response.MonthlySpendingResponse;
 import com.potg.don.transaction.dto.response.TransactionResponse;
 import com.potg.don.transaction.service.PeerTransactionStatsService;
 import com.potg.don.transaction.service.TransactionService;
+import com.potg.don.transaction.service.ChartPeriodResolver;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,12 +39,13 @@ public class TransactionController {
 	private final TransactionService transactionService;
 	private final PeerTransactionStatsService statsService;
 	private final BudgetService budgetService;
+	private final ChartPeriodResolver chartPeriod;
 
 	@GetMapping("")
 	public ResponseEntity<List<MonthlySpendingResponse>> getYearlySpending(
 		@AuthenticationPrincipal CustomUserDetails user) {
 		Long userId = user.getUserId();
-		YearMonth endYm = YearMonth.now();
+		YearMonth endYm = chartPeriod.endMonth(userId);
 		YearMonth startYm = endYm.minusMonths(11);
 
 		Map<YearMonth, Map<String, Integer>> budgetByMonth =

@@ -2,6 +2,7 @@ package com.potg.don.auth.oauth;
 
 import java.io.IOException;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ import jakarta.servlet.http.Cookie;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
+@Profile("!demo")
 @RequiredArgsConstructor
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 

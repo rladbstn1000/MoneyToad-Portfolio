@@ -21,6 +21,26 @@ spring:
       host: ${REDIS_HOST}
       port: ${REDIS_PORT}
 
+
+app:
+  demo:
+    enabled: ${APP_DEMO_ENABLED:false}
+  deployment:
+    kind: ${APP_DEPLOYMENT_KIND:standard}
+  jwt:
+    secret: ${JWT_SECRET}
+    access-token-validity-seconds: ${JWT_ACCESS_SECONDS}
+    refresh-token-validity-seconds: ${JWT_REFRESH_SECONDS}
+    issuer: ${JWT_ISSUER}
+
+ai:
+  base-url: ${AI_BASE_URL}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "!demo"
   security:
     oauth2:
       client:
@@ -41,13 +61,3 @@ spring:
             token-uri: ${SSAFY_TOKEN_URI}
             user-info-uri: ${SSAFY_USER_INFO_URI}
             user-name-attribute: ${SSAFY_USER_NAME_ATTR}
-
-app:
-  jwt:
-    secret: ${JWT_SECRET}
-    access-token-validity-seconds: ${JWT_ACCESS_SECONDS}
-    refresh-token-validity-seconds: ${JWT_REFRESH_SECONDS}
-    issuer: ${JWT_ISSUER}
-
-ai:
-  base-url: ${AI_BASE_URL}

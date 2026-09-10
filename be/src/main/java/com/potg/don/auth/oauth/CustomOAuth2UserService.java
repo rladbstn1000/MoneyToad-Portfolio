@@ -2,6 +2,7 @@ package com.potg.don.auth.oauth;
 
 import java.util.Map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Profile("!demo")
 @RequiredArgsConstructor
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 

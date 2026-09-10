@@ -1,0 +1,17 @@
+# Explicit activation still requires APP_DEMO_ENABLED=true and
+# APP_DEPLOYMENT_KIND=local-demo or public-demo. No OAuth fallback is provided.
+spring:
+  data:
+    redis:
+      connect-timeout: 1s
+      timeout: 1s
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration
+      - org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration
+
+app:
+  demo:
+    browser-origin: ${APP_DEMO_BROWSER_ORIGIN}
+server:
+  address: ${DEMO_BIND_ADDRESS:127.0.0.1}

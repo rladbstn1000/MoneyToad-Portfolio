@@ -1,5 +1,6 @@
 package com.potg.don.auth.service;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import com.potg.don.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Profile("!demo")
 @RequiredArgsConstructor
 public class AuthService {
 

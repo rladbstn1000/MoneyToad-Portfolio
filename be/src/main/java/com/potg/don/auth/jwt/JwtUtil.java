@@ -3,6 +3,11 @@ package com.potg.don.auth.jwt;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Date;
+import java.util.Base64;
+import java.util.Objects;
+
+import com.potg.don.auth.demo.DemoAuthException;
+import static com.potg.don.auth.demo.DemoAuthException.Reason.INVALID_DEMO_TOKEN;
 import java.util.Map;
 
 import javax.crypto.SecretKey;
@@ -75,4 +80,77 @@ public class JwtUtil {
 	public long getRefreshTtlSeconds() {
 		return refreshValiditySec;
 	}
+
+	/** Separate token kinds; original OAuth token methods above retain their contract. */
+	public String createDemoAccessToken(long userId, String sid, Instant issuedAt, Instant expiresAt) {
+		return createDemoToken(userId, sid, null, issuedAt, expiresAt, "DEMO_ACCESS", 300);
+	}
+
+	public String createDemoRefreshToken(long userId, String sid, String jti, Instant issuedAt, Instant expiresAt) {
+		return createDemoToken(userId, sid, jti, issuedAt, expiresAt, "DEMO_REFRESH", 3600);
+	}
+
+	private String createDemoToken(long userId, String sid, String jti, Instant issuedAt, Instant expiresAt,
+		String type, long maximumSeconds) {
+		if (userId <= 0 || issuer == null || issuer.isBlank() || !isDemoIdentifier(sid)
+			|| ("DEMO_REFRESH".equals(type) && !isDemoIdentifier(jti))
+			|| !validDemoTimes(issuedAt, expiresAt, issuedAt, maximumSeconds)) {
+			throw new DemoAuthException(INVALID_DEMO_TOKEN);
+		}
+		var builder = Jwts.builder().issuer(issuer).subject(Long.toString(userId))
+			.issuedAt(Date.from(issuedAt)).expiration(Date.from(expiresAt)).claim("typ", type).claim("sid", sid);
+		if (jti != null) builder.id(jti);
+		return builder.signWith(key, Jwts.SIG.HS256).compact();
+	}
+
+	public DemoClaims validateDemoAccessToken(Jws<Claims> verified, Instant now) {
+		return validateDemoToken(verified, now, "DEMO_ACCESS", 300);
+	}
+
+	public DemoClaims validateDemoRefreshToken(Jws<Claims> verified, Instant now) {
+		return validateDemoToken(verified, now, "DEMO_REFRESH", 3600);
+	}
+
+	// Caller must supply the signed result of parse(), never untrusted decoded claims.
+	private DemoClaims validateDemoToken(Jws<Claims> verified, Instant now, String type, long maximumSeconds) {
+		try {
+			Claims claims = verified.getPayload();
+			String subject = claims.getSubject();
+			long userId = Long.parseLong(subject);
+			String sid = claims.get("sid", String.class);
+			Instant issuedAt = claims.getIssuedAt().toInstant();
+			Instant expiresAt = claims.getExpiration().toInstant();
+			if (!"HS256".equals(verified.getHeader().getAlgorithm()) || issuer == null || issuer.isBlank()
+				|| !Objects.equals(issuer, claims.getIssuer()) || !type.equals(claims.get("typ", String.class))
+				|| userId <= 0 || !Long.toString(userId).equals(subject) || !isDemoIdentifier(sid)
+				|| ("DEMO_REFRESH".equals(type) && !isDemoIdentifier(claims.getId()))
+				|| ("DEMO_ACCESS".equals(type) && claims.containsKey("jti"))
+				|| claims.containsKey("email") || claims.containsKey("name")
+				|| !validDemoTimes(issuedAt, expiresAt, now, maximumSeconds)) {
+				throw new DemoAuthException(INVALID_DEMO_TOKEN);
+			}
+			return new DemoClaims(userId, sid, issuedAt, expiresAt);
+		} catch (io.jsonwebtoken.JwtException | IllegalArgumentException | NullPointerException failure) {
+			throw new DemoAuthException(INVALID_DEMO_TOKEN);
+		}
+	}
+
+	private static boolean validDemoTimes(Instant issuedAt, Instant expiresAt, Instant now, long maximumSeconds) {
+		return issuedAt != null && expiresAt != null && now != null
+			&& issuedAt.getEpochSecond() >= 0 && issuedAt.getNano() == 0 && expiresAt.getNano() == 0
+			&& !issuedAt.isAfter(now) && expiresAt.isAfter(now) && expiresAt.isAfter(issuedAt)
+			&& expiresAt.getEpochSecond() - issuedAt.getEpochSecond() <= maximumSeconds;
+	}
+
+	public static boolean isDemoIdentifier(String value) {
+		if (value == null || !value.matches("[A-Za-z0-9_-]{43}")) return false;
+		try {
+			byte[] decoded = Base64.getUrlDecoder().decode(value);
+			return decoded.length == 32 && Base64.getUrlEncoder().withoutPadding().encodeToString(decoded).equals(value);
+		} catch (IllegalArgumentException invalid) {
+			return false;
+		}
+	}
+
+	public record DemoClaims(long userId, String sid, Instant issuedAt, Instant expiresAt) { }
 }

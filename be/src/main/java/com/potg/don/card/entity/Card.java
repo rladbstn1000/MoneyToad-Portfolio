@@ -40,6 +40,13 @@ public class Card extends BaseTimeEntity {
 		return card;
 	}
 
+	/** Relationship-only card for a server-created demo visitor; no financial credentials. */
+	public static Card createSyntheticCard(User user) {
+		Card card = new Card();
+		card.user = user;
+		return card;
+	}
+
 	public Card updateCard(CardRequest cardRequest) {
 		this.cardNo = cardRequest.getCardNo();
 		this.cvc = cardRequest.getCvc();

@@ -1,5 +1,6 @@
 package com.potg.don.auth.controller;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -19,6 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@Profile("!demo")
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
