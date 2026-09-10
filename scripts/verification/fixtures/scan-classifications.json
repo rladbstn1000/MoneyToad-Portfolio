@@ -1,0 +1,536 @@
+{
+  "sites": [
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 124,
+      "category": "email-marker",
+      "content_digest": "b925644ed91b87102abaa0300b712e1514d63b823bf1293841eb57a3f28202e6",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 125,
+      "category": "email-marker",
+      "content_digest": "0081c0bc7e6f82d445a90dbc019365f0dbb6c905cacfaae1f685abdf39377c17",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 158,
+      "category": "bearer-marker",
+      "content_digest": "489746fa250b4c29ce35f78e4e489304aea411860d59ed431cc0ecff63641b4f",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 170,
+      "category": "bearer-marker",
+      "content_digest": "a0b1fcae5f5ceb9e0edebf9713d4f4fb93d3cfcca305bd5e34b1f0478ad48987",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 227,
+      "category": "email-marker",
+      "content_digest": "ef430c9e90a4f2dc1441656ab4baf36fbd641cb9b62936a4b4d0b4314a71da15",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 115,
+      "category": "email-marker",
+      "content_digest": "f129ac26c0466925633dd8f654d0ae0fb8c6cc35efd0f7c28ae46c16885fa851",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 116,
+      "category": "email-marker",
+      "content_digest": "015dbcb302d83f138a68694907f554df91a72fdf58d68061cfedd32ade5106b1",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 156,
+      "category": "email-marker",
+      "content_digest": "cf1234367145d3e56c884ee1a888978059abfd9709e595ca16d751ac080e35fc",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/service/CsvServiceOwnershipTest.java",
+      "line": 50,
+      "category": "email-marker",
+      "content_digest": "b2672e6458dde888a8c29ae155da72bff1d4cc2e7dc9df23f175c2d60912a080",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/card/controller/CardControllerCsvContractTest.java",
+      "line": 72,
+      "category": "credential-assignment",
+      "content_digest": "4b5b9ee1f5fffd9ca75ec267c62c1c88eda58e27a05cb67f0c160d806d97a11a",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpRequestContractTest.java",
+      "line": 53,
+      "category": "email-marker",
+      "content_digest": "74f6b7719ff07f560bc06736780d0da6c5e783a8a339544ae4bcce3a4f12ef1c",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpRequestContractTest.java",
+      "line": 335,
+      "category": "email-marker",
+      "content_digest": "5b48837f3f9708739add639633aa48ad54646c75fd96a95770e090a590078c80",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 41,
+      "category": "email-marker",
+      "content_digest": "a448ab21a703ed4f32806c84435e957e8fa01f39c9c00994679b77d653984a37",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 98,
+      "category": "email-marker",
+      "content_digest": "f3eecc8a97bbe42f63ea43b64248773e56941ae7bd5b8ae31518fdad86034039",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 126,
+      "category": "email-marker",
+      "content_digest": "a90ef988a7896f1842e764fa4c1999df40e15c9589813a89ca75ec44c0d710ce",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 149,
+      "category": "email-marker",
+      "content_digest": "481f6437e8cf7459007011e5b967ee7e449aa6aa95c64395481b00c0ea4e9ac5",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 171,
+      "category": "email-marker",
+      "content_digest": "84fa6bcdcb996ac003d54bb083286f10a6f23f61d99d7829035f03abc0fe83cc",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 143,
+      "category": "email-marker",
+      "content_digest": "a6b06504ff7132367d392f43dbeb05e0832abfea85d87cd1b8efc3b3db377885",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 512,
+      "category": "email-marker",
+      "content_digest": "09298bf409d23505057876ad8639285f38a21d7ac7b60beafe679aab666205e3",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 513,
+      "category": "email-marker",
+      "content_digest": "5d1e27b0990cdb4d3b0ba0c9b454d9036f4b073358e082b7691ad1638cdef674",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "line": 301,
+      "category": "email-marker",
+      "content_digest": "09298bf409d23505057876ad8639285f38a21d7ac7b60beafe679aab666205e3",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "line": 302,
+      "category": "email-marker",
+      "content_digest": "5d1e27b0990cdb4d3b0ba0c9b454d9036f4b073358e082b7691ad1638cdef674",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpIntegrationTest.java",
+      "line": 65,
+      "category": "email-marker",
+      "content_digest": "52023aaa778c65fdc75e83fc89d01b7229f64ad1b099319599714c88a93cd4e4",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 36,
+      "category": "credential-assignment",
+      "content_digest": "039e236a01ff0a619689483234f597c8121655fe9ce025b1bed978e6d59b340b",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 90,
+      "category": "email-marker",
+      "content_digest": "dc7a50897aca60a778d2e1e467d8678785a337235bb4dcc158133f92c6d61759",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 122,
+      "category": "email-marker",
+      "content_digest": "570f38f9ff3b3cfb3b8bbe26f54cf57971ca264663d864dcb6055c639b00ca3f",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 218,
+      "category": "email-marker",
+      "content_digest": "8b02036eb6c41be68d9016cc95dcba4d39b2bd50351299a7cd87d824eaba9e10",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 221,
+      "category": "email-marker",
+      "content_digest": "a04814083f944fa63b82f85120dc3e1f58272e47de0d9aad56ff945e2ee536a8",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionServiceTest.java",
+      "line": 142,
+      "category": "email-marker",
+      "content_digest": "746d96b80102b41679d7f17d11f064b9db813bb4751d470a95fe998915c21a08",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 75,
+      "category": "bearer-marker",
+      "content_digest": "b5a302368402167ba8dddda76cb50c8d83f2f0ae04abcfea1ce14781c9e91eaa",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 223,
+      "category": "cookie-assignment",
+      "content_digest": "8df4d7e9f7398880e303f1a25a09d091bb52391dbffc66271cddfffff088e0a2",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 241,
+      "category": "cookie-assignment",
+      "content_digest": "7347538d9e778cde0a8a0e348ceb6435070757b6d9bd5766ed3e3155dc4d5ce2",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 143,
+      "category": "email-marker",
+      "content_digest": "5cadd056f2343bba3ef7b407c993dcc21b2ed8f84059e387ef3ac83e829bd92e",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 173,
+      "category": "email-marker",
+      "content_digest": "6237f4b2ad5ed2a0465556d57a8da90e3cf9daaffbfce1ec73eafc9889eae7fa",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 185,
+      "category": "email-marker",
+      "content_digest": "cb44f2e588712fade8b78e3f0c6556c6598c7d701a64e4a7c941f260d436568e",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthServiceTest.java",
+      "line": 245,
+      "category": "email-marker",
+      "content_digest": "1ab02841fa19f22082b0647b730e5235f06dbf8e9d912ffd80e05e3c229e26ed",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthFilterAvailabilityTest.java",
+      "line": 83,
+      "category": "email-marker",
+      "content_digest": "dab41b4dc793688d46580efc9b1757c8cdbe3d2284c541f0be5962a2ef5bbd90",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 84,
+      "category": "email-marker",
+      "content_digest": "aafe59d8eb78450b0b5843cdd66cfe6ea444a8794d9289f6751a8774e200672b",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 85,
+      "category": "email-marker",
+      "content_digest": "91f24ea4c2c9fc2000288549d36a43e7e499f560eda666efb112af7b54200096",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 186,
+      "category": "email-marker",
+      "content_digest": "1e25f64ef9eb730eba182517ecdfcc27ab7bfadc65f48c88f61754bc66ac8ecc",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/service/BudgetServiceOwnershipTest.java",
+      "line": 58,
+      "category": "email-marker",
+      "content_digest": "b0468f919758ba4ec72b7cb7a9a08bc047cc6f80739e9574a75ebed4667e2309",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/service/BudgetServiceOwnershipTest.java",
+      "line": 59,
+      "category": "email-marker",
+      "content_digest": "b147810b8f84efefcd8bba97a7781279d4899d18258de90a5109ffd43b85ea33",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/entity/CustomUserDetails.java",
+      "line": 23,
+      "category": "credential-assignment",
+      "content_digest": "d72743dadc85839b7bf3383040d8824165cc8978892ef65d93fb80de89cb1074",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/package-lock.json",
+      "line": 391,
+      "category": "cookie-header",
+      "content_digest": "8d58d6af8e52c4b3f96ff79a228a4d882f3da4fcabe034d0bcac7aa96aea92e8",
+      "classification": "npm cookie dependency version, not HTTP cookie data"
+    },
+    {
+      "file": "fe/package-lock.json",
+      "line": 6160,
+      "category": "cookie-header",
+      "content_digest": "9e727db19849c4cc4db57070acd86357d4386df4f0cc95e6f33303a6d10fadca",
+      "classification": "npm cookie dependency version, not HTTP cookie data"
+    },
+    {
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 152,
+      "category": "bearer-marker",
+      "content_digest": "d78e494573c35c76ea2098a80a602a5aedc57769405941bad9ab9088c9514602",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 164,
+      "category": "bearer-marker",
+      "content_digest": "1c301d2ddc0b727bc7335c773053d728a2658d39512e23bfab8d0639b48d85d0",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 170,
+      "category": "cookie-assignment",
+      "content_digest": "488ba1e55f55c9c61ab9f65ce9532884ff15d9f33c90de4e72631e63a8532301",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 202,
+      "category": "cookie-assignment",
+      "content_digest": "55134edbb4491baeeafdda009ea9c956b2e149d20d850f4afb8671087dbbbf61",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 224,
+      "category": "bearer-marker",
+      "content_digest": "dd8264d08f3da300949641817665c05ca6591c7839f0e4af6122be9946da747a",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 226,
+      "category": "bearer-marker",
+      "content_digest": "869b6a77e0f5db8c0fd83a1cb8b73f11617acaaefe160b9a47d176381bcf92bf",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 226,
+      "category": "authorization-marker",
+      "content_digest": "869b6a77e0f5db8c0fd83a1cb8b73f11617acaaefe160b9a47d176381bcf92bf",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/demoInterceptors.ts",
+      "line": 21,
+      "category": "bearer-marker",
+      "content_digest": "90b640d87b7652e4b89451e9cbdbb397a878cfd6f6779f88ec721b1bb13013dd",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "line": 14,
+      "category": "bearer-marker",
+      "content_digest": "c0beee1e09356fb2d012a663dd693580b54499eecb6979f6d22c4a5ecce8fb83",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "line": 49,
+      "category": "bearer-marker",
+      "content_digest": "e4aa57d3aa61133a03dfb1499d7fd97b5cdefc17529ef9b901ac23001c8fba7d",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 21,
+      "category": "bearer-marker",
+      "content_digest": "65860bcefce3937b608f5f17b582d3d69c73822f3ddba25db893ad1603bef5db",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 21,
+      "category": "authorization-marker",
+      "content_digest": "65860bcefce3937b608f5f17b582d3d69c73822f3ddba25db893ad1603bef5db",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 30,
+      "category": "bearer-marker",
+      "content_digest": "877c511f18e633eb00df249fab356c8ab466862f991f8d6d106a92e8f9cde309",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 30,
+      "category": "authorization-marker",
+      "content_digest": "877c511f18e633eb00df249fab356c8ab466862f991f8d6d106a92e8f9cde309",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "line": 37,
+      "category": "identity-field",
+      "content_digest": "235782386cf3d6cd45ed0a250c475ac355b19077c01c12b3d8bfd20ef7b306a1",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "line": 45,
+      "category": "identity-field",
+      "content_digest": "4f9c801ad3531b5623edee843628b9aa69e4c38d806f39a111bc5d5da7d60915",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 12,
+      "category": "identity-field",
+      "content_digest": "b9f95ac0b0b00c5c2ebd64567611fcd21b65b97070bef16abe50b26842eb2a90",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 15,
+      "category": "identity-field",
+      "content_digest": "cc3553a77bcc2260285db9cd324546eaa4871840cb1f17cdbd8731627ba14f6a",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 36,
+      "category": "cookie-assignment",
+      "content_digest": "235dbb2553487a4670b847fcf638213291217c251d953772c10edaa7cd903211",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 42,
+      "category": "credential-assignment",
+      "content_digest": "b845b17d5f487f7262b9314c4d3a02fedb1f92df7acbdea516dee898c29b5bf4",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 49,
+      "category": "identity-field",
+      "content_digest": "4b415012fcab61a563cb6d78918015a577ebf3b60f5b07cb7e9d8d1bed04eeac",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/public_scan.py",
+      "line": 17,
+      "category": "cookie-assignment",
+      "content_digest": "0c1c2dbd82fbc7a57b559351cd02b9e67918e0db4179222e21a1efb2e3745a9f",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 153,
+      "category": "credential-assignment",
+      "content_digest": "216cddf6ea7fc4f92d2fbb5e5a6efbc081bad4cc10ac201ce15a2c0a0340c300",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 336,
+      "category": "credential-assignment",
+      "content_digest": "4e41fb467bc062ed13a5e4292a03bfdd50eed61470ce9da92f28e5b4c2f60015",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 337,
+      "category": "credential-assignment",
+      "content_digest": "020e307384a6d31dac74bd4d385a507cb8101bf90aa1fcde412e5c1f2cffea48",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 338,
+      "category": "credential-assignment",
+      "content_digest": "327cc388e46e57beda7c1b8ad286539b9b4e96772b01b98d555420453282fc13",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/public_evidence.py",
+      "line": 21,
+      "category": "cookie-assignment",
+      "content_digest": "ceaaa60bcd02152e56311292a30e85516c0cb54f6570780bd61a206e10216d75",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 189,
+      "category": "credential-assignment",
+      "content_digest": "fd8896b613113d28366ee7d19abd48d94a5d1f9218a3bcaa5b0a0fe1c06b0fd2",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 225,
+      "category": "credential-assignment",
+      "content_digest": "c7e65501a35ce69d41489eac10d47d0c8fdeb69e4a064f090db11b208bef0ced",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 227,
+      "category": "credential-assignment",
+      "content_digest": "b23c92d98a237511397c993386b7c85cda01b40319d4d3a03bfba6d7b02f5839",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/a2_1_not_found_contract.py",
+      "line": 110,
+      "category": "bearer-marker",
+      "content_digest": "4ea44b88604fc8da60b3b34a72a42d241cfe03ac9dd3b944bea80f23b10da6d1",
+      "classification": "verification expression; no issued values"
+    }
+  ]
+}

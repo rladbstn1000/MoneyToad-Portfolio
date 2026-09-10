@@ -139,3 +139,25 @@ def browser(source, directory):
         entry['networks'] = networks
         result['modes'].append(entry)
     return result
+
+
+def browser_series(runs, expected_runs):
+    """Summarize only entries returned by this invocation, never stale files on disk."""
+    entries = []
+    for filename, summary in runs:
+        if not re.fullmatch(r'browser-[a-f0-9]{12}-summary\.json', filename):
+            raise ValueError('Invalid browser evidence filename')
+        modes = summary.get('modes', [])
+        cases = [case for mode in modes for case in mode.get('cases', [])]
+        networks = [network for mode in modes for network in mode.get('networks', [])]
+        external = sum(network['external_attempts'] + network['backend_attempts'] for network in networks)
+        passed = (summary['status'] == 'PASS' and summary['cleanup_complete']
+                  and len(modes) == 2 and len(cases) == 4 and networks and external == 0
+                  and all(case['status'] == 'passed' for case in cases))
+        entries.append({'evidence_file': filename, 'status': 'PASS' if passed else 'FAIL',
+                        'cases': len(cases), 'external_attempts': external,
+                        'cleanup_complete': summary['cleanup_complete']})
+    return {'status': 'PASS' if len(entries) == expected_runs and all(
+                row['status'] == 'PASS' for row in entries) else 'FAIL',
+            'expected_runs': expected_runs, 'runs': entries, 'workers': 1, 'retries': 0,
+            'product_api_mocks': False, 'font_policy': 'test-only system fallback'}
