@@ -1,0 +1,46 @@
+# A1 only. The verification runner supplies every connection/secret value.
+# Missing A1_* values must fail; no team/production resource is a fallback.
+server:
+  servlet:
+    context-path: /api
+spring:
+  sql:
+    init:
+      mode: never
+  datasource:
+    url: ${A1_DB_URL}
+    username: ${A1_DB_USERNAME}
+    password: ${A1_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  data:
+    redis:
+      host: 127.0.0.1
+      port: ${A1_REDIS_PORT}
+  security:
+    oauth2:
+      client:
+        registration:
+          ssafy:
+            client-id: a1-synthetic-client
+            client-secret: ${A1_OAUTH_SECRET}
+            client-name: a1-synthetic
+            provider: ssafy
+            authorization-grant-type: authorization_code
+            redirect-uri: http://127.0.0.1:9/login/oauth2/code/ssafy
+            scope: profile
+            client-authentication-method: client_secret_post
+        provider:
+          ssafy:
+            authorization-uri: http://127.0.0.1:9/authorize
+            token-uri: http://127.0.0.1:9/token
+            user-info-uri: http://127.0.0.1:9/userinfo
+            user-name-attribute: id
+app:
+  jwt:
+    secret: ${A1_JWT_SECRET}
+    access-token-validity-seconds: 300
+    refresh-token-validity-seconds: 600
+    issuer: moneytoad-a1-verification

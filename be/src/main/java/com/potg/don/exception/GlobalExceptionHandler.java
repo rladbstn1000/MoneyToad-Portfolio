@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+	@ExceptionHandler({NoResourceFoundException.class, NoHandlerFoundException.class})
+	public ResponseEntity<Map<String, Object>> handleMissingResource() {
+		return createErrorResponse(HttpStatus.NOT_FOUND, "요청한 리소스를 찾을 수 없습니다.");
+	}
 
 	/**
 	 * EntityNotFoundException 처리: 리소스를 찾지 못했을 때 (404 Not Found)

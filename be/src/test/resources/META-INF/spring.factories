@@ -1,0 +1,2 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.potg.don.verification.A21CsvClientIsolationInitializer

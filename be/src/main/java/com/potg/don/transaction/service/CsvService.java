@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.potg.don.budget.entity.Budget;
 import com.potg.don.budget.repository.BudgetRepository;
+import com.potg.don.card.repository.CardRepository;
 import com.potg.don.transaction.client.CsvClient;
 import com.potg.don.transaction.dto.response.AnalysisTriggerResponse;
 import com.potg.don.transaction.dto.response.CsvUploadResponse;
@@ -22,6 +23,7 @@ import com.potg.don.transaction.repository.TransactionRepository;
 import com.potg.don.user.entity.User;
 import com.potg.don.user.repository.UserRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -32,6 +34,7 @@ public class CsvService {
 	private final UserRepository userRepository;
 	private final TransactionRepository transactionRepository;
 	private final BudgetRepository budgetRepository;
+	private final CardRepository cardRepository;
 
 	@Transactional
 	public void saveBudgetsFromTriggerResponse(Long userId, AnalysisTriggerResponse resp) {
@@ -89,6 +92,11 @@ public class CsvService {
 
 	@Transactional
 	public CsvUploadResponse uploadCsvAndSaveFileId(Long userId, Long cardId) {
+		User user = userRepository.findById(userId)
+			.orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다: " + userId));
+		cardRepository.findByIdAndUser_Id(cardId, userId)
+			.orElseThrow(() -> new EntityNotFoundException("카드를 찾을 수 없습니다"));
+
 		// 1) CSV 생성
 		byte[] csv = buildTransactionsCsvForCard(cardId);
 
@@ -99,8 +107,6 @@ public class CsvService {
 		}
 
 		// 3) users.file_id 업데이트
-		User user = userRepository.findById(userId)
-			.orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다: " + userId));
 		user.updateFileId(response.getFileId()); // User 엔티티에 setFileId(String) 존재해야 함
 
 		// JPA @Transactional 이면 flush는 커밋 시점에 자동 반영
@@ -111,6 +117,8 @@ public class CsvService {
 	public CsvUploadResponse changeCsvAndSaveFileId(Long userId, Long newCardId) {
 		User user = userRepository.findById(userId)
 			.orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다: " + userId));
+		cardRepository.findByIdAndUser_Id(newCardId, userId)
+			.orElseThrow(() -> new EntityNotFoundException("카드를 찾을 수 없습니다"));
 
 		byte[] csv = buildTransactionsCsvForCard(newCardId);
 

@@ -1,27 +1,56 @@
 package com.potg.don.transaction.client;
 
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.util.UriUtils;
 
 import com.potg.don.transaction.dto.response.AnalysisTriggerResponse;
 import com.potg.don.transaction.dto.response.BaselineResponse;
 import com.potg.don.transaction.dto.response.CsvStatusResponse;
 import com.potg.don.transaction.dto.response.CsvUploadResponse;
 
-import lombok.RequiredArgsConstructor;
-
 @Component
-@RequiredArgsConstructor
 public class CsvClient {
 
 	private final WebClient webClient;
+	private final URI baseUri;
 
-	private static final String UPLOAD_URL = "https://j13a409.p.ssafy.io/api/ai/csv/upload";
-	private static final String CHANGE_PATH = "/api/ai/csv/change"; // base 없이 path만
+	public CsvClient(WebClient webClient, @Value("${ai.base-url}") String baseUrl) {
+		this.webClient = webClient;
+		URI uri;
+		try {
+			uri = URI.create(baseUrl.trim().replaceAll("/+$", ""));
+		} catch (IllegalArgumentException | NullPointerException error) {
+			throw new IllegalArgumentException("ai.base-url must be an absolute HTTP(S) base URL");
+		}
+		if (!("http".equalsIgnoreCase(uri.getScheme()) || "https".equalsIgnoreCase(uri.getScheme()))
+			|| uri.getHost() == null || uri.getRawUserInfo() != null
+			|| uri.getRawQuery() != null || uri.getRawFragment() != null
+			|| uri.getPort() < -1 || uri.getPort() == 0 || uri.getPort() > 65535) {
+			throw new IllegalArgumentException("ai.base-url must be an absolute HTTP(S) base URL");
+		}
+		this.baseUri = URI.create(uri.toASCIIString());
+	}
+
+	private URI endpoint(String path, String fileId) {
+		UriComponentsBuilder uri = UriComponentsBuilder.fromUri(baseUri).path(path);
+		if (fileId != null) {
+			uri.queryParam("file_id", UriUtils.encode(fileId, StandardCharsets.UTF_8));
+		}
+		return uri.build(true).toUri();
+	}
+
+	private static final String UPLOAD_PATH = "/api/ai/csv/upload";
+	private static final String CHANGE_PATH = "/api/ai/csv/change";
 	private static final String ANALYZE_PATH = "/api/ai/data";
 	private static final String STATUS_PATH = "/api/ai/csv/status";
 	private static final String BASELINE_PATH = "/api/ai/data/baseline";
@@ -40,7 +69,7 @@ public class CsvClient {
 			.contentType(MediaType.TEXT_PLAIN); // 서버가 text/csv 요구 시 MediaType.parseMediaType("text/csv")로 교체
 
 		return webClient.post()
-			.uri(UPLOAD_URL)
+			.uri(endpoint(UPLOAD_PATH, null))
 			.contentType(MediaType.MULTIPART_FORM_DATA)
 			.body(BodyInserters.fromMultipartData(mb.build()))
 			.retrieve()
@@ -64,11 +93,7 @@ public class CsvClient {
 		mb.part("file", filePart).filename(filename).contentType(MediaType.parseMediaType("text/csv"));
 
 		return webClient.put()
-			.uri(uriBuilder -> uriBuilder.scheme("https")
-				.host("j13a409.p.ssafy.io")
-				.path(CHANGE_PATH)
-				.queryParam("file_id", fileId) // API가 query param을 받는다고 했음
-				.build())
+			.uri(endpoint(CHANGE_PATH, fileId))
 			.contentType(MediaType.MULTIPART_FORM_DATA)
 			.body(BodyInserters.fromMultipartData(mb.build()))
 			.retrieve()
@@ -78,11 +103,7 @@ public class CsvClient {
 
 	public AnalysisTriggerResponse triggerAnalysis(String fileId) {
 		return webClient.post()
-			.uri(uriBuilder -> uriBuilder.scheme("https")
-				.host("j13a409.p.ssafy.io")
-				.path(ANALYZE_PATH)
-				.queryParam("file_id", fileId)
-				.build())
+			.uri(endpoint(ANALYZE_PATH, fileId))
 			.retrieve()
 			.bodyToMono(AnalysisTriggerResponse.class)   // 본문 무시
 			.block();
@@ -93,11 +114,7 @@ public class CsvClient {
 	 */
 	public CsvStatusResponse getCsvStatus(String fileId) {
 		return webClient.get()
-			.uri(u -> u.scheme("https")
-				.host("j13a409.p.ssafy.io")
-				.path(STATUS_PATH)
-				.queryParam("file_id", fileId)
-				.build())
+			.uri(endpoint(STATUS_PATH, fileId))
 			.retrieve()
 			.bodyToMono(CsvStatusResponse.class)
 			.block();
@@ -105,11 +122,7 @@ public class CsvClient {
 
 	public BaselineResponse getBaseline(String fileId) {
 		return webClient.get()
-			.uri(u -> u.scheme("https")
-				.host("j13a409.p.ssafy.io")
-				.path(BASELINE_PATH)
-				.queryParam("file_id", fileId)
-				.build())
+			.uri(endpoint(BASELINE_PATH, fileId))
 			.retrieve()
 			.bodyToMono(BaselineResponse.class)
 			.block();

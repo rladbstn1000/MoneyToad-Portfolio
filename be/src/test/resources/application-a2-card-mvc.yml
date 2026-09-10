@@ -1,0 +1,10 @@
+# MVC call-contract slice only. No datasource, Redis or external OAuth endpoints.
+# JwtUtil's ephemeral synthetic secret is supplied by DynamicPropertySource.
+server:
+  servlet:
+    context-path: /api
+app:
+  jwt:
+    issuer: moneytoad-a2-card-mvc
+    access-token-validity-seconds: 900
+    refresh-token-validity-seconds: 3600

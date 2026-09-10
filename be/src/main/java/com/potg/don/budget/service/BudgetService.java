@@ -33,7 +33,7 @@ public class BudgetService {
 	public Budget updateBudget(Long userId, BudgetUpdateRequest budgetUpdateRequest) {
 		User user = userRepository.findById(userId)
 			.orElseThrow(() -> new EntityNotFoundException("해당 ID의 사용자를 찾을 수 없습니다: " + userId));
-		Budget budget = budgetRepository.findById(budgetUpdateRequest.getBudgetId())
+		Budget budget = budgetRepository.findByIdAndUser_Id(budgetUpdateRequest.getBudgetId(), userId)
 			.orElseThrow(() -> new EntityNotFoundException("누수를 찾을 수 없습니다"));
 		budget.updateBudget(budgetUpdateRequest.getBudget());
 		return budgetRepository.save(budget);

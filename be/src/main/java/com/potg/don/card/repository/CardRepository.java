@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.potg.don.card.entity.Card;
 
 public interface CardRepository extends JpaRepository<Card, Long> {
+	Optional<Card> findByIdAndUser_Id(Long id, Long userId);
+
 	Optional<Card> findByUserId(Long userId);
 
 	void deleteByUserId(Long userId);

@@ -48,3 +48,6 @@ app:
     access-token-validity-seconds: ${JWT_ACCESS_SECONDS}
     refresh-token-validity-seconds: ${JWT_REFRESH_SECONDS}
     issuer: ${JWT_ISSUER}
+
+ai:
+  base-url: ${AI_BASE_URL}
