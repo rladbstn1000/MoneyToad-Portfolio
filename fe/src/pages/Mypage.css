@@ -1,0 +1,387 @@
+:root{
+  --z-bg: 0;
+  --z-hotspot: 5;
+  --z-hint: 6;
+  --z-modal: 30;
+  --z-header: 50;
+}
+
+.mp-wrap{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #1d1208;
+  font-family: system-ui, -apple-system, "Noto Sans KR", Apple SD Gothic Neo, sans-serif;
+}
+
+.mp-fixed-header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-header);
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,.25));
+}
+
+.mp-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+  z-index: var(--z-bg);
+}
+
+.hotspot{
+  position: absolute;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  z-index: var(--z-hotspot);
+}
+.hotspot:focus-visible{
+  box-shadow: 0 0 0 3px #ffcc66aa;
+  border-radius: 8px;
+}
+.hotspot.door{ left:33%; top:36%; width:34%; height:36%; }
+.hotspot.kong{ left:44%; top:55%; width:14%; height:24%; }
+
+.hotspot.paper{
+  left: 30%;
+  top: 58%;
+  width: 50%;
+  height: 36%;
+  touch-action: manipulation;   
+}
+
+@media (min-aspect-ratio: 16/9){
+  .hotspot.paper{
+    left: 38%;
+    top: 58%;
+    width: 46%;
+    height: 34%;
+  }
+}
+
+@media (max-width: 768px){
+  .hotspot.paper{
+    left: 22%;
+    top: 55%;
+    width: 60%;
+    height: 40%;
+  }
+}
+
+@media (pointer: coarse){
+  .hotspot.paper{
+    left: 20%;
+    top: 52%;
+    width: 62%;
+    height: 42%;
+  }
+}
+
+.hint{
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  color: #f7e0b0;
+  font-size: 24px;
+  letter-spacing: .02em;
+  text-shadow: 0 1px 2px #0008;
+  background: #00000033;
+  padding: 6px 10px;
+  border-radius: 8px;
+  z-index: var(--z-hint);
+}
+
+.paper-modal{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: min(4vw, 28px);
+  background: radial-gradient(ellipse at center, #00000030 0%, #00000060 60%, #00000080 100%);
+  z-index: var(--z-modal);
+}
+
+.paper-stage{
+  position: relative;
+  width: min(1100px, 94vw);
+  max-height: 92vh;
+
+  --padX: clamp(28px, 11%, 92px);
+  --padTop: clamp(32px, 14%, 100px);
+  --padBottom: clamp(36px, 17%, 110px);
+  
+}
+
+.paper-img{
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,.45));
+  pointer-events: none;
+}
+
+.paper-content{
+  position: absolute;
+  left: var(--padX);
+  right: var(--padX);
+  top: var(--padTop);
+  bottom: var(--padBottom);
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  background: transparent;   
+  padding: 24px 40px;
+}
+
+.paper-header{
+  flex: 0 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 0 0 10px 0;
+  color: #3b2a12; font-weight: 700; font-size: 20px;
+}
+
+.paper-body{
+  flex: 1 1 auto;
+  display: grid;
+  gap: 12px;
+  overflow: visible;
+}
+
+.paper-block{
+  background:#fffdf6;
+  border: none;
+  border-radius:10px;
+  padding:15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.paper-block h3{ 
+  margin:0 0 12px; 
+  font-size:16px; 
+  color:#5a4526; 
+  font-weight: 600;
+}
+
+.grid.two{ 
+  display:grid; 
+  grid-template-columns:1fr 1fr; 
+  gap:15px; 
+  align-items: start;
+}
+@media (max-width: 720px){
+  .grid.two{ 
+    grid-template-columns:1fr; 
+    gap:12px;
+  }
+  .paper-stage{
+    --padX: clamp(18px, 9.5%, 70px);
+    --padTop: clamp(22px, 12%, 86px);
+    --padBottom: clamp(26px, 15%, 96px);
+  }
+  .paper-content{
+    padding: 14px 18px;
+  }
+}
+
+.field{ 
+  display:grid; 
+  gap:8px; 
+}
+.field > span{ 
+  color:#5a4526; 
+  font-size:14px; 
+  font-weight: 500;
+}
+
+/* 읽기 전용 필드 (이름) */
+.readonly-value{
+  height:38px;
+  display: flex;
+  align-items: center;
+  border-radius:8px;
+  padding: 0 14px;
+  background:#FFFDF6;
+  font-size:15px;
+  color:#6b5d42;
+  width: 100%;            
+  box-sizing: border-box; 
+}
+
+/* 수정 가능한 입력 필드 */
+.input{
+  height:38px;
+  border: none;
+  border-radius:8px;
+  padding: 0 14px;
+  background:#F8F6F0;
+  font-size:15px;
+  color:#3b2a12;
+  transition: background-color 0.2s ease;
+}
+
+.input:focus{
+  outline: none;
+  background:#F8F6F0;
+}
+
+.input.err{ 
+  background:#fff2f2; 
+}
+
+.input.err:focus{
+  background:#ffe8e8;
+}
+
+.seg{ 
+  display:flex; 
+  gap:12px; 
+}
+
+.chip{
+  height:34px; 
+  padding:0 16px; 
+  border-radius:17px;
+  border: none;
+  background:#F8F6F0;
+  cursor:pointer;
+  font-size:14px;
+  color:#5a4526;
+  transition: all 0.2s ease;
+}
+
+.chip:hover{
+  background:#f9f7f2;
+}
+
+.chip.on{ 
+  background:#f2e3be; 
+  color:#3b2a12;
+  font-weight: 500;
+}
+
+.row-end{ 
+  margin-top:12px; 
+  display:flex; 
+  justify-content:flex-end; 
+  gap:8px; 
+}
+
+.btn{
+  height:34px; 
+  padding:0 14px; 
+  border-radius:8px;
+  border: none;
+  background:#f3e3b8; 
+  color:#3b2a12; 
+  cursor:pointer;
+  font-size:13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn:hover:not(:disabled){
+  background:#ead3a3;
+}
+
+.btn:disabled{ 
+  opacity:.55; 
+  cursor:not-allowed; 
+}
+
+.btn.primary{ 
+  background:#FCD200; 
+  font-weight:600; 
+  color:#2d2000;
+}
+
+.btn.primary:hover:not(:disabled){
+  background:#e6bd00;
+}
+
+.btn.ghost{
+  background: none; 
+  color:#5a4526;
+  border: none !important;   
+  padding: 0;
+  height: auto;
+  font-size: 14px;
+  outline: none;             
+  box-shadow: none;          
+  text-decoration: none;     
+}
+
+.btn.ghost:hover{
+  background: none;
+  text-decoration: none;   
+}
+
+.btn.danger{ 
+  background:#d32f2f; 
+  color:#fff; 
+}
+
+.btn.danger:hover:not(:disabled){
+  background:#b71c1c;
+}
+
+.card-view{
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center;
+  background:#fff9ea;
+  border-radius:10px;
+  padding:16px;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.card-info{
+  flex: 1;
+  display: grid;
+  gap: 8px;
+}
+
+.kv{ 
+  display:grid; 
+  grid-template-columns:70px 1fr; 
+  gap:10px; 
+  align-items: center;
+}
+.kv .k{ 
+  color:#6e5731; 
+  font-size:14px; 
+  font-weight: 500;
+}
+.kv .v{ 
+  color:#2f2616; 
+  font-size:14px;
+}
+.mono{ 
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; 
+}
+
+.help{
+  margin-top: 12px;
+  color: #8a7759;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.appear{
+  animation: fadeInUp .18s ease-out both;
+}
+
+@keyframes fadeInUp{
+  from{ opacity:0; transform: translateY(6px); }
+  to  { opacity:1; transform: none; }
+}

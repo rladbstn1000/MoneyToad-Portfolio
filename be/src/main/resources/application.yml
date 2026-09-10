@@ -1,0 +1,50 @@
+server:
+  forward-headers-strategy: NATIVE
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO}
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+
+  security:
+    oauth2:
+      client:
+        registration:
+          ssafy:
+            client-id: ${SSAFY_CLIENT_ID}
+            client-secret: ${SSAFY_CLIENT_SECRET}
+            client-name: ${SSAFY_CLIENT_NAME}
+            provider: ssafy
+            authorization-grant-type: ${SSAFY_AUTH_GRANT_TYPE}
+            redirect-uri: ${SSAFY_REDIRECT_URI}
+            # 콤마(,) 구분 문자열을 컬렉션으로 바인딩합니다. 비어있으면 scope 미지정.
+            scope: ${SSAFY_SCOPES}
+            client-authentication-method: ${SSAFY_CLIENT_AUTH_METHOD}
+        provider:
+          ssafy:
+            authorization-uri: ${SSAFY_AUTH_URI}
+            token-uri: ${SSAFY_TOKEN_URI}
+            user-info-uri: ${SSAFY_USER_INFO_URI}
+            user-name-attribute: ${SSAFY_USER_NAME_ATTR}
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    access-token-validity-seconds: ${JWT_ACCESS_SECONDS}
+    refresh-token-validity-seconds: ${JWT_REFRESH_SECONDS}
+    issuer: ${JWT_ISSUER}

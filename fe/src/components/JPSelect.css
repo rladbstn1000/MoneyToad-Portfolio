@@ -1,0 +1,98 @@
+/* 트리거(닫힌 상태) */
+.jp-select-trigger {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 120px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 2px solid #4a5568;
+  background: linear-gradient(145deg, #2a3854, #1e2a3a);
+  color: #f0e6d2;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.18s ease;
+  position: relative;
+}
+.jp-select-trigger:hover {
+  border-color: #5a6578;
+}
+.jp-select-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: #d4af37;
+}
+.jp-select-trigger svg {
+  opacity: 0.9;
+  vertical-align: -2px;
+}
+
+/* 드롭다운 */
+.jp-select-content {
+  z-index: 3000; /* 다른 요소 위에 */
+  overflow: hidden;
+  background: linear-gradient(145deg, #2a3854, #1e2a3a);
+  border: 1px solid #4a5568;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.jp-select-viewport {
+  padding: 6px;
+  max-height: 280px;
+}
+
+/* 아이템 */
+.jp-select-item {
+  user-select: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f0e6d2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.jp-select-item[data-highlighted] {
+  outline: none;
+  background: linear-gradient(145deg, #3a4a64, #2a3854);
+  color: #ffd700;
+}
+.jp-select-item[aria-selected="true"] {
+  background: linear-gradient(145deg, #4a5568, #3a4a64);
+  color: #ffd700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 스크롤 버튼(옵션이 많을 때) */
+.jp-select-scroll-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  color: #f0e6d2;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* 트리거 왼쪽의 색 점 */
+.jp-select-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--jp-chip-color, #f0e6d2);
+  box-shadow: 0 0 0 2px rgba(0,0,0,.25) inset;
+  margin-right: 8px;
+}
+
+/* 아이템 안의 색 점이 글자와 너무 달라붙지 않도록 */
+.jp-select-item .jp-select-dot {
+  margin-right: 8px;
+}

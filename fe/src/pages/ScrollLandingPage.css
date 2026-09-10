@@ -1,0 +1,158 @@
+/* 전역 보정 */
+html, body, #root { height: 100%; margin: 0; }
+body { overflow: hidden; } /* 바디 스크롤 잠금 */
+
+/* 폰트 */
+@font-face {
+  font-family: 'Joseon100Years';
+  src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ChosunCentennial.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 컨테이너 */
+.dk-landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Joseon100Years', sans-serif;
+  background: #000;
+}
+
+/* 로그인 버튼 */
+.dk-login {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 30;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+  background: none;
+  border-radius: 10px;
+}
+.dk-login:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.04);
+}
+
+/* 트랙 */
+.dk-track {
+  width: 100%;
+  will-change: transform;
+  transition: transform 700ms ease-in-out;
+
+  /* 동적 변수 */
+  height: var(--track-h, 100vh);
+  transform: translateY(calc(-1 * var(--offset, 0vh)));
+}
+
+/* 페이지 */
+.dk-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* 동적 배경 */
+  background-image: var(--bg, none);
+}
+
+/* 어둡게 오버레이 */
+.dk-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+/* 콘텐츠 */
+.dk-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 840px;
+  padding: 0 24px;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.dk-content.show { opacity: 1; transform: translateY(0); }
+
+.dk-title {
+  margin: 0 0 24px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  font-size: clamp(44px, 8vw, 96px);
+  text-shadow: 0 6px 24px rgba(0,0,0,0.8);
+}
+
+.dk-desc {
+  margin: 0 auto;
+  max-width: 840px;
+  white-space: pre-line;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.95);
+  font-size: clamp(16px, 2.2vw, 28px);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* 네비게이션 점 */
+.dk-dots {
+  position: fixed;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dk-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.4);
+  box-shadow: none;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.dk-dot:hover { background: rgba(255,255,255,0.7); }
+.dk-dot.active {
+  background: #fff;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* 페이지 카운터 */
+.dk-counter {
+  position: fixed;
+  left: 32px;
+  bottom: 32px;
+  z-index: 20;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.dk-counter .cur { font-size: 22px; }
+.dk-counter .sep { margin: 0 8px; opacity: .7; }
+.dk-counter .tot { opacity: .85; }
+
+/* 접근성: 모션 줄이기 */
+@media (prefers-reduced-motion: reduce) {
+  .dk-track { transition: none; }
+  .dk-content { transition: none; }
+}

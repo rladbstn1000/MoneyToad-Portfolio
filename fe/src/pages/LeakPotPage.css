@@ -1,0 +1,343 @@
+/* 폰트 */
+@font-face {
+  font-family: 'Joseon100Years';
+  src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ChosunCentennial.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 루트 컨테이너 */
+.app-container{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:'Joseon100Years', serif;
+  overflow:hidden;
+  background-image: var(--bg);
+  background-size:cover;
+  background-position:center;
+}
+
+/* 월 네비 */
+.month-navigation{
+  background:transparent;
+  z-index:99;
+  padding: 0 100px;
+}
+.month-grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:6px;
+  width:100%;
+  max-width:none;
+}
+@media (max-width: 767px){
+  .month-grid{ grid-template-columns: repeat(6, 1fr); }
+}
+.month-button{
+  position:relative;
+  background:transparent;
+  border:none;
+  padding:0;
+  cursor:pointer;
+  width:100%;
+  aspect-ratio: 1 / 1;
+  border-radius:9999px;
+  display:grid;
+  place-items:center;
+  outline:none;
+  box-shadow:none;
+}
+.month-img{
+  width:60%;
+  height:auto;
+  display:block;
+  transition: width .18s ease;
+}
+.month-button.active .month-img{ width:100%; }
+
+.month-badge{
+  position:absolute;
+  right:8%;
+  top:8%;
+  color:#333;
+  font-weight:700;
+  padding:2px 6px;
+  border-radius:2px;
+  font-size:clamp(10px, 1.6vw, 14px);
+  line-height:1;
+  user-select:none;
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+.month-badge.good{ background:#FFC83E; color: #333 }
+.month-badge.leaked{ background:#28427B; color:#fff; }
+
+/* 메인 레이아웃 */
+.main-container{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:end;
+  justify-content:center;
+  gap:32px;
+  position:relative;
+  overflow:visible;
+}
+@media (min-width:768px){
+  .main-container{ flex-direction:row; }
+}
+
+/* 항아리/물 영역 */
+.pot-container{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:end;
+  justify-content:center;
+  /* ⬇️ 툴팁/크랙 hover를 위해 이벤트 허용 */
+  pointer-events:auto;
+}
+
+/* ── Tooltip (조선 한지 버전, 외부 SVG 사용) ───────────────── */
+.tooltip{
+  position: absolute;
+  z-index: 50;
+
+  /* 크기/여백 */
+  padding: 8px 14px;
+  max-width: 260px;
+
+  /* 배경: 한지 SVG + 가벼운 비네팅 */
+  background:
+    radial-gradient(120% 120% at 50% 40%, rgba(0,0,0,0.06), rgba(0,0,0,0) 60%) ,
+    url("/leakPot/tooltip.webp") center/cover no-repeat;
+  border-radius: 5px;
+
+  /* 글씨 */
+  color: #333;
+  font-family: 'Joseon100Years', serif;
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 1.35;
+
+  /* 그림자 */
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.18),
+    inset 0 0 0.5px rgba(255,255,255,0.5);
+
+  /* 커서 옆 미세 오프셋 (JS에서 left/top 설정) */
+  pointer-events: none;
+  transform: translate(8px, -8px);
+}
+
+/* 화살표 제거(유지) */
+.tooltip::after{
+  content: none !important;
+  border: 0 !important;
+}
+
+@keyframes tooltip-fade{
+  from { opacity:0; transform: translate(8px, -10px); }
+  to   { opacity:1; transform: translate(12px, -14px); }
+}
+
+/* 캐릭터 */
+.characters{
+  position:absolute;
+  bottom:0;
+  left:0;
+  display:flex;
+  align-items:end;
+  z-index:1;
+}
+.kongjwi{
+  width:328px;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 25px 25px rgba(0,0,0,.15));
+  position:relative;
+  z-index:10;
+}
+@media (min-width:768px){ .kongjwi{ width:384px; } }
+.toad{
+  width:192px;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 25px 25px rgba(0,0,0,.15));
+  margin-left:-56px;
+  position:relative;
+  z-index:10;
+}
+@media (min-width:768px){ .toad{ width:224px; } }
+
+.pot-svg-container{ width:100%; height:100%; position:relative; }
+.pot-svg{ position:absolute; inset:0; width:100%; height:100%; }
+
+.crack{ opacity:0.9; pointer-events:all; }
+
+.water-animation{
+  width:100%;
+  height:100%;
+  position:relative;
+  /* 물줄기 기준축은 JS에서 상단 중앙으로 잡아줌 */
+  transform-origin:50% 50%;
+  pointer-events:none;
+  opacity: 0.55; /* WATER_ALPHA */
+}
+.water-animation.flip{ transform: scaleX(-1); }
+
+/* =========================
+   종이 패널 & 슬라이더
+   ========================= */
+.control-panel{
+  position:relative;
+  z-index:20;
+  display:flex;
+  flex-direction:column;
+  width:40vw;
+  max-width:500px;
+  min-width:380px;
+  height:70vh;
+  padding:0 20px;
+  max-height:800px;
+  background-image: var(--paper);
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+@media (min-width:768px){
+  .control-panel{ position:absolute; right:40px; bottom:24px; }
+}
+.panel-title{
+  font-size:28px;
+  font-weight:bold;
+  margin-top:80px;
+  padding-top:16px;
+  padding-bottom:0;
+  color:#292524;
+  text-align:center;
+  flex-shrink:0;
+}
+.sliders-container{
+  flex-grow:1;
+  overflow-y:auto;
+  padding:10px 80px;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.sliders-container::-webkit-scrollbar{ width:0; height:0; }
+
+.slider-item{ padding:12px 0; border-bottom:1px solid rgba(120,113,108,.2); }
+.slider-item:last-child{ border-bottom:none; }
+.slider-header{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px; }
+.slider-label{ font-weight:bold; font-size:16px; transition:color .2s; color:#292524; }
+.slider-label.leaking{ color:#a12a2a; }
+
+/* 기존 오른쪽 정렬 액수(남겨둠: 필요시 숨겨도 됨) */
+.slider-amounts{ text-align:right; font-size:12px; font-weight:500; color:#57534e; flex-shrink:0; margin-left:8px; }
+.current-spending{ font-weight:bold; color:#292524; }
+.current-spending.leaking{ color:#a12a2a; }
+
+/* 사용자 친화적 라벨(이번 달 지출 | 설정한 한도) */
+.slider-legend{
+  display:inline-flex;
+  gap:6px;
+  align-items:baseline;
+  font-size:12px;
+  color:#49423a;
+}
+.slider-legend .legend-label{ opacity:.85; }
+.slider-legend .legend-value{ font-weight:700; }
+.slider-legend .legend-value.leaking{ color:#a12a2a; }
+.slider-legend .legend-sep{ opacity:.5; }
+
+/* ---- 센터정렬 썸(엽전) + 끝까지 닿는 트랙 ---- */
+.slider-container{
+  --thumb-size: 52px;   /* 엽전 크기 */
+  --track-h:   8px;
+  position:relative;
+  height: max(32px, var(--thumb-size));
+  display:flex;
+  align-items:center;
+}
+
+/* 트랙 */
+.slider-track{
+  position:absolute; left:0; right:0;
+  top:50%; transform:translateY(-50%);
+  height:var(--track-h);
+  background:#d6d3d1;
+  border-radius:9999px;
+  overflow:hidden;
+}
+
+/* 정상 구간 채움 */
+.slider-fill-normal{
+  position:absolute; left:0;
+  top:50%; transform:translateY(-50%);
+  height:var(--track-h);
+  border-radius:9999px;
+  background:#5a7e63;
+  pointer-events:none;
+}
+
+/* 누수 구간 채움 */
+.slider-fill-leak{
+  position:absolute;
+  top:50%; transform:translateY(-50%);
+  height:var(--track-h);
+  background:#a12a2a;
+  border-radius:9999px;
+  pointer-events:none;
+}
+
+/* 네이티브 input:range는 이벤트만 받고 썸은 숨김 */
+.custom-slider{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  -webkit-appearance:none; appearance:none;
+  background:transparent; cursor:pointer;
+  outline:none; margin:0; border:0;
+}
+
+/* WebKit 썸 숨기기 */
+.custom-slider::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:var(--thumb-size); height:var(--thumb-size);
+  background:transparent; border:none; opacity:0;
+}
+/* Firefox 썸 숨기기 */
+.custom-slider::-moz-range-thumb{
+  width:var(--thumb-size); height:var(--thumb-size);
+  background:transparent; border:none; opacity:0;
+}
+/* MS/Edge(레거시) */
+.custom-slider::-ms-thumb{
+  width:var(--thumb-size); height:var(--thumb-size);
+  background:transparent; border:none; opacity:0;
+}
+/* 러너블 트랙도 투명처리(브라우저별) */
+.custom-slider::-webkit-slider-runnable-track{ height:var(--track-h); background:transparent; }
+.custom-slider::-moz-range-track{ height:var(--track-h); background:transparent; border:none; }
+
+/* 우리가 그리는 엽전 썸(중심 정렬 핵심: translateX(-50%)) */
+.coin-thumb{
+  position:absolute;
+  top:50%;
+  left:var(--threshold-pct); /* TS/JS에서 퍼센트 넣어줌 */
+  transform:translate(-50%, -50%);
+  width:var(--thumb-size); height:var(--thumb-size);
+  background-image: var(--pointer);
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.35));
+  pointer-events:none; /* 클릭/드래그는 input이 처리 */
+}
+
+/* 요약 */
+.summary{ margin-top:0; margin-bottom:60px; font-size:18px; text-align:center; flex-shrink:0; }
+.summary-leak{ font-weight:bold; color:#a12a2a; }
+.summary-good{ font-weight:bold; color:#166534; }

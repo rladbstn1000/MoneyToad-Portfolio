@@ -1,0 +1,106 @@
+/* ========== 배경 ========== */
+.ui-wrap { min-height: 100vh; background:#000; }
+.ui-scene{
+  position:relative; width:100vw; height:100vh;
+  background-position:center; background-size:cover; background-repeat:no-repeat;
+  background-color:#c9b27a; /* 이미지 실패 시 안전색 */
+  overflow:hidden;
+}
+
+/* ========== 중앙 대화 스택 ========== */
+.ui-convo{
+  position:absolute; left:47%; top:50%; transform:translate(-50%, -50%);
+  width:min(300px, 92vw);
+  display:flex; flex-direction:column; gap:1rem; align-items:center;
+  z-index:3;
+}
+
+/* ========== 말풍선 ========== */
+.bubble{
+  white-space: pre-line;
+  position:relative; width:100%; max-width:100%; overflow:visible;
+  line-height:1.5; font-size:1.05rem;
+  padding:1rem 1.25rem; border-radius:18px;
+  background:#fff8e6; border:2px solid rgba(120,90,60,.35);
+  box-shadow:0 8px 16px rgba(0,0,0,.18), inset 0 10px 30px rgba(255,255,255,.45);
+  backdrop-filter: blur(1px);
+}
+.bubble.paper{
+  background:#fffaf0; /* 종이 질감 느낌 */
+  padding:1.25rem 1rem 1.35rem;
+}
+
+/* 화자 컬러 & 배지 */
+.bubble.toad{ background:#fff4d9; border-color:rgba(110,80,50,.45); margin-bottom: 0.8rem; }
+.bubble.kong{ background:#fffdf5; border-color:rgba(120,90,60,.35); margin-top: 0.6rem; }
+.bubble.toad::before,.bubble.kong::before{
+  content:""; position:absolute; top:-12px; left:14px;
+  padding:.18rem .55rem; border-radius:999px; font-size:.78rem; font-weight:800; color:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+.bubble.toad::before{ content:"두꺼비"; background:#6b4e35; }
+.bubble.kong::before{ content:"콩쥐";   background:#245c3f; }
+
+/* 화살표 (꼬리) — 이름 그대로 동작 */
+.bubble.tail-left::after,
+.bubble.tail-right::after{
+  content:""; position:absolute; top:50%;
+  width:18px; height:18px; transform:translateY(-50%) rotate(45deg);
+  background:inherit; border:2px solid rgba(120,90,60,.35);
+  z-index:1;
+}
+.bubble.tail-left::after{  /* 콩쥐 ← 왼쪽 꼬리 */
+  left:-10px; border-right:none; border-top:none;
+}
+.bubble.tail-right::after{ /* 두꺼비 → 오른쪽 꼬리 */
+  right:-10px; border-left:none; border-bottom:none;
+}
+
+/* ========== 폼 ========== */
+.label{ display:block; font-weight:700; color:#3a2a1d; margin-bottom:.4rem; }
+.input{
+  display:block; width:85%;
+  padding:.8rem 1rem; border-radius:14px;
+  border:2px solid rgba(110,80,50,.35); background:#fffdf8; font-size:1rem;
+  outline:none; transition:border-color .2s, box-shadow .2s;
+}
+.input:focus{ border-color:#6b4e35; box-shadow:0 0 0 4px rgba(170,120,70,.18); }
+.input.err{ border-color:#bd4a34; box-shadow:0 0 0 4px rgba(189,74,52,.15); }
+.help{ display:block; margin-top:.45rem; color:#6b4e35; opacity:.9; font-size:.9rem; }
+.help.err{ color:#bd4a34; }
+
+/* 성별 선택 중앙정렬 + 동일 폭 버튼 */
+.gender-group{ display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap; }
+.gender-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width: 44%; min-width:120px; /* 2개가 예쁘게 */
+  padding:.7rem 1rem; border-radius:14px;
+  border:2px solid rgba(110,80,50,.35); background:#fffdf8;
+  cursor:pointer; font-weight:700; transition:all .15s ease;
+}
+.gender-btn.on{ border-color:#245c3f; box-shadow:0 0 0 4px rgba(36,92,63,.15); }
+
+/* 버튼 */
+.ui-actions{ display:flex; gap:.6rem; margin-top:.75rem; }
+.ui-actions.center{ justify-content:center; }
+.btn{
+  border:none; cursor:pointer; font-weight:800; border-radius:14px; padding:.8rem 1.2rem;
+  transition:transform .06s, box-shadow .2s, opacity .2s; box-shadow:0 6px 10px rgba(0,0,0,.15);
+}
+.btn.primary{ background:#245c3f; color:#f6fffa; }
+.btn.primary:hover{ transform:translateY(-1px); box-shadow:0 10px 16px rgba(0,0,0,.18); }
+.btn.primary[aria-disabled="true"], .btn.primary:disabled{ opacity:.5; cursor:not-allowed; }
+.btn.ghost{ background:#fffdf8; color:#3a2a1d; border:2px solid rgba(110,80,50,.35); }
+
+/* 반응형 */
+@media (max-width:720px){
+  .ui-convo{ left:50%; width:min(86vw, 420px); }
+  .gender-btn{ width: 48%; min-width:140px; }
+}
+
+/* 타이핑 커서 */
+.typing{ border-right:2px solid #6b4e35; padding-right:3px; }
+
+/* 콩쥐 말풍선 부드럽게 등장 */
+.appear { opacity: 0; transform: translateY(6px) scale(.98); animation: chatIn .24s ease forwards; }
+@keyframes chatIn { to { opacity: 1; transform: translateY(0) scale(1); } }

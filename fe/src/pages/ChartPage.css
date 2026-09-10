@@ -1,0 +1,415 @@
+/* =========================
+   글로벌 / 공통 (데스크탑 전용)
+========================= */
+:root {
+  --header-h: 64px; /* 실제 헤더 높이 */
+  --stage-max-w: 1400px; /* 무대 기준 폭 */
+  --stage-ar: 16 / 9; /* 무대 비율 */
+  --stage-side-pad: 2vw; /* 뷰포트에서 좌우 최소 여백 */
+  --stage-bottom-gap: 40px; /* 연못 하단 여백 (항상 조금 비게) */
+
+  /* NEW: screen2 여백 컨트롤 */
+  --overlay-pad: 20px; /* 화면2에서 카드 바깥 상·하 여백 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+} /* 스크롤 금지 */
+
+.jp-wrap {
+  min-height: 100vh;
+  background: url("/charts/background.webp") no-repeat center top fixed;
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 헤더 고정 */
+.jp-wrap > header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  z-index: 1000;
+}
+
+/* =========================
+   화면 1 (헤더 + 연못/라인차트)
+========================= */
+#screen1.jp-screen {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--header-h); /* 헤더만큼 내려앉히기 */
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 무대(연못) – 비율 유지 + 뷰포트에 맞춰 축소/확대 */
+.jp-stage {
+  position: relative;
+  width: min(var(--stage-max-w), calc(100vw - 2 * var(--stage-side-pad)));
+  aspect-ratio: var(--stage-ar);
+  height: auto;
+  max-height: calc(100vh - var(--header-h) - var(--stage-bottom-gap));
+  margin: 0 auto;
+}
+
+/* 연못 바닥은 무대를 꽉 채움 */
+.jp-water-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* 타이틀(문구) – 무대 내부 퍼센트 좌표(비율 고정) */
+.jp-page-title-section {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 12%;
+  text-align: center;
+  z-index: 5;
+}
+.jp-page-title-section h1 {
+  margin: 0;
+  font-size: clamp(26px, 3.5vw, 42px);
+  color: #e0ffff;
+  letter-spacing: 2px;
+}
+.jp-page-title-section p {
+  margin-top: 10px;
+  color: #bbdefb;
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
+/* 장식 이미지 – 무대 내부 퍼센트로 고정 */
+.jp-page-image,
+.jp-toad-image {
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-width: none;
+  z-index: 3;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+/* 콩쥐(좌측) */
+.jp-page-image {
+  left: 6.8%;
+  bottom: 58%;
+  height: 30%;
+  transform-origin: 45% 10%;
+}
+/* 두꺼비(우측) */
+.jp-toad-image {
+  right: 7.2%;
+  bottom: 58%;
+  height: 28%;
+  transform-origin: 55% 12%;
+}
+
+/* (옵션) 낚싯대 미세 흔들림 – 화면1이 보일 때만 */
+@keyframes fish-bob-left {
+  0% {
+    transform: translateY(0) rotate(0.6deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2.2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0.6deg);
+  }
+}
+@keyframes fish-bob-right {
+  0% {
+    transform: translateY(0) rotate(-0.6deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-2.2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-0.6deg);
+  }
+}
+#screen1.is-visible .jp-page-image {
+  animation: fish-bob-left 3.6s ease-in-out infinite;
+}
+#screen1.is-visible .jp-toad-image {
+  animation: fish-bob-right 3.1s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .jp-page-image,
+  .jp-toad-image {
+    animation: none !important;
+  }
+}
+
+/* 라인차트 – 무대 내부 퍼센트 여백(돌 테두리 안쪽) */
+.jp-linechart-wrap {
+  position: absolute;
+  left: 14.5%;
+  right: 14.5%;
+  top: 39%;
+  bottom: 13%;
+  height: max(300px, calc(100% - 37% - 10%));
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  border: none;
+}
+.jp-linechart-wrap .recharts-responsive-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+.jp-linechart,
+.jp-linechart .recharts-wrapper,
+.jp-linechart .recharts-surface {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+.jp-linechart .recharts-cartesian-axis line,
+.jp-linechart .recharts-cartesian-axis path {
+  display: none !important;
+}
+.jp-linechart .recharts-cartesian-grid-vertical line:first-child,
+.jp-linechart .recharts-cartesian-grid-vertical line:last-child,
+.jp-linechart .recharts-cartesian-grid-horizontal line:first-child,
+.jp-linechart .recharts-cartesian-grid-horizontal line:last-child {
+  display: none !important;
+}
+.recharts-surface {
+  overflow: visible;
+  outline: none;
+}
+.recharts-default-legend {
+  color: #e0ffff !important;
+  padding-top: 10px;
+}
+.recharts-tooltip-wrapper {
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* =========================
+   화면 2 (표 + 파이차트) — 헤더 없이 전체 오버레이
+========================= */
+#screen2.jp-detail-screen {
+  position: fixed; /* 헤더 위에 덮는 오버레이 */
+  inset: 0;
+  z-index: 2000; /* 헤더(1000)보다 위 */
+  display: grid;
+  place-items: center;
+  background: url("/charts/background.webp") no-repeat center top fixed;
+  background-size: cover;
+  overflow: visible; /* 스크롤 없음 */
+
+  /* NEW: 기본 브라우저에서도 카드와 상·하 간격 확보 */
+  padding-block: var(--overlay-pad);
+}
+
+/* 카드 자체도 무대와 동일 비율로 스케일 */
+#screen2 .jp-card {
+  width: min(var(--stage-max-w), calc(100vw - 2 * var(--stage-side-pad)));
+  aspect-ratio: var(--stage-ar);
+  box-sizing: border-box;
+  height: auto;
+
+  /* NEW: 오버레이 패딩만큼 줄여서 상·하 여유 */
+  max-height: calc(100vh - 2 * var(--overlay-pad));
+
+  margin: 0;
+  background: url("/charts/detailBackground.webp") no-repeat center top fixed;
+  border-radius: 20px;
+  padding: clamp(22px, 2.4vw, 32px) clamp(18px, 2vw, 28px); /* 위·아래 살짝 증가 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+#screen2 .jp-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(212, 175, 55, 0.05) 50%,
+    transparent 70%
+  );
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+/* NEW: 그리드 컨테이너(표+파이 감싸는 부분) 세로 패딩 */
+#screen2 .jp-card .jp-grid {
+  padding-block: var(--grid-vpad);
+  box-sizing: border-box;
+  min-height: 0; /* 내부 스크롤 안전장치 */
+}
+
+/* 카드 헤더/합계/닫기 */
+.jp-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.jp-card-head h1 {
+  color: #212A2D;
+  font-size: clamp(24px, 2vw, 30px);
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+.jp-head-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.jp-leak {
+  font-weight: 900;
+  color: #f83838;
+  font-size: 24px;
+}
+.jp-total {
+  font-weight: 900;
+  color: #000;
+  font-size: 24px;
+}
+.jp-close {
+  background: none;
+  border: 0;
+  color: #333;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* 내부 그리드(표 + 파이) */
+.jp-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1.25fr;
+  gap: clamp(10px, 1.6vw, 18px);
+  overflow: hidden;
+}
+
+/* 패널 스크롤은 내부에서만 */
+.jp-panel {
+  border-radius: 14px;
+  padding: 12px;
+  overflow: auto;
+  color: #e0ffff;
+}
+.jp-panel::-webkit-scrollbar {
+  width: 10px;
+}
+.jp-panel::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4a5568, #2d3748);
+  border-radius: 6px;
+  border: 2px solid rgba(26, 40, 68, 0.5);
+}
+
+.jp-pie-panel {
+  overflow: visible;
+}
+
+/* 표 */
+.jp-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.jp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  color: #212A2D;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.jp-table th,
+.jp-table td {
+  padding: 10px 8px;
+  border: none;
+  text-align: center;
+  position: relative;
+}
+.jp-table thead th {
+  background: linear-gradient(145deg, #1a2844 0%, #243044 100%);
+  color: #FCF5F0;
+  font-weight: 800;
+  font-size: 13px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.jp-table tbody tr {
+  background: rgba(26, 40, 68, 0.4);
+  transition: 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.jp-table tbody tr:nth-child(even) {
+  background: rgba(30, 42, 58, 0.4);
+}
+.jp-table tbody tr:hover {
+  background: #F7F2E7;
+  color: #2A3437;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.jp-table td.left {
+  text-align: left;
+}
+
+/* 파이차트 프레임 */
+.jp-pie-frame {
+  border-radius: 14px;
+  padding: 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
+}
+.jp-pie-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 175, 55, 0.05) 0%,
+    transparent 60%
+  );
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* JPSelect는 별도 CSS 사용 — 드롭다운만 레이어 우선순위 보정 */
+.jp-select-content {
+  z-index: 3000;
+}
+td .jp-select-trigger {
+  min-width: 120px;
+}
+
+.jp-pie-panel .jp-pie-frame {
+  min-height: 440px; /* 420~480 사이 취향껏 */
+}

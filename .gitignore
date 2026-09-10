@@ -1,0 +1,26 @@
+# Local configuration; only reviewed examples are publishable.
+.env
+.env.*
+!.env.example
+.DS_Store
+**/__pycache__/
+*.pyc
+node_modules/
+fe/dist/
+fe/dist-ssr/
+be/build/
+.gradle/
+playwright-report/
+test-results/
+blob-report/
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+certificates/
+.local/
+local-dumps/
+dumps/
+*.rdb
