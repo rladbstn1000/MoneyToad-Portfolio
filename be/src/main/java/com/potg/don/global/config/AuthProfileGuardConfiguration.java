@@ -33,7 +33,11 @@ public class AuthProfileGuardConfiguration {
 			if (!demo && (!"false".equals(enabled) || !"standard".equals(kind))) {
 				throw invalid("STANDARD_SETTINGS_REQUIRED");
 			}
-			if (demo) com.potg.don.auth.demo.DemoAuthHttpConfiguration.validatedSettings(environment);
+			if (demo) {
+				com.potg.don.auth.demo.DemoAuthHttpConfiguration.validatedSettings(environment);
+				com.potg.don.auth.demo.DemoGatewaySettings.validatedSettings(environment);
+			}
+			if (environment.acceptsProfiles(Profiles.of("render"))) RenderRuntimeSettings.validate(environment);
 		};
 	}
 

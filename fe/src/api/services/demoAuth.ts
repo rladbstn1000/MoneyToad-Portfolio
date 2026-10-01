@@ -9,8 +9,15 @@ const transport = axios.create({
 });
 
 export const demoHttp = {
+  async ready(signal: AbortSignal, timeout: number): Promise<boolean> {
+    const { data, headers, status } = await transport.get<unknown>('/api/auth/demo/ready', { signal, timeout });
+    const contentType = String(headers['content-type'] ?? '').split(';')[0].trim().toLowerCase();
+    return status === 200 && contentType === 'application/json' && typeof data === 'object' && data !== null
+      && !Array.isArray(data) && Object.keys(data).length === 1 && 'ready' in data && data.ready === true;
+  },
   async token(action: 'login' | 'reissue'): Promise<string> {
-    const { data } = await transport.post<{ accessToken?: unknown }>(`/api/auth/demo/${action}`, {});
+    const { data } = await transport.post<{ accessToken?: unknown }>(`/api/auth/demo/${action}`, {},
+      { timeout: action === 'login' ? 60_000 : 10_000 });
     if (typeof data?.accessToken !== 'string' || !data.accessToken.trim()) {
       throw new Error('Invalid demo response');
     }

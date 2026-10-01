@@ -20,6 +20,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.potg.don.auth.jwt.JwtAuthenticationFilter;
 import com.potg.don.auth.demo.DemoAuthHttpConfiguration;
+import com.potg.don.auth.demo.DemoGatewaySettings;
+import com.potg.don.auth.demo.DemoGatewayFilter;
+import org.springframework.web.filter.CorsFilter;
 import com.potg.don.auth.oauth.CustomOAuth2UserService;
 import com.potg.don.auth.oauth.OAuth2SuccessHandler;
 
@@ -45,8 +48,10 @@ public class SecurityConfig {
 
 	@Bean
 	@Profile("demo")
-	public SecurityFilterChain demoFilterChain(HttpSecurity http, DemoAuthHttpConfiguration.Settings settings) throws Exception {
+	public SecurityFilterChain demoFilterChain(HttpSecurity http, DemoAuthHttpConfiguration.Settings settings,
+		DemoGatewaySettings gateway) throws Exception {
 		configureJwtSecurity(http, settings);
+		if (gateway.enabled()) http.addFilterBefore(new DemoGatewayFilter(gateway), CorsFilter.class);
 		return http.build();
 	}
 
@@ -60,6 +65,7 @@ public class SecurityConfig {
 
 			.authorizeHttpRequests(auth -> {
 				if (settings != null) {
+					auth.requestMatchers(HttpMethod.GET, "/auth/demo/ready").permitAll();
 					auth.requestMatchers(HttpMethod.POST, "/auth/demo/login", "/auth/demo/reissue").permitAll();
 					// Demo cards are installed internally. These original routes replace data and invoke AI.
 					auth.requestMatchers(HttpMethod.POST, "/cards").denyAll()

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -206,19 +206,28 @@ class DemoAuthLoginTransactionTest {
 	}
 
 	@Test
-	void concurrentCookieLessLoginsCreateTwoDistinctSyntheticUsersAndSessions() throws Exception {
+	void concurrentCookieLessLoginIsBusyAndExplicitLaterLoginRemainsDistinct() throws Exception {
 		try (var support = new DemoAuthHttpTestSupport(); var started = support.startDemo()) {
 			var context = context(started);
 			long before = users(context).count();
 			var observed = new ObservedStore(redis(context));
-			observed.beforeCreate = new CyclicBarrier(2);
+			observed.createReached = new CountDownLatch(1);
+			observed.createRelease = new CountDownLatch(1);
 			var service = service(context, observed, manager(context), new SecureRandom());
 			var executor = Executors.newFixedThreadPool(2);
 			try {
 				var first = executor.submit(() -> service.login(null));
-				var second = executor.submit(() -> service.login(null));
-				var a = first.get(20, TimeUnit.SECONDS);
-				var b = second.get(20, TimeUnit.SECONDS);
+				assertThat(observed.createReached.await(10, TimeUnit.SECONDS)).isTrue();
+                var busy = org.junit.jupiter.api.Assertions.assertThrows(
+                    com.potg.don.demo.admission.DemoAdmissionException.class, () -> service.login(null));
+                assertThat(busy.getMessage()).isEqualTo("DEMO_ADMISSION_BUSY");
+                assertThat(observed.creates.get()).isEqualTo(1);
+                observed.createRelease.countDown();
+                var a = first.get(20, TimeUnit.SECONDS);
+                observed.createReached = null;
+                observed.createRelease = null;
+                // A new explicit request after the first commit preserves visitor isolation.
+                var b = service.login(null);
 				assertThat(a != null && b != null).isTrue();
 				assertThat(users(context).count()).isEqualTo(before + 2);
 				assertSeedRows(context, 2);
@@ -237,7 +246,7 @@ class DemoAuthLoginTransactionTest {
 					assertThat(user.getFileId()).isNull();
 				}
 				check(support, started, "tx_concurrent_cookie_less_logins_are_distinct");
-			} finally { executor.shutdownNow(); cleanup(context, observed); }
+			} finally { if (observed.createRelease != null) observed.createRelease.countDown(); executor.shutdownNow(); cleanup(context, observed); }
 		}
 	}
 
@@ -246,6 +255,8 @@ class DemoAuthLoginTransactionTest {
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM cards", Integer.class)).isEqualTo(visitors);
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM transactions", Integer.class)).isEqualTo(visitors * 240);
 		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM budgets", Integer.class)).isEqualTo(visitors * 72);
+		assertThat(jdbc(context).queryForObject("SELECT COUNT(*) FROM demo_visit", Integer.class)).isEqualTo(visitors);
+		assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM demo_capacity WHERE id=1 AND max_visitors=1000", Integer.class)).isEqualTo(1);
 	}
 
 	private static DemoAuthService service(ConfigurableApplicationContext context, DemoSessionStore store,
@@ -259,7 +270,7 @@ class DemoAuthLoginTransactionTest {
 			};
 		}
 		var sessions = new DemoSessionService(context.getBean(JwtUtil.class), store);
-		return new DemoAuthService(users(context), sessions, store, context.getBean(JwtUtil.class), context.getBean(DemoSeedService.class), manager, Clock.systemUTC(), random);
+		return new DemoAuthService(users(context), sessions, store, context.getBean(JwtUtil.class), context.getBean(DemoSeedService.class), context.getBean(com.potg.don.demo.admission.DemoAdmissionStore.class), manager, Clock.systemUTC(), random);
 	}
 
 	private record Failure(boolean failed, int returnedTokens) { }
@@ -311,15 +322,17 @@ class DemoAuthLoginTransactionTest {
 		final AtomicInteger revokes = new AtomicInteger();
 		boolean loseCreateResult;
 		boolean failRevoke;
-		CyclicBarrier beforeCreate;
+		CountDownLatch createReached;
+        CountDownLatch createRelease;
 		java.util.function.LongConsumer beforeCreateCheck = userId -> { };
 		ObservedStore(StringRedisTemplate redis) { super(redis); }
 		@Override public boolean create(String sid, long userId, String hash, Instant expiresAt) {
 			beforeCreateCheck.accept(userId);
 			sids.add(sid);
 			creates.incrementAndGet();
-			if (beforeCreate != null) {
-				try { beforeCreate.await(10, TimeUnit.SECONDS); }
+			if (createReached != null) {
+                createReached.countDown();
+                try { if (!createRelease.await(10, TimeUnit.SECONDS)) throw new IllegalStateException("Synthetic hold timed out"); }
 				catch (Exception failure) { throw new IllegalStateException("Synthetic concurrency boundary failed"); }
 			}
 			boolean result = super.create(sid, userId, hash, expiresAt);

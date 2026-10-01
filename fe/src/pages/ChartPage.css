@@ -436,3 +436,268 @@ td .jp-select-trigger {
   cursor: not-allowed;
   opacity: 0.6;
 }
+
+
+/* Alternative month controls and repeated cell labels are small-screen only. */
+.jp-mobile-months,
+.jp-cell-label {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .jp-wrap > .app-header {
+    padding: 0;
+  }
+  .jp-wrap > .app-header .nav {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .jp-wrap > .app-header .nav-item {
+    padding: 12px 8px;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  #screen1.jp-screen {
+    height: 100dvh;
+    align-items: flex-start;
+    padding: calc(var(--header-h) + 16px) 12px 24px;
+    overflow: auto;
+  }
+  .jp-stage {
+    width: 100%;
+    min-width: 0;
+    max-height: none;
+    aspect-ratio: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .jp-page-title-section {
+    position: static;
+  }
+  .jp-page-title-section h1 {
+    font-size: 28px;
+  }
+  .jp-page-title-section p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .jp-water-image,
+  .jp-page-image,
+  .jp-toad-image {
+    display: none;
+  }
+  .jp-linechart-wrap {
+    position: relative;
+    inset: auto;
+    height: 300px;
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+  .jp-mobile-months {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .jp-mobile-months button {
+    min-height: 44px;
+    border: 1px solid #bbdefb;
+    border-radius: 8px;
+    padding: 8px;
+    background: #243044;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+  .jp-mobile-months button span {
+    display: block;
+    font-size: 13px;
+    color: #fff2b3;
+  }
+  .jp-mobile-months button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .jp-mobile-months button:focus-visible,
+  .jp-close:focus-visible {
+    outline: 3px solid #d4af37;
+    outline-offset: 2px;
+  }
+
+  #screen2.jp-detail-screen {
+    display: block;
+    height: 100dvh;
+    box-sizing: border-box;
+    padding: 12px;
+    overflow-y: auto;
+  }
+  #screen2 .jp-card {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    aspect-ratio: auto;
+    display: block;
+    padding: 20px 12px;
+  }
+  .jp-card-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .jp-head-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    width: 100%;
+  }
+  .jp-leak,
+  .jp-total {
+    grid-column: 1;
+    min-width: 0;
+    font-size: 20px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .jp-close {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+  }
+  .jp-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    overflow: visible;
+  }
+  .jp-panel {
+    min-width: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .jp-table {
+    display: block;
+    border-radius: 0;
+    overflow: visible;
+  }
+  /* Preserve column headers for assistive technology. The same names are
+     visibly repeated in every mobile cell; transaction values stay visible. */
+  .jp-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+  }
+  .jp-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+  .jp-table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "merchant merchant" "date amount" "category category";
+    gap: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #f7f2e7;
+    border: 1px solid #b4aa93;
+  }
+  .jp-table tbody tr:nth-child(even) {
+    background: #fffaf0;
+  }
+  .jp-table tbody tr:hover {
+    transform: none;
+  }
+  .jp-table td {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 0;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+  .jp-date-cell { grid-area: date; }
+  .jp-merchant-cell { grid-area: merchant; }
+  .jp-amount-cell { grid-area: amount; }
+  .jp-category-cell { grid-area: category; }
+  .jp-cell-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #45535b;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .jp-cell-value {
+    max-width: 100%;
+  }
+  .jp-chart-select {
+    min-width: 0;
+    min-height: 44px;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 16px;
+  }
+  td .jp-chart-select {
+    min-width: 0;
+  }
+  .jp-chart-select > span:first-child {
+    min-width: 0;
+    white-space: normal;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+  .jp-chart-select-content {
+    min-width: var(--radix-select-trigger-width);
+    max-width: min(calc(100vw - 24px), var(--radix-select-content-available-width));
+    box-sizing: border-box;
+  }
+  .jp-chart-select-content .jp-select-item {
+    min-height: 44px;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  .jp-chart-select-content .jp-select-scroll-button {
+    min-height: 44px;
+  }
+  .jp-mobile-pie-legend {
+    margin: 0;
+    padding: 12px;
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    border-radius: 12px;
+    background: #fffaf0;
+    color: #212a2d;
+  }
+  .jp-mobile-pie-legend li {
+    display: grid;
+    grid-template-columns: 12px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .jp-pie-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .jp-pie-legend-name {
+    overflow-wrap: anywhere;
+  }
+  .jp-pie-legend-amount {
+    font-weight: 700;
+  }
+  .jp-pie-panel .jp-pie-frame {
+    height: 440px;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 0;
+  }
+}

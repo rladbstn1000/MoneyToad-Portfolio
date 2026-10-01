@@ -1,12 +1,8 @@
 package com.potg.don.demo.seed;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.YearMonth;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -70,46 +66,17 @@ public class DemoSeedService {
 	}
 
 	private LocalDate validateComplete(Card card, List<Budget> actualBudgets) {
-		if (card.getCardNo() != null || card.getCvc() != null) throw incomplete();
-		List<Transaction> actualTransactions = transactions.findAllByCard_IdOrderByTransactionDateTimeAsc(card.getId());
-		if (actualTransactions.size() != DemoSeedScenario.TRANSACTION_COUNT
-			|| actualBudgets.size() != DemoSeedScenario.BUDGET_COUNT) throw incomplete();
-		for (Transaction row : actualTransactions) {
-			if (row.getTransactionDateTime() == null || row.getAmount() == null || row.getMerchantName() == null) {
-				throw incomplete();
-			}
-		}
-		LocalDate anchor = actualTransactions.stream().map(Transaction::getTransactionDateTime)
-			.max(Comparator.naturalOrder()).orElseThrow(DemoSeedService::incomplete).toLocalDate();
-		DemoSeedScenario.Scenario expected = DemoSeedScenario.generate(anchor);
-		Comparator<ImmutableTransaction> order = Comparator.comparing(ImmutableTransaction::dateTime)
-			.thenComparing(ImmutableTransaction::merchantName).thenComparingInt(ImmutableTransaction::amount);
-		var actualImmutable = actualTransactions.stream().map(row -> new ImmutableTransaction(
-			row.getTransactionDateTime(), row.getAmount(), row.getMerchantName())).sorted(order).toList();
-		var expectedImmutable = expected.transactions().stream().map(row -> new ImmutableTransaction(
-			row.dateTime(), row.amount(), row.merchantName())).sorted(order).toList();
-		if (!actualImmutable.equals(expectedImmutable)) throw incomplete();
+        List<Transaction> actual = transactions.findAllByCard_IdOrderByTransactionDateTimeAsc(card.getId());
+        return DemoDatasetValidator.validate(
+            List.of(new DemoDatasetValidator.CardData(card.getCardNo(), card.getCvc())),
+            actual.stream().map(row -> new DemoDatasetValidator.TransactionData(
+                row.getTransactionDateTime(), row.getAmount(), row.getMerchantName())).toList(),
+            actualBudgets.stream().map(row -> new DemoDatasetValidator.BudgetData(
+                row.getBudgetDate(), row.getCategory(), row.getInitialAmount(), row.getInitialFileId(),
+                row.getPredictedAt())).toList());
+    }
 
-		Set<BudgetSlot> expectedSlots = expected.budgets().stream()
-			.map(row -> new BudgetSlot(row.date(), row.category())).collect(Collectors.toSet());
-		Set<BudgetSlot> actualSlots = actualBudgets.stream().map(row -> new BudgetSlot(row.getBudgetDate(), row.getCategory()))
-			.collect(Collectors.toSet());
-		if (!actualSlots.equals(expectedSlots) || actualSlots.size() != actualBudgets.size()) throw incomplete();
-		for (Budget row : actualBudgets) {
-			if (row.getInitialAmount() != null || row.getInitialFileId() != null || row.getPredictedAt() != null) {
-				throw incomplete();
-			}
-		}
-		return anchor;
-	}
-
-	private static IllegalArgumentException incomplete() {
-		return new IllegalArgumentException("DEMO_SEED_INCOMPLETE");
-	}
-
-	private record ImmutableTransaction(LocalDateTime dateTime, int amount, String merchantName) {
-	}
-
-	private record BudgetSlot(LocalDate date, String category) {
-	}
+    private static IllegalArgumentException incomplete() {
+        return new IllegalArgumentException("DEMO_SEED_INCOMPLETE");
+    }
 }

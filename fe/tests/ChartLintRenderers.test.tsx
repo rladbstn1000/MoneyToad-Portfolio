@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 import { HttpResponse, http } from 'msw';
@@ -57,6 +57,34 @@ async function mount() {
   view.rerender(<QueryClientProvider client={client}><MemoryRouter><ChartPage /></MemoryRouter></QueryClientProvider>);
 }
 describe('actual Chart renderer callbacks', () => {
+  it('uses compact percentage labels with the same category amounts and restores the unchanged desktop labels', async () => {
+    let changed: (() => void) | undefined;
+    const media = { matches: true,
+      addEventListener: (_event: string, listener: () => void) => { changed = listener; },
+      removeEventListener: () => {},
+    };
+    vi.stubGlobal('matchMedia', () => media);
+    try {
+      await mount();
+      expect(screen.getByTestId('actual-pie-label').querySelector('text')).toHaveTextContent(/^3%$/);
+      const legend = screen.getByRole('list', { name: '카테고리별 소비' });
+      expect(within(legend).getAllByRole('listitem')).toHaveLength(1);
+      expect(legend.querySelector('.jp-pie-legend-name')).toHaveTextContent('식비');
+      expect(legend.querySelector('.jp-pie-legend-amount')).toHaveTextContent('1,000원');
+      expect(legend.querySelector('.jp-pie-legend-dot')).toHaveAttribute('aria-hidden', 'true');
+      const requestsBeforeResize = [...monthRequests];
+      await act(async () => { media.matches = false; changed?.(); });
+      expect(screen.queryByRole('list', { name: '카테고리별 소비' })).not.toBeInTheDocument();
+      const label = screen.getByTestId('actual-pie-label').querySelector('text');
+      expect(label).toHaveTextContent('식비 3%');
+      expect(label).toHaveAttribute('x', '202');
+      expect(label).toHaveAttribute('y', '100');
+      expect(monthRequests).toEqual(requestsBeforeResize);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it('renders both tooltip amounts, leak marker, geometry and leaked pie color', async () => {
     await mount();
     const tooltip = screen.getByTestId('actual-tooltip');

@@ -20,6 +20,7 @@ let requests: Record[];
 let unhandled: number;
 let tokenSequence: number;
 let expiry: string;
+let readyReply: Reply;
 let loginReply: Reply;
 let refreshReply: Reply;
 let sessionReply: Reply;
@@ -35,6 +36,7 @@ async function record(request: Request, reply: Reply) {
   return reply();
 }
 const server = setupServer(
+  http.get(`${ORIGIN}/api/auth/demo/ready`, ({ request }) => record(request, readyReply)),
   http.post(`${ORIGIN}/api/auth/demo/login`, ({ request }) => record(request, loginReply)),
   http.post(`${ORIGIN}/api/auth/demo/reissue`, ({ request }) => record(request, refreshReply)),
   http.get(`${ORIGIN}/api/auth/demo/session`, ({ request }) => record(request, sessionReply)),
@@ -63,6 +65,7 @@ beforeEach(async () => {
   vi.resetModules();
   requests = []; unhandled = 0; tokenSequence = 0;
   expiry = new Date(Date.now() + 3600000).toISOString();
+  readyReply = () => HttpResponse.json({ ready: true });
   loginReply = okToken; refreshReply = okToken;
   sessionReply = () => HttpResponse.json({ demo: true, expiresAt: expiry });
   logoutReply = () => new HttpResponse(null, { status: 204 });
@@ -143,6 +146,91 @@ describe('demo memory and wire boundary', () => {
     await runtime.restoreDemo();
     expect(runtime.store.getState().status).toBe('authenticated');
     expect(count('/login')).toBe(1);
+  });
+});
+
+describe('explicit login admission failures', () => {
+  const admissionCases = [
+    { code: 'DEMO_CAPACITY_FULL', message: '현재 체험 공간이 가득 찼습니다. 나중에 다시 시도해 주세요.' },
+    { code: 'DEMO_ADMISSION_BUSY', message: '다른 체험을 준비 중입니다. 잠시 후 다시 시도해 주세요.' },
+  ];
+  const admissionReply = (code: string, status = 503) => HttpResponse.json({
+    status, error: 'Service Unavailable', message: 'Server message is not displayed', code,
+  }, { status });
+
+  it.each(admissionCases)('$code shows the landing message and needs a second explicit click to login', async ({ code, message }) => {
+    refreshReply = () => new HttpResponse(null, { status: 401 });
+    await renderApp('/');
+    const beforeStorage = localStorage.getItem('accessToken');
+    loginReply = () => admissionReply(code);
+    fireEvent.click(await screen.findByRole('button', { name: '샘플 데이터로 체험하기' }));
+    await screen.findByText(message);
+    expect(runtime.store.getState()).toMatchObject({
+      status: 'anonymous', operation: null, accessToken: null, expiresAt: null,
+    });
+    expect(localStorage.getItem('accessToken')).toBe(beforeStorage);
+    expect(screen.queryByRole('navigation', { name: '체험 메뉴' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '연결 다시 시도' })).not.toBeInTheDocument();
+    expect(screen.queryByText('Server message is not displayed')).not.toBeInTheDocument();
+    expect([count('/login'), count('/reissue'), count('/session'), count('/users'), count('/transactions')]).toEqual([1, 1, 0, 0, 0]);
+    loginReply = okToken;
+    fireEvent.click(screen.getByRole('button', { name: '샘플 데이터로 체험하기' }));
+    await screen.findByRole('navigation', { name: '체험 메뉴' });
+    expect([count('/login'), count('/reissue'), count('/session')]).toEqual([2, 1, 1]);
+  });
+
+  it.each([
+    { label: 'generic503', data: null, status: 503 },
+    { label: 'integrity unavailable', data: { code: 'DEMO_ADMISSION_UNAVAILABLE' }, status: 503 },
+    { label: 'unknown code', data: { code: 'OTHER_ERROR' }, status: 503 },
+    { label: 'wrong case', data: { code: 'demo_capacity_full' }, status: 503 },
+    { label: 'array body', data: [{ code: 'DEMO_CAPACITY_FULL' }], status: 503 },
+    { label: 'message-only code', data: { message: 'DEMO_CAPACITY_FULL' }, status: 503 },
+    { label: 'wrong status', data: { code: 'DEMO_CAPACITY_FULL' }, status: 500 },
+  ])('$label preserves unavailable and recovers through reissue, never another automatic login', async ({ data, status }) => {
+    loginReply = () => HttpResponse.json(data, { status });
+    await expect(runtime.loginDemo()).rejects.toBeInstanceOf(runtime.DemoAuthError);
+    expect(runtime.store.getState()).toMatchObject({ status: 'unavailable', recovery: 'restore', accessToken: null });
+    expect([count('/login'), count('/reissue'), count('/session')]).toEqual([1, 0, 0]);
+    await runtime.restoreDemo();
+    expect([count('/login'), count('/reissue'), count('/session')]).toEqual([1, 1, 1]);
+    expect(runtime.store.getState().status).toBe('authenticated');
+  });
+
+  it.each(admissionCases)('$code from reissue remains unavailable', async ({ code }) => {
+    refreshReply = () => admissionReply(code);
+    await expect(runtime.restoreDemo()).rejects.toBeInstanceOf(runtime.DemoAuthError);
+    expect(runtime.store.getState().status).toBe('unavailable');
+    expect([count('/login'), count('/reissue'), count('/session')]).toEqual([0, 1, 0]);
+  });
+
+  it.each(admissionCases)('$code from login409 fallback reissue remains unavailable', async ({ code }) => {
+    loginReply = () => new HttpResponse(null, { status: 409 });
+    refreshReply = () => admissionReply(code);
+    await expect(runtime.loginDemo()).rejects.toBeInstanceOf(runtime.DemoAuthError);
+    expect(runtime.store.getState().status).toBe('unavailable');
+    expect([count('/login'), count('/reissue'), count('/session')]).toEqual([1, 1, 0]);
+  });
+
+  it.each(admissionCases)('$code from session confirmation remains unavailable', async ({ code }) => {
+    sessionReply = () => admissionReply(code);
+    await expect(runtime.loginDemo()).rejects.toBeInstanceOf(runtime.DemoAuthError);
+    expect(runtime.store.getState()).toMatchObject({ status: 'unavailable', accessToken: null });
+    expect([count('/login'), count('/reissue'), count('/session')]).toEqual([1, 0, 1]);
+  });
+
+  it.each(admissionCases)('late $code cannot replace a newer visit message', async ({ code }) => {
+    const gate = deferred<Response>(); loginReply = () => gate.promise;
+    const work = runtime.loginDemo().catch(error => error);
+    await waitFor(() => expect(count('/login')).toBe(1));
+    runtime.endDemo('현재 방문 안내');
+    const generation = runtime.store.getState().generation;
+    gate.resolve(admissionReply(code));
+    expect(await work).toBeInstanceOf(runtime.DemoAuthError);
+    expect(runtime.store.getState()).toMatchObject({
+      generation, status: 'anonymous', message: '현재 방문 안내', accessToken: null,
+    });
+    expect([count('/login'), count('/reissue'), count('/session')]).toEqual([1, 0, 0]);
   });
 });
 
@@ -365,5 +453,51 @@ describe('real App, provider, route guard and protected queries', () => {
     refreshReply = () => new HttpResponse(null, { status: 401 }); await renderApp('/auth/callback?accessToken=synthetic-ignored');
     await screen.findByRole('button', { name: '샘플 데이터로 체험하기' });
     expect(count('/cards')).toBe(0); expect(runtime.store.getState().accessToken).toBeNull();
+  });
+});
+
+describe('actual readiness HTTP and initial waiting UI', () => {
+  it('StrictMode shares one readiness GET and blocks protected HTTP before restoring', async () => {
+    const gate = deferred<Response>(); readyReply = () => gate.promise;
+    await renderApp();
+    await screen.findByRole('button', { name: '데모 서버 시작 중…' });
+    await waitFor(() => expect(count('/ready')).toBe(1));
+    expect(count('/reissue') + count('/login') + count('/users') + count('/transactions')).toBe(0);
+    expect(screen.queryByRole('navigation', { name: '체험 메뉴' })).not.toBeInTheDocument();
+    gate.resolve(HttpResponse.json({ ready: true }));
+    await screen.findByRole('navigation', { name: '체험 메뉴' });
+    expect(count('/ready')).toBe(1); expect(count('/reissue')).toBe(1); expect(count('/login')).toBe(0);
+  });
+  it('shows a separate data-preparation state while the actual login POST is pending', async () => {
+    refreshReply = () => new HttpResponse(null, { status: 401 }); await renderApp('/');
+    const start = await screen.findByRole('button', { name: '샘플 데이터로 체험하기' });
+    const gate = deferred<Response>(); loginReply = () => gate.promise;
+    fireEvent.click(start);
+    await screen.findByRole('button', { name: '체험 데이터 준비 중…' });
+    expect(count('/users') + count('/transactions')).toBe(0);
+    gate.resolve(okToken()); await screen.findByRole('navigation', { name: '체험 메뉴' });
+    expect(count('/login')).toBe(1);
+  });
+  it.each([
+    () => new HttpResponse('<html>Starting</html>', { headers: { 'Content-Type': 'text/html' } }),
+    () => new HttpResponse('<html>Starting</html>', { headers: { 'Content-Type': 'application/json' } }),
+    () => HttpResponse.json({ ready: false }),
+    () => HttpResponse.json({ ready: true, unexpected: true }),
+    () => HttpResponse.json({ ready: 'true' }),
+    () => HttpResponse.json({ ready: true }, { status: 201 }),
+  ])('does not treat a non-contract successful response as readiness (%#)', async reply => {
+    readyReply = reply;
+    const { demoHttp } = await import('../../src/api/services/demoAuth');
+    expect(await demoHttp.ready(new AbortController().signal, 10_000)).toBe(false);
+    expect(count('/ready')).toBe(1);
+    expect(count('/login') + count('/reissue') + count('/session')).toBe(0);
+  });
+  it('accepts exact JSON200 and transmits GET credentials/header without a body', async () => {
+    const { demoHttp } = await import('../../src/api/services/demoAuth');
+    expect(await demoHttp.ready(new AbortController().signal, 10_000)).toBe(true);
+    const request = requests.find(row => row.path.endsWith('/ready'))!;
+    expect(request.method).toBe('GET'); expect(request.body).toBe('');
+    expect(request.credentials && request.header).toBe(true);
+    expect(count('/login') + count('/reissue')).toBe(0);
   });
 });

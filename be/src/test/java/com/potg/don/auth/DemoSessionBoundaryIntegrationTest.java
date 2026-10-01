@@ -577,9 +577,11 @@ class DemoSessionBoundaryIntegrationTest {
 	private Started start(String active, String defaults, String enabled, String kind, boolean oauth) {
 		Probe probe = new Probe();
 		Map<String, Object> properties = infrastructure();
+		OwnedDemoSchemaPreparation.recreate(properties, java.util.Arrays.asList((active.isEmpty() ? defaults : active).split(",")).contains("demo"));
 		properties.put("AI_BASE_URL", "http://127.0.0.1:" + stubPort);
 		properties.put("logging.level.root", "OFF");
 		properties.put("app.demo.browser-origin", "public-demo".equals(kind) ? "https://demo.example.invalid" : "http://localhost:5173");
+		if ("public-demo".equals(kind)) properties.put("DEMO_GATEWAY_SECRET", SyntheticGatewayTestSupport.secret());
 		properties.put("spring.sql.init.mode", "never");
 		if (enabled != null) properties.put("app.demo.enabled", enabled);
 		if (kind != null) properties.put("app.deployment.kind", kind);
@@ -647,7 +649,7 @@ class DemoSessionBoundaryIntegrationTest {
 		properties.put("DB_URL", url);
 		properties.put("DB_USERNAME", required("A1_DB_USERNAME"));
 		properties.put("DB_PASSWORD", required("A1_DB_PASSWORD"));
-		properties.put("JPA_DDL_AUTO", "create-drop");
+		properties.put("JPA_DDL_AUTO", "validate");
 		properties.put("REDIS_HOST", "127.0.0.1");
 		properties.put("REDIS_PORT", redisPort);
 		properties.put("JWT_SECRET", required("A1_JWT_SECRET"));

@@ -202,3 +202,66 @@ describe('demo seeded Chart over actual query / mutation / HTTP functions', () =
     expect(count('/api/transactions/peer')).toBe(0);
   });
 });
+
+
+describe('small-screen Chart controls over the existing HTTP contract', () => {
+  it('keeps semantic columns and visibly labeled transaction values beside the real category combobox', async () => {
+    const user = mount();
+    await screen.findByText(/기준월 2024-12/);
+    await user.click(screen.getByRole('button', { name: '내 소비 12월 선택' }));
+    const table = await screen.findByRole('table', { name: '월별 거래 내역' });
+    expect(within(table).getAllByRole('columnheader').map(header => header.textContent))
+      .toEqual(['날짜', '가맹점', '금액', '카테고리']);
+    const row = await within(table).findByRole('row', { name: /합성 장보기\(분류 연습\)/ });
+    expect(within(row).getAllByRole('cell')).toHaveLength(4);
+    expect([...row.querySelectorAll('.jp-cell-label')].map(label => label.textContent))
+      .toEqual(['날짜', '가맹점', '금액', '카테고리']);
+    expect([...row.querySelectorAll('.jp-cell-value')].map(value => value.textContent))
+      .toEqual(['2024-12-01', '합성 장보기(분류 연습)', '30,000 냥']);
+    const select = within(row).getByRole('combobox', { name: '합성 장보기(분류 연습) 카테고리' });
+    expect(select).toHaveTextContent('카페');
+    await settled();
+    await user.click(select);
+    expect(screen.getByRole('listbox')).toHaveClass('jp-chart-select-content');
+    expect(screen.getByRole('option', { name: '마트 / 편의점' })).toBeInTheDocument();
+  });
+
+  it('keeps category and amount visible after a failed edit without retrying PATCH', async () => {
+    server.use(http.patch(`${ORIGIN}/api/transactions/:id/category`, ({ request }) =>
+      record(request, () => HttpResponse.json({ message: 'synthetic failure' }, { status: 500 }))));
+    const user = mount();
+    await screen.findByText(/기준월 2024-12/);
+    await user.click(screen.getByRole('button', { name: '내 소비 12월 선택' }));
+    const row = await screen.findByRole('row', { name: /합성 장보기\(분류 연습\)/ });
+    await settled();
+    const select = within(row).getByRole('combobox', { name: '합성 장보기(분류 연습) 카테고리' });
+    await user.click(select);
+    await user.click(await screen.findByRole('option', { name: '마트 / 편의점' }));
+    await screen.findByRole('alert');
+    await settled();
+    expect(screen.getByRole('alert')).toHaveTextContent('카테고리를 변경하지 못했습니다.');
+    expect(select).toHaveTextContent('카페');
+    expect(select).toBeEnabled();
+    expect(row.querySelector('.jp-amount-cell')).toHaveTextContent('30,000 냥');
+    expect(screen.getByText(/총 소비 금액:/)).toHaveTextContent('908,000원');
+    expect(screen.getByText(/누수 금액:/)).toHaveTextContent('18,000원');
+    expect(requests.filter(request => request.method === 'PATCH')).toHaveLength(1);
+  });
+
+  it('opens the API-anchored month with the alternative button without a browser-date fallback', async () => {
+    const user = mount();
+    await screen.findByText(/기준월 2024-12/);
+    const months = screen.getByRole('navigation', { name: '월별 상세 보기' });
+    expect(within(months).getAllByRole('button')).toHaveLength(12);
+    expect(monthRequests()).toEqual([]);
+    const button = within(months).getByRole('button', { name: '2024년 12월 상세 보기' });
+    expect(button).toHaveTextContent('12월');
+    expect(button).toHaveTextContent('기준월');
+    await user.click(button);
+    await screen.findByRole('heading', { name: '12월 상세' });
+    await settled();
+    expect(count('/api/transactions/2024/12')).toBe(1);
+    expect(monthRequests().some(request => request.path.includes('/2026/'))).toBe(false);
+    expect(count('/api/transactions/peer')).toBe(0);
+  });
+});

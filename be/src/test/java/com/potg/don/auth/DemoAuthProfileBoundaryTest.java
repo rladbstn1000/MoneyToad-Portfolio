@@ -278,6 +278,7 @@ class DemoAuthProfileBoundaryTest {
 		int authorizedRepositories = context.getBeansOfType(OAuth2AuthorizedClientRepository.class).size();
 		int authControllers = context.getBeansOfType(AuthController.class).size();
 		int authServices = context.getBeansOfType(AuthService.class).size();
+		int schedulers = context.getBeansOfType(com.potg.don.analysisJob.scheduler.AnalysisJobScheduler.class).size();
 		var chains = context.getBeansOfType(SecurityFilterChain.class).values();
 		boolean jwtInChain = chains.size() == 1 && chains.iterator().next().getFilters()
 			.contains(context.getBean(JwtAuthenticationFilter.class));
@@ -304,9 +305,21 @@ class DemoAuthProfileBoundaryTest {
 		String token = demo
 			? context.getBean(com.potg.don.auth.demo.DemoSessionService.class).startForUser(owner.getId()).accessToken()
 			: context.getBean(JwtUtil.class).createAccessToken(owner.getId(), owner.getEmail());
-		MockMvc mvc = MockMvcBuilders.webAppContextSetup((GenericWebApplicationContext)context).apply(springSecurity()).build();
+		var mvcBuilder = MockMvcBuilders.webAppContextSetup((GenericWebApplicationContext)context).apply(springSecurity());
+		if ("public-demo".equals(environment.getProperty("app.deployment.kind")))
+			mvcBuilder.defaultRequest(SyntheticGatewayTestSupport.gateway(get("/")));
+		MockMvc mvc = mvcBuilder.build();
 		var authenticated = mvc.perform(get("/api/users").contextPath("/api").header("Authorization", "Bearer " + token)).andReturn();
 		var unauthenticated = mvc.perform(get("/api/users").contextPath("/api")).andReturn();
+		if (demo) {
+			var ready = mvc.perform(get("/api/auth/demo/ready").contextPath("/api")).andReturn().getResponse();
+			assertThat(ready.getStatus()).isEqualTo(200);
+			assertThat(ready.getContentAsString()).isEqualTo("{\"ready\":true}");
+			assertThat(ready.getHeader("Cache-Control")).isEqualTo("no-store");
+			assertThat(ready.getHeaders("Set-Cookie")).isEmpty();
+		}
+		assertThat(context.getBeansOfType(com.potg.don.auth.demo.DemoReadinessController.class)).hasSize(demo ? 1 : 0);
+		assertThat(context.getBeansOfType(com.potg.don.auth.demo.DemoReadinessService.class)).hasSize(demo ? 1 : 0);
 		boolean principalMatches = authenticated.getResponse().getStatus() == 200
 			&& JSON.readTree(authenticated.getResponse().getContentAsString()).path("email").asText().equals(owner.getEmail())
 			&& JSON.readTree(authenticated.getResponse().getContentAsString()).path("name").asText().equals(owner.getName());
@@ -334,6 +347,7 @@ class DemoAuthProfileBoundaryTest {
 		evidence.put("authorizedClientRepositoryCount", authorizedRepositories);
 		evidence.put("authControllerCount", authControllers);
 		evidence.put("authServiceCount", authServices);
+		evidence.put("analysisJobSchedulerCount", schedulers);
 		evidence.put("authMappingCount", authMappings);
 		evidence.put("demoEndpointCount", demoMappings);
 		evidence.put("securityChainCount", chains.size());
@@ -360,11 +374,11 @@ class DemoAuthProfileBoundaryTest {
 			() -> assertThat(userServices).isEqualTo(expected), () -> assertThat(successHandlers).isEqualTo(expected),
 			() -> assertThat(registrations).isEqualTo(expected), () -> assertThat(authorizedServices).isEqualTo(expected),
 			() -> assertThat(authorizedRepositories).isEqualTo(expected), () -> assertThat(authControllers).isEqualTo(expected),
-			() -> assertThat(authServices).isEqualTo(expected), () -> assertThat(authMappings).isEqualTo(demo ? 0 : 2),
-			() -> assertThat(demoMappings).isEqualTo(demo ? 4 : 0),
+			() -> assertThat(authServices).isEqualTo(expected), () -> assertThat(schedulers).isEqualTo(expected), () -> assertThat(authMappings).isEqualTo(demo ? 0 : 2),
+			() -> assertThat(demoMappings).isEqualTo(demo ? 5 : 0),
 			() -> assertThat(mappings.keySet().stream().filter(info -> info.getPatternValues().stream().anyMatch(path -> path.startsWith("/auth/demo")))
 				.flatMap(info -> info.getPatternValues().stream().flatMap(path -> info.getMethodsCondition().getMethods().stream().map(method -> method.name() + " " + path)))
-				.collect(java.util.stream.Collectors.toSet())).isEqualTo(demo ? java.util.Set.of("POST /auth/demo/login", "POST /auth/demo/reissue", "GET /auth/demo/session", "POST /auth/demo/logout") : java.util.Set.of()),
+				.collect(java.util.stream.Collectors.toSet())).isEqualTo(demo ? java.util.Set.of("POST /auth/demo/login", "POST /auth/demo/reissue", "GET /auth/demo/session", "POST /auth/demo/logout", "GET /auth/demo/ready") : java.util.Set.of()),
 			() -> assertThat(jwtInChain).isTrue(),
 			() -> assertThat(oauthFilters).isEqualTo(demo ? 0 : 2),
 			() -> assertThat(noOAuthProperties).isEqualTo(demo), () -> assertThat(noMockProducts).isTrue(),
@@ -376,9 +390,11 @@ class DemoAuthProfileBoundaryTest {
 	private Started start(String active, String defaults, String enabled, String kind, boolean oauth) {
 		Probe probe = new Probe();
 		Map<String, Object> properties = infrastructure();
+		OwnedDemoSchemaPreparation.recreate(properties, java.util.Arrays.asList((active.isEmpty() ? defaults : active).split(",")).contains("demo"));
 		properties.put("AI_BASE_URL", "http://127.0.0.1:" + stubPort);
 		properties.put("logging.level.root", "OFF");
 		properties.put("app.demo.browser-origin", "public-demo".equals(kind) ? "https://demo.example.invalid" : "http://localhost:5173");
+		if ("public-demo".equals(kind)) properties.put("DEMO_GATEWAY_SECRET", SyntheticGatewayTestSupport.secret());
 		properties.put("spring.sql.init.mode", "never");
 		if (enabled != null) properties.put("app.demo.enabled", enabled);
 		if (kind != null) properties.put("app.deployment.kind", kind);
@@ -446,7 +462,7 @@ class DemoAuthProfileBoundaryTest {
 		properties.put("DB_URL", url);
 		properties.put("DB_USERNAME", required("A1_DB_USERNAME"));
 		properties.put("DB_PASSWORD", required("A1_DB_PASSWORD"));
-		properties.put("JPA_DDL_AUTO", "create-drop");
+		properties.put("JPA_DDL_AUTO", "validate");
 		properties.put("REDIS_HOST", "127.0.0.1");
 		properties.put("REDIS_PORT", redisPort);
 		properties.put("JWT_SECRET", required("A1_JWT_SECRET"));

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.servlet.http.HttpServletRequest;
+import com.potg.don.demo.admission.DemoAdmissionException;
 
 @RestControllerAdvice(assignableTypes = DemoAuthController.class)
 @Profile("demo")
@@ -33,6 +34,18 @@ public class DemoAuthExceptionHandler {
 	private final DemoRefreshCookie cookies;
 
 	public DemoAuthExceptionHandler(DemoRefreshCookie cookies) { this.cookies = cookies; }
+
+	@ExceptionHandler(DemoAdmissionException.class)
+    public ResponseEntity<Map<String, Object>> admission(DemoAdmissionException failure) {
+        String message = switch (failure.code()) {
+            case DEMO_CAPACITY_FULL -> "현재 체험 공간이 가득 찼습니다. 나중에 다시 시도해 주세요.";
+            case DEMO_ADMISSION_BUSY -> "다른 체험을 준비 중입니다. 잠시 후 다시 시도해 주세요.";
+            case DEMO_ADMISSION_UNAVAILABLE -> "데모 인증 서비스를 사용할 수 없습니다.";
+        };
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).cacheControl(CacheControl.noStore())
+            .body(Map.of("status", 503, "error", "Service Unavailable", "message", message,
+                "code", failure.code().name()));
+    }
 
 	@ExceptionHandler(DemoAuthException.class)
 	public ResponseEntity<Map<String, Object>> auth(DemoAuthException failure, HttpServletRequest request) {

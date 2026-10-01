@@ -16,6 +16,7 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,7 +56,7 @@ class DemoAuthControllerTest {
 			new DemoAuthHttpConfiguration.Settings("https://demo.example.invalid", true), Clock.fixed(NOW, ZoneOffset.UTC));
 		controller = new DemoAuthController(auth, cookies);
 		advice = new DemoAuthExceptionHandler(cookies);
-		issued = new DemoSessionService.IssuedTokens("synthetic-access", "synthetic-refresh", NOW.plusSeconds(3600));
+		issued = new DemoSessionService.IssuedTokens(UUID.randomUUID().toString(), UUID.randomUUID().toString(), NOW.plusSeconds(3600));
 		json = JsonMapper.builder().addModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS).build();
 	}
 
@@ -71,15 +72,16 @@ class DemoAuthControllerTest {
 
 	@Test
 	void reissueUsesOnlyTheDedicatedCookieAndReturnsTheSameRestrictedShape() throws Exception {
+		String demoRefresh = UUID.randomUUID().toString();
 		MockHttpServletRequest request = request("/reissue");
-		request.addHeader(HttpHeaders.AUTHORIZATION, "Bearer ignored-synthetic-value");
-		request.setCookies(new Cookie("refreshToken", "ignored-ordinary-cookie"),
-			new Cookie(DemoRefreshCookie.NAME, "synthetic-old-refresh"));
-		when(auth.reissue("synthetic-old-refresh")).thenReturn(issued);
+		request.addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + UUID.randomUUID());
+		request.setCookies(new Cookie("refreshToken", UUID.randomUUID().toString()),
+			new Cookie(DemoRefreshCookie.NAME, demoRefresh));
+		when(auth.reissue(demoRefresh)).thenReturn(issued);
 		ResponseEntity<DemoAuthController.AccessTokenResponse> response = controller.reissue(request);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertTokensSeparated(response);
-		verify(auth).reissue("synthetic-old-refresh");
+		verify(auth).reissue(demoRefresh);
 		verifyNoMoreInteractions(auth);
 	}
 

@@ -10,6 +10,8 @@ type JPSelectProps = {
   onChange: (v: string) => void;
   options: JPOption[];
   className?: string;
+  ariaLabel?: string;
+  contentClassName?: string;
   placeholder?: string;
   disabled?: boolean;
   colorMap?: Record<string, string>;
@@ -21,6 +23,8 @@ export default function JPSelect({
   onChange,
   options,
   className,
+  ariaLabel = '선택',
+  contentClassName,
   placeholder = '선택',
   disabled,
   colorMap, // ← 추가
@@ -33,7 +37,7 @@ export default function JPSelect({
     <Select.Root value={value} onValueChange={onChange} disabled={disabled}>
       {/* 트리거 */}
       <Select.Trigger
-        aria-label="선택"
+        aria-label={ariaLabel}
         className={`jp-select-trigger ${className || ''}`}
         style={chipStyle}
       >
@@ -46,7 +50,7 @@ export default function JPSelect({
       {/* 드롭다운 */}
       <Select.Portal>
         <Select.Content
-          className="jp-select-content"
+          className={`jp-select-content ${contentClassName || ''}`}
           align="start"
           sideOffset={6}
           position="popper"

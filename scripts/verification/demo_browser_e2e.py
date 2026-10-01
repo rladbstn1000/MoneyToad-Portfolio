@@ -58,25 +58,27 @@ def main():
         raise SystemExit('Explicit existing verification Gradle cache required')
     runs = []
     # Replace an older series immediately; an interrupted run cannot leave a stale PASS.
-    save('demo-browser-e2e-summary.json', browser_series(runs, args.runs))
+    save('demo-browser-e2e-summary.json', browser_series(runs, args.runs, expected_cases=6))
     try:
         for _ in range(args.runs):
             result = run_once(args, runs)
             if result != 0:
                 return result
-        return 0 if browser_series(runs, args.runs)['status'] == 'PASS' else 1
+        return 0 if browser_series(runs, args.runs, expected_cases=6)['status'] == 'PASS' else 1
     finally:
-        save('demo-browser-e2e-summary.json', browser_series(runs, args.runs))
+        save('demo-browser-e2e-summary.json', browser_series(runs, args.runs, expected_cases=6))
 
 
-def run_once(args, runs):
+def run_once(args, runs, *, modes=('public-demo', 'local-demo'),
+             browser_config='playwright.config.ts', expected_cases=3, browser_extra=None,
+             copy_screenshots=True, cold_start_fixture=False):
     run_id = uuid.uuid4().hex[:12]
     dest = OUT / run_id
     dest.mkdir(parents=True)
     work = Path(tempfile.mkdtemp(prefix='moneytoad-browser-'))
     work.chmod(0o700)
     result = {'run_id': run_id, 'status': 'BLOCKED', 'resources': [], 'checks': [], 'cleanup': [],
-              'asset_debt': 'Test build removes CDN font-face; original font redistribution unverified.',
+              'asset_debt': 'Product system fonts; no test-only font transform or downloaded font.',
               'product_api_mocks': False, 'retries': 0}
     env = {'PATH': '/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin', 'LANG': 'en_US.UTF-8',
            'TMPDIR': str(work), 'NO_COLOR': '1', 'CI': '1', 'PLAYWRIGHT_NO_COPY_PROMPT': '1'}
@@ -177,7 +179,7 @@ def run_once(args, runs):
                   '--init-script', init, '--project-cache-dir', work / 'project-cache', '--no-daemon',
                   '--console=plain', '--max-workers=2'], cwd=ROOT / 'be', extra=buildenv, timeout=300)
         result['checks'].append({'phase': phase, 'status': 'PASS'})
-        for mode in ('public-demo', 'local-demo'):
+        for mode in modes:
             phase = mode + '-setup'
             print(f'{run_id}: {phase}', flush=True)
             directory = work / mode
@@ -216,13 +218,18 @@ def run_once(args, runs):
                  command(rediscli + ['PING'], timeout=2).stdout.strip() == 'PONG')
             if required(mysql + ['SHOW TABLES']):
                 raise Blocked('owned schema must start empty')
+            for ddl in (ROOT / 'scripts/verification/fixtures/managed-provider-schema.sql',
+                        ROOT / 'be/src/main/resources/db/demo/V001__demo_admission.sql',
+                        ROOT / 'be/src/main/resources/db/demo/V002__demo_admission_lock.sql'):
+                required(mysql + [ddl.read_text()])
             origin = ('https' if mode == 'public-demo' else 'http') + f'://127.0.0.1:{feport}'
+            gateway_value = secrets.token_urlsafe(32)  # Owned synthetic local fixture, not a deployment secret.
             runtime = {
                 'SPRING_CONFIG_LOCATION': (ROOT / 'be/src/main/resources/application.yml').as_uri(),
                 'SPRING_PROFILES_ACTIVE': 'demo', 'APP_DEMO_ENABLED': 'true', 'APP_DEPLOYMENT_KIND': mode,
-                'APP_DEMO_BROWSER_ORIGIN': origin, 'DEMO_BIND_ADDRESS': '127.0.0.1', 'SERVER_PORT': '0',
+                'DEMO_GATEWAY_SECRET': gateway_value, 'APP_DEMO_BROWSER_ORIGIN': origin, 'DEMO_BIND_ADDRESS': '127.0.0.1', 'SERVER_PORT': '0',
                 'DB_URL': f'jdbc:mysql://127.0.0.1:{dbport}/{schema}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul',
-                'DB_USERNAME': 'root', 'DB_PASSWORD': password, 'JPA_DDL_AUTO': 'create-drop',
+                'DB_USERNAME': 'root', 'DB_PASSWORD': password, 'JPA_DDL_AUTO': 'validate',
                 'REDIS_HOST': '127.0.0.1', 'REDIS_PORT': str(redisport),
                 'JWT_SECRET': secrets.token_hex(48), 'JWT_ACCESS_SECONDS': '300', 'JWT_REFRESH_SECONDS': '3600',
                 'JWT_ISSUER': 'moneytoad-browser', 'AI_BASE_URL': f'http://127.0.0.1:{feport}',
@@ -249,10 +256,12 @@ def run_once(args, runs):
                 required(['openssl', 'req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-days', '1',
                     '-subj', '/CN=127.0.0.1', '-addext', 'subjectAltName=IP:127.0.0.1,DNS:localhost',
                     '-keyout', directory / 'key.pem', '-out', directory / 'cert.pem'])
-            settings = {'E2E_WORK': str(directory), 'E2E_ORIGIN': origin, 'E2E_PROBE_PORT': str(probeport),
+            settings = {'E2E_GATEWAY_VALUE': gateway_value, 'E2E_WORK': str(directory), 'E2E_ORIGIN': origin, 'E2E_PROBE_PORT': str(probeport),
                 'E2E_BACKEND': f'http://127.0.0.1:{beport}', 'E2E_RUN_ID': run_id,
                 'VITE_AUTH_MODE': 'demo', 'VITE_BACK_URL': origin, 'E2E_ARTIFACTS': str(evidence),
                 'PLAYWRIGHT_BROWSERS_PATH': str(args.browser_path)}
+            if cold_start_fixture:
+                settings['E2E_COLD_START_FIXTURE'] = '1'
             frontend = spawn(['node', '--experimental-strip-types', 'e2e/preview.ts'], 'preview-' + mode, settings, FE)
             def front_ready():
                 if frontend.poll() is not None:
@@ -263,6 +272,18 @@ def run_once(args, runs):
             class Control(http.server.BaseHTTPRequestHandler):
                 def log_message(self, *args):
                     pass
+
+                def do_POST(self):
+                    # Run-owned loopback control, never a browser or product endpoint.
+                    if (not cold_start_fixture or mode != 'public-demo' or self.path != '/cold-ready'
+                            or self.headers.get('Origin') is not None or self.headers.get('Content-Length', '0') != '0'):
+                        self.send_error(404)
+                        return
+                    marker = directory / 'cold-ready'
+                    marker.write_text('ready')
+                    marker.chmod(0o600)
+                    self.send_response(204)
+                    self.end_headers()
 
                 def do_GET(self):
                     if self.path != '/snapshot':
@@ -294,10 +315,11 @@ def run_once(args, runs):
             thread = threading.Thread(target=control.serve_forever, daemon=True)
             thread.start()
             settings['E2E_CONTROL'] = f'http://127.0.0.1:{control.server_port}'
+            settings.update(browser_extra or {})
             phase = mode + '-browser'
             print(f'{run_id}: {phase}', flush=True)
             # Own the runner group so timeout/interrupt also reaches Chromium children.
-            browser = spawn(['./node_modules/.bin/playwright', 'test', '--config', 'playwright.config.ts'],
+            browser = spawn(['./node_modules/.bin/playwright', 'test', '--config', browser_config],
                             'chromium-' + mode, settings, FE)
             try:
                 code = browser.wait(timeout=240)
@@ -305,7 +327,7 @@ def run_once(args, runs):
                 raise Blocked('browser deadline exceeded') from None
             tests_path = evidence / 'tests.json'
             tests = json.loads(tests_path.read_text()) if tests_path.exists() else {'status': 'missing'}
-            passed = code == 0 and tests['status'] == 'passed' and len(tests.get('cases', [])) == 2 and all(
+            passed = code == 0 and tests['status'] == 'passed' and len(tests.get('cases', [])) == expected_cases and all(
                 row['status'] == 'passed' for row in tests.get('cases', []))
             result['checks'].append({'phase': phase, 'status': 'PASS' if passed else 'FAIL', 'exit_code': code})
             if not passed:
@@ -388,8 +410,8 @@ def run_once(args, runs):
         save(filename, projected)
         runs.append((filename, projected))
         # Only already-masked, final successful images enter the public artifact set.
-        if result['status'] == 'PASS':
-            for image_name in ('chart-before.png', 'chart-after.png', 'chart-restored.png', 'logout.png'):
+        if result['status'] == 'PASS' and copy_screenshots:
+            for image_name in ('chart-before.png', 'chart-after.png', 'chart-restored.png', 'chart-mobile.png', 'logout.png'):
                 image = dest / 'public-demo' / image_name
                 if image.is_file():
                     shutil.copy2(image, ROOT / 'docs/portfolio/evidence' / ('selected-' + run_id + '-' + image_name))

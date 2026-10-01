@@ -107,7 +107,7 @@ def expected_red(result):
                 "authenticated " + path_case + " returns generic 404", "FAIL", True),
             "missing_bearer_401_without_side_effects": unauth,
             "corresponding_authentication_case_passed": case_observed("NotFoundContractIntegrationTest",
-                "missing Bearer for " + path_case + " remains 401", "PASS"),
+                "missing authorization for " + path_case + " remains 401", "PASS"),
         }
     direct = {}
     for scenario, exception in (("mvc_no_resource", "NoResourceFoundException"),

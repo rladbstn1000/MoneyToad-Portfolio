@@ -160,6 +160,18 @@ const CustomTooltip = ({ active, payload, label }: ChartTooltipProps) => {
 export default function ChartPage() {
   /* 무대(연못)의 비율 고정용 상태 */
   const [pondAR, setPondAR] = useState(16 / 9);
+  const [compactLayout, setCompactLayout] = useState(
+    () => window.matchMedia?.("(max-width: 900px)").matches ?? false
+  );
+  const [pieWidth, setPieWidth] = useState(0);
+
+  useEffect(() => {
+    const media = window.matchMedia?.("(max-width: 900px)");
+    if (!media) return;
+    const update = () => setCompactLayout(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   const screen1Ref = useRef<HTMLElement | null>(null);
 
@@ -513,7 +525,7 @@ export default function ChartPage() {
         typeof name !== "string") return null;
     if (percent < 0.03) return null; // 3% 미만 숨김
     const RADIAN = Math.PI / 180;
-    const labelRadius = outerRadius + 52;
+    const labelRadius = compactLayout ? outerRadius * 0.5 : outerRadius + 52;
     const x = cx + labelRadius * Math.cos(-midAngle * RADIAN);
     const y = cy + labelRadius * Math.sin(-midAngle * RADIAN);
     const pct = Math.round(percent * 100);
@@ -534,7 +546,7 @@ export default function ChartPage() {
         pointerEvents="none"
         style={{ overflow: "visible" }}
       >
-        {`${name} ${pct}%`}
+        {compactLayout ? `${pct}%` : `${name} ${pct}%`}
       </text>
     );
   };
@@ -739,6 +751,19 @@ export default function ChartPage() {
               </LineChart>
             </ResponsiveContainer>
           </div>
+          <nav className="jp-mobile-months" aria-label="월별 상세 보기">
+            {lineData.map(point => {
+              const { currentYear, currentMonth } = getCurrentDateInfo();
+              const year = isDemo ? demoPeriod?.yearsByMonth[point.idx]
+                : point.idx > currentMonth ? currentYear - 1 : currentYear;
+              return <button key={point.idx} type="button" disabled={!yearDataReady}
+                aria-label={`${year ? `${year}년 ` : ""}${point.month} 상세 보기`}
+                onClick={() => onPointClickSafe({ index: point.idx })}>
+                {point.month}
+                {isDemo && point.idx === demoPeriod?.monthIndex && <span>기준월</span>}
+              </button>;
+            })}
+          </nav>
         </div>
       </section>
 
@@ -783,6 +808,9 @@ export default function ChartPage() {
                 </div>
                 <div className="jp-toolbar">
                   <JPSelect
+                    ariaLabel="거래 카테고리 필터"
+                    className="jp-chart-select"
+                    contentClassName="jp-chart-select-content"
                     value={selectedCategory}
                     disabled={!monthlyReady || monthlyQuery.fetchStatus !== "idle"}
                     onChange={(v) => setSelectedCategory(v as "전체" | Category)}
@@ -794,23 +822,26 @@ export default function ChartPage() {
                   />
                 </div>
 
-                <table className="jp-table">
-                  <thead>
-                    <tr>
-                      <th>날짜</th>
-                      <th className="left">가맹점</th>
-                      <th>금액</th>
-                      <th>카테고리</th>
+                <table className="jp-table" role="table" aria-label="월별 거래 내역">
+                  <thead role="rowgroup">
+                    <tr role="row">
+                      <th scope="col">날짜</th>
+                      <th scope="col" className="left">가맹점</th>
+                      <th scope="col">금액</th>
+                      <th scope="col">카테고리</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody role="rowgroup">
                     {filteredTxns.map((tx, index) => (
-                      <tr key={isTransactionId(tx.id) ? tx.id : "invalid-" + index}>
-                        <td>{tx.date}</td>
-                        <td className="left">{tx.merchant}</td>
-                        <td>{KRW(tx.amount)} 냥</td>
-                        <td>
+                      <tr role="row" key={isTransactionId(tx.id) ? tx.id : "invalid-" + index}>
+                        <td role="cell" className="jp-date-cell"><span className="jp-cell-label" aria-hidden="true">날짜</span><span className="jp-cell-value">{tx.date}</span></td>
+                        <td role="cell" className="left jp-merchant-cell"><span className="jp-cell-label" aria-hidden="true">가맹점</span><span className="jp-cell-value">{tx.merchant}</span></td>
+                        <td role="cell" className="jp-amount-cell"><span className="jp-cell-label" aria-hidden="true">금액</span><span className="jp-cell-value">{KRW(tx.amount)} 냥</span></td>
+                        <td role="cell" className="jp-category-cell">
+                          <span className="jp-cell-label" aria-hidden="true">카테고리</span>
                           <JPSelect
+                            ariaLabel={`${tx.merchant} 카테고리`}
+                            contentClassName="jp-chart-select-content"
                             value={tx.category}
                             disabled={!canEdit || !isTransactionId(tx.id) || !belongsToPeriod(tx.date, { year: selectedYear!, month: selectedMonthNum! })}
                             onChange={(v) =>
@@ -824,7 +855,7 @@ export default function ChartPage() {
                               label: c,
                               value: c,
                             }))}
-                            className="min-w-[120px]"
+                            className="min-w-[120px] jp-chart-select"
                             colorMap={CATEGORY_COLORS}
                           />
                         </td>
@@ -836,7 +867,7 @@ export default function ChartPage() {
 
               <div className="jp-panel jp-pie-panel">
                 <div className="jp-pie-frame">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width="100%" height="100%" onResize={width => setPieWidth(width)}>
                     <PieChart
                       margin={{ top: 10, right: 80, bottom: 30, left: 80 }}
                     >
@@ -844,7 +875,7 @@ export default function ChartPage() {
                         data={pieData}
                         dataKey="value"
                         nameKey="name"
-                        outerRadius={200}
+                        outerRadius={compactLayout ? Math.min(200, Math.max(40, pieWidth / 2 - 12)) : 200}
                         paddingAngle={0}
                         label={renderCustomLabel}
                         labelLine={false}
@@ -896,6 +927,14 @@ export default function ChartPage() {
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
+                {compactLayout && <ul className="jp-mobile-pie-legend" aria-label="카테고리별 소비">
+                  {pieData.map((entry, index) => <li key={entry.name}>
+                    <span className="jp-pie-legend-dot" aria-hidden="true"
+                      style={{ backgroundColor: entry.color || JP_COLORS[index % JP_COLORS.length] }} />
+                    <span className="jp-pie-legend-name">{entry.name}</span>
+                    <span className="jp-pie-legend-amount">{KRW(entry.value)}원</span>
+                  </li>)}
+                </ul>}
               </div>
             </div>
           </div>

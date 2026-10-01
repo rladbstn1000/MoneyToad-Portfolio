@@ -52,7 +52,9 @@ def backend(source):
     for suite in source.get('suites', []):
         suites.append({'test': suite['name'], 'tests': suite['tests'], 'failures': suite['failures'],
                        'errors': suite['errors'], 'skipped': suite['skipped'],
-                       'cases': [{'test': (case['name'] if re.fullmatch(r'[A-Za-z_$][A-Za-z0-9_$]*(?:\(\))?', case['name']) else 'case-' + str(index + 1)), 'status': case['status']}
+                       'cases': [{'test': (case['name'] if re.fullmatch(r'[A-Za-z_$][A-Za-z0-9_$]*(?:\(\))?', case['name']) else 'case-' + str(index + 1)), 'status': case['status'],
+                                  **({key: case[key] for key in ('failure_sources', 'cause_classes', 'failure_codes') if key in case}
+                                     if case['status'] == 'FAIL' else {})}
                                  for index, case in enumerate(suite.get('cases', []))]})
     result = {'status': source['status'], 'exit_code': source['exit_code'],
               'cleanup_complete': source['cleanup_complete'], 'suites': suites,
@@ -141,7 +143,7 @@ def browser(source, directory):
     return result
 
 
-def browser_series(runs, expected_runs):
+def browser_series(runs, expected_runs, expected_cases=4):
     """Summarize only entries returned by this invocation, never stale files on disk."""
     entries = []
     for filename, summary in runs:
@@ -152,7 +154,7 @@ def browser_series(runs, expected_runs):
         networks = [network for mode in modes for network in mode.get('networks', [])]
         external = sum(network['external_attempts'] + network['backend_attempts'] for network in networks)
         passed = (summary['status'] == 'PASS' and summary['cleanup_complete']
-                  and len(modes) == 2 and len(cases) == 4 and networks and external == 0
+                  and len(modes) == 2 and len(cases) == expected_cases and networks and external == 0
                   and all(case['status'] == 'passed' for case in cases))
         entries.append({'evidence_file': filename, 'status': 'PASS' if passed else 'FAIL',
                         'cases': len(cases), 'external_attempts': external,
@@ -160,4 +162,4 @@ def browser_series(runs, expected_runs):
     return {'status': 'PASS' if len(entries) == expected_runs and all(
                 row['status'] == 'PASS' for row in entries) else 'FAIL',
             'expected_runs': expected_runs, 'runs': entries, 'workers': 1, 'retries': 0,
-            'product_api_mocks': False, 'font_policy': 'test-only system fallback'}
+            'product_api_mocks': False, 'font_policy': 'product system fonts; no test transform'}

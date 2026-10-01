@@ -33,7 +33,8 @@ import io.jsonwebtoken.security.Keys;
 /** Pure JWT tests: synthetic keys and values only; no application context or network. */
 class DemoJwtContractTest {
 
-	static final String SECRET = "demo-contract-test-only-64-byte-signing-key-0123456789-ABCDEFGHIJKLMNO";
+	static final String SECRET = Base64.getUrlEncoder().withoutPadding()
+		.encodeToString(Jwts.SIG.HS384.key().build().getEncoded());
 	static final String ISSUER = "demo-contract-unit";
 	static final String SID = identifier((byte) 1);
 	static final String JTI = identifier((byte) 2);

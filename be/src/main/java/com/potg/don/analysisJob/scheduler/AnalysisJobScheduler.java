@@ -3,6 +3,7 @@ package com.potg.don.analysisJob.scheduler;
 import java.time.Instant;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Profile("!demo")
 @RequiredArgsConstructor
 @Slf4j
 public class AnalysisJobScheduler {

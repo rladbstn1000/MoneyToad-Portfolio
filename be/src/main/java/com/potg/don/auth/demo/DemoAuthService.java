@@ -23,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.potg.don.auth.jwt.JwtUtil;
 import com.potg.don.demo.seed.DemoSeedService;
+import com.potg.don.demo.admission.DemoAdmissionStore;
 import com.potg.don.user.entity.User;
 import com.potg.don.user.repository.UserRepository;
 
@@ -39,28 +40,31 @@ public class DemoAuthService {
 	private final DemoSessionStore store;
 	private final JwtUtil jwt;
 	private final DemoSeedService seed;
+	private final DemoAdmissionStore admission;
 	private final TransactionTemplate transaction;
 	private final Clock clock;
 	private final SecureRandom random;
 
 	@Autowired
 	public DemoAuthService(UserRepository users, DemoSessionService sessions, DemoSessionStore store,
-		JwtUtil jwt, DemoSeedService seed, PlatformTransactionManager transactionManager) {
-		this(users, sessions, store, jwt, seed, transactionManager, Clock.systemUTC(), new SecureRandom());
+		JwtUtil jwt, DemoSeedService seed, DemoAdmissionStore admission, PlatformTransactionManager transactionManager) {
+		this(users, sessions, store, jwt, seed, admission, transactionManager, Clock.systemUTC(), new SecureRandom());
 	}
 
 	DemoAuthService(UserRepository users, DemoSessionService sessions, DemoSessionStore store,
-		JwtUtil jwt, DemoSeedService seed, PlatformTransactionManager transactionManager, Clock clock, SecureRandom random) {
+		JwtUtil jwt, DemoSeedService seed, DemoAdmissionStore admission, PlatformTransactionManager transactionManager, Clock clock, SecureRandom random) {
 		this.users = users;
 		this.sessions = sessions;
 		this.store = store;
 		this.jwt = jwt;
 		this.seed = seed;
+		this.admission = admission;
 		this.clock = clock;
 		this.random = random;
 		this.transaction = new TransactionTemplate(transactionManager);
 		// Returning tokens requires this transaction's commit, even if a caller has an outer transaction.
 		this.transaction.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+		this.transaction.setIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED);
 	}
 
 	public DemoSessionService.IssuedTokens login(String existingRefreshToken) {
@@ -70,6 +74,7 @@ public class DemoAuthService {
 		AtomicReference<String> createdSid = new AtomicReference<>();
 		try {
 			DemoSessionService.IssuedTokens issued = transaction.execute(status -> {
+				long initialCount = admission.claimSlot();
 				byte[] identifier = new byte[16];
 				random.nextBytes(identifier);
 				String id = HexFormat.of().formatHex(identifier);
@@ -78,6 +83,8 @@ public class DemoAuthService {
 				seed.install(user, anchor);
 				DemoSessionService.IssuedTokens tokens = sessions.startForUser(user.getId());
 				createdSid.set(verifiedRefresh(tokens.refreshToken()).sid());
+				admission.recordVisit(user.getId(), tokens.expiresAt());
+				admission.verifyIntegrity(initialCount);
 				return tokens;
 			});
 			if (issued == null) throw new IllegalStateException("DEMO_LOGIN_RESULT_UNAVAILABLE");

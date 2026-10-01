@@ -5,6 +5,7 @@ from pathlib import Path
 import re
 import struct
 from public_evidence import ROOT, VALUE_PATTERNS, forbidden, save
+from public_source_review import SourceReviews, evidence_path
 
 HARD = {key: pattern for key, pattern in VALUE_PATTERNS.items()
         if key not in ('email-value', 'bearer-value', 'cookie-value')}
@@ -54,10 +55,7 @@ def json_document(text, relative):
 
 
 def scan(root=ROOT):
-    review_path = root / 'scripts/verification/fixtures/scan-classifications.json'
-    reviews = json.loads(review_path.read_text())['sites'] if review_path.exists() else []
-    approved = {(row['file'], row['line'], row['category'], row['content_digest']): row['classification']
-                for row in reviews}
+    reviews = SourceReviews(root, SITES)
     unresolved, classified = [], []
     files = sorted(path for path in root.rglob('*') if path.is_file() or path.is_symlink())
     for path in files:
@@ -74,7 +72,11 @@ def scan(root=ROOT):
         if raw[:4] in (b'\x7fELF', b'\xcf\xfa\xed\xfe', b'\xfe\xed\xfa\xcf'):
             unresolved.append({'file': relative, 'category': 'native-binary'})
         if path.suffix == '.sql' and re.search(rb'(?i)INSERT\s+INTO|mysqldump|COPY.+FROM\s+stdin', raw):
-            unresolved.append({'file': relative, 'category': 'data-dump-candidate'})
+            if reviews.match_sql(relative, raw):
+                classified.append({'file': relative, 'category': 'data-dump-candidate',
+                                   'classification': 'B_NON_SECRET_SOURCE_PATTERN'})
+            else:
+                unresolved.append({'file': relative, 'category': 'data-dump-candidate'})
         if path.suffix == '.png' and not png_metadata_safe(raw):
             unresolved.append({'file': relative, 'category': 'image-metadata'})
         # Search hard patterns in all bytes, including binary resources.
@@ -83,7 +85,16 @@ def scan(root=ROOT):
             for match in pattern.finditer(text):
                 unresolved.append({'file': relative, 'line': text[:match.start()].count('\n') + 1,
                                    'category': category})
-        evidence = relative.startswith('docs/portfolio/evidence/') and path.suffix == '.json'
+        evidence = evidence_path(relative)
+        try:
+            raw.decode('utf-8')
+            text_evidence = evidence
+        except UnicodeDecodeError:
+            # Compressed image bytes are not source text; hard-byte and metadata checks above remain.
+            verified_png = path.suffix == '.png' and png_metadata_safe(raw)
+            text_evidence = evidence and not verified_png
+            if text_evidence:
+                unresolved.append({'file': relative, 'category': 'unreadable-text-evidence'})
         if path.suffix == '.json':
             try:
                 issues = forbidden(json_document(text, relative))
@@ -92,16 +103,17 @@ def scan(root=ROOT):
             except (ValueError, TypeError):
                 issues = [{'category': 'invalid-json'}]
             unresolved.extend({'file': relative, **issue} for issue in issues)
-        if path.suffix in ('.java', '.ts', '.tsx', '.py', '.json', '.yml', '.yaml', '.md', '.example'):
+        if text_evidence or path.suffix in ('.java', '.ts', '.tsx', '.py', '.json', '.yml', '.yaml', '.md', '.example', '.sql'):
             for number, category, digest in sites(text):
-                match = approved.get((relative, number, category, digest))
+                match = reviews.match(relative, category, text.splitlines()[number - 1], raw)
                 dependency_metadata = (relative == 'fe/package-lock.json' and category == 'cookie-header'
                     and re.fullmatch(r'\s*"cookie": \"[~^]?[0-9]+(?:\.[0-9]+){0,2}\"[,]?\s*', text.splitlines()[number - 1]) is not None)
                 if match and not evidence and (dependency_metadata or not (path.suffix == '.json' and category in ('identity-field', 'cookie-assignment', 'cookie-header'))):
                     classified.append({'file': relative, 'line': number, 'category': category,
-                                       'classification': match})
+                                       'classification': 'B_NON_SECRET_SOURCE_PATTERN'})
                 else:
                     unresolved.append({'file': relative, 'line': number, 'category': category})
+    unresolved.extend(reviews.unresolved())
     return {'status': 'PASS' if not unresolved else 'FAIL', 'files_scanned': len(files),
             'unresolved': unresolved, 'classified_source_sites': classified}
 

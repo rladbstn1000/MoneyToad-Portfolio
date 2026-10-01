@@ -1,8 +1,20 @@
 import json
+import hashlib
+import secrets
 from pathlib import Path
 import tempfile
 import unittest
 from public_scan import scan, sites
+from public_source_review import construct
+
+
+def review_rows(relative, text, semantic):
+    return [{'file': relative, 'line': number, 'category': category,
+             'content_digest': digest, 'file_digest': hashlib.sha256(text.encode()).hexdigest(),
+             'classification': 'B_NON_SECRET_SOURCE_PATTERN', 'semantic_category': semantic,
+             'expected_construct': construct(text.splitlines()[number - 1]),
+             'occurrences': sum(line == text.splitlines()[number - 1] for line in text.splitlines())}
+            for number, category, digest in sites(text)]
 
 
 class PublicScannerTest(unittest.TestCase):
@@ -18,9 +30,8 @@ class PublicScannerTest(unittest.TestCase):
             text = 'const fixture = "synthetic' + '@' + 'example.invalid";\n'
             file = self.fixture(root, 'test.ts', text)
             self.assertEqual(scan(root)['status'], 'FAIL')
-            rows = [{'file': 'test.ts', 'line': n, 'category': category, 'content_digest': digest,
-                     'classification': 'synthetic negative-test fixture'} for n, category, digest in sites(text)]
-            self.fixture(root, 'scripts/verification/fixtures/scan-classifications.json', json.dumps({'sites': rows}))
+            rows = review_rows('test.ts', text, 'reserved-invalid-domain')
+            self.fixture(root, 'scripts/verification/fixtures/scan-classifications.json', json.dumps({'version': 2, 'sites': rows}))
             self.assertEqual(scan(root)['status'], 'PASS')
             file.write_text(text.replace('synthetic', 'changed'))
             self.assertEqual(scan(root)['status'], 'FAIL')
@@ -34,19 +45,19 @@ class PublicScannerTest(unittest.TestCase):
     def test_actual_identity_in_evidence_fails_without_echoing_value(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            self.fixture(root, 'docs/portfolio/evidence/result.json', json.dumps({'userId': 987654321}))
+            canary = 1_000_000_000 + secrets.randbelow(1_000_000_000)
+            self.fixture(root, 'docs/portfolio/evidence/result.json', json.dumps({'userId': canary}))
             result = scan(root)
             self.assertEqual(result['status'], 'FAIL')
-            self.assertNotIn(str(987654321), json.dumps(result))
+            self.assertNotIn(str(canary), json.dumps(result))
 
     def test_review_does_not_allow_identity_dump_in_arbitrary_json(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            text = json.dumps({'sid': 'not-issued'})
+            text = json.dumps({'sid': secrets.token_hex(12)})
             self.fixture(root, 'dump.json', text)
-            rows = [{'file': 'dump.json', 'line': n, 'category': c, 'content_digest': d,
-                     'classification': 'not sufficient'} for n, c, d in sites(text)]
-            self.fixture(root, 'scripts/verification/fixtures/scan-classifications.json', json.dumps({'sites': rows}))
+            rows = review_rows('dump.json', text, 'runtime-negative-identity')
+            self.fixture(root, 'scripts/verification/fixtures/scan-classifications.json', json.dumps({'version': 2, 'sites': rows}))
             self.assertEqual(scan(root)['status'], 'FAIL')
 
     def test_root_ignore_does_not_exclude_public_formats(self):

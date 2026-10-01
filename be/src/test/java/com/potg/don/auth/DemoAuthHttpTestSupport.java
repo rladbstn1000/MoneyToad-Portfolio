@@ -131,9 +131,11 @@ public class DemoAuthHttpTestSupport implements AutoCloseable {
 	public Started start(String active, String defaults, String enabled, String kind, boolean oauth, Map<String, Object> overrides, Class<?>... extraSources) {
 		Probe probe = new Probe();
 		Map<String, Object> properties = infrastructure();
+		OwnedDemoSchemaPreparation.recreate(properties, java.util.Arrays.asList((active.isEmpty() ? defaults : active).split(",")).contains("demo"));
 		properties.put("AI_BASE_URL", "http://127.0.0.1:" + stubPort);
 		properties.put("logging.level.root", "OFF");
 		properties.put("app.demo.browser-origin", "public-demo".equals(kind) ? "https://demo.example.invalid" : "http://localhost:5173");
+		if ("public-demo".equals(kind)) properties.put("DEMO_GATEWAY_SECRET", SyntheticGatewayTestSupport.secret());
 		properties.put("spring.sql.init.mode", "never");
 		if (enabled != null) properties.put("app.demo.enabled", enabled);
 		if (kind != null) properties.put("app.deployment.kind", kind);
@@ -204,7 +206,7 @@ public class DemoAuthHttpTestSupport implements AutoCloseable {
 		properties.put("DB_URL", url);
 		properties.put("DB_USERNAME", required("A1_DB_USERNAME"));
 		properties.put("DB_PASSWORD", required("A1_DB_PASSWORD"));
-		properties.put("JPA_DDL_AUTO", "create-drop");
+		properties.put("JPA_DDL_AUTO", "validate");
 		properties.put("REDIS_HOST", "127.0.0.1");
 		properties.put("REDIS_PORT", redisPort);
 		properties.put("JWT_SECRET", required("A1_JWT_SECRET"));
@@ -242,6 +244,11 @@ public class DemoAuthHttpTestSupport implements AutoCloseable {
 	public static Map<String, List<Map<String, Object>>> snapshot(JdbcTemplate jdbc) {
 		Map<String, List<Map<String, Object>>> rows = new LinkedHashMap<>();
 		for (String table : TABLES) rows.put(table, jdbc.queryForList("SELECT * FROM " + table + " ORDER BY id"));
+        if (jdbc.queryForObject("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() AND table_name='demo_visit'", Integer.class) == 1) {
+            rows.put("demo_visit", jdbc.queryForList("SELECT * FROM demo_visit ORDER BY user_id"));
+            rows.put("demo_capacity", jdbc.queryForList("SELECT * FROM demo_capacity ORDER BY id"));
+            rows.put("demo_admission_lock", jdbc.queryForList("SELECT * FROM demo_admission_lock ORDER BY id"));
+        }
 		return rows;
 	}
 

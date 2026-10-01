@@ -49,3 +49,27 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// The administrator CLI is deliberately absent from the ordinary runtime artifact.
+sourceSets {
+    maintenance {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    test {
+        compileClasspath += sourceSets.maintenance.output
+        runtimeClasspath += sourceSets.maintenance.output
+    }
+}
+configurations {
+    maintenanceImplementation.extendsFrom implementation
+    maintenanceRuntimeOnly.extendsFrom runtimeOnly
+}
+tasks.register('demoCleanupJar', org.springframework.boot.gradle.tasks.bundling.BootJar) {
+    group = 'build'
+    description = 'Package the independent JDBC administrator CLI (no Spring application startup).'
+    archiveClassifier = 'demo-cleanup'
+    targetJavaVersion = JavaVersion.VERSION_21
+    mainClass = 'com.potg.don.maintenance.DemoCleanupCommand'
+    classpath = sourceSets.maintenance.runtimeClasspath
+}

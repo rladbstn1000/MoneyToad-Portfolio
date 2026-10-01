@@ -58,7 +58,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 		throws ServletException, IOException {
 
-		// Public demo POSTs have their own browser/cookie boundary; other demo routes require this filter.
+		// Readiness is read-only; public auth POSTs have their own browser/cookie boundary.
 		if (demoGuard != null && request.getRequestURI().startsWith(request.getContextPath() + "/auth/demo/")) {
 			response.setHeader("Cache-Control", "no-store");
 		}
@@ -135,9 +135,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	}
 
 	private boolean isDemoPublicRequest(HttpServletRequest request) {
-		if (demoGuard == null || !"POST".equals(request.getMethod())) return false;
+		if (demoGuard == null) return false;
 		String path = request.getRequestURI().substring(request.getContextPath().length());
-		return "/auth/demo/login".equals(path) || "/auth/demo/reissue".equals(path);
+		if ("GET".equals(request.getMethod()) && "/auth/demo/ready".equals(path)) return true;
+		return "POST".equals(request.getMethod())
+			&& ("/auth/demo/login".equals(path) || "/auth/demo/reissue".equals(path));
 	}
 
 	private boolean isPublicUri(String uri) {
@@ -184,7 +186,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		);
 		if (authorized != null) authentication.setDetails(authorized);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		log.info("Successfully authenticated user: {}", userDetails.getUsername());
+		if (authorized != null) log.info("DEMO_AUTHENTICATED");
+		else log.info("Successfully authenticated user: {}", userDetails.getUsername());
 	}
 
 	private String resolveToken(HttpServletRequest request) {

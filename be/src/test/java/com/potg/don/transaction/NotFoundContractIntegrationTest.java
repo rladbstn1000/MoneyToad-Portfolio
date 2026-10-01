@@ -155,7 +155,7 @@ class NotFoundContractIntegrationTest {
 			() -> assertUnchanged(before, after));
 	}
 
-	@ParameterizedTest(name = "missing Bearer for {0} remains 401")
+	@ParameterizedTest(name = "missing authorization for {0} remains 401")
 	@MethodSource("missingPaths")
 	void missingBearerRemains401BeforeRouting(String pathCase, HttpMethod method, String path) throws Exception {
 		DatabaseSnapshot before = snapshot();
@@ -167,7 +167,7 @@ class NotFoundContractIntegrationTest {
 		assertAll(
 			() -> assertThat(result.getResponse().getStatus()).isEqualTo(401),
 			() -> assertThat(result.getHandler()).isNull(),
-			() -> assertTrue(exactContract, "Existing missing-Bearer JSON contract changed"),
+			() -> assertTrue(exactContract, "Existing missing-authorization JSON contract changed"),
 			() -> assertUnchanged(before, after));
 	}
 

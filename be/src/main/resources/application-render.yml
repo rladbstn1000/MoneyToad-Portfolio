@@ -1,0 +1,35 @@
+# Opt in explicitly with demo,render. The early guard checks the effective values.
+server:
+  address: 0.0.0.0
+  port: ${PORT}
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 0
+      max-lifetime: 300000
+      connection-timeout: 5000
+      validation-timeout: 2000
+      keepalive-time: 0
+      data-source-properties:
+        connectTimeout: 5000
+        socketTimeout: 10000
+        connectionTimeZone: Asia/Seoul
+        forceConnectionTimeZoneToSession: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+  sql:
+    init:
+      mode: never
+  data:
+    redis:
+      username: ${REDIS_USERNAME}
+      password: ${REDIS_PASSWORD}
+      ssl:
+        enabled: ${REDIS_SSL_ENABLED}
+      connect-timeout: 3s
+      timeout: 2s

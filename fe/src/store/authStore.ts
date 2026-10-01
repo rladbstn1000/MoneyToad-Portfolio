@@ -5,11 +5,13 @@ import { authMode } from "../auth/authMode";
 
 export type AuthState = {
   accessToken: string | null;
-  status: 'restoring' | 'authenticated' | 'anonymous' | 'unavailable';
-  operation: 'login' | 'restore' | 'refresh' | 'logout' | null;
+  status: 'restoring' | 'authenticated' | 'anonymous' | 'unavailable' | 'startupSlow';
+  operation: 'readiness' | 'login' | 'restore' | 'refresh' | 'logout' | 'manualReadiness' | null;
   generation: number;
   revision: number;
   expiresAt: number | null;
+  loginRetryAt: number | null;
+  readinessRetryAt: number | null;
   message: string | null;
   recovery: 'restore' | 'logout';
   setAccessToken: (t: string | null) => void;
@@ -19,7 +21,7 @@ export type AuthState = {
 const initial: StateCreator<AuthState> = (set) => ({
   accessToken: null, status: authMode === 'demo' ? 'restoring' : 'anonymous',
   operation: null, generation: 0, revision: 0, expiresAt: null,
-  message: null, recovery: 'restore',
+  message: null, recovery: 'restore', loginRetryAt: null, readinessRetryAt: null,
   setAccessToken: (accessToken) => set({ accessToken }),
   clear: () => set(state => ({ accessToken: null,
     ...(authMode === 'demo' ? { status: 'anonymous' as const, expiresAt: null,

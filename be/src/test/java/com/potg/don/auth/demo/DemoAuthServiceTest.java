@@ -41,6 +41,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.potg.don.auth.jwt.JwtUtil;
 import com.potg.don.demo.seed.DemoSeedService;
+import com.potg.don.demo.admission.DemoAdmissionStore;
+import com.potg.don.demo.admission.DemoAdmissionException;
 import com.potg.don.user.entity.User;
 import com.potg.don.user.repository.UserRepository;
 
@@ -53,6 +55,7 @@ class DemoAuthServiceTest {
 	private DemoSessionStore store;
 	private JwtUtil jwt;
 	private DemoSeedService seed;
+	private DemoAdmissionStore admission;
 	private DemoAuthService service;
 	private RecordingTransactionManager transaction;
 	private Instant now;
@@ -63,12 +66,13 @@ class DemoAuthServiceTest {
 		sessions = mock(DemoSessionService.class);
 		store = mock(DemoSessionStore.class);
 		seed = mock(DemoSeedService.class);
+		admission = mock(DemoAdmissionStore.class);
 		org.mockito.Mockito.doAnswer(call -> { events.add("seed"); return null; })
 			.when(seed).install(any(User.class), any(LocalDate.class));
 		jwt = DemoJwtContractTest.configuredJwt();
 		now = Instant.now().truncatedTo(ChronoUnit.SECONDS);
 		transaction = new RecordingTransactionManager(events);
-		service = new DemoAuthService(users, sessions, store, jwt, seed, transaction,
+		service = new DemoAuthService(users, sessions, store, jwt, seed, admission, transaction,
 			Clock.fixed(now, ZoneOffset.UTC), new SequenceRandom());
 	}
 
@@ -76,10 +80,19 @@ class DemoAuthServiceTest {
 	void createsOnlySyntheticIdentityAndReturnsTokensAfterItsOwnCommit() {
 		AtomicReference<User> inserted = successfulInsert();
 		DemoSessionService.IssuedTokens issued = successfulIssue();
+        when(admission.claimSlot()).thenReturn(11L);
 		DemoSessionService.IssuedTokens returned = service.login(null);
 		events.add("returned");
 		assertThat(events).containsExactly("begin", "insert", "seed", "session", "commit", "returned");
 		assertThat(transaction.propagation).isEqualTo(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+        assertThat(transaction.isolation).isEqualTo(TransactionDefinition.ISOLATION_READ_COMMITTED);
+        var order = org.mockito.Mockito.inOrder(admission, users, seed, sessions);
+        order.verify(admission).claimSlot();
+        order.verify(users).saveAndFlush(any(User.class));
+        order.verify(seed).install(any(User.class), any(LocalDate.class));
+        order.verify(sessions).startForUser(anyLong());
+        order.verify(admission).recordVisit(7L, issued.expiresAt());
+        order.verify(admission).verifyIntegrity(11L);
 		assertThat(returned == issued).as("only the committed result is returned").isTrue();
 		User user = inserted.get();
 		assertThat(user.getEmail()).matches("demo-[0-9a-f]{32}@moneytoad\\.invalid");
@@ -150,7 +163,7 @@ class DemoAuthServiceTest {
 		var captured = successfulInsert();
 		Clock boundaryClock = mock(Clock.class);
 		when(boundaryClock.instant()).thenReturn(Instant.parse("2026-08-31T15:00:00Z"), Instant.parse("2026-10-01T00:00:00Z"));
-		var boundary = new DemoAuthService(users, sessions, store, jwt, seed, transaction, boundaryClock, new SequenceRandom());
+		var boundary = new DemoAuthService(users, sessions, store, jwt, seed, admission, transaction, boundaryClock, new SequenceRandom());
 		doThrow(new IllegalArgumentException("stop after observing seed anchor"))
 			.when(seed).install(any(User.class), any(LocalDate.class));
 		assertThrows(IllegalArgumentException.class, () -> boundary.login(null));
@@ -343,6 +356,40 @@ class DemoAuthServiceTest {
 		verifyNoInteractions(users, sessions, store, seed);
 	}
 
+    @Test
+    void everyAdmissionRefusalCreatesNeitherIdentityNorSession() {
+        for (var code : DemoAdmissionException.Code.values()) {
+            doThrow(new DemoAdmissionException(code)).when(admission).claimSlot();
+            assertThat(assertThrows(DemoAdmissionException.class, () -> service.login(null)).code()).isEqualTo(code);
+        }
+        verifyNoInteractions(users, sessions, seed, store);
+        verify(admission, never()).recordVisit(anyLong(), any(Instant.class));
+        verify(admission, never()).verifyIntegrity(anyLong());
+    }
+
+    @Test
+    void markerFailureRollsBackAndRevokesOnlyTheCreatedSession() {
+        successfulInsert();
+        successfulIssue();
+        doThrow(new DemoAdmissionException(DemoAdmissionException.Code.DEMO_ADMISSION_UNAVAILABLE))
+            .when(admission).recordVisit(anyLong(), any(Instant.class));
+        assertThrows(DemoAdmissionException.class, () -> service.login(null));
+        assertThat(events).containsExactly("begin", "insert", "seed", "session", "rollback");
+        verify(sessions).revoke(anyString());
+        verify(admission, never()).verifyIntegrity(anyLong());
+    }
+
+    @Test
+    void finalIntegrityFailureRollsBackAndRevokesBeforeAnyTokensReturn() {
+        successfulInsert();
+        successfulIssue();
+        doThrow(new DemoAdmissionException(DemoAdmissionException.Code.DEMO_ADMISSION_UNAVAILABLE))
+            .when(admission).verifyIntegrity(anyLong());
+        assertThrows(DemoAdmissionException.class, () -> service.login(null));
+        assertThat(events).containsExactly("begin", "insert", "seed", "session", "rollback");
+        verify(sessions).revoke(anyString());
+    }
+
 	private AtomicReference<User> successfulInsert() {
 		AtomicReference<User> inserted = new AtomicReference<>();
 		when(users.saveAndFlush(any(User.class))).thenAnswer(call -> {
@@ -385,9 +432,11 @@ class DemoAuthServiceTest {
 		private final List<String> events;
 		private RuntimeException commitFailure;
 		private int propagation;
+		private int isolation;
 		RecordingTransactionManager(List<String> events) { this.events = events; }
 		@Override public TransactionStatus getTransaction(TransactionDefinition definition) {
 			propagation = definition.getPropagationBehavior();
+			isolation = definition.getIsolationLevel();
 			events.add("begin");
 			return new SimpleTransactionStatus();
 		}

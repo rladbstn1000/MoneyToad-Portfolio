@@ -96,6 +96,18 @@ def summarize_xml(directory, extra_parser=None, extra_evidence=None):
                 item["assertion_failure"] = bool(re.search(
                     r"org\.opentest4j\.(?:AssertionFailedError|MultipleFailuresError)|java\.lang\.AssertionError",
                     kind + "\n" + (failure.text or "")))
+                # Diagnose local failures without retaining XML, actual assertion
+                # values, SQL, request bodies or credential-bearing messages.
+                diagnostic = (failure.text or "") + "\n" + failure.get("message", "")
+                item["failure_sources"] = [
+                    {"source": filename, "line": int(line)}
+                    for filename, line in dict.fromkeys(re.findall(
+                        r"\bat com\.potg\.[A-Za-z0-9_.$]+\(([A-Za-z0-9_$]+\.java):([0-9]+)\)", diagnostic))
+                ][:16]
+                item["cause_classes"] = sorted(set(re.findall(
+                    r"\b(?:[a-z][A-Za-z0-9_$]*\.)+[A-Z][A-Za-z0-9_$]*(?:Exception|Error)\b", diagnostic)))[:20]
+                item["failure_codes"] = sorted(set(re.findall(
+                    r"\b(?:DEMO_[A-Z_]+|CREDENTIAL_FILE_REJECTED|SCHEMA_REJECTED|INPUT_REJECTED|INTEGRITY_REJECTED|UNSAFE_BATCH|ROW_COUNT_MISMATCH|SQL_FAILURE|COMMIT_UNKNOWN|ROLLBACK_UNKNOWN|LOCK_BUSY)\b", diagnostic)))[:12]
                 match = re.search(r"Status expected:<([0-9]{3})> but was:<([0-9]{3})>",
                                   failure.get("message", ""))
                 if match:
@@ -355,6 +367,9 @@ def main(*, verification=None):
   }
 }
 """)
+        if verification.get("privilege_accounts"):
+            env["A1_ADMIN_DB_USERNAME"] = "root"
+            env["A1_ADMIN_DB_PASSWORD"] = root_password
         if separate_classes:
             # Fresh per invocation: deleted product .class files cannot survive RED/GREEN.
             env["A1_ISOLATED_BUILD_DIR"] = str(work / "isolated-build")

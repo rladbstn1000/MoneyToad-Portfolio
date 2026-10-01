@@ -1,27 +1,18 @@
-# 1. Build Stage
+# Build with the reviewed Gradle wrapper; external service tests run separately.
 FROM eclipse-temurin:21-jdk AS build
+WORKDIR /workspace
+COPY gradlew build.gradle settings.gradle ./
+COPY gradle/wrapper/ ./gradle/wrapper/
+COPY src/main/ ./src/main/
+# The repository intentionally stores gradlew without an executable file mode.
+RUN bash ./gradlew bootJar --no-daemon --console=plain --max-workers=2
 
+# Only Java 21 JRE and the packaged application enter the runtime image.
+FROM eclipse-temurin:21-jre AS runtime
 WORKDIR /app
-
-# 프로젝트 전체 복사
-COPY . .
-
-# gradlew 실행 권한 부여
-RUN chmod +x ./gradlew
-
-# Gradle 빌드
-RUN ./gradlew clean bootJar --no-daemon
-
-# 2. Run Stage
-FROM eclipse-temurin:21-jdk
-
-WORKDIR /app
-
-# Build stage에서 생성된 JAR 복사
-COPY --from=build /app/build/libs/*.jar app.jar
-
-# Spring Boot 기본 포트
-EXPOSE 8080
-
-# 앱 실행
-ENTRYPOINT ["java","-jar","app.jar"]
+COPY --from=build --chown=10001:10001 /workspace/build/libs/be-0.0.1-SNAPSHOT.jar /app/app.jar
+# Initial runtime bounds, not a measured optimum; never apply these to Gradle.
+ENV JAVA_TOOL_OPTIONS="-Xms64m -Xmx256m -XX:+UseSerialGC -XX:ActiveProcessorCount=1 -XX:+ExitOnOutOfMemoryError -Duser.timezone=Asia/Seoul"
+USER 10001:10001
+# PORT and demo,render settings are supplied at runtime, never during image build.
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

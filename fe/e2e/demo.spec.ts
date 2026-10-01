@@ -103,6 +103,9 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
   const initial = page.waitForResponse(r => pathOf(r.url()) === `${auth}reissue`);
   await page.goto('/');
   check((await initial).status() === 401, 'initial restore unauthorized');
+  const initialReady = events.find(e => e.path === `${auth}ready` && e.status === 200);
+  check(initialReady !== undefined && events.some(e => e.path === `${auth}reissue`
+    && e.status === undefined && e.order > initialReady.order), 'real readiness precedes restore');
   const start = page.getByRole('button', { name: '샘플 데이터로 체험하기', exact: true });
   await expect(start).toBeEnabled();
   check(events.filter(e => e.path === `${auth}login`).length === 0, 'no automatic login');
@@ -162,6 +165,20 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
     check(events.some(e => e.order > patchDone && e.method === 'GET' && e.status === 200 && /\/transactions\/:n\/:n$/.test(e.path)) &&
       events.some(e => e.order > patchDone && e.method === 'GET' && e.status === 200 && e.path.endsWith('/categories')), 'post PATCH GETs');
     await shot(page, 'chart-after');
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expect(page.locator('.jp-total')).toContainText('908,000원');
+    await expect(page.locator('.jp-leak')).toHaveText('누수 금액: 0원');
+    await row.getByRole('combobox').scrollIntoViewIfNeeded();
+    await expect(row.getByRole('combobox')).toBeVisible();
+    await row.getByRole('combobox').click();
+    const currentOption = page.getByRole('option', { name: '마트 / 편의점', exact: true });
+    await expect(currentOption).toBeVisible();
+    const optionBox = await currentOption.boundingBox();
+    check(optionBox !== null && optionBox.x >= 0 && optionBox.x + optionBox.width <= 391,
+      'mobile category option fits viewport');
+    await page.keyboard.press('Escape');
+    await shot(page, 'chart-mobile');
+    await page.setViewportSize({ width: 1440, height: 1000 });
   }
   // Path-matched inert document tests HttpOnly, avoiding /chart's cookie Path false positive.
   await page.evaluate(() => { const f = document.createElement('iframe'); f.id = 'cookie-probe'; f.src = '/api/auth/demo/__e2e_probe.html'; document.body.append(f); });
@@ -173,6 +190,10 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
   check(storageClear, 'demo JWT absent from browser storage');
 
   phase = 'restore-held';
+  let releaseReady: () => void = () => {};
+  let sawReady: () => void = () => {};
+  const readySeen = new Promise<void>(resolve => { sawReady = resolve; });
+  const readyGate = new Promise<void>(resolve => { releaseReady = resolve; });
   let releaseReissue: () => void = () => {};
   let releaseSession: () => void = () => {};
   let sawReissue: () => void = () => {};
@@ -181,12 +202,19 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
   const sSeen = new Promise<void>(resolve => { sawSession = resolve; });
   const rGate = new Promise<void>(resolve => { releaseReissue = resolve; });
   const sGate = new Promise<void>(resolve => { releaseSession = resolve; });
+  await page.route(`${origin}${auth}ready`, async route => { sawReady(); await readyGate; await route.continue(); });
   await page.route(`${origin}${auth}reissue`, async route => { sawReissue(); await rGate; await route.continue(); });
   await page.route(`${origin}${auth}session`, async route => { sawSession(); await sGate; await route.continue(); });
   const restoredToken = page.waitForResponse(r => pathOf(r.url()) === `${auth}reissue` && r.status() === 200);
   const restoredSession = page.waitForResponse(r => pathOf(r.url()) === `${auth}session` && r.status() === 200);
   const reload = page.reload();
   try {
+    await readySeen;
+    await expect(page.getByText('데모 서버 시작 중입니다. 처음 연결할 때 잠시 걸릴 수 있습니다.', { exact: true })).toBeVisible();
+    await expect(page.locator('#screen1')).toHaveCount(0);
+    check(!events.some(e => e.phase === 'restore-held' && (protectedPath(e.path)
+      || e.path === `${auth}reissue` || e.path === `${auth}login`)), 'readiness blocks auth POST and protected requests');
+    releaseReady();
     await rSeen;
     await expect(page.getByText('체험 연결을 확인하고 있습니다.', { exact: true })).toBeVisible();
     await expect(page.locator('#screen1')).toHaveCount(0);
@@ -196,12 +224,13 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
     await expect(page.locator('#screen1')).toHaveCount(0);
     check(!events.some(e => e.phase === 'restore-held' && protectedPath(e.path)), 'no protected requests while session held');
     phase = 'restored'; releaseSession(); await reload;
-  } finally { releaseReissue(); releaseSession(); }
+  } finally { releaseReady(); releaseReissue(); releaseSession(); }
   const reissued = await restoredToken;
   oldAccess = await access(reissued);
   check((await reissued.request().allHeaders()).cookie?.includes(`demoRefreshToken=${stored.value}`) === true, 'actual refresh cookie sent');
   check(await expiry(await restoredSession) === absolute, 'absolute expiry unchanged');
   check((await cookie(context)).expires * 1000 <= absolute, 'rotated cookie expiry bounded');
+  await page.unroute(`${origin}${auth}ready`);
   await page.unroute(`${origin}${auth}reissue`); await page.unroute(`${origin}${auth}session`);
   await expect(page.locator('#screen1')).toBeVisible();
   check(events.filter(e => e.path === `${auth}login` && e.status === undefined).length === 1, 'reload never logs in');
@@ -274,4 +303,68 @@ test('separate browser CORS allow and reject', async ({ page, context }) => {
     before, afterAllowed, afterDenied, allowedStatus: 201, deniedPreflightStatus: 403,
     deniedActualPostCount: afterDenied.loginPosts - afterAllowed.loginPosts,
   }, null, 2));
+});
+
+// Real product rate limits; no response replacement and no browser gateway credential.
+test('gateway scope and bounded login manual retry', async ({ page, context }) => {
+  test.setTimeout(180_000);
+  phase = 'abuse';
+  const restored = page.waitForResponse(r => pathOf(r.url()) === `${auth}reissue`);
+  await page.goto('/');
+  check((await restored).status() === 401, 'abuse anonymous restoration');
+  const start = page.getByRole('button', { name: '샘플 데이터로 체험하기', exact: true });
+  await expect(start).toBeEnabled();
+  if (!secure) {
+    const ready = await page.evaluate(async () => (await fetch('/api/auth/demo/ready')).status);
+    check(ready === 200, 'loopback demo needs no gateway credential');
+    check(events.every(e => e.path !== `${auth}login`), 'loopback scope check generates no visitor');
+    return;
+  }
+  const logged = page.waitForResponse(r => pathOf(r.url()) === `${auth}login`);
+  await start.click();
+  const login = await logged;
+  check(login.status() === 201, 'abuse visitor created');
+  const browserHeaders = await login.request().allHeaders();
+  check(!('x-moneytoad-gateway' in browserHeaders) && !('x-moneytoad-client-ip' in browserHeaders), 'internal headers absent from browser');
+  await expect(page.locator('#screen1')).toBeVisible();
+  const stable = await snapshot();
+  // Active RT rejects duplicate creation with409, but admitted attempts consume quota.
+  const statuses: number[] = [];
+  for (let n = 0; n < 6; n++) {
+    const status = await post(page, `${auth}login`);
+    statuses.push(status);
+    if (status === 429) break;
+  }
+  check(statuses.at(-1) === 429 && statuses.slice(0, -1).every(s => s === 409), 'bounded real login rejection');
+  const limited = await snapshot();
+  check(['users', 'cards', 'transactions', 'budgets', 'sessions'].every(k => stable[k] === limited[k]), 'rate limit creates no data');
+  const reissued = page.waitForResponse(r => pathOf(r.url()) === `${auth}reissue`);
+  await page.reload();
+  check((await reissued).status() === 200, 'existing visit restores while login limited');
+  await expect(page.locator('#screen1')).toBeVisible();
+  const out = page.waitForResponse(r => pathOf(r.url()) === `${auth}logout`);
+  await page.getByRole('button', { name: '체험 종료', exact: true }).click();
+  check((await out).status() === 204, 'existing visit logs out while login limited');
+  check(!(await context.cookies()).some(c => c.name === 'demoRefreshToken'), 'limited visit cookie removed by explicit logout');
+  await expect(start).toBeEnabled();
+  const rejected = page.waitForResponse(r => pathOf(r.url()) === `${auth}login`);
+  await start.click();
+  const response = await rejected;
+  check(response.status() === 429, 'manual anonymous login limited');
+  const payload: unknown = await response.json();
+  check(object(payload) && payload.code === 'DEMO_LOGIN_RATE_LIMITED', 'precise login limit code');
+  check((await response.headersArray()).every(h => h.name.toLowerCase() !== 'set-cookie'), 'rate limit never deletes cookie');
+  await expect(page.getByText(/잠시 후 다시 체험해 주세요/)).toBeVisible();
+  await expect(start).toBeDisabled();
+  const noAutomatic = (await snapshot()).loginPosts;
+  await expect(start).toBeEnabled({ timeout: 65_000 });
+  check((await snapshot()).loginPosts === noAutomatic, 'cooldown ends without automatic POST');
+  const retried = page.waitForResponse(r => pathOf(r.url()) === `${auth}login`);
+  await start.click();
+  check((await retried).status() === 201, 'manual retry succeeds after actual window');
+  await expect(page.locator('#screen1')).toBeVisible();
+  const finalOut = page.waitForResponse(r => pathOf(r.url()) === `${auth}logout`);
+  await page.getByRole('button', { name: '체험 종료', exact: true }).click();
+  check((await finalOut).status() === 204, 'retry visit explicitly revoked');
+  check((await snapshot()).sessions === stable.sessions - 1, 'abuse scenario revokes only its visits and preserves prior sessions');
 });

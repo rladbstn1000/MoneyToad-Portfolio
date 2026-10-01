@@ -1,3 +1,4 @@
+import secrets
 import json
 import tempfile
 import unittest
@@ -9,10 +10,10 @@ import public_evidence as pe
 class PublicProjectionTest(unittest.TestCase):
     def test_backend_constructs_allowlist_and_preserves_failures(self):
         raw = {'status': 'FAIL', 'exit_code': 1, 'cleanup_complete': False,
-               'userId': 999, 'sid': 'not-a-real-session', 'resources': {'pid': 999},
+               'userId': secrets.randbelow(1_000_000) + 1, 'sid': secrets.token_hex(12), 'resources': {'pid': 999},
                'suites': [{'name': 'SyntheticSuite', 'tests': 2, 'failures': 1, 'errors': 0,
                            'skipped': 0, 'cases': [{'name': 'contract', 'status': 'FAIL',
-                                                   'email': 'ignored'}]}]}
+                                                   'email': secrets.token_hex(12)}]}]}
         clean = pe.backend(raw)
         self.assertEqual((clean['status'], clean['tests'], clean['failures']), ('FAIL', 2, 1))
         self.assertFalse(clean['cleanup_complete'])
@@ -33,20 +34,20 @@ class PublicProjectionTest(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertTrue(pe.forbidden({'safe': [{key: 'omitted'}]}))
         for value in ('Bearer ' + 'never-issued', 'someone' + '@' + 'example.invalid',
-                      '/' + 'Users/' + 'example/project', 'demoRefreshToken=' + 'never-issued',
+                      '/' + 'Users/' + 'example/project', 'demoRefreshToken=' + secrets.token_hex(12),
                       '-----BEGIN ' + 'PRIVATE KEY-----'):
             self.assertTrue(pe.forbidden({'test': value}))
 
     def test_frontend_drops_runtime_paths_and_test_payloads(self):
         raw = {'status': 'PASS', 'work': 'omitted', 'checks': [{'name': 'types', 'status': 'PASS',
-                'exit_code': 0, 'command': ['not-for-publication'], 'env_overrides': {'secret': 'omitted'}}]}
+                'exit_code': 0, 'command': ['not-for-publication'], 'env_overrides': {'secret': secrets.token_hex(12)}}]}
         self.assertEqual(pe.frontend(raw), {'status': 'PASS', 'checks': [
             {'check': 'types', 'status': 'PASS', 'exit_code': 0}]})
 
     def test_write_refuses_forbidden_payload(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(pe, 'OUT', Path(directory)):
             with self.assertRaises(ValueError):
-                pe.save('rejected.json', {'userId': 999})
+                pe.save('rejected.json', {'userId': secrets.randbelow(1_000_000) + 1})
             self.assertEqual(list(Path(directory).iterdir()), [])
             pe.save('accepted.json', {'tests': 275, 'status': 'PASS'})
             self.assertEqual(json.loads((Path(directory) / 'accepted.json').read_text())['tests'], 275)

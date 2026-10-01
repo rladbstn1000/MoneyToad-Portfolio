@@ -67,8 +67,8 @@ class DemoAuthHttpIntegrationTest {
             var jdbc = new JdbcTemplate(context.getBean(DataSource.class));
             var before = DemoAuthHttpTestSupport.snapshot(jdbc);
             MockMvc mvc = mvc(started);
-            for (String path : Set.of("login", "reissue", "session", "logout")) {
-                var request = path.equals("session") ? get("/api/auth/demo/" + path) : post("/api/auth/demo/" + path);
+            for (String path : Set.of("login", "reissue", "session", "logout", "ready")) {
+                var request = path.equals("session") || path.equals("ready") ? get("/api/auth/demo/" + path) : post("/api/auth/demo/" + path);
                 var result = mvc.perform(request.contextPath("/api").header("Authorization", "Bearer " + access)).andReturn();
                 assertThat(result.getResponse().getStatus()).isEqualTo(404);
             }
@@ -78,7 +78,8 @@ class DemoAuthHttpIntegrationTest {
                 com.potg.don.auth.demo.DemoAuthHttpConfiguration.Settings.class,
                 com.potg.don.auth.demo.DemoRefreshCookie.class, com.potg.don.auth.demo.DemoAuthExceptionHandler.class,
                 com.potg.don.auth.demo.DemoSessionGuard.class, com.potg.don.auth.demo.DemoSessionStore.class,
-                com.potg.don.auth.demo.DemoSessionService.class)) {
+                com.potg.don.auth.demo.DemoSessionService.class, com.potg.don.auth.demo.DemoReadinessController.class,
+                com.potg.don.auth.demo.DemoReadinessService.class)) {
                 assertThat(context.getBeansOfType(type)).isEmpty();
             }
             assertThat(before.equals(DemoAuthHttpTestSupport.snapshot(jdbc))).isTrue();
@@ -297,6 +298,9 @@ class DemoAuthHttpIntegrationTest {
             scenario.jdbc.update("DELETE t FROM transactions t JOIN cards c ON t.card_id=c.id WHERE c.user_id=?", token.userId());
             scenario.jdbc.update("DELETE FROM budgets WHERE user_id=?", token.userId());
             scenario.jdbc.update("DELETE FROM cards WHERE user_id=?", token.userId());
+            // The missing-user fixture must also remove its RESTRICT provenance child.
+            // These are test-admin writes; no production cleanup or authentication is bypassed.
+            assertThat(scenario.jdbc.update("DELETE FROM demo_visit WHERE user_id=?", token.userId())).isEqualTo(1);
             scenario.started.context().getBean(UserRepository.class).deleteById(token.userId());
             var before = DemoAuthHttpTestSupport.snapshot(scenario.jdbc);
             var hash = scenario.redis.opsForHash().get(key(token), "refreshHash");
@@ -316,6 +320,7 @@ class DemoAuthHttpIntegrationTest {
     static org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder publicRequest(String endpoint) {
         return post("/api/auth/demo/" + endpoint).contextPath("/api").header("Origin", "https://demo.example.invalid")
             .header("X-MoneyToad-Demo", "1").contentType("application/json").content("{}")
+            .header("X-MoneyToad-Gateway", SyntheticGatewayTestSupport.secret()).header("X-MoneyToad-Client-IP", "192.0.2.37")
             .with(request -> { request.setScheme("https"); request.setSecure(true); request.setServerName("demo.example.invalid"); request.setServerPort(443); return request; });
     }
     static int protectedStatus(Scenario s, String access) throws Exception {

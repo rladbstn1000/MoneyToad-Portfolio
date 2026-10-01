@@ -12,6 +12,9 @@ spring:
 
 app:
   demo:
+    # Required only for public-demo; validated before DB initialization. Never a VITE variable.
+    gateway-secret: ${DEMO_GATEWAY_SECRET:}
+    max-visitors: ${DEMO_MAX_VISITORS:1000}
     browser-origin: ${APP_DEMO_BROWSER_ORIGIN}
 server:
   address: ${DEMO_BIND_ADDRESS:127.0.0.1}

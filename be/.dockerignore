@@ -1,0 +1,52 @@
+# Build context is be/. Only these reviewed build inputs may enter it.
+**
+!Dockerfile
+!.dockerignore
+!gradlew
+!build.gradle
+!settings.gradle
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+# Explicit parent traversal, immediately exclude each parent's other children.
+!src/
+src/*
+!src/main/
+src/main/*
+!src/main/java/**
+# Keep package directories traversable; only Java files may have extensions.
+src/main/java/**/*.*
+!src/main/java/**/*.java
+!src/main/resources/
+src/main/resources/*
+!src/main/resources/application*.yml
+!src/main/resources/redis/
+src/main/resources/redis/*
+!src/main/resources/redis/*.lua
+
+# Defense in depth if build input directories later gain local artifacts.
+**/.git/**
+**/.env
+**/.env.*
+**/.gradle/**
+**/node_modules/**
+**/build/**
+**/test-results/**
+**/playwright-report/**
+**/__pycache__/**
+**/*.pyc
+**/*.log
+**/*.pem
+**/*.key
+**/*.crt
+**/*.cer
+**/*.p12
+**/*.pfx
+**/*.jks
+**/*.keystore
+**/*.truststore
+**/*.rdb
+**/*.sql
+**/*.csv
+**/*.har
+**/*.zip
+**/storageState*.json
