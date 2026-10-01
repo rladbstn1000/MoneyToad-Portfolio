@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "phase": "before",
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "product_api_mocks": false,
+  "workers": 1,
+  "retries": 0,
+  "viewport_results": [],
+  "external_attempts": 0,
+  "cases": 3,
+  "tests": [
+    {
+      "test": "Chart real responsive flow 390x844",
+      "status": "failed"
+    },
+    {
+      "test": "Chart real responsive flow 768x1024",
+      "status": "failed"
+    },
+    {
+      "test": "Chart real responsive flow 1440x1000",
+      "status": "failed"
+    }
+  ],
+  "source_preserved": true,
+  "dependencies_preserved": true
+}

@@ -1,0 +1,41 @@
+{
+  "status": "BLOCKED",
+  "checks": [
+    {
+      "check": "prerequisites",
+      "status": "PASS"
+    },
+    {
+      "check": "compile-and-package",
+      "status": "PASS"
+    },
+    {
+      "check": "configuration-tests",
+      "status": "PASS",
+      "tests": 84,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "check": "owned-tls-services",
+      "status": "PASS"
+    }
+  ],
+  "cleanup_complete": true,
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false,
+  "local_render_runtime_ready": false,
+  "host_architecture": "arm64",
+  "docker_architecture": "aarch64",
+  "dependency_versions": [
+    "HikariCP-6.3.2.jar",
+    "hibernate-core-6.6.26.Final.jar",
+    "lettuce-core-6.6.0.RELEASE.jar",
+    "mysql-connector-j-9.4.0.jar",
+    "spring-boot-3.5.5.jar"
+  ],
+  "failed_phase": "owned-services",
+  "failure_class": "ConnectionRefusedError",
+  "test_failures": []
+}

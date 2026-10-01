@@ -1,0 +1,71 @@
+{
+  "phase": "render",
+  "focused": false,
+  "status": "FAIL",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "exit_code": 1,
+  "checks": {
+    "status": "FAIL",
+    "checks": [
+      {
+        "check": "prerequisites",
+        "status": "PASS"
+      },
+      {
+        "check": "compile-and-package",
+        "status": "PASS"
+      },
+      {
+        "check": "configuration-tests",
+        "status": "PASS",
+        "tests": 86,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "check": "owned-tls-services",
+        "status": "PASS"
+      },
+      {
+        "check": "host-published-loopback-connectivity",
+        "status": "PASS"
+      },
+      {
+        "check": "separate-schema-preparation",
+        "status": "PASS"
+      },
+      {
+        "check": "maintenance-absent-from-runtime-artifact",
+        "status": "PASS"
+      }
+    ],
+    "cleanup_complete": true,
+    "managed_provider_contracts_verified": false,
+    "public_deployment_ready": false,
+    "local_render_runtime_ready": false,
+    "host_java_version": "21.0.11",
+    "host_architecture": "arm64",
+    "docker_architecture": "aarch64",
+    "dependency_versions": [
+      "HikariCP-6.3.2.jar",
+      "hibernate-core-6.6.26.Final.jar",
+      "lettuce-core-6.6.0.RELEASE.jar",
+      "mysql-connector-j-9.4.0.jar",
+      "spring-boot-3.5.5.jar"
+    ],
+    "failed_command_exit_code": 2,
+    "failed_command_tool": "java",
+    "failed_phase": "maintenance-cli",
+    "failure_class": "CheckFailure",
+    "failed_check": "maintenance-cli-command",
+    "diagnostic_categories": [],
+    "test_failures": [],
+    "owned_docker_resources_remaining": 0,
+    "owned_ports_released": true
+  }
+}

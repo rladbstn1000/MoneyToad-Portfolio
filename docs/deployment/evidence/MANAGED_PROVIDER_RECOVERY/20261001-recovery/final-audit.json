@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "files_scanned": 512,
+  "scanner_status": "PASS",
+  "unresolved": [],
+  "actual_sensitive_value_match_files": 0,
+  "existing_files_changed": [
+    "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+    "docs/deployment/STATUS.md",
+    "scripts/verification/fixtures/scan-classifications.json",
+    "scripts/verification/managed_provider_check.py"
+  ],
+  "new_files": [
+    "be/src/test/java/com/potg/verification/managed/ManagedProviderRecoverySafetyTest.java",
+    "be/src/test/java/com/potg/verification/managed/ManagedRedisCommandGate.java",
+    "be/src/test/java/com/potg/verification/managed/ManagedRedisCommandGateTest.java",
+    "docs/deployment/09-managed-provider-recovery.md",
+    "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/provider-e26ae7243edf4034/summary.json",
+    "docs/deployment/evidence/MANAGED_PROVIDER_RECOVERY/20261001-recovery/final-audit.json",
+    "docs/deployment/evidence/MANAGED_PROVIDER_RECOVERY/20261001-recovery/local-checks.json",
+    "scripts/verification/test_managed_provider_recovery.py"
+  ],
+  "existing_files_deleted": [],
+  "existing_file_modes_changed": [],
+  "old_classification_entries_preserved": true,
+  "product_files_unchanged": true,
+  "historical_evidence_files_preserved": true,
+  "historical_evidence_count": 114,
+  "git_head_preserved": true,
+  "git_index_preserved": true,
+  "git_diff_check_passed": true,
+  "original_repository_head_preserved": true,
+  "old_private_records_preserved": true,
+  "input_bytes_unchanged": true,
+  "private_cleanup": {
+    "old_private_records_preserved_except_authorized_budget": true,
+    "input_revision_bytes_unchanged": true,
+    "input_owner_mode_links_preserved": true,
+    "all_owned_ledgers_cleanup_confirmed": true,
+    "owned_ledger_count": 6,
+    "credential_delivery_files_remaining": 0,
+    "permanent_resume_marker_present": true
+  },
+  "final_reserved_command_equivalents": 15568,
+  "final_login_attempts": 5
+}

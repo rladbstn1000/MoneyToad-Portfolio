@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "phase": "readiness-focused-unit",
+  "compile_java": "PASS",
+  "compile_test_java": "PASS",
+  "tests": 12,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "actual_database_used": false,
+  "actual_redis_used": false,
+  "external_provider_connections": 0,
+  "checks": [
+    "SELECT_1_AND_PING_ONLY",
+    "JDBC_QUERY_TIMEOUT_ONE_SECOND",
+    "JDBC_REDIS_RESOURCES_CLOSED",
+    "DATABASE_FAILURE_SHORT_CIRCUITS_REDIS",
+    "INVALID_QUERY_OR_PING_RESULT_NOT_READY",
+    "BOUNDED_PROBE_DEADLINE",
+    "SINGLE_WORKER_ZERO_QUEUE",
+    "CALLER_INTERRUPT_PRESERVED",
+    "HTTP_200_EXACT_READY_TRUE",
+    "HTTP_503_EXACT_READY_FALSE",
+    "CACHE_NO_STORE_NO_COOKIE",
+    "POST_NOT_REGISTERED"
+  ],
+  "environment_attempts": [
+    {
+      "status": "BLOCKED",
+      "reason": "SANDBOX_LOCAL_LOCK_SOCKET_DENIED",
+      "tests_executed": 0
+    },
+    {
+      "status": "BLOCKED",
+      "reason": "INITIAL_OFFLINE_CACHE_INCOMPLETE",
+      "tests_executed": 0
+    },
+    {
+      "status": "PASS",
+      "reason": "AUTHORIZED_LOCAL_SOCKET_AND_COMPLETE_OWNED_OFFLINE_CACHE",
+      "tests_executed": 12
+    }
+  ],
+  "private_copy_removed": true,
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false
+}

@@ -1,0 +1,59 @@
+{
+  "status": "CORRECTED_AND_RECHECKED",
+  "scope": "Synthetic scanner implementation review, not findings of real source secrets",
+  "raw_values_in_report": false,
+  "rounds": [
+    {
+      "sequence": 1,
+      "issue": "Neighbouring safe regex or SQL selector could approve an unrelated same-line value",
+      "before": "semantic predicate accepted synthetic unsafe construct",
+      "after": "each candidate must belong to its own complete reviewed expression",
+      "final": "REJECTED"
+    },
+    {
+      "sequence": 2,
+      "issue": "Header/cookie interpolation suffix and literal concatenation could be classified as runtime-only",
+      "before": "synthetic predicates accepted appended literal values",
+      "after": "whole literal and whole runtime value expression enforced",
+      "final": "REJECTED"
+    },
+    {
+      "sequence": 3,
+      "issue": "Arbitrary credential call/default argument and identity generator suffix could be classified as runtime-only",
+      "before": "synthetic expressions accepted literal arguments/fallbacks",
+      "after": "narrow full expression grammar; no arbitrary call or default value",
+      "final": "REJECTED"
+    },
+    {
+      "sequence": 4,
+      "issue": "Safe detector suffix did not validate the literal prefix",
+      "before": "fresh metadata plus altered synthetic detector produced scanner PASS",
+      "after": "whole reviewed detector expression fingerprint enforced",
+      "final": "REJECTED"
+    },
+    {
+      "sequence": 5,
+      "issue": "Evidence path and binary text integration caused source-file and compressed-PNG false positives",
+      "before": "source filename containing evidence rejected and PNG compressed bytes produced soft email findings",
+      "after": "evidence directories distinguished; only validated PNG excludes soft text parsing; HARD and metadata checks preserved",
+      "final": "PRIVATE_CLONE_PASS"
+    },
+    {
+      "sequence": 6,
+      "issue": "Invalid UTF-8 byte could suppress soft scanning for non-image evidence",
+      "before": "synthetic invalid-byte text evidence produced scanner PASS",
+      "after": "non-image undecodable evidence fails and remains soft-scanned; fake PNG also fails",
+      "final": "REJECTED"
+    }
+  ],
+  "final_independent_checks": {
+    "unit_tests": 44,
+    "unit_failures": 0,
+    "unit_errors": 0,
+    "unit_skips": 0,
+    "additional_negative_inputs": 20,
+    "negative_inputs_rejected": 20,
+    "private_clone_scan": "PASS",
+    "unresolved": 0
+  }
+}

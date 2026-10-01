@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "method": "Actual Docker COPY into scratch image; unstarted container export; owned resources only",
+  "application_execution": false,
+  "network_enabled": false,
+  "downloads": false,
+  "checks": [
+    {
+      "check": "file-only wildcard candidate",
+      "status": "FAIL",
+      "actual_file_count": 13,
+      "expected_file_count": 100,
+      "missing_java_files": 87,
+      "canaries_all_excluded": true,
+      "cleanup_complete": true
+    },
+    {
+      "check": "explicit traversal and child exclusion candidate",
+      "status": "PASS",
+      "actual_file_count": 100,
+      "expected_file_count": 100,
+      "unexpected_file_count": 0,
+      "java_source_count": 87,
+      "canary_count": 10,
+      "canaries_all_excluded": true,
+      "source_links_absent": true,
+      "cleanup_complete": true
+    }
+  ],
+  "policy_limit": "Java package traversal is allowed; the runtime runner additionally requires an exact current-source context file allowlist."
+}

@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "environment": "offline-and-synthetic-inputs",
+  "managed_preparation_tests": {
+    "tests": 26,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "existing_public_policy_tests": {
+    "tests": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "python_syntax_files": 4,
+  "python_linter": "NOT_CONFIGURED_NO_NEW_TOOL_INSTALLED",
+  "provider_connections_attempted": 0,
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false
+}

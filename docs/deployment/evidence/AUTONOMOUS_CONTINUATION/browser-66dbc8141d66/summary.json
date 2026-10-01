@@ -1,0 +1,30 @@
+{
+  "phase": "browser",
+  "status": "FAIL",
+  "source_preserved": true,
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "exit_code": 2,
+  "checks": {
+    "status": "FAIL",
+    "expected_runs": 2,
+    "runs": [
+      {
+        "evidence_file": "browser-be67e44b8b2e-summary.json",
+        "status": "FAIL",
+        "cases": 0,
+        "external_attempts": 0,
+        "cleanup_complete": true
+      }
+    ],
+    "workers": 1,
+    "retries": 0,
+    "product_api_mocks": false,
+    "font_policy": "product system fonts; no test transform"
+  },
+  "dependencies": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  }
+}

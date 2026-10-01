@@ -1,0 +1,30 @@
+{
+  "new_images": 3,
+  "all_reviewed": true,
+  "rows": [
+    {
+      "file": "docs/deployment/evidence/PUBLIC_SCANNER_AUDIT/cold-final/cold-recovery-390.png",
+      "content_digest": "69a515d2f3b0ce041eed6145adeca81f6da8f1affb1836b250d482ee62c2ba93",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "sensitive_values_visible": false,
+      "screen_content": "synthetic merchant/category/amount/date or fixed recovery UI only"
+    },
+    {
+      "file": "docs/deployment/evidence/PUBLIC_SCANNER_AUDIT/mobile-final/mobile-768-after.png",
+      "content_digest": "21f3140f29039b992bb479a8aa5343bb5e894a7656cb1fbc46bf279de6565f7b",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "sensitive_values_visible": false,
+      "screen_content": "synthetic merchant/category/amount/date or fixed recovery UI only"
+    },
+    {
+      "file": "docs/deployment/evidence/PUBLIC_SCANNER_AUDIT/mobile-final/mobile-390-after.png",
+      "content_digest": "19d0da2cb3e31daf49e84923c8f2c8b4080843b7a6303c5e273d41c4402faf2b",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "sensitive_values_visible": false,
+      "screen_content": "synthetic merchant/category/amount/date or fixed recovery UI only"
+    }
+  ]
+}

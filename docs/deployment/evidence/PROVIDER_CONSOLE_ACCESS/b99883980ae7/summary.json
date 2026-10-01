@@ -1,0 +1,62 @@
+{
+  "status": "INPUT_REQUIRED",
+  "console_access": {
+    "tidb": true,
+    "upstash": true
+  },
+  "observed_resources": {
+    "tidb": {
+      "plan": "Starter Free",
+      "region": "AWS Tokyo ap-northeast-1",
+      "request_units_before": 0,
+      "row_storage_mib_before": 0,
+      "initial_password_not_set": true
+    },
+    "upstash": {
+      "plan": "Free",
+      "region": "Singapore ap-southeast-1",
+      "commands_before": 0,
+      "monthly_command_allowance": 500000,
+      "storage_bytes_before": 0,
+      "tls_tcp_example": true,
+      "read_regions_independently_checked": false
+    }
+  },
+  "input": {
+    "status": "BLOCKED",
+    "phase": "offline-preflight",
+    "input_check": "BLOCKED",
+    "reason": "CONNECTION_FILE_MISSING",
+    "provider_connections_attempted": 0,
+    "remote_writes": 0,
+    "remote_cleanup": "NOT_NEEDED_NO_REMOTE_RESOURCES_CREATED",
+    "tidb_contracts_verified": false,
+    "upstash_functional_contracts_verified": false,
+    "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+    "provider_selection": "HOLD",
+    "managed_provider_contracts_verified": false,
+    "public_deployment_ready": false
+  },
+  "automation_transfer": "REDACTED_PLACEHOLDER_REJECTED_NOT_SAVED",
+  "user_handoff": "INITIAL_PASSWORD_GENERATION_AND_TWO_LOCAL_CONNECTION_STRING_PASTES",
+  "probe_fix": {
+    "category": "VERIFIER_STARTER_USERNAME_PREFIX",
+    "compile": "PASS",
+    "existing_tests": 19,
+    "additional_tests": 9,
+    "tests": 28,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "remote": {
+    "connections": 0,
+    "writes": 0,
+    "login_attempts": 0,
+    "command_equivalents": 0,
+    "cleanup": "NOT_NEEDED_NO_REMOTE_RESOURCES_CREATED"
+  },
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "provider_selection": "HOLD",
+  "public_deployment_ready": false
+}

@@ -1,0 +1,875 @@
+{
+  "status": "FAIL",
+  "files_scanned": 749,
+  "unresolved": [
+    {
+      "file": "be/render.env.example",
+      "line": 7,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoGatewaySettings.java",
+      "line": 19,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoGatewaySettings.java",
+      "line": 27,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/main/resources/db/demo/V001__demo_admission.sql",
+      "category": "data-dump-candidate"
+    },
+    {
+      "file": "be/src/main/resources/db/demo/V002__demo_admission_lock.sql",
+      "category": "data-dump-candidate"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 286,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 287,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 384,
+      "category": "cookie-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 385,
+      "category": "cookie-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoGatewayBoundaryIntegrationTest.java",
+      "line": 24,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/ManagedSchemaPreparation.java",
+      "line": 163,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/RenderRuntimeIntegrationTest.java",
+      "line": 294,
+      "category": "cookie-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthServiceTest.java",
+      "line": 258,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+      "line": 43,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+      "line": 226,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+      "line": 75,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+      "line": 130,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 403,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 404,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 459,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 636,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockSyntheticJdbc.java",
+      "line": 167,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockSyntheticJdbc.java",
+      "line": 175,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 238,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 248,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 255,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 284,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 427,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 499,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 166,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 170,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 219,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 339,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 413,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+      "line": 177,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+      "line": 185,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 327,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 404,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 474,
+      "category": "identity-field"
+    },
+    {
+      "file": "fe/functions/api/[[path]].ts",
+      "line": 47,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 9,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 17,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 46,
+      "category": "bearer-marker"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 47,
+      "category": "cookie-assignment"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 54,
+      "category": "bearer-marker"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 54,
+      "category": "authorization-marker"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 54,
+      "category": "cookie-assignment"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 127,
+      "category": "cookie-assignment"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 148,
+      "category": "cookie-header"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 174,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 240,
+      "category": "bearer-marker"
+    },
+    {
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 252,
+      "category": "bearer-marker"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 165,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 348,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 349,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 350,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_admission_lock_tidb.py",
+      "line": 450,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_admission_lock_tidb.py",
+      "line": 451,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 191,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 230,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 232,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 234,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 397,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 398,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 313,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 314,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 394,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 395,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 397,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 398,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 485,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 505,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 695,
+      "category": "authorization-marker"
+    },
+    {
+      "file": "scripts/verification/test_demo_admission_lock_tidb.py",
+      "line": 122,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/test_demo_capacity_tidb.py",
+      "line": 121,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 136,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 250,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 298,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/tidb_cleanup_remote.py",
+      "line": 646,
+      "category": "credential-assignment"
+    }
+  ],
+  "classified_source_sites": [
+    {
+      "file": "be/src/main/java/com/potg/don/auth/entity/CustomUserDetails.java",
+      "line": 23,
+      "category": "credential-assignment",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpIntegrationTest.java",
+      "line": 65,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpRequestContractTest.java",
+      "line": 53,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpRequestContractTest.java",
+      "line": 335,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "line": 302,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "line": 303,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 41,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 98,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 126,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 149,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 171,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 143,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 512,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 513,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 75,
+      "category": "bearer-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 223,
+      "category": "cookie-assignment",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 241,
+      "category": "cookie-assignment",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthFilterAvailabilityTest.java",
+      "line": 83,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 36,
+      "category": "credential-assignment",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 90,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 122,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 218,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 221,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 143,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 173,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 185,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionServiceTest.java",
+      "line": 142,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 82,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 112,
+      "category": "cookie-assignment",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 126,
+      "category": "bearer-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 127,
+      "category": "cookie-assignment",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 84,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 85,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 186,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/service/BudgetServiceOwnershipTest.java",
+      "line": 58,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/service/BudgetServiceOwnershipTest.java",
+      "line": 59,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/card/controller/CardControllerCsvContractTest.java",
+      "line": 72,
+      "category": "credential-assignment",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/global/config/RenderRuntimeConfigurationTest.java",
+      "line": 155,
+      "category": "credential-assignment",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 115,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 116,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 156,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 124,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 125,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 158,
+      "category": "bearer-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 170,
+      "category": "bearer-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 227,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/service/CsvServiceOwnershipTest.java",
+      "line": 50,
+      "category": "email-marker",
+      "classification": "synthetic test fixture or assertion"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 161,
+      "category": "credential-assignment",
+      "classification": "External config map to private runtime field; no literal or summary serialization"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 473,
+      "category": "credential-assignment",
+      "classification": "SecureRandom randomHex generates owned test account password in memory"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 482,
+      "category": "credential-assignment",
+      "classification": "Generated candidate password assigned only after account creation succeeds"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedRedisActivationLocalTest.java",
+      "line": 46,
+      "category": "credential-assignment",
+      "classification": "Fixed synthetic loopback-only TLS/RESP fixture credential; never reads or contacts a managed provider"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedSqlContracts.java",
+      "line": 64,
+      "category": "email-marker",
+      "classification": "Reserved invalid-domain synthetic unique and collation fixture inside rollback"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/RedisTransportComparisonTest.java",
+      "line": 37,
+      "category": "credential-assignment",
+      "classification": "Fixed synthetic loopback-only TLS/RESP fixture credential; no managed credential or endpoint is used"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 187,
+      "category": "cookie-assignment",
+      "classification": "Moved reviewed cookie-name prefix visibility assertion, boolean only"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 230,
+      "category": "cookie-assignment",
+      "classification": "Moved reviewed memory-only cookie comparison; value never serialized"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 253,
+      "category": "bearer-marker",
+      "classification": "Moved reviewed comment about memory-only authorization and absence of dumps"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 255,
+      "category": "bearer-marker",
+      "classification": "Moved reviewed template interpolation for revoked-access API assertion"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 255,
+      "category": "authorization-marker",
+      "classification": "Moved reviewed header object; runtime value excluded from evidence"
+    },
+    {
+      "file": "fe/package-lock.json",
+      "line": 391,
+      "category": "cookie-header",
+      "classification": "npm cookie dependency version, not HTTP cookie data"
+    },
+    {
+      "file": "fe/package-lock.json",
+      "line": 6160,
+      "category": "cookie-header",
+      "classification": "npm cookie dependency version, not HTTP cookie data"
+    },
+    {
+      "file": "fe/src/api/demoInterceptors.ts",
+      "line": 21,
+      "category": "bearer-marker",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "line": 14,
+      "category": "bearer-marker",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "line": 49,
+      "category": "bearer-marker",
+      "classification": "contract identifier or runtime expression"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 28,
+      "category": "bearer-marker",
+      "classification": "Moved reviewed memory accessToken interpolation for session request"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 28,
+      "category": "authorization-marker",
+      "classification": "Moved reviewed session header key; no literal credential"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 37,
+      "category": "bearer-marker",
+      "classification": "Moved reviewed memory accessToken interpolation for logout request"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 37,
+      "category": "authorization-marker",
+      "classification": "Moved reviewed logout header key; no literal credential"
+    },
+    {
+      "file": "scripts/verification/a2_1_not_found_contract.py",
+      "line": 110,
+      "category": "bearer-marker",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/managed_provider_local.py",
+      "line": 144,
+      "category": "credential-assignment",
+      "classification": "Loopback rehearsal config uses secrets.token_hex variables and private file only"
+    },
+    {
+      "file": "scripts/verification/public_evidence.py",
+      "line": 21,
+      "category": "cookie-assignment",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/public_scan.py",
+      "line": 17,
+      "category": "cookie-assignment",
+      "classification": "verification expression; no issued values"
+    },
+    {
+      "file": "scripts/verification/test_managed_provider_recovery.py",
+      "line": 153,
+      "category": "credential-assignment",
+      "classification": "synthetic negative-test canary, never a runtime credential"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 12,
+      "category": "identity-field",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 15,
+      "category": "identity-field",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 36,
+      "category": "cookie-assignment",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 42,
+      "category": "credential-assignment",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 49,
+      "category": "identity-field",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "line": 37,
+      "category": "identity-field",
+      "classification": "negative sanitizer test fixture"
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "line": 45,
+      "category": "identity-field",
+      "classification": "negative sanitizer test fixture"
+    }
+  ]
+}

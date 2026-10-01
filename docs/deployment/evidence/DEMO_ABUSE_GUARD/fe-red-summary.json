@@ -1,0 +1,27 @@
+{
+  "phase": "RED",
+  "product_unchanged": true,
+  "results": [
+    {
+      "suite": "function",
+      "exit": 1,
+      "tests": 50,
+      "passed": 31,
+      "failed": 19,
+      "pending": 0
+    },
+    {
+      "suite": "demo",
+      "exit": 1,
+      "tests": 18,
+      "passed": 3,
+      "failed": 15,
+      "pending": 0
+    }
+  ],
+  "overlay": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  }
+}

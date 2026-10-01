@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "environment": "offline-fixture",
+  "tests": 26,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "cause": "New adapter reconstruction test removed the wrong diagnostic fragment; exact original source equality failed. Corrected only inverse transformation in the new test, preserving original runner and product assertions.",
+  "provider_connections_attempted": 0
+}

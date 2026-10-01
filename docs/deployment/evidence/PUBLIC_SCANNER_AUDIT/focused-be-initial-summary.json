@@ -1,0 +1,14 @@
+{
+  "selectors": [
+    "*DemoCleanupInputTest",
+    "*DemoJwtContractTest",
+    "*ManagedRedisActivationLocalTest",
+    "*RedisTransportComparisonTest"
+  ],
+  "dependency_network": false,
+  "resource_scope": "owned temp files and loopback TLS fixtures only",
+  "exit_code": 1,
+  "suites": [],
+  "status": "BLOCKED",
+  "reason": "Gradle local FileLockContentionHandler socket denied before compilation/tests"
+}

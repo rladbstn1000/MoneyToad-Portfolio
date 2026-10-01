@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "provider_connections": 0,
+  "python": {
+    "tests": 25,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "existing_launcher": 7,
+    "new_recovery": 10,
+    "existing_port_revision": 8
+  },
+  "java": {
+    "status": "PASS",
+    "compile": "PASS",
+    "suites": [
+      {
+        "test": "com.potg.verification.managed.ManagedProviderProbeSafetyTest",
+        "tests": 28,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "test": "com.potg.verification.managed.ManagedProviderRecoverySafetyTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "test": "com.potg.verification.managed.ManagedRedisCommandGateTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "provider_connections": 0
+  },
+  "full_backend_frontend_browser": "NOT_RUN_PRODUCT_UNCHANGED",
+  "loopback_fixture_scope": "serialization_and_dispatch_gate_only_not_provider_contracts"
+}

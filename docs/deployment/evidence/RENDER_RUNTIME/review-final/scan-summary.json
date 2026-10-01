@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "files_scanned": 385,
+  "unresolved_count": 0,
+  "unresolved": [],
+  "exact_reviewed_source_sites": 90,
+  "source_preserved_during_scan": true,
+  "private_git_free_copy": true,
+  "existing_scanner_rules_unchanged": true,
+  "historical_evidence_not_written": true
+}

@@ -1,0 +1,136 @@
+{
+  "events": [
+    {
+      "order": 0,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "phase": "initial"
+    },
+    {
+      "order": 1,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "phase": "initial"
+    },
+    {
+      "order": 2,
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "phase": "initial"
+    },
+    {
+      "order": 3,
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "status": 401,
+      "phase": "initial"
+    },
+    {
+      "order": 4,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "phase": "login"
+    },
+    {
+      "order": 5,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 6,
+      "method": "POST",
+      "path": "/api/auth/demo/login",
+      "phase": "login"
+    },
+    {
+      "order": 7,
+      "method": "POST",
+      "path": "/api/auth/demo/login",
+      "status": 201,
+      "phase": "login"
+    },
+    {
+      "order": 8,
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "phase": "login"
+    },
+    {
+      "order": 9,
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 10,
+      "method": "GET",
+      "path": "/api/users",
+      "phase": "login"
+    },
+    {
+      "order": 11,
+      "method": "GET",
+      "path": "/api/users",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 12,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "login"
+    },
+    {
+      "order": 13,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 14,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "phase": "login"
+    },
+    {
+      "order": 15,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "phase": "login"
+    },
+    {
+      "order": 16,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 17,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 18,
+      "method": "POST",
+      "path": "/api/auth/demo/logout",
+      "phase": "login"
+    },
+    {
+      "order": 19,
+      "method": "POST",
+      "path": "/api/auth/demo/logout",
+      "status": 204,
+      "phase": "login"
+    }
+  ],
+  "externalAttempts": 0,
+  "backendAttempts": 0
+}

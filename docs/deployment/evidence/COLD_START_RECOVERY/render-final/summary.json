@@ -1,0 +1,29 @@
+{
+  "phase": "render",
+  "focused": false,
+  "status": "FAIL",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "exit_code": 1,
+  "checks": {
+    "status": "FAIL",
+    "checks": [],
+    "cleanup_complete": true,
+    "managed_provider_contracts_verified": false,
+    "public_deployment_ready": false,
+    "local_render_runtime_ready": false,
+    "host_java_version": "21.0.11",
+    "failed_command_exit_code": 1,
+    "failed_command_tool": "docker",
+    "failed_phase": "prerequisites",
+    "failure_class": "CheckFailure",
+    "failed_check": "prerequisites-command",
+    "diagnostic_categories": [],
+    "test_failures": [],
+    "owned_docker_resources_remaining": 0,
+    "owned_ports_released": true
+  }
+}

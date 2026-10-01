@@ -1,0 +1,404 @@
+{
+  "phase": "be",
+  "focused": true,
+  "status": "PASS",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "selected_test_classes": [
+    "com.potg.don.auth.DemoAbuseGuardIntegrationTest",
+    "com.potg.don.auth.DemoGatewayBoundaryIntegrationTest",
+    "com.potg.don.auth.demo.DemoAbuseLimiterTest",
+    "com.potg.don.auth.demo.DemoAbuseRequestInterceptorTest",
+    "com.potg.don.auth.demo.DemoClientAddressTest",
+    "com.potg.don.auth.demo.DemoGatewayUnitTest",
+    "com.potg.don.global.config.DemoGatewayProfileConfigurationTest"
+  ],
+  "render_test_classes_in_separate_phase": [
+    "com.potg.don.auth.RenderRuntimeIntegrationTest",
+    "com.potg.don.auth.demo.RenderDemoBoundaryTest",
+    "com.potg.don.global.config.RenderRuntimeConfigurationTest"
+  ],
+  "exit_code": 0,
+  "checks": {
+    "status": "PASS",
+    "exit_code": 0,
+    "cleanup_complete": true,
+    "suites": [
+      {
+        "test": "com.potg.don.auth.DemoAbuseGuardIntegrationTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "gatewayCoversEveryApiRouteBeforeCorsJwtAndDependenciesWithOnlyExactGetLivenessExempt()",
+            "status": "PASS"
+          },
+          {
+            "test": "loginRateLimitCreatesNothingAndDoesNotBlockExistingVisitorRestoreReadOrLogout()",
+            "status": "PASS"
+          },
+          {
+            "test": "invalidHttpAndClientAddressDoNotConsumeQuotaOrReadTheBodyTwice()",
+            "status": "PASS"
+          },
+          {
+            "test": "actualFilterAndInterceptorOrderingIsSingleRegistrationAndCorsKeepsInternalHeadersPrivate()",
+            "status": "PASS"
+          },
+          {
+            "test": "admissionFullAndBusyKeepTheirExisting503ContractsAndDoNotRefundAllowedAttempts()",
+            "status": "PASS"
+          },
+          {
+            "test": "readinessHasItsOwnSixtyRequestBucketAndRejectedProbesTouchNoSqlOrRedis()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.DemoGatewayBoundaryIntegrationTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "directPublicRequestWithValidAccessCannotBypassGateway()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.demo.DemoAbuseLimiterTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "saturatedMapDoesNotEvictActiveEntriesOrExtendRejectedEntryLifetime()",
+            "status": "PASS"
+          },
+          {
+            "test": "ipTenInThirtyMinutesAndLongestWaitWins()",
+            "status": "PASS"
+          },
+          {
+            "test": "ipv6PrefixAndMappedIpv4UseSameBuckets()",
+            "status": "PASS"
+          },
+          {
+            "test": "readinessSixtyPerMinuteIsIndependentFromLogin()",
+            "status": "PASS"
+          },
+          {
+            "test": "existingMapEntryRemainsUsableWhenMapIsFull()",
+            "status": "PASS"
+          },
+          {
+            "test": "concurrentLoginRequestsCannotOverrunGlobalWindow()",
+            "status": "PASS"
+          },
+          {
+            "test": "globalThirtyPerHourAcrossDifferentAddresses()",
+            "status": "PASS"
+          },
+          {
+            "test": "shortWindowHasExactBoundaryAndRejectedRequestDoesNotExtendIt()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.demo.DemoAbuseRequestInterceptorTest",
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "malformedBodyRejectsWithoutConsumingQuota()",
+            "status": "PASS"
+          },
+          {
+            "test": "missingAndDuplicateAddressRejectBeforeQuota()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "loginLimitReturnsNoCookieAndPositiveDeltaSeconds()",
+            "status": "PASS"
+          },
+          {
+            "test": "bodyContractRunsFirstAndLimiterDoesNotReadConsumedBody()",
+            "status": "PASS"
+          },
+          {
+            "test": "missingVerifiedGatewayRejectsWithoutTrustingForwardedAddress()",
+            "status": "PASS"
+          },
+          {
+            "test": "readinessHasIndependentWindowAndProtectsHeadHandlerToo()",
+            "status": "PASS"
+          },
+          {
+            "test": "reissueAndSessionAndLogoutNeverConsumeLoginWindow()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.demo.DemoClientAddressTest",
+        "tests": 31,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "case-1",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          },
+          {
+            "test": "case-12",
+            "status": "PASS"
+          },
+          {
+            "test": "case-13",
+            "status": "PASS"
+          },
+          {
+            "test": "case-14",
+            "status": "PASS"
+          },
+          {
+            "test": "case-15",
+            "status": "PASS"
+          },
+          {
+            "test": "case-16",
+            "status": "PASS"
+          },
+          {
+            "test": "case-17",
+            "status": "PASS"
+          },
+          {
+            "test": "case-18",
+            "status": "PASS"
+          },
+          {
+            "test": "case-19",
+            "status": "PASS"
+          },
+          {
+            "test": "case-20",
+            "status": "PASS"
+          },
+          {
+            "test": "case-21",
+            "status": "PASS"
+          },
+          {
+            "test": "case-22",
+            "status": "PASS"
+          },
+          {
+            "test": "case-23",
+            "status": "PASS"
+          },
+          {
+            "test": "case-24",
+            "status": "PASS"
+          },
+          {
+            "test": "case-25",
+            "status": "PASS"
+          },
+          {
+            "test": "case-26",
+            "status": "PASS"
+          },
+          {
+            "test": "case-27",
+            "status": "PASS"
+          },
+          {
+            "test": "case-28",
+            "status": "PASS"
+          },
+          {
+            "test": "nullIsRejectedWithoutEcho()",
+            "status": "PASS"
+          },
+          {
+            "test": "ipv6NormalizesEquivalentTextAndGroupsOnlySamePrefix()",
+            "status": "PASS"
+          },
+          {
+            "test": "ipv4AndMappedRepresentationsAreEqual()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.demo.DemoGatewayUnitTest",
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "onlyExactGetLivenessIsExemptIncludingOptionsAndHead()",
+            "status": "PASS"
+          },
+          {
+            "test": "canonicalSettingMatchesAndDoesNotExposeValue()",
+            "status": "PASS"
+          },
+          {
+            "test": "missingWrongAndDuplicateRejectBeforeChainAndNeverEcho()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          },
+          {
+            "test": "localAndOAuthModesDoNotActivateGateway()",
+            "status": "PASS"
+          },
+          {
+            "test": "missingPublicSettingFailsWithFixedSanitizedError()",
+            "status": "PASS"
+          },
+          {
+            "test": "validRequestPassesOnceAndSetsVerifiedAttribute()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.global.config.DemoGatewayProfileConfigurationTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "publicDemoRequiresValidSecretBeforeDatabaseOrNormalSingletons()",
+            "status": "PASS"
+          },
+          {
+            "test": "localDemoAndOAuthIgnoreGatewaySecretWithoutAValidationFallback()",
+            "status": "PASS"
+          },
+          {
+            "test": "validPublicSettingsLoadProductConfigAndNeverRenderSecretInSettings()",
+            "status": "PASS"
+          }
+        ]
+      }
+    ],
+    "tests": 76,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS"
+  }
+}

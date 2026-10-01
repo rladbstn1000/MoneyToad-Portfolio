@@ -1,0 +1,2316 @@
+{
+  "starting_candidates": 79,
+  "reviewed_candidates": 79,
+  "actual_secret_or_pii_found": 0,
+  "unknown_candidates": 0,
+  "classification_counts": {
+    "NON_SECRET_SOURCE_PATTERN": 44,
+    "LINE_MOVE / STALE_CLASSIFICATION": 27,
+    "SYNTHETIC_TEST_DATA": 8
+  },
+  "rule_counts": {
+    "credential-assignment": 38,
+    "data-dump-candidate": 2,
+    "email-marker": 13,
+    "cookie-assignment": 6,
+    "identity-field": 13,
+    "bearer-marker": 4,
+    "authorization-marker": 2,
+    "cookie-header": 1
+  },
+  "raw_candidate_values_saved": false,
+  "rows": [
+    {
+      "ordinal": 1,
+      "file": "be/render.env.example",
+      "line": 7,
+      "rule": "credential-assignment",
+      "source_kind": "example",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "gateway_generation_instruction_comment",
+      "reason": "설명 주석의 secret 뒤 콜론을 대입으로 인식했다. 실제 gateway 설정값은 비어 있으며 생성 규격만 안내한다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "공개 배포 설정 방법 설명에 필요",
+      "expected_construct_description": "주석만 해당하며 실제 환경변수 대입은 빈 값",
+      "initial_file_digest": "880fc2fcfdf47f2bada281b7deddc8cf81bf6e853911cbe4574f79b3954815e0",
+      "initial_site_digest": "c696474edb9eaa6dcc501f4ef41efdc0b4dad131ccbe1af703a534ee76a30801",
+      "resolution_direction": "주석 문장을 대입처럼 보이지 않는 자연어로 정리할 수 있다. 설정명·생성 규격·빈 placeholder는 유지한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4b3dfdda2db581312cd595eedda315b10832322cca16b98ff058c4ff289b72c2"
+    },
+    {
+      "ordinal": 2,
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoGatewaySettings.java",
+      "line": 19,
+      "rule": "credential-assignment",
+      "source_kind": "source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "required_runtime_secret_reference",
+      "reason": "필수 설정에서 런타임 값을 읽거나 private byte 배열로 변환하는 코드이며 고정 credential 값이 아니다. 검증 실패 문구와 toString/응답은 값을 반사하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "gateway 인증을 수행하는 제품 구현에 필요",
+      "expected_construct_description": "환경 property 읽기 또는 private bytes 변환; 리터럴 credential 대입을 허용하지 않음",
+      "initial_file_digest": "e553f7e80eb943db36b84a97e9591f4d8e785139227e6963e12a133bb02c9c82",
+      "initial_site_digest": "8f22ca52bae59caa82c7980e9dbc32d071b608bc121d2069ab296dd12233a034",
+      "resolution_direction": "제품 변수명·validation·provider 구조는 유지한다. 정확한 파일/구문/digest에 한정한 B 분류가 적절하다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "e553f7e80eb943db36b84a97e9591f4d8e785139227e6963e12a133bb02c9c82"
+    },
+    {
+      "ordinal": 3,
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoGatewaySettings.java",
+      "line": 27,
+      "rule": "credential-assignment",
+      "source_kind": "source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "required_runtime_secret_reference",
+      "reason": "필수 설정에서 런타임 값을 읽거나 private byte 배열로 변환하는 코드이며 고정 credential 값이 아니다. 검증 실패 문구와 toString/응답은 값을 반사하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "gateway 인증을 수행하는 제품 구현에 필요",
+      "expected_construct_description": "환경 property 읽기 또는 private bytes 변환; 리터럴 credential 대입을 허용하지 않음",
+      "initial_file_digest": "e553f7e80eb943db36b84a97e9591f4d8e785139227e6963e12a133bb02c9c82",
+      "initial_site_digest": "e32f600beae7025a697a8dc0b367348f312583d031d7b23b844712ced01c820f",
+      "resolution_direction": "제품 변수명·validation·provider 구조는 유지한다. 정확한 파일/구문/digest에 한정한 B 분류가 적절하다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "e553f7e80eb943db36b84a97e9591f4d8e785139227e6963e12a133bb02c9c82"
+    },
+    {
+      "ordinal": 4,
+      "file": "be/src/main/resources/db/demo/V001__demo_admission.sql",
+      "line": null,
+      "rule": "data-dump-candidate",
+      "source_kind": "source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reviewed_schema_singleton_initialization",
+      "reason": "실데이터 dump가 아니라 CREATE TABLE 뒤 고정 capacity 또는 lock singleton 한 행을 설치하는 수동 migration이다. 사용자·credential·provider identity는 없다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "배포 전용 schema 설치·권한/경합 계약 재현에 필요",
+      "expected_construct_description": "해당 정확한 테이블 DDL과 검토된 singleton 초기화문만 허용; 추가 statement 자동 거절",
+      "initial_file_digest": "71271023a254777e12b730522b4f00d721b6664de8fecd5db5f400e6e1563c27",
+      "initial_site_digest": "71271023a254777e12b730522b4f00d721b6664de8fecd5db5f400e6e1563c27",
+      "resolution_direction": "삭제·UPDATE 대체·INSERT 철자 분할은 금지한다. 정확한 migration 파일 digest와 허용 DDL/한 건의 고정 INSERT 구조 검증을 묶는 좁은 B 처리가 필요하다. 구조 검증 없이 확장자 예외는 금지한다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "fixed-singleton-ddl"
+      ],
+      "final_file_digest": "71271023a254777e12b730522b4f00d721b6664de8fecd5db5f400e6e1563c27"
+    },
+    {
+      "ordinal": 5,
+      "file": "be/src/main/resources/db/demo/V002__demo_admission_lock.sql",
+      "line": null,
+      "rule": "data-dump-candidate",
+      "source_kind": "source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reviewed_schema_singleton_initialization",
+      "reason": "실데이터 dump가 아니라 CREATE TABLE 뒤 고정 capacity 또는 lock singleton 한 행을 설치하는 수동 migration이다. 사용자·credential·provider identity는 없다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "배포 전용 schema 설치·권한/경합 계약 재현에 필요",
+      "expected_construct_description": "해당 정확한 테이블 DDL과 검토된 singleton 초기화문만 허용; 추가 statement 자동 거절",
+      "initial_file_digest": "87f1f7d1130ecf41d530978433c9725ada6351f34d707779a88265fbd48f3a93",
+      "initial_site_digest": "87f1f7d1130ecf41d530978433c9725ada6351f34d707779a88265fbd48f3a93",
+      "resolution_direction": "삭제·UPDATE 대체·INSERT 철자 분할은 금지한다. 정확한 migration 파일 digest와 허용 DDL/한 건의 고정 INSERT 구조 검증을 묶는 좁은 B 처리가 필요하다. 구조 검증 없이 확장자 예외는 금지한다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "fixed-singleton-ddl"
+      ],
+      "final_file_digest": "87f1f7d1130ecf41d530978433c9725ada6351f34d707779a88265fbd48f3a93"
+    },
+    {
+      "ordinal": 6,
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 286,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "44f56e5dd27b6641d22ddb8c3c28cc98447630a6781d3c20f16fbaef556be310",
+      "initial_site_digest": "05df7a1f911dda872d2c3190cc3b7e171f976a6a2c3352778a47f90fdc4d3141",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "44f56e5dd27b6641d22ddb8c3c28cc98447630a6781d3c20f16fbaef556be310"
+    },
+    {
+      "ordinal": 7,
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 287,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "44f56e5dd27b6641d22ddb8c3c28cc98447630a6781d3c20f16fbaef556be310",
+      "initial_site_digest": "328097d1a489e95e92aa9637bc3360531089cc9a3e729cbe6269ed54ae4f3291",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "44f56e5dd27b6641d22ddb8c3c28cc98447630a6781d3c20f16fbaef556be310"
+    },
+    {
+      "ordinal": 8,
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 384,
+      "rule": "cookie-assignment",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "cookie_name_prefix_runtime_parse",
+      "reason": "정해진 cookie 이름 prefix를 검사/제거하여 실행 중 발급된 RT를 메모리에서 검증하는 코드다. 소스 literal에는 RT 값이 없다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "실제 발급 cookie와 JWT/Redis 세션 계약 검증에 필요",
+      "expected_construct_description": "cookie 이름만 literal; header runtime 값은 메모리에서 검증하며 evidence에는 비출력",
+      "initial_file_digest": "44f56e5dd27b6641d22ddb8c3c28cc98447630a6781d3c20f16fbaef556be310",
+      "initial_site_digest": "a4e39aaef1a1a0c249fc18ea55bb5d260bfbc22d502378cd755dcfa73c2b3d3d",
+      "resolution_direction": "정확한 prefix 검사/substring 구문과 digest에 한정한 B 분류가 필요하다. cookie 이름이나 인증 assertion을 변경하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "cookie-name-boundary"
+      ],
+      "final_file_digest": "44f56e5dd27b6641d22ddb8c3c28cc98447630a6781d3c20f16fbaef556be310"
+    },
+    {
+      "ordinal": 9,
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 385,
+      "rule": "cookie-assignment",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "cookie_name_prefix_runtime_parse",
+      "reason": "정해진 cookie 이름 prefix를 검사/제거하여 실행 중 발급된 RT를 메모리에서 검증하는 코드다. 소스 literal에는 RT 값이 없다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "실제 발급 cookie와 JWT/Redis 세션 계약 검증에 필요",
+      "expected_construct_description": "cookie 이름만 literal; header runtime 값은 메모리에서 검증하며 evidence에는 비출력",
+      "initial_file_digest": "44f56e5dd27b6641d22ddb8c3c28cc98447630a6781d3c20f16fbaef556be310",
+      "initial_site_digest": "3f9e640ed85fdc73f8f316ae98af25316ce8c67e6b9b7447fea7954f0f9a0b02",
+      "resolution_direction": "정확한 prefix 검사/substring 구문과 digest에 한정한 B 분류가 필요하다. cookie 이름이나 인증 assertion을 변경하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "cookie-name-boundary"
+      ],
+      "final_file_digest": "44f56e5dd27b6641d22ddb8c3c28cc98447630a6781d3c20f16fbaef556be310"
+    },
+    {
+      "ordinal": 10,
+      "file": "be/src/test/java/com/potg/don/auth/DemoGatewayBoundaryIntegrationTest.java",
+      "line": 24,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "8fa661753a6308f58ac391eb6e8609b46cf1569e162494109e59281c4ae8b203",
+      "initial_site_digest": "ac4c253c50c5da30427a36684f0a44d3da4c3279d81b1682d436c0d049167537",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "8fa661753a6308f58ac391eb6e8609b46cf1569e162494109e59281c4ae8b203"
+    },
+    {
+      "ordinal": 11,
+      "file": "be/src/test/java/com/potg/don/auth/ManagedSchemaPreparation.java",
+      "line": 163,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "합성 User/rollback/권한 거절/잘못된 JWT purpose 시험에 사용하는 예약 .invalid 도메인 fixture다. 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          153
+        ],
+        "previous_review_count_for_rule": 1,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Synthetic rollback-only schema fixture; no provider or runtime identity. Exact source line reviewed."
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "1eee7b10b2871263552054a984dc7618d0046552f5a18416bfeda8feffdacdec",
+      "initial_site_digest": "3abd04dd72d32814f8c702d0c4a401b6f4ae4bcbad8b881823a92f6fd3a6f8e1",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. assertion을 유지하며 고정 credential처럼 보이는 불필요한 literal은 테스트 실행 시 만드는 fixture로 전환 가능하다. 동일 fixture를 조회/비교하는 곳은 같은 생성 값을 재사용하고 reserved invalid 도메인을 유지한다. 단순 문자열 분할로 탐지를 회피하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "1eee7b10b2871263552054a984dc7618d0046552f5a18416bfeda8feffdacdec"
+    },
+    {
+      "ordinal": 12,
+      "file": "be/src/test/java/com/potg/don/auth/RenderRuntimeIntegrationTest.java",
+      "line": 294,
+      "rule": "cookie-assignment",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "sensitive_cookie_log_rejection_regex",
+      "reason": "로그에 cookie 값이 나타나면 실패시키는 정규식 자체가 탐지됐다. 실제 cookie 값을 소스나 공개 evidence에 기록하는 코드가 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          286,
+          293
+        ],
+        "previous_review_count_for_rule": 2,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "synthetic test fixture or assertion",
+          "Moved reviewed regex that rejects cookie values in logs; no cookie literal"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "로그 민감값 비노출 회귀에 필요",
+      "expected_construct_description": "Pattern.compile로 로그를 검사하고 boolean으로 실패 판정",
+      "initial_file_digest": "727e719ab6d2cb363d1d1d6ffaba60f8f9a68ef67954ae927d7cb15cc69e43bd",
+      "initial_site_digest": "961ab4e5348ddc234a99ef7a5ff6c49243328ced8cf70fdc953dc07f679b0c0f",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 로그 비노출 assertion을 삭제·약화하지 않는다. 정확한 regex/주변 boolean assertion과 파일 digest로 분류한다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "negative-detection-pattern"
+      ],
+      "final_file_digest": "727e719ab6d2cb363d1d1d6ffaba60f8f9a68ef67954ae927d7cb15cc69e43bd"
+    },
+    {
+      "ordinal": 13,
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthServiceTest.java",
+      "line": 258,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "합성 User/rollback/권한 거절/잘못된 JWT purpose 시험에 사용하는 예약 .invalid 도메인 fixture다. 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          245
+        ],
+        "previous_review_count_for_rule": 1,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "synthetic test fixture or assertion"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "4562321edae5c8b882e17273d2d32f8e75fdced45bb5b65e2be3d3986bd3c8aa",
+      "initial_site_digest": "1ab02841fa19f22082b0647b730e5235f06dbf8e9d912ffd80e05e3c229e26ed",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. assertion을 유지하며 고정 credential처럼 보이는 불필요한 literal은 테스트 실행 시 만드는 fixture로 전환 가능하다. 동일 fixture를 조회/비교하는 곳은 같은 생성 값을 재사용하고 reserved invalid 도메인을 유지한다. 단순 문자열 분할로 탐지를 회피하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "4562321edae5c8b882e17273d2d32f8e75fdced45bb5b65e2be3d3986bd3c8aa"
+    },
+    {
+      "ordinal": 14,
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+      "line": 43,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "owned_test_environment_reference",
+      "reason": "전용 검증 runner의 환경변수에서 테스트 DB 자격값을 읽는 코드다. 소스에는 값이 없고 이어지는 loopback/schema 제한을 읽어 확인했다. 실제 환경변수 값은 읽지 않았다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "전용 MySQL 권한·read-only·cleanup 회귀를 실행하는 데 필요",
+      "expected_construct_description": "명시한 테스트 환경변수에 대한 System.getenv 참조이며 임의 문자열/실provider 값 대입 아님",
+      "initial_file_digest": "96868c9f0a9f94f6aab59a29d35019a48d26e85babcdc2185a6bd82f98a111fb",
+      "initial_site_digest": "e4bce83fdf95fce2190801b9d935adbb8b5bafb72bf09f7e64e9148d9aa04206",
+      "resolution_direction": "환경변수 계약과 소유 자원 검사를 유지한다. 정확한 System.getenv 대입 구문/digest에 한정한 B 분류가 필요하다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "96868c9f0a9f94f6aab59a29d35019a48d26e85babcdc2185a6bd82f98a111fb"
+    },
+    {
+      "ordinal": 15,
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+      "line": 226,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "96868c9f0a9f94f6aab59a29d35019a48d26e85babcdc2185a6bd82f98a111fb",
+      "initial_site_digest": "63bb7703d0dc14e9728b4a01daa948c2a3a9685491b80ef1813c27620976eba3",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "96868c9f0a9f94f6aab59a29d35019a48d26e85babcdc2185a6bd82f98a111fb"
+    },
+    {
+      "ordinal": 16,
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+      "line": 75,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "SYNTHETIC_TEST_DATA",
+      "candidate_kind": "synthetic_private_input_parser_fixture",
+      "reason": "테스트가 @TempDir에 직접 작성하는 합성 credential 형식/중복 key 거절 입력이다. 해당 검증은 파일 parser를 호출하며 실제 DB 연결이나 provider 비밀 파일을 읽지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "credential 파일 parser의 중복·권한·구조 거절 회귀에 필요",
+      "expected_construct_description": "테스트 생성 임시 파일과 CleanupCredentials.read만 사용; 런타임 생성 값을 중복 key payload에서도 동일하게 유지",
+      "initial_file_digest": "02c6b55f32bd56d3ee8b9eee0643d2a38c7f55c4330f93d65cdf3e2417e0ab12",
+      "initial_site_digest": "e8d45cf722165fc4ae23098c9f7a8499bbc7618dda6854bca3e7705e6938738c",
+      "resolution_direction": "합성 password 부분을 실행 시 생성하고 현재 중복 key/파일권한/TLS/schema rejection assertion을 그대로 보존할 수 있다. 키를 제거하거나 검증을 완화하지 않는다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "dc8794ecdbd5ba6f5b6fe7b931ba6462644126214f42b9b0e6faf372085e35ff"
+    },
+    {
+      "ordinal": 17,
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+      "line": 130,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "SYNTHETIC_TEST_DATA",
+      "candidate_kind": "synthetic_private_input_parser_fixture",
+      "reason": "테스트가 @TempDir에 직접 작성하는 합성 credential 형식/중복 key 거절 입력이다. 해당 검증은 파일 parser를 호출하며 실제 DB 연결이나 provider 비밀 파일을 읽지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "credential 파일 parser의 중복·권한·구조 거절 회귀에 필요",
+      "expected_construct_description": "테스트 생성 임시 파일과 CleanupCredentials.read만 사용; 런타임 생성 값을 중복 key payload에서도 동일하게 유지",
+      "initial_file_digest": "02c6b55f32bd56d3ee8b9eee0643d2a38c7f55c4330f93d65cdf3e2417e0ab12",
+      "initial_site_digest": "df60a0edc39a8011e589f747217f03f05c128de6019b7fc0b1bf71ee9bad0322",
+      "resolution_direction": "합성 password 부분을 실행 시 생성하고 현재 중복 key/파일권한/TLS/schema rejection assertion을 그대로 보존할 수 있다. 키를 제거하거나 검증을 완화하지 않는다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "dc8794ecdbd5ba6f5b6fe7b931ba6462644126214f42b9b0e6faf372085e35ff"
+    },
+    {
+      "ordinal": 18,
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 403,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "owned_test_environment_reference",
+      "reason": "전용 검증 runner의 환경변수에서 테스트 DB 자격값을 읽는 코드다. 소스에는 값이 없고 이어지는 loopback/schema 제한을 읽어 확인했다. 실제 환경변수 값은 읽지 않았다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "전용 MySQL 권한·read-only·cleanup 회귀를 실행하는 데 필요",
+      "expected_construct_description": "명시한 테스트 환경변수에 대한 System.getenv 참조이며 임의 문자열/실provider 값 대입 아님",
+      "initial_file_digest": "0313727fc0facf9f4854e1de1f6fcc2f8c289707ddc628793d92e699acee6d2b",
+      "initial_site_digest": "c90a28d95b095c57ebbf914fdf65e245cd17901ae2fbbb1b144a50401286fe78",
+      "resolution_direction": "환경변수 계약과 소유 자원 검사를 유지한다. 정확한 System.getenv 대입 구문/digest에 한정한 B 분류가 필요하다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "0313727fc0facf9f4854e1de1f6fcc2f8c289707ddc628793d92e699acee6d2b"
+    },
+    {
+      "ordinal": 19,
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 404,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "owned_test_environment_reference",
+      "reason": "전용 검증 runner의 환경변수에서 테스트 DB 자격값을 읽는 코드다. 소스에는 값이 없고 이어지는 loopback/schema 제한을 읽어 확인했다. 실제 환경변수 값은 읽지 않았다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "전용 MySQL 권한·read-only·cleanup 회귀를 실행하는 데 필요",
+      "expected_construct_description": "명시한 테스트 환경변수에 대한 System.getenv 참조이며 임의 문자열/실provider 값 대입 아님",
+      "initial_file_digest": "0313727fc0facf9f4854e1de1f6fcc2f8c289707ddc628793d92e699acee6d2b",
+      "initial_site_digest": "07be1f4186bf0fbe21384fd8e36894ff6a69defd534a942004c0c9e3ecbb7a7b",
+      "resolution_direction": "환경변수 계약과 소유 자원 검사를 유지한다. 정확한 System.getenv 대입 구문/digest에 한정한 B 분류가 필요하다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "0313727fc0facf9f4854e1de1f6fcc2f8c289707ddc628793d92e699acee6d2b"
+    },
+    {
+      "ordinal": 20,
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 459,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "0313727fc0facf9f4854e1de1f6fcc2f8c289707ddc628793d92e699acee6d2b",
+      "initial_site_digest": "4cb039a71936f18e3fd559fc531c39c37699eb369a61086091f1c09fa608bf6c",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "0313727fc0facf9f4854e1de1f6fcc2f8c289707ddc628793d92e699acee6d2b"
+    },
+    {
+      "ordinal": 21,
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 636,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "0313727fc0facf9f4854e1de1f6fcc2f8c289707ddc628793d92e699acee6d2b",
+      "initial_site_digest": "b8f2bfbb3ad280c96147842eca49b4b8eba6aafe32e96d9d3d781831cb26dfab",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "0313727fc0facf9f4854e1de1f6fcc2f8c289707ddc628793d92e699acee6d2b"
+    },
+    {
+      "ordinal": 22,
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockSyntheticJdbc.java",
+      "line": 167,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "5234120a987560ce288b3c3395eab8a84a1123fc0c0465c7c8bd1a40ba462796",
+      "initial_site_digest": "4299f526327a5eac505a0fa608af376dac65054490b47472636c03100b3b87c2",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "5234120a987560ce288b3c3395eab8a84a1123fc0c0465c7c8bd1a40ba462796"
+    },
+    {
+      "ordinal": 23,
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockSyntheticJdbc.java",
+      "line": 175,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "5234120a987560ce288b3c3395eab8a84a1123fc0c0465c7c8bd1a40ba462796",
+      "initial_site_digest": "822152999196f49820f53898d05a80981c729d2ca987f9a10a1555d42c7b82bb",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "5234120a987560ce288b3c3395eab8a84a1123fc0c0465c7c8bd1a40ba462796"
+    },
+    {
+      "ordinal": 24,
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 238,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b",
+      "initial_site_digest": "9f8737357cd8b918ee3ae7e342194ca3fa87676bc677fd7625758e8454e42d38",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b"
+    },
+    {
+      "ordinal": 25,
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 248,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b",
+      "initial_site_digest": "9f8737357cd8b918ee3ae7e342194ca3fa87676bc677fd7625758e8454e42d38",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b"
+    },
+    {
+      "ordinal": 26,
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 255,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b",
+      "initial_site_digest": "16ff19c93e79b9f0fa954c8ec7d94f4e8ab497f62967e3d5ea11c7c1236cb6f0",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b"
+    },
+    {
+      "ordinal": 27,
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 284,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b",
+      "initial_site_digest": "abb60752fd42d2f55c92c7e969f1017a54406a3d50078fa9b94706385a0617e7",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b"
+    },
+    {
+      "ordinal": 28,
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 427,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b",
+      "initial_site_digest": "ce473dde1cbaf11cc7fee29640548b47583baeb8ba985eeb0565f7083f41cd97",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b"
+    },
+    {
+      "ordinal": 29,
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 499,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b",
+      "initial_site_digest": "e1c5f6aa3580d3f73ffd3bfefb876439b15bdd92a5386623719c38e422425352",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "bb791ebe1d23b91988e41644f439097e7a3bd8cfab4f87a57764e3e663ceb01b"
+    },
+    {
+      "ordinal": 30,
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 166,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191",
+      "initial_site_digest": "a04736f0370139317deb0ac58926815e3ab49891496654763eae1e705d4d6921",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191"
+    },
+    {
+      "ordinal": 31,
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 170,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191",
+      "initial_site_digest": "f77ed61b8f98a4716df5b7ed60b8a2afe704ea8919c41dfc0a0de394340ff4e1",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191"
+    },
+    {
+      "ordinal": 32,
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 219,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191",
+      "initial_site_digest": "e05a09545e70bd7bd6162f1dc29722feb204446d452cdec13394d6c59de623be",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191"
+    },
+    {
+      "ordinal": 33,
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 339,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191",
+      "initial_site_digest": "ce473dde1cbaf11cc7fee29640548b47583baeb8ba985eeb0565f7083f41cd97",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191"
+    },
+    {
+      "ordinal": 34,
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 413,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191",
+      "initial_site_digest": "e1c5f6aa3580d3f73ffd3bfefb876439b15bdd92a5386623719c38e422425352",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "9f1c51b0979c34b6abe41f0085fe6d14fbb2c294184091c39879b39325ff0191"
+    },
+    {
+      "ordinal": 35,
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+      "line": 177,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "3b7d68b83b95189cdf9ac38d1763e00b9cb074a62756ab0aab9ef4ba52c9bea6",
+      "initial_site_digest": "4299f526327a5eac505a0fa608af376dac65054490b47472636c03100b3b87c2",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "3b7d68b83b95189cdf9ac38d1763e00b9cb074a62756ab0aab9ef4ba52c9bea6"
+    },
+    {
+      "ordinal": 36,
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+      "line": 185,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "3b7d68b83b95189cdf9ac38d1763e00b9cb074a62756ab0aab9ef4ba52c9bea6",
+      "initial_site_digest": "822152999196f49820f53898d05a80981c729d2ca987f9a10a1555d42c7b82bb",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "3b7d68b83b95189cdf9ac38d1763e00b9cb074a62756ab0aab9ef4ba52c9bea6"
+    },
+    {
+      "ordinal": 37,
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 327,
+      "rule": "email-marker",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "reserved_invalid_fixture_email",
+      "reason": "사용자의 B 정의에 명시된 reserved invalid-domain fixture 표현이다. 합성 User/rollback/권한 거절 시험의 source 식이며 실제 사용자나 provider 계정을 읽어 복사한 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "합성 사용자·소유권·rollback·권한 경계 검증에 필요",
+      "expected_construct_description": "테스트에서만 생성한 User/email이고 예약 invalid 도메인 및 동일 fixture 참조",
+      "initial_file_digest": "d428e91b415afc701d4507413db328376f183f0381042d99f638ba3b13f86c6b",
+      "initial_site_digest": "24e976f837d38d9d0a14814614dba47210a5aea2ed0153af45f4a817ad122b12",
+      "resolution_direction": "테스트 SQL/소유권/rollback assertion과 reserved invalid-domain fixture를 유지한다. 정확한 식·reserved domain·파일 digest를 결합한 B 분류가 가능하다. 문자열 분할만으로 탐지를 회피하거나 광범위한 test 예외를 추가하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "reserved-invalid-domain"
+      ],
+      "final_file_digest": "d428e91b415afc701d4507413db328376f183f0381042d99f638ba3b13f86c6b"
+    },
+    {
+      "ordinal": 38,
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 404,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "d428e91b415afc701d4507413db328376f183f0381042d99f638ba3b13f86c6b",
+      "initial_site_digest": "ce473dde1cbaf11cc7fee29640548b47583baeb8ba985eeb0565f7083f41cd97",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "d428e91b415afc701d4507413db328376f183f0381042d99f638ba3b13f86c6b"
+    },
+    {
+      "ordinal": 39,
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 474,
+      "rule": "identity-field",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "sql_column_selector_ternary",
+      "reason": "삼항 연산자의 SQL column 이름 뒤 콜론을 identity 값 대입으로 인식했다. 저장·출력되는 사용자 값이 아니라 정렬·삭제·metadata mock에 사용하는 고정 column 식별자다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "SQL 경계·소유 자원 정리·전후 비교 검증에 필요",
+      "expected_construct_description": "동일 table 비교와 두 고정 column 식별자를 선택하는 삼항식",
+      "initial_file_digest": "d428e91b415afc701d4507413db328376f183f0381042d99f638ba3b13f86c6b",
+      "initial_site_digest": "e1c5f6aa3580d3f73ffd3bfefb876439b15bdd92a5386623719c38e422425352",
+      "resolution_direction": "SQL/소유권/정리 동작을 scanner 때문에 재작성하지 않는다. 정확한 삼항 column 선택 구문과 파일 digest로 B 분류하고 literal identity map에는 적용하지 않는다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "sql-column-selector"
+      ],
+      "final_file_digest": "d428e91b415afc701d4507413db328376f183f0381042d99f638ba3b13f86c6b"
+    },
+    {
+      "ordinal": 40,
+      "file": "fe/functions/api/[[path]].ts",
+      "line": 47,
+      "rule": "credential-assignment",
+      "source_kind": "source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "required_runtime_secret_reference",
+      "reason": "필수 설정에서 런타임 값을 읽거나 private byte 배열로 변환하는 코드이며 고정 credential 값이 아니다. 검증 실패 문구와 toString/응답은 값을 반사하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 0,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "gateway 인증을 수행하는 제품 구현에 필요",
+      "expected_construct_description": "환경 property 읽기 또는 private bytes 변환; 리터럴 credential 대입을 허용하지 않음",
+      "initial_file_digest": "f617a683f99ffe8b378d164ac20792721a43bfc897bbe51bf58f98a1d63383b9",
+      "initial_site_digest": "7b9ed01f04498d076aa125832a369cfdea74555fef725eadba90649398f9b590",
+      "resolution_direction": "제품 변수명·validation·provider 구조는 유지한다. 정확한 파일/구문/digest에 한정한 B 분류가 적절하다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "f617a683f99ffe8b378d164ac20792721a43bfc897bbe51bf58f98a1d63383b9"
+    },
+    {
+      "ordinal": 41,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 9,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "SYNTHETIC_TEST_DATA",
+      "candidate_kind": "canonical_synthetic_gateway_fixture",
+      "reason": "test-local 생성식으로 만든 canonical 형식의 합성 gateway fixture를 mocked fetch 환경에 넣는다. 실제 설정이나 배포 credential을 읽지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 1,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "전용 합성 gateway 생성 결과를 mock env에 주입, 실제 fetch 대역",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "8fc90edd4a418c03ef944186e1fd7802d6b24e1d44419d26d49aab55d04b3bc5",
+      "resolution_direction": "고정 반복 문자 생성식 대신 테스트 실행 시 32 random bytes의 canonical base64url을 만들 수 있다. 값은 assertion/response에 출력하지 않고 동일 변수로만 비교한다. env 객체 key 대입 자체는 B로 좁게 검토할 수 있다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 42,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 17,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "explicit_synthetic_proxy_transport_fixture",
+      "reason": "예약 invalid origin과 mocked fetch에서 전달·중복 Set-Cookie·userinfo URL 거절을 검증하는 명시적 합성 marker이다. JWT/RT/실provider credential을 읽거나 재사용하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          11
+        ],
+        "previous_review_count_for_rule": 1,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Explicit fixture password on invalid-domain URL for userinfo rejection; mocked fetch"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "invalid origin·mocked fetch 전용 fixture와 값 전달/거절 assertion",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "e3988c0c13f8d4110622f8087ac29ae5ff0f6d758a751c433cf3aa1eff1a3675",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 가능하면 test runtime fixture로 생성하여 sender/assertion에서 동일 값을 재사용하고 cookie 속성·header 분리·거절 조건을 보존한다. 프로토콜 header/prefix는 값과 구분해 B 검토한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 43,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 46,
+      "rule": "bearer-marker",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "explicit_synthetic_proxy_transport_fixture",
+      "reason": "예약 invalid origin과 mocked fetch에서 전달·중복 Set-Cookie·userinfo URL 거절을 검증하는 명시적 합성 marker이다. JWT/RT/실provider credential을 읽거나 재사용하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          40
+        ],
+        "previous_review_count_for_rule": 2,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Fake fetch asserts non-JWT SYNTHETIC marker forwarding"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "invalid origin·mocked fetch 전용 fixture와 값 전달/거절 assertion",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "d3f06733ae2eb1c3165dd540f9367d8d7af119c29895a49c19982170dfef1e46",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 가능하면 test runtime fixture로 생성하여 sender/assertion에서 동일 값을 재사용하고 cookie 속성·header 분리·거절 조건을 보존한다. 프로토콜 header/prefix는 값과 구분해 B 검토한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 44,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 47,
+      "rule": "cookie-assignment",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "explicit_synthetic_proxy_transport_fixture",
+      "reason": "예약 invalid origin과 mocked fetch에서 전달·중복 Set-Cookie·userinfo URL 거절을 검증하는 명시적 합성 marker이다. JWT/RT/실provider credential을 읽거나 재사용하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          41
+        ],
+        "previous_review_count_for_rule": 3,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Fake fetch asserts non-RT SYNTHETIC cookie marker forwarding"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "invalid origin·mocked fetch 전용 fixture와 값 전달/거절 assertion",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "8a42679cb1ac6a881417fdde3df96eef9c1669ade1a1e71e444c4616a2bf15c1",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 가능하면 test runtime fixture로 생성하여 sender/assertion에서 동일 값을 재사용하고 cookie 속성·header 분리·거절 조건을 보존한다. 프로토콜 header/prefix는 값과 구분해 B 검토한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 45,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 54,
+      "rule": "bearer-marker",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "explicit_synthetic_proxy_transport_fixture",
+      "reason": "예약 invalid origin과 mocked fetch에서 전달·중복 Set-Cookie·userinfo URL 거절을 검증하는 명시적 합성 marker이다. JWT/RT/실provider credential을 읽거나 재사용하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          48
+        ],
+        "previous_review_count_for_rule": 2,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Invalid-domain Request fixture with explicit non-JWT synthetic marker"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "invalid origin·mocked fetch 전용 fixture와 값 전달/거절 assertion",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "181de51d08b3d494b3f7a7affb3316452f4c88ee1105d45623bd3555906e6810",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 가능하면 test runtime fixture로 생성하여 sender/assertion에서 동일 값을 재사용하고 cookie 속성·header 분리·거절 조건을 보존한다. 프로토콜 header/prefix는 값과 구분해 B 검토한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 46,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 54,
+      "rule": "authorization-marker",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "synthetic_request_header_key",
+      "reason": "mocked fetch 요청 객체의 Authorization header key가 탐지됐다. 인접 값은 명시적 비JWT 합성 marker이며 실제 credential이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          48
+        ],
+        "previous_review_count_for_rule": 1,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Header key and synthetic proxy fixture; all fetch calls mocked"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "mocked RequestInit.headers 객체의 고정 header key",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "181de51d08b3d494b3f7a7affb3316452f4c88ee1105d45623bd3555906e6810",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. synthetic marker를 runtime 값으로 바꾸더라도 header key는 필수이다. 정확한 RequestInit 구문/digest에 한정한 B 분류를 사용한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 47,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 54,
+      "rule": "cookie-assignment",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "explicit_synthetic_proxy_transport_fixture",
+      "reason": "예약 invalid origin과 mocked fetch에서 전달·중복 Set-Cookie·userinfo URL 거절을 검증하는 명시적 합성 marker이다. JWT/RT/실provider credential을 읽거나 재사용하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          48
+        ],
+        "previous_review_count_for_rule": 3,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Request fixture with non-RT synthetic cookie marker; no real session"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "invalid origin·mocked fetch 전용 fixture와 값 전달/거절 assertion",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "181de51d08b3d494b3f7a7affb3316452f4c88ee1105d45623bd3555906e6810",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 가능하면 test runtime fixture로 생성하여 sender/assertion에서 동일 값을 재사용하고 cookie 속성·header 분리·거절 조건을 보존한다. 프로토콜 header/prefix는 값과 구분해 B 검토한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 48,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 127,
+      "rule": "cookie-assignment",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "explicit_synthetic_proxy_transport_fixture",
+      "reason": "예약 invalid origin과 mocked fetch에서 전달·중복 Set-Cookie·userinfo URL 거절을 검증하는 명시적 합성 marker이다. JWT/RT/실provider credential을 읽거나 재사용하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          121
+        ],
+        "previous_review_count_for_rule": 3,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Two synthetic Set-Cookie fixtures test separate headers and exact attributes"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "invalid origin·mocked fetch 전용 fixture와 값 전달/거절 assertion",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "15cd78cef11134c1a3c9784acd2d9d6712bd9ed3d162651c447d07336900af68",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 가능하면 test runtime fixture로 생성하여 sender/assertion에서 동일 값을 재사용하고 cookie 속성·header 분리·거절 조건을 보존한다. 프로토콜 header/prefix는 값과 구분해 B 검토한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 49,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 148,
+      "rule": "cookie-header",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "explicit_synthetic_proxy_transport_fixture",
+      "reason": "예약 invalid origin과 mocked fetch에서 전달·중복 Set-Cookie·userinfo URL 거절을 검증하는 명시적 합성 marker이다. JWT/RT/실provider credential을 읽거나 재사용하지 않는다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          142
+        ],
+        "previous_review_count_for_rule": 1,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "Mock upstream synthetic cookie tests unsupported cookie API failure"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "invalid origin·mocked fetch 전용 fixture와 값 전달/거절 assertion",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "99136e207282849e174e8268199d0ee87590599cac8e6f12447ea2f78da6f21d",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 가능하면 test runtime fixture로 생성하여 sender/assertion에서 동일 값을 재사용하고 cookie 속성·header 분리·거절 조건을 보존한다. 프로토콜 header/prefix는 값과 구분해 B 검토한다.",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 50,
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 174,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "invalid_runtime_gateway_parameter",
+      "reason": "parameterized invalid 값 인자를 env 객체에 넣어 fail-closed/transport 미호출을 검증한다. 이 행에 고정 credential은 없다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": false,
+        "previous_lines": [],
+        "previous_review_count_for_rule": 1,
+        "same_content_line_move": false,
+        "previous_classifications": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Pages Function proxy의 인증 전달·cookie 무손실·오류 비노출 검증에 필요",
+      "expected_construct_description": "검증된 invalid parameter를 env 객체에 전달하고 외부 transport 0회 assertion",
+      "initial_file_digest": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379",
+      "initial_site_digest": "5c03151672fe9c5fd6c1b9c18f2efee1405047c19db5b470881bfe6f5b22bcae",
+      "resolution_direction": "invalid 입력 목록과 assertion은 유지하고 정확한 env key/parameter 표현/digest에 한정한 B 분류가 적절하다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb"
+    },
+    {
+      "ordinal": 51,
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 240,
+      "rule": "bearer-marker",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "memory_token_msw_comparison",
+      "reason": "메모리에 생성된 테스트 AT를 MSW 요청 header와 비교해 401/늦은 응답을 재현하는 템플릿 표현이다. 고정 token 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          152,
+          155
+        ],
+        "previous_review_count_for_rule": 4,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "synthetic test fixture or assertion",
+          "Moved reviewed MSW oldToken comparison for synthetic 401 fixture"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "single-flight 및 늦은 응답 인증 회귀에 필요",
+      "expected_construct_description": "기존 메모리 oldToken을 header와 비교하는 MSW 함수",
+      "initial_file_digest": "97115d25014cd48f22181405aa99f506119d7ff6b7841bed7ffe9cb3202f5f8b",
+      "initial_site_digest": "d78e494573c35c76ea2098a80a602a5aedc57769405941bad9ab9088c9514602",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 동일 구문 digest의 기존 검토를 줄번호 독립적인 좁은 분류에 연결하되 파일 내용 변경 때 재검토한다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-request-header"
+      ],
+      "final_file_digest": "97115d25014cd48f22181405aa99f506119d7ff6b7841bed7ffe9cb3202f5f8b"
+    },
+    {
+      "ordinal": 52,
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 252,
+      "rule": "bearer-marker",
+      "source_kind": "test",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "memory_token_msw_comparison",
+      "reason": "메모리에 생성된 테스트 AT를 MSW 요청 header와 비교해 401/늦은 응답을 재현하는 템플릿 표현이다. 고정 token 값이 아니다.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "exact_digest_match": true,
+        "previous_lines": [
+          164,
+          167
+        ],
+        "previous_review_count_for_rule": 4,
+        "same_content_line_move": true,
+        "previous_classifications": [
+          "synthetic test fixture or assertion",
+          "Moved reviewed late-response single-flight memory comparison"
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "single-flight 및 늦은 응답 인증 회귀에 필요",
+      "expected_construct_description": "기존 메모리 oldToken을 header와 비교하는 MSW 함수",
+      "initial_file_digest": "97115d25014cd48f22181405aa99f506119d7ff6b7841bed7ffe9cb3202f5f8b",
+      "initial_site_digest": "1c301d2ddc0b727bc7335c773053d728a2658d39512e23bfab8d0639b48d85d0",
+      "resolution_direction": "동일 파일·rule·line content digest로 기존 검토와 일치한다. 줄번호만 수정하는 방식 대신 exact semantic construct와 파일 digest로 재검토 경계를 고정한다. 원래 검토 의미를 확대하지 않는다. 동일 구문 digest의 기존 검토를 줄번호 독립적인 좁은 분류에 연결하되 파일 내용 변경 때 재검토한다.",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-request-header"
+      ],
+      "final_file_digest": "97115d25014cd48f22181405aa99f506119d7ff6b7841bed7ffe9cb3202f5f8b"
+    },
+    {
+      "ordinal": 53,
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 165,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-generated-variable-assignment",
+      "reason": "Tuple unpack from generated credentials, whose producer is secrets.token_urlsafe in a list comprehension.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          153
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-generated-variable-assignment",
+      "initial_file_digest": "8ae0c28ade2d35ebc1a268a97301f0944293d0b82dc786d7348fb299d36bf384",
+      "initial_site_digest": "216cddf6ea7fc4f92d2fbb5e5a6efbc081bad4cc10ac201ce15a2c0a0340c300",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "8ae0c28ade2d35ebc1a268a97301f0944293d0b82dc786d7348fb299d36bf384"
+    },
+    {
+      "ordinal": 54,
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 348,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-config-variable-forward",
+      "reason": "Environment dictionary forwards generated DB password variable; no literal value.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          336
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-config-variable-forward",
+      "initial_file_digest": "8ae0c28ade2d35ebc1a268a97301f0944293d0b82dc786d7348fb299d36bf384",
+      "initial_site_digest": "4e41fb467bc062ed13a5e4292a03bfdd50eed61470ce9da92f28e5b4c2f60015",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "8ae0c28ade2d35ebc1a268a97301f0944293d0b82dc786d7348fb299d36bf384"
+    },
+    {
+      "ordinal": 55,
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 349,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-config-variable-forward",
+      "reason": "Environment dictionary forwards generated JWT secret variable; no literal value.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          337
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-config-variable-forward",
+      "initial_file_digest": "8ae0c28ade2d35ebc1a268a97301f0944293d0b82dc786d7348fb299d36bf384",
+      "initial_site_digest": "020e307384a6d31dac74bd4d385a507cb8101bf90aa1fcde412e5c1f2cffea48",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "8ae0c28ade2d35ebc1a268a97301f0944293d0b82dc786d7348fb299d36bf384"
+    },
+    {
+      "ordinal": 56,
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 350,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-config-variable-forward",
+      "reason": "Environment dictionary forwards generated OAuth secret variable; no literal value.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          338
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-config-variable-forward",
+      "initial_file_digest": "8ae0c28ade2d35ebc1a268a97301f0944293d0b82dc786d7348fb299d36bf384",
+      "initial_site_digest": "327cc388e46e57beda7c1b8ad286539b9b4e96772b01b98d555420453282fc13",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "8ae0c28ade2d35ebc1a268a97301f0944293d0b82dc786d7348fb299d36bf384"
+    },
+    {
+      "ordinal": 57,
+      "file": "scripts/verification/demo_admission_lock_tidb.py",
+      "line": 450,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Private helper credential produced by secrets.token_hex(32).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "5f019630cd3f41d505b4829077c4754018ea9133c002c0309f75b083f8fa7ac7",
+      "initial_site_digest": "f7e9bfc57a10f59c5e847a5c1d08a2fd156b7c06311a157ca09d2b5e6d24b35d",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "5f019630cd3f41d505b4829077c4754018ea9133c002c0309f75b083f8fa7ac7"
+    },
+    {
+      "ordinal": 58,
+      "file": "scripts/verification/demo_admission_lock_tidb.py",
+      "line": 451,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Private helper credential produced by secrets.token_hex(32).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "5f019630cd3f41d505b4829077c4754018ea9133c002c0309f75b083f8fa7ac7",
+      "initial_site_digest": "b6c8b09d84f398e8bd4cc6b9a7c3341eaccf94c91b5941d896ee34cdfe3da111",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "5f019630cd3f41d505b4829077c4754018ea9133c002c0309f75b083f8fa7ac7"
+    },
+    {
+      "ordinal": 59,
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 191,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Loopback password produced by secrets.token_hex(24).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          189
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599",
+      "initial_site_digest": "fd8896b613113d28366ee7d19abd48d94a5d1f9218a3bcaa5b0a0fe1c06b0fd2",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599"
+    },
+    {
+      "ordinal": 60,
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 230,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "runtime-config-variable-forward",
+      "reason": "Server environment binding receives in-memory generated gateway value.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-config-variable-forward",
+      "initial_file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599",
+      "initial_site_digest": "1e964d4a9873d5d1e12e67c2ef6b3ad31529912beb677e006f812caa6108c83b",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599"
+    },
+    {
+      "ordinal": 61,
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 232,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "runtime-config-variable-forward",
+      "reason": "Loopback DB environment receives generated password variable.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-config-variable-forward",
+      "initial_file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599",
+      "initial_site_digest": "e9b0e8a9586b9ab4572ca29b3751f14045c58ded1db134b6d7aa6e2023f9c239",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599"
+    },
+    {
+      "ordinal": 62,
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 234,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-random-call",
+      "reason": "JWT test configuration uses secrets.token_hex(48).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          227
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599",
+      "initial_site_digest": "b23c92d98a237511397c993386b7c85cda01b40319d4d3a03bfba6d7b02f5839",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599"
+    },
+    {
+      "ordinal": 63,
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 397,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Private helper credential produced by secrets.token_hex(32).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "828c909fc658a2c0b51813fc925032364cc6d946185ac1a70fdbf33ab5ef7c64",
+      "initial_site_digest": "f7e9bfc57a10f59c5e847a5c1d08a2fd156b7c06311a157ca09d2b5e6d24b35d",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "828c909fc658a2c0b51813fc925032364cc6d946185ac1a70fdbf33ab5ef7c64"
+    },
+    {
+      "ordinal": 64,
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 398,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Private helper credential produced by secrets.token_hex(32).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "828c909fc658a2c0b51813fc925032364cc6d946185ac1a70fdbf33ab5ef7c64",
+      "initial_site_digest": "b6c8b09d84f398e8bd4cc6b9a7c3341eaccf94c91b5941d896ee34cdfe3da111",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "828c909fc658a2c0b51813fc925032364cc6d946185ac1a70fdbf33ab5ef7c64"
+    },
+    {
+      "ordinal": 65,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 313,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Loopback SQL and Redis credentials generated with secrets.token_hex(24).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          266
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "1c343fee4d55d43a559237094ed62230fd897f9cf30b4a99f3a38527e00340d0",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 66,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 314,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Owned MySQL root password generated with secrets.token_hex(24).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          267
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "8569c582250566cc387acf7f16bb1caa0b2058418b040782cdd21b52fcb63950",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 67,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 394,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Gateway test configuration uses secrets.token_urlsafe(32).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "e2b90f2028c8e004f5e0a1021294ae9175d321a1f25a96cd9501ae76e260a348",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 68,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 395,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-config-variable-forward",
+      "reason": "Owned SQL configuration forwards generated password variable.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          348
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-config-variable-forward",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "3c84e4b9b577c199bbf83ff704382f86b032164916b055d09e009adb4833a4f2",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 69,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 397,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-config-variable-forward",
+      "reason": "Owned Redis configuration forwards generated password variable.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          350
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-config-variable-forward",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "70cfa921574a5fbc6d0d2d73f69225440926044b40fab5cec6cc6d0a1b2245e6",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 70,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 398,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-random-call",
+      "reason": "JWT configuration uses secrets.token_hex(48).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          351
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "26eb080967b3f334d00d413748c03fe28b8d900c948a6a3134e56a2d12c78cf3",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 71,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 485,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-negative-credential-call",
+      "reason": "Wrong MySQL credential generated by secrets.token_hex(24) for explicit rejection verification.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          415
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-negative-credential-call",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "a9dfa2c21cb6b8b381987a36e1aceb568026e6edb4da8615f189297275102b6c",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 72,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 505,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "runtime-negative-credential-call",
+      "reason": "Wrong Redis credential generated by secrets.token_hex(24) for explicit rejection verification.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          435
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-negative-credential-call",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "a44fd86a8b001d697b99141f8f00409f96a1f43cb899a33b5f8bb5bb962a62c4",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 73,
+      "file": "scripts/verification/render_runtime.py",
+      "line": 695,
+      "rule": "authorization-marker",
+      "source_kind": "verification_source",
+      "classification": "LINE_MOVE / STALE_CLASSIFICATION",
+      "candidate_kind": "negative-log-detection-regex",
+      "reason": "Regular expression rejects sensitive log formats; no Authorization value in source.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": true,
+        "same_content_line_move": true,
+        "previous_lines": [
+          589
+        ]
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "negative-log-detection-regex",
+      "initial_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712",
+      "initial_site_digest": "e14fc2bebc099a320d39bdba530859adcd24af2341287021a6144d10bb557152",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "negative-detection-pattern"
+      ],
+      "final_file_digest": "6db4d4f3d3392dc10bb6a29693bef5347393b56b900d1637b4d0708f04b3d712"
+    },
+    {
+      "ordinal": 74,
+      "file": "scripts/verification/test_demo_admission_lock_tidb.py",
+      "line": 122,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "SYNTHETIC_TEST_DATA",
+      "candidate_kind": "runtime-negative-projection-input",
+      "reason": "Fixed negative projection canary replaced with secrets.token_hex(12), same rejection assertion.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-negative-projection-input",
+      "initial_file_digest": "dfcd9bdbb32ba5ec98f3e94757a88f6b3d7ab93467d593d396fa162f72fbf346",
+      "initial_site_digest": "d6a35d1203c83d0491e4e2ef97cbb215ae78bcc700d76b378cffc0730bbd490f",
+      "resolution_direction": "Runtime-generated synthetic input; re-review current site as NON_SECRET_SOURCE_PATTERN if scanner still matches",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "da20e93eb1b40debbda336b4b31e0341816036124639f56e9021d01486252cdd"
+    },
+    {
+      "ordinal": 75,
+      "file": "scripts/verification/test_demo_capacity_tidb.py",
+      "line": 121,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "SYNTHETIC_TEST_DATA",
+      "candidate_kind": "runtime-negative-projection-input",
+      "reason": "Fixed negative projection canary replaced with secrets.token_hex(12), same rejection assertion.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-negative-projection-input",
+      "initial_file_digest": "b6ccf7b444f0290c78eeac345fa24cac83ade7e8cf87c3332e67e7d190504312",
+      "initial_site_digest": "eac4b3a879197224ad3c5309b93b497b5b01e2756399e1f4e99eb717a7d17fa9",
+      "resolution_direction": "Runtime-generated synthetic input; re-review current site as NON_SECRET_SOURCE_PATTERN if scanner still matches",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "a8dc16ddeec2b6986b8c7a56311efea13a8d04968b2246b66b824b9ba06c7903"
+    },
+    {
+      "ordinal": 76,
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 136,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "SYNTHETIC_TEST_DATA",
+      "candidate_kind": "runtime-negative-projection-input",
+      "reason": "Fixed negative projection canary replaced with secrets.token_hex(12), same rejection assertion.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-negative-projection-input",
+      "initial_file_digest": "184b6d8ffa940638eea3690661e8b4b9c8cec0fd3650ceb7446c08ce88dc1d40",
+      "initial_site_digest": "45b9977bdd177758adce8eb128654c96939da114502ed7ed95a12c66ca614118",
+      "resolution_direction": "Runtime-generated synthetic input; re-review current site as NON_SECRET_SOURCE_PATTERN if scanner still matches",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "3c678cb282a03227716af965af138a185b950bace2408f86fb5e7849f90ac158"
+    },
+    {
+      "ordinal": 77,
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 250,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "SYNTHETIC_TEST_DATA",
+      "candidate_kind": "runtime-ignored-provider-input",
+      "reason": "Ignored provider test password now constructed with secrets.token_hex(16), parser isolation assertion preserved.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-ignored-provider-input",
+      "initial_file_digest": "184b6d8ffa940638eea3690661e8b4b9c8cec0fd3650ceb7446c08ce88dc1d40",
+      "initial_site_digest": "8bb2531d74f0377d2b04c13919e8bb96044370ca363f4e845fc23eedc95d2769",
+      "resolution_direction": "Runtime-generated synthetic input; re-review current site as NON_SECRET_SOURCE_PATTERN if scanner still matches",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "3c678cb282a03227716af965af138a185b950bace2408f86fb5e7849f90ac158"
+    },
+    {
+      "ordinal": 78,
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 298,
+      "rule": "credential-assignment",
+      "source_kind": "test",
+      "classification": "SYNTHETIC_TEST_DATA",
+      "candidate_kind": "runtime-private-delivery-fixture",
+      "reason": "Repeated private delivery fixture now generated with secrets.token_hex(32), permission and excluded-field assertions preserved.",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-private-delivery-fixture",
+      "initial_file_digest": "184b6d8ffa940638eea3690661e8b4b9c8cec0fd3650ceb7446c08ce88dc1d40",
+      "initial_site_digest": "47befcc7a6a5ca8304a2e1b02a6f8db54fc1610ccc6d3224f72e0fb9d3fbe712",
+      "resolution_direction": "Runtime-generated synthetic input; re-review current site as NON_SECRET_SOURCE_PATTERN if scanner still matches",
+      "final_resolution": "SOURCE_CLEANED_AND_FULL_FILE_RESCANNED",
+      "final_reviewed_semantics": [],
+      "final_file_digest": "3c678cb282a03227716af965af138a185b950bace2408f86fb5e7849f90ac158"
+    },
+    {
+      "ordinal": 79,
+      "file": "scripts/verification/tidb_cleanup_remote.py",
+      "line": 646,
+      "rule": "credential-assignment",
+      "source_kind": "verification_source",
+      "classification": "NON_SECRET_SOURCE_PATTERN",
+      "candidate_kind": "runtime-random-call",
+      "reason": "Private cleanup helper credential produced by secrets.token_hex(32).",
+      "actual_secret_or_pii_found": false,
+      "previous_review": {
+        "reviewed": false,
+        "same_content_line_move": false,
+        "previous_lines": []
+      },
+      "public_needed": true,
+      "public_need_reason": "Required reproducible verification or negative boundary assertion",
+      "expected_construct_description": "runtime-random-call",
+      "initial_file_digest": "be5ee1106f4980159e7382feafd345174d9df556f524ce310f11ea8eb481468c",
+      "initial_site_digest": "dc0252e736f1cf2b9aa3dab53795ea5c51b3ff6f937e6b0fd333fb5b6bb692c1",
+      "resolution_direction": "Narrow semantic classification tied to exact file and content; HARD/evidence checks remain unconditional",
+      "final_resolution": "CONTENT_REVIEW_REBOUND",
+      "final_reviewed_semantics": [
+        "runtime-credential-expression"
+      ],
+      "final_file_digest": "be5ee1106f4980159e7382feafd345174d9df556f524ce310f11ea8eb481468c"
+    }
+  ],
+  "final_candidate_check": "No candidate omitted; final scanner result is recorded separately"
+}

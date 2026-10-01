@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "new_projection_contract_tests": 3,
+  "existing_runner_tests": 8,
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0
+}

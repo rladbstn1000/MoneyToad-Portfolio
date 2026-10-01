@@ -1,0 +1,15 @@
+{
+  "selector": "*DemoJwtContractTest",
+  "dependency_network": false,
+  "reason": "restore key width needed by existing valid HS384 negative fixture",
+  "exit_code": 0,
+  "suites": [
+    {
+      "test_class": "com.potg.don.auth.demo.DemoJwtContractTest",
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ]
+}

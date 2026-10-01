@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "tests": 20,
+  "failures": 0,
+  "skipped": 0,
+  "todo": 0,
+  "scope": "renderer-and-select-includes-one-new-compact-regression"
+}

@@ -1,0 +1,33 @@
+{
+  "selectors": [
+    "*DemoAuthControllerTest",
+    "*RenderDemoBoundaryTest",
+    "*RenderRuntimeConfigurationTest"
+  ],
+  "dependency_network": false,
+  "resource_scope": "private compile output; no full app or database startup",
+  "exit_code": 0,
+  "suites": [
+    {
+      "test_class": "com.potg.don.auth.demo.RenderDemoBoundaryTest",
+      "tests": "6",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "test_class": "com.potg.don.auth.demo.DemoAuthControllerTest",
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "test_class": "com.potg.don.global.config.RenderRuntimeConfigurationTest",
+      "tests": "80",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ]
+}

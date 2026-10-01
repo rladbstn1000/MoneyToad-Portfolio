@@ -1,0 +1,253 @@
+{
+  "historical_documents_preserved": true,
+  "historical_document_count": 149,
+  "starting_file_count": 549,
+  "only_prior_changed_file": "docs/deployment/STATUS.md",
+  "head_unchanged": true,
+  "index_unchanged": true,
+  "scanner_status": "FAIL",
+  "scanner_candidates": 35,
+  "hard_secret_findings": 0,
+  "evidence_forbidden_findings": 0,
+  "new_source_candidates": [
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 162,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 166,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 215,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 335,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 409,
+      "category": "identity-field"
+    },
+    {
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 397,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 398,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/test_demo_capacity_tidb.py",
+      "line": 121,
+      "category": "credential-assignment"
+    }
+  ],
+  "all_scanner_candidates": [
+    {
+      "file": "be/src/main/resources/db/demo/V001__demo_admission.sql",
+      "category": "data-dump-candidate"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 256,
+      "category": "cookie-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 257,
+      "category": "cookie-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/ManagedSchemaPreparation.java",
+      "line": 161,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthServiceTest.java",
+      "line": 257,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+      "line": 74,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+      "line": 113,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 320,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 321,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 349,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 431,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 162,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 166,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 215,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 335,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 409,
+      "category": "identity-field"
+    },
+    {
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 240,
+      "category": "bearer-marker"
+    },
+    {
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 252,
+      "category": "bearer-marker"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 165,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 348,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 349,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 350,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 228,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 230,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 397,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 398,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 269,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 270,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 351,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 353,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 354,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 441,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 461,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 651,
+      "category": "authorization-marker"
+    },
+    {
+      "file": "scripts/verification/test_demo_capacity_tidb.py",
+      "line": 121,
+      "category": "credential-assignment"
+    }
+  ],
+  "prior_status_content_preserved": true,
+  "python_tests": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "java_tests": {
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "provider_connections": 4,
+  "provider_replays": 0,
+  "old_provider_state_accessed": false,
+  "credential_file_unchanged": true,
+  "input_owner_mode_links_preserved": true,
+  "runtime_identity_evidence_findings": 0,
+  "product_files_changed": 0,
+  "new_source_candidates_manual_classification": "SYNTHETIC_OR_VARIABLE_SOURCE_NOT_RUNTIME_SECRET",
+  "scanner_rules_unchanged": true,
+  "public_deployment_ready": false
+}

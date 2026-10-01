@@ -1,0 +1,53 @@
+{
+  "phase": "FE_GREEN",
+  "results": [
+    {
+      "suite": "oauth",
+      "exit": 0,
+      "tests": 175,
+      "passed": 175,
+      "failed": 0,
+      "pending": 0
+    },
+    {
+      "suite": "demo",
+      "exit": 0,
+      "tests": 119,
+      "passed": 119,
+      "failed": 0,
+      "pending": 0
+    },
+    {
+      "check": [
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.test.json",
+        "--noEmit"
+      ],
+      "exit": 0
+    },
+    {
+      "check": [
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.functions.json",
+        "--noEmit"
+      ],
+      "exit": 0
+    },
+    {
+      "check": [
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0
+    }
+  ],
+  "overlay": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  }
+}

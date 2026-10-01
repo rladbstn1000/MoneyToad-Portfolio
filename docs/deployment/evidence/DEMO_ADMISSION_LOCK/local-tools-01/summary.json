@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "tests": 48,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suites": [
+    {
+      "suite": "test_public_scan",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "test_public_evidence",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "test_demo_capacity_checks",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "test_counterless_demo_capacity_checks",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "test_demo_capacity_tidb",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "test_demo_admission_lock_checks",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "provider_connections_attempted": 0,
+  "actual_provider_input_read": false,
+  "actual_provider_state_accessed": false,
+  "scanner_rules_changed": false,
+  "scanner_classifications_changed": false,
+  "cleanup_complete": true
+}

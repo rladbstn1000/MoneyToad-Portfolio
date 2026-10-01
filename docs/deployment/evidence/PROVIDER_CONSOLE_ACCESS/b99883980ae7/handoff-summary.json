@@ -1,0 +1,32 @@
+{
+  "status": "INPUT_REQUIRED",
+  "input": {
+    "status": "BLOCKED",
+    "phase": "offline-preflight",
+    "input_check": "BLOCKED",
+    "reason": "CONNECTION_FILE_MISSING",
+    "provider_connections_attempted": 0,
+    "remote_writes": 0,
+    "remote_cleanup": "NOT_NEEDED_NO_REMOTE_RESOURCES_CREATED",
+    "tidb_contracts_verified": false,
+    "upstash_functional_contracts_verified": false,
+    "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+    "provider_selection": "HOLD",
+    "managed_provider_contracts_verified": false,
+    "public_deployment_ready": false
+  },
+  "browser_input_attempt": "STOPPED_NO_FILE_CREATED",
+  "tty_two_paste_helper": "PREPARED_USER_HANDOFF",
+  "remote_connections": 0,
+  "remote_writes": 0,
+  "preserved_remote_budget": {
+    "login_attempts": 0,
+    "command_equivalents": 0
+  },
+  "old_protected_files_checked": 107,
+  "old_protected_files_changed": 0,
+  "head_unchanged": true,
+  "staged_files": 0,
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "public_deployment_ready": false
+}

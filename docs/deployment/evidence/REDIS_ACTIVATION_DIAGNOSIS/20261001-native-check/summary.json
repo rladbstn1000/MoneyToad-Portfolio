@@ -1,0 +1,89 @@
+{
+  "status": "FAIL",
+  "cause_status": "NARROWED",
+  "failure_category": "TCP_FAILURE",
+  "root_cause_confirmed": false,
+  "upstash_native_connect_verified": false,
+  "login_recovery_verified": false,
+  "input_check": "PASS",
+  "setting_matches": {
+    "database_matches": true,
+    "password_matches": true,
+    "port_matches": true,
+    "host_matches": true,
+    "username_matches": true,
+    "tls_matches": true
+  },
+  "stages": {
+    "DNS": "PASS",
+    "TCP": "FAIL",
+    "TLS": "NOT_OBSERVED",
+    "HANDSHAKE": "NOT_OBSERVED",
+    "ACTIVE": "NOT_OBSERVED",
+    "EXPLICIT_PING": "NOT_OBSERVED"
+  },
+  "exception_nodes": [
+    {
+      "depth": 0,
+      "exception_class": "java.util.concurrent.ExecutionException",
+      "position": 0
+    },
+    {
+      "depth": 1,
+      "exception_class": "org.springframework.data.redis.RedisConnectionFailureException",
+      "position": 1
+    },
+    {
+      "depth": 2,
+      "exception_class": "io.lettuce.core.RedisConnectionException",
+      "position": 2
+    },
+    {
+      "depth": 3,
+      "exception_class": "java.nio.channels.ClosedChannelException",
+      "position": 3
+    }
+  ],
+  "exception_relations": [
+    {
+      "relation": "CAUSE",
+      "to": 3,
+      "from": 2
+    },
+    {
+      "relation": "CAUSE",
+      "to": 2,
+      "from": 1
+    },
+    {
+      "relation": "CAUSE",
+      "to": 1,
+      "from": 0
+    }
+  ],
+  "new_native_connections": 1,
+  "explicit_ping_attempts": 0,
+  "new_command_reservation": 256,
+  "new_cleanup_reservation": 2000,
+  "cumulative_command_reservation": 7152,
+  "remaining_command_reservation": 2848,
+  "new_login_attempts": 0,
+  "new_schema_operations": 0,
+  "new_data_key_operations": 0,
+  "cleanup_complete": true,
+  "successful_local_java_tests": 23,
+  "successful_local_python_tests": 10,
+  "local_test_failures_final": 0,
+  "local_test_skips_final": 0,
+  "compile": "PASS",
+  "initial_new_fixture_assertion_type_mismatch_corrected": true,
+  "product_changes": false,
+  "next_full_verified_path_reservation": 6096,
+  "additional_reservation_required_for_that_path": 3248,
+  "next_full_path_login_attempts": 4,
+  "managed_provider_contracts_verified": false,
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "public_deployment_ready": false,
+  "required_user_credential_input": false,
+  "observation_reference": "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/redis-activation-96a9699ad683409e/summary.json"
+}

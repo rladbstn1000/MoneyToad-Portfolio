@@ -1,0 +1,12 @@
+{
+  "scanner_detection_definitions_unchanged": {
+    "HARD": true,
+    "SITES": true,
+    "BAD_SUFFIXES": true,
+    "BAD_PARTS": true
+  },
+  "public_evidence_module_bytes_unchanged": true,
+  "classification_file_wildcard_approval": false,
+  "evidence_classification_allowed": false,
+  "blanket_source_exclusions_added": 0
+}

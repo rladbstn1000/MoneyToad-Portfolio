@@ -1,0 +1,497 @@
+{
+  "status": "FAIL",
+  "phase": "after",
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "product_api_mocks": false,
+  "workers": 1,
+  "retries": 0,
+  "viewport_results": [
+    {
+      "phase": "after",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "selectedAtViewport": true,
+      "originalLayout": {
+        "viewportWidth": 768,
+        "bodyOverflow": 0,
+        "detail": {
+          "left": 0,
+          "right": 768,
+          "width": 768,
+          "height": 1024,
+          "top": 0,
+          "bottom": 1024
+        },
+        "card": {
+          "left": 12,
+          "right": 756,
+          "width": 744,
+          "height": 4933,
+          "top": -3198,
+          "bottom": 1735
+        },
+        "panel": {
+          "left": 24,
+          "right": 744,
+          "width": 720,
+          "height": 4302,
+          "top": -3051,
+          "bottom": 1251
+        },
+        "table": {
+          "left": 24,
+          "right": 744,
+          "width": 720,
+          "height": 4248,
+          "top": -2997,
+          "bottom": 1251
+        },
+        "piePanel": {
+          "left": 24,
+          "right": 744,
+          "width": 720,
+          "height": 440,
+          "top": 1275,
+          "bottom": 1715
+        },
+        "gridColumns": "720px",
+        "merchant": {
+          "left": 39,
+          "right": 729,
+          "width": 690,
+          "height": 41,
+          "top": 426,
+          "bottom": 467,
+          "clientWidth": 690,
+          "scrollWidth": 690,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "amount": {
+          "left": 390,
+          "right": 729,
+          "width": 339,
+          "height": 41,
+          "top": 479,
+          "bottom": 520,
+          "clientWidth": 339,
+          "scrollWidth": 339,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "select": {
+          "left": 39,
+          "right": 729,
+          "width": 690,
+          "height": 44,
+          "top": 553,
+          "bottom": 597,
+          "clientWidth": 686,
+          "scrollWidth": 686,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "summary": {
+          "left": 24,
+          "right": 744,
+          "width": 720,
+          "height": 64,
+          "top": -3136,
+          "bottom": -3072
+        },
+        "readable": true,
+        "touchTarget": true,
+        "panelOverflow": 0
+      },
+      "overview": {
+        "documentOverflow": 0,
+        "localOverflow": 0
+      },
+      "summaryReadable": true,
+      "modifiedLayout": {
+        "viewportWidth": 768,
+        "bodyOverflow": 0,
+        "detail": {
+          "left": 0,
+          "right": 768,
+          "width": 768,
+          "height": 1024,
+          "top": 0,
+          "bottom": 1024
+        },
+        "card": {
+          "left": 12,
+          "right": 756,
+          "width": 744,
+          "height": 4933,
+          "top": -3198,
+          "bottom": 1735
+        },
+        "panel": {
+          "left": 24,
+          "right": 744,
+          "width": 720,
+          "height": 4302,
+          "top": -3051,
+          "bottom": 1251
+        },
+        "table": {
+          "left": 24,
+          "right": 744,
+          "width": 720,
+          "height": 4248,
+          "top": -2997,
+          "bottom": 1251
+        },
+        "piePanel": {
+          "left": 24,
+          "right": 744,
+          "width": 720,
+          "height": 440,
+          "top": 1275,
+          "bottom": 1715
+        },
+        "gridColumns": "720px",
+        "merchant": {
+          "left": 39,
+          "right": 729,
+          "width": 690,
+          "height": 41,
+          "top": 426,
+          "bottom": 467,
+          "clientWidth": 690,
+          "scrollWidth": 690,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "amount": {
+          "left": 390,
+          "right": 729,
+          "width": 339,
+          "height": 41,
+          "top": 479,
+          "bottom": 520,
+          "clientWidth": 339,
+          "scrollWidth": 339,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "select": {
+          "left": 39,
+          "right": 729,
+          "width": 690,
+          "height": 44,
+          "top": 553,
+          "bottom": 597,
+          "clientWidth": 686,
+          "scrollWidth": 686,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "summary": {
+          "left": 24,
+          "right": 744,
+          "width": 720,
+          "height": 64,
+          "top": -3136,
+          "bottom": -3072
+        },
+        "readable": true,
+        "touchTarget": true,
+        "panelOverflow": 0
+      },
+      "contract": {
+        "totalBefore": 908000,
+        "totalAfter": 908000,
+        "leakBefore": 18000,
+        "leakAfter": 0,
+        "annualLeakedAfter": false,
+        "patchSucceeded": true,
+        "sqlChangeObserved": true,
+        "restorePreserved": true,
+        "automaticLogin": 0
+      }
+    },
+    {
+      "phase": "after",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "selectedAtViewport": true,
+      "originalLayout": {
+        "viewportWidth": 1440,
+        "bodyOverflow": 0,
+        "detail": {
+          "left": 0,
+          "right": 1440,
+          "width": 1440,
+          "height": 1000,
+          "top": 0,
+          "bottom": 1000
+        },
+        "card": {
+          "left": 29,
+          "right": 1411,
+          "width": 1382,
+          "height": 778,
+          "top": 111,
+          "bottom": 889
+        },
+        "panel": {
+          "left": 57,
+          "right": 711,
+          "width": 654,
+          "height": 656,
+          "top": 201,
+          "bottom": 857
+        },
+        "table": {
+          "left": 69,
+          "right": 699,
+          "width": 630,
+          "height": 1177,
+          "top": -332,
+          "bottom": 845
+        },
+        "piePanel": {
+          "left": 729,
+          "right": 1383,
+          "width": 654,
+          "height": 656,
+          "top": 201,
+          "bottom": 857
+        },
+        "gridColumns": "654.188px 654.203px",
+        "merchant": {
+          "left": 195,
+          "right": 392,
+          "width": 197,
+          "height": 57,
+          "top": 617,
+          "bottom": 674,
+          "clientWidth": 197,
+          "scrollWidth": 197,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "amount": {
+          "left": 392,
+          "right": 509,
+          "width": 117,
+          "height": 57,
+          "top": 617,
+          "bottom": 674,
+          "clientWidth": 117,
+          "scrollWidth": 117,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "select": {
+          "left": 517,
+          "right": 691,
+          "width": 174,
+          "height": 36,
+          "top": 627,
+          "bottom": 663,
+          "clientWidth": 170,
+          "scrollWidth": 170,
+          "clippedByAncestor": false,
+          "fontSize": 13.3333,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "summary": {
+          "left": 855,
+          "right": 1383,
+          "width": 528,
+          "height": 30,
+          "top": 147,
+          "bottom": 177
+        },
+        "readable": true,
+        "touchTarget": false,
+        "panelOverflow": 0
+      },
+      "overview": {
+        "documentOverflow": 0,
+        "localOverflow": 0
+      },
+      "summaryReadable": true,
+      "modifiedLayout": {
+        "viewportWidth": 1440,
+        "bodyOverflow": 0,
+        "detail": {
+          "left": 0,
+          "right": 1440,
+          "width": 1440,
+          "height": 1000,
+          "top": 0,
+          "bottom": 1000
+        },
+        "card": {
+          "left": 29,
+          "right": 1411,
+          "width": 1382,
+          "height": 778,
+          "top": 111,
+          "bottom": 889
+        },
+        "panel": {
+          "left": 57,
+          "right": 711,
+          "width": 654,
+          "height": 656,
+          "top": 201,
+          "bottom": 857
+        },
+        "table": {
+          "left": 69,
+          "right": 699,
+          "width": 630,
+          "height": 1177,
+          "top": -332,
+          "bottom": 845
+        },
+        "piePanel": {
+          "left": 729,
+          "right": 1383,
+          "width": 654,
+          "height": 656,
+          "top": 201,
+          "bottom": 857
+        },
+        "gridColumns": "654.188px 654.203px",
+        "merchant": {
+          "left": 195,
+          "right": 392,
+          "width": 197,
+          "height": 57,
+          "top": 617,
+          "bottom": 674,
+          "clientWidth": 197,
+          "scrollWidth": 197,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "amount": {
+          "left": 392,
+          "right": 509,
+          "width": 117,
+          "height": 57,
+          "top": 617,
+          "bottom": 674,
+          "clientWidth": 117,
+          "scrollWidth": 117,
+          "clippedByAncestor": false,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "select": {
+          "left": 517,
+          "right": 691,
+          "width": 174,
+          "height": 36,
+          "top": 627,
+          "bottom": 663,
+          "clientWidth": 170,
+          "scrollWidth": 170,
+          "clippedByAncestor": false,
+          "fontSize": 13.3333,
+          "visibleHorizontally": true,
+          "visibleVertically": true,
+          "visibleStyle": true,
+          "textClipped": false
+        },
+        "summary": {
+          "left": 923,
+          "right": 1383,
+          "width": 460,
+          "height": 30,
+          "top": 147,
+          "bottom": 177
+        },
+        "readable": true,
+        "touchTarget": false,
+        "panelOverflow": 0
+      },
+      "contract": {
+        "totalBefore": 908000,
+        "totalAfter": 908000,
+        "leakBefore": 18000,
+        "leakAfter": 0,
+        "annualLeakedAfter": false,
+        "patchSucceeded": true,
+        "sqlChangeObserved": true,
+        "restorePreserved": true,
+        "automaticLogin": 0
+      }
+    }
+  ],
+  "external_attempts": 0,
+  "cases": 3,
+  "tests": [
+    {
+      "test": "Chart real responsive flow 390x844",
+      "status": "failed"
+    },
+    {
+      "test": "Chart real responsive flow 768x1024",
+      "status": "passed"
+    },
+    {
+      "test": "Chart real responsive flow 1440x1000",
+      "status": "passed"
+    }
+  ],
+  "layout_ready": false,
+  "observation_only": false,
+  "source_preserved": true,
+  "changed_source_paths": [],
+  "dependencies_preserved": true,
+  "owned_source_copy_removed": true
+}

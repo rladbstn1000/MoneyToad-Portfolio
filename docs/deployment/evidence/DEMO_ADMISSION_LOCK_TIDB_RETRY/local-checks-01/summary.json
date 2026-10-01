@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "scope": "LOCAL_SAFETY_AND_RESOURCE_CHECKS_ONLY",
+  "python": {
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "output_routing_synthetic_checks": {
+    "checks": 2,
+    "failures": 0
+  },
+  "compile_only_java": {
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "budget_proofs_passed": true
+  },
+  "pre_execute_java": {
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "budget_proofs_passed": true
+  },
+  "remote_run_count": 1,
+  "automatic_retries": 0,
+  "connections_after_result": 0,
+  "owned_running_processes": 0,
+  "owned_ephemeral_local_resources": 0,
+  "compiler_and_child_cleanup_confirmed": true,
+  "private_delivery_file_absent": true,
+  "private_audit_and_durable_task_ledger_retained": true,
+  "created_schema_count": 1,
+  "created_account_count": 2,
+  "owned_fixture_entries_including_rollback": 2,
+  "aging_attempted": true,
+  "remote_owned_data_absent": true,
+  "remote_owned_schema_absent": true,
+  "remote_owned_accounts_absent": true,
+  "old_provider_state_accessed": false,
+  "input_unchanged": true,
+  "total_reserved": 2500,
+  "work_reserved": 2000,
+  "cleanup_reserved": 500,
+  "work_command_equivalents": 836,
+  "cleanup_command_equivalents": 45,
+  "refunded_or_reused_reservation": 0,
+  "provider_billing_measurement": false,
+  "public_deployment_ready": false
+}

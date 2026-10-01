@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "tests": 138,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "module_counts": {
+    "test_public_source_review": 34,
+    "test_public_scan": 5,
+    "test_public_evidence": 6,
+    "test_managed_provider_recovery": 10,
+    "test_demo_admission_lock_tidb": 20,
+    "test_demo_capacity_tidb": 15,
+    "test_tidb_cleanup_remote": 27,
+    "test_public_audit_scan": 10,
+    "test_public_browser_series": 3,
+    "test_demo_capacity_checks": 8
+  },
+  "provider_connections_attempted": 0,
+  "raw_output_saved": false
+}

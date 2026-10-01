@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "phase": "LOCAL_PYTHON_RUNNER_SAFETY",
+  "execution": "ALREADY_EXECUTED_RESULT_RECORDED_WITHOUT_RERUN",
+  "command": "python3 -B -m unittest test_tidb_cleanup_remote -q",
+  "working_directory_relative": "scripts/verification",
+  "exit_code": 0,
+  "tests": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "file_scope": [
+    "scripts/verification/tidb_cleanup_remote.py",
+    "scripts/verification/test_tidb_cleanup_remote.py"
+  ],
+  "remote_connections_attempted": 0,
+  "actual_provider_input_read": false,
+  "historical_private_state_accessed": false,
+  "source_modified_for_this_record": false,
+  "synthetic_inputs_only": true,
+  "remote_contracts_proven_by_this_result": false,
+  "coverage": [
+    "TiDB-only input parsing and private file safety",
+    "Fresh state and permanent finite reservation",
+    "Four required Java workflow budget proofs and strict numeric projection",
+    "Source content and file-mode pinning",
+    "Packaged class equality and traversal rejection",
+    "Private cleanup configuration with verified TLS and propagation disabled",
+    "Owned process cleanup and interrupt handling",
+    "Mode transaction semantics and redacted result projection"
+  ]
+}

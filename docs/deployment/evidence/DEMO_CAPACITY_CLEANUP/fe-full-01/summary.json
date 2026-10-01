@@ -1,0 +1,12 @@
+{
+  "phase": "fe",
+  "focused": false,
+  "status": "FAIL",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": false,
+  "exit_code": 1,
+  "diagnostic": "ValueError"
+}

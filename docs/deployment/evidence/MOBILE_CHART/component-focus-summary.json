@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "component-css-and-existing-http-contract",
+  "tests": 15,
+  "new_tests": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "browser_layout_proof": false,
+  "groups": [
+    {
+      "group": "Select and CSS",
+      "tests": 4,
+      "passed": 4
+    },
+    {
+      "group": "Chart query and mutation",
+      "tests": 11,
+      "passed": 11
+    }
+  ],
+  "preparation_failures": 2,
+  "preparation_failure_categories": [
+    "Vitest CSS raw import empty",
+    "Vite file URL transformed"
+  ],
+  "preparation_corrected": "Reuse existing test fs and import.meta.url directory reader; expectations preserved"
+}

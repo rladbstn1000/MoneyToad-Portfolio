@@ -1,0 +1,187 @@
+{
+  "status": "FAIL",
+  "phase": "before",
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "product_api_mocks": false,
+  "workers": 1,
+  "retries": 0,
+  "viewport_results": [
+    {
+      "phase": "before",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "selectedAtViewport": true,
+      "originalLayout": {
+        "viewportWidth": 768,
+        "bodyOverflow": 0,
+        "detail": {
+          "left": 0,
+          "right": 768,
+          "width": 768,
+          "height": 1024
+        },
+        "card": {
+          "left": 15,
+          "right": 753,
+          "width": 737,
+          "height": 415
+        },
+        "panel": {
+          "left": 33,
+          "right": 378,
+          "width": 344,
+          "height": 480
+        },
+        "table": {
+          "left": 45,
+          "right": 366,
+          "width": 320,
+          "height": 2516
+        },
+        "gridColumns": "344.484px 344.5px",
+        "merchant": {
+          "left": 109,
+          "right": 151,
+          "width": 42,
+          "height": 201,
+          "clientWidth": 42,
+          "scrollWidth": 42,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "textClipped": false
+        },
+        "amount": {
+          "left": 151,
+          "right": 229,
+          "width": 78,
+          "height": 201,
+          "clientWidth": 78,
+          "scrollWidth": 78,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "textClipped": false
+        },
+        "select": {
+          "left": 237,
+          "right": 358,
+          "width": 121,
+          "height": 36,
+          "clientWidth": 117,
+          "scrollWidth": 117,
+          "fontSize": 13.3333,
+          "visibleHorizontally": true,
+          "textClipped": false
+        },
+        "summary": {
+          "left": 207,
+          "right": 735,
+          "width": 528,
+          "height": 30
+        },
+        "readable": false,
+        "touchTarget": false,
+        "panelOverflow": 0
+      }
+    },
+    {
+      "phase": "before",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "selectedAtViewport": true,
+      "originalLayout": {
+        "viewportWidth": 1440,
+        "bodyOverflow": 0,
+        "detail": {
+          "left": 0,
+          "right": 1440,
+          "width": 1440,
+          "height": 1000
+        },
+        "card": {
+          "left": 29,
+          "right": 1411,
+          "width": 1382,
+          "height": 778
+        },
+        "panel": {
+          "left": 57,
+          "right": 711,
+          "width": 654,
+          "height": 656
+        },
+        "table": {
+          "left": 69,
+          "right": 699,
+          "width": 630,
+          "height": 1177
+        },
+        "gridColumns": "654.188px 654.203px",
+        "merchant": {
+          "left": 195,
+          "right": 392,
+          "width": 197,
+          "height": 57,
+          "clientWidth": 197,
+          "scrollWidth": 197,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "textClipped": false
+        },
+        "amount": {
+          "left": 392,
+          "right": 509,
+          "width": 117,
+          "height": 57,
+          "clientWidth": 117,
+          "scrollWidth": 117,
+          "fontSize": 16,
+          "visibleHorizontally": true,
+          "textClipped": false
+        },
+        "select": {
+          "left": 517,
+          "right": 691,
+          "width": 174,
+          "height": 36,
+          "clientWidth": 170,
+          "scrollWidth": 170,
+          "fontSize": 13.3333,
+          "visibleHorizontally": true,
+          "textClipped": false
+        },
+        "summary": {
+          "left": 855,
+          "right": 1383,
+          "width": 528,
+          "height": 30
+        },
+        "readable": true,
+        "touchTarget": false,
+        "panelOverflow": 0
+      }
+    }
+  ],
+  "external_attempts": 0,
+  "cases": 3,
+  "tests": [
+    {
+      "test": "Chart real responsive flow 390x844",
+      "status": "failed"
+    },
+    {
+      "test": "Chart real responsive flow 768x1024",
+      "status": "passed"
+    },
+    {
+      "test": "Chart real responsive flow 1440x1000",
+      "status": "passed"
+    }
+  ],
+  "source_preserved": false,
+  "dependencies_preserved": true
+}

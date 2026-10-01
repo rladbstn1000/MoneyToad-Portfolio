@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "scope": "PRESERVATION_REDACTION_AND_CLEANUP_AUDIT",
+  "baseline_file_count": 616,
+  "changed_existing_files": [
+    "docs/deployment/STATUS.md"
+  ],
+  "status_previous_body_preserved": true,
+  "historical_reports_and_evidence_preserved": true,
+  "product_ddl_and_existing_tests_preserved": true,
+  "head_unchanged": true,
+  "index_unchanged": true,
+  "new_files": [
+    "be/src/test/java/com/potg/verification/cleanupremote/CleanupSqlBudget.java",
+    "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+    "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+    "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbeSafetyTest.java",
+    "docs/deployment/17-tidb-cleanup-remote.md",
+    "docs/deployment/evidence/TIDB_CLEANUP_REMOTE/probe-11fa733b686d4414/summary.json",
+    "docs/deployment/evidence/TIDB_CLEANUP_REMOTE/probe-83c0f479b0034f71/summary.json",
+    "docs/deployment/evidence/TIDB_CLEANUP_REMOTE/python-safety-01/summary.json",
+    "scripts/verification/test_tidb_cleanup_remote.py",
+    "scripts/verification/tidb_cleanup_remote.py"
+  ],
+  "new_file_count_before_audit": 10,
+  "scanner_status": "FAIL",
+  "scanner_unresolved_before": 51,
+  "scanner_unresolved_after": 60,
+  "new_source_candidates": [
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+      "line": 177,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+      "line": 185,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 327,
+      "category": "email-marker"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 404,
+      "category": "identity-field"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 474,
+      "category": "identity-field"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 136,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 250,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 298,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "scripts/verification/tidb_cleanup_remote.py",
+      "line": 646,
+      "category": "credential-assignment"
+    }
+  ],
+  "scanner_rules_and_classifications_unchanged": true,
+  "new_source_candidates_manual_review": "SYNTHETIC_FIXTURE_SQL_FIELD_OR_GENERATION_EXPRESSION_NO_REAL_VALUE",
+  "public_evidence_forbidden_findings": 0,
+  "actual_tidb_private_value_matches_in_new_public_material": 0,
+  "only_new_private_state_checked": true,
+  "reservation_unchanged": true,
+  "private_state_permissions_pass": true,
+  "new_private_delivery_files_absent": true,
+  "owned_remote_cleanup_confirmed": true,
+  "additional_remote_connections": 0,
+  "old_private_task_accessed": false,
+  "full_be_fe_browser_rerun": false,
+  "product_changes_this_task": 0,
+  "stage_commit_push_deploy": false,
+  "public_deployment_ready": false
+}

@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "compilation": "PASS",
+  "java": {
+    "tests": 17,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "python": {
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "synthetic": {
+    "normal_work": 1180,
+    "normal_cleanup": 40,
+    "connections": 4,
+    "work_failure_positions": 776,
+    "max_failure_work": 1180,
+    "max_failure_cleanup": 47,
+    "interrupt_positions": 776,
+    "cleanup_failure_positions": 40,
+    "confirmed_transaction_reset_recoveries": 8,
+    "all_product_assertions_retained": true,
+    "scope": "PRE_DISPATCH_SYNTHETIC_FAILURES_NOT_PROVIDER_FAILURE_GUARANTEES"
+  },
+  "initial_preparation_failures": [
+    {
+      "status": "FAIL",
+      "scope": "IN_PROGRESS_TOOL_PREPARATION",
+      "tests": 15,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "reason": "DRAFT_JAVA_PYTHON_RESULT_ALLOWLIST_MISMATCH",
+      "provider_connections": 0,
+      "reservation": 0
+    },
+    {
+      "status": "FAIL",
+      "scope": "SYNTHETIC_TOOL_PREPARATION",
+      "compile": "PASS",
+      "tests": 17,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0,
+      "reason": "SYNTHETIC_NOWAIT_MODEL_UNEXPECTED_FAILURE",
+      "provider_connections": 0,
+      "reservation": 0
+    },
+    {
+      "status": "FAIL",
+      "scope": "SYNTHETIC_TOOL_PREPARATION",
+      "compile": "PASS",
+      "tests": 17,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0,
+      "reason": "SYNTHETIC_COLUMN_MATCH_ID_VS_FILE_ID",
+      "provider_connections": 0,
+      "reservation": 0
+    },
+    {
+      "status": "FAIL",
+      "scope": "SYNTHETIC_TOOL_PREPARATION",
+      "compile": "PASS",
+      "tests": 17,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "reason": "OPTIONAL_SPRING_METADATA_FAILURE_RECOVERED_REVIEW_PENDING",
+      "provider_connections": 0,
+      "reservation": 0
+    }
+  ],
+  "another_local_iteration": {
+    "status": "FAIL",
+    "tests": 17,
+    "failures": 1,
+    "reason": "TRANSACTION_RESET_RECOVERY_TEST_ASSUMPTION"
+  },
+  "provider_connections": 0,
+  "remote_reservation": 0,
+  "product_assertions_changed": false,
+  "safe_metrics": [
+    "SYNTHETIC_EARLY_FAILURE positions=776 max_work=1180 max_cleanup=47 max_connections=4 confirmed_tx_reset_recoveries=8",
+    "SYNTHETIC_NORMAL work=1180 cleanup=40 charged_work_positions=776 cleanup_positions=40 connections=4"
+  ]
+}

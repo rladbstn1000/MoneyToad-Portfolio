@@ -1,0 +1,225 @@
+{
+  "status": "FAIL",
+  "input_status": "PASS",
+  "provider_process_launched": true,
+  "remote_key_writes": 0,
+  "database_operations": 0,
+  "login_attempts": 0,
+  "read_only_operation": "NATIVE_TLS_AUTH_SINGLE_PING",
+  "automatic_retry": false,
+  "provider_selection": "HOLD",
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "probe_compilation": "PASS",
+  "reserved_command_equivalents": 7152,
+  "diagnostic_command_equivalents_reserved_this_run": 256,
+  "comparison_basis": "FIRST_PRODUCT_SETTINGS",
+  "diagnostic_contract": "ACTIVATION_OBSERVATION_V2",
+  "reserved_login_attempts": 1,
+  "cleanup_command_equivalents_reserved": 2000,
+  "observation": {
+    "status": "FAIL",
+    "remote_key_writes": 0,
+    "database_operations": 0,
+    "login_attempts": 0,
+    "automatic_retry": false,
+    "read_only_operation": "NATIVE_TLS_AUTH_SINGLE_PING",
+    "product_configdata": "PASS",
+    "verified_tls_enabled": true,
+    "connect_timeout_millis": 3000,
+    "command_timeout_millis": 2000,
+    "setting_matches": {
+      "database_matches": true,
+      "password_matches": true,
+      "port_matches": true,
+      "host_matches": true,
+      "username_matches": true,
+      "tls_matches": true
+    },
+    "effective_settings": {
+      "request_queue_limit": 2147483647,
+      "ssl_handshake_timeout_millis": 10000,
+      "auto_reconnect": false,
+      "database_index": 0,
+      "command_timeout_enabled": true,
+      "protocol_effective_preconnect": "RESP3",
+      "activation_timeout_millis": 2000,
+      "ping_before_activation": true,
+      "protocol_configured": "DEFAULT_NEGOTIATION",
+      "tls_verify_mode": "FULL"
+    },
+    "versions": {
+      "java": "21.0.11+10-LTS",
+      "netty": "4.1.124.Final",
+      "spring_data_redis": "3.5.3",
+      "lettuce": "6.6.0.RELEASE/643bd47"
+    },
+    "diagnostics": {
+      "phase": "CONNECT_ACTIVATE",
+      "stages": {
+        "DNS": "PASS",
+        "TCP": "FAIL",
+        "TLS": "NOT_OBSERVED",
+        "HANDSHAKE": "NOT_OBSERVED",
+        "ACTIVE": "NOT_OBSERVED",
+        "EXPLICIT_PING": "NOT_OBSERVED"
+      },
+      "commands": {
+        "HELLO": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "AUTH": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "PING": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "CLIENT": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "SELECT": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "UNEXPECTED_COMMAND": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        }
+      },
+      "events": [
+        {
+          "state": "NOT_OBSERVED",
+          "sequence": 1,
+          "code": "INPUT",
+          "kind": "PHASE"
+        },
+        {
+          "state": "NOT_OBSERVED",
+          "sequence": 2,
+          "code": "CONFIGDATA",
+          "kind": "PHASE"
+        },
+        {
+          "state": "NOT_OBSERVED",
+          "sequence": 3,
+          "code": "CLIENT_RESOURCES",
+          "kind": "PHASE"
+        },
+        {
+          "state": "NOT_OBSERVED",
+          "sequence": 4,
+          "code": "CLIENT_OPTIONS",
+          "kind": "PHASE"
+        },
+        {
+          "state": "NOT_OBSERVED",
+          "sequence": 5,
+          "code": "FACTORY_START",
+          "kind": "PHASE"
+        },
+        {
+          "state": "NOT_OBSERVED",
+          "sequence": 6,
+          "code": "CONNECT_ACTIVATE",
+          "kind": "PHASE"
+        },
+        {
+          "state": "PASS",
+          "sequence": 7,
+          "code": "DNS",
+          "kind": "STAGE"
+        },
+        {
+          "state": "STARTED",
+          "sequence": 8,
+          "code": "TCP",
+          "kind": "STAGE"
+        },
+        {
+          "state": "FAIL",
+          "sequence": 9,
+          "code": "TCP",
+          "kind": "STAGE"
+        },
+        {
+          "state": "FAIL",
+          "sequence": 10,
+          "code": "TCP_FAILURE",
+          "kind": "FAILURE"
+        },
+        {
+          "state": "FAIL",
+          "sequence": 11,
+          "code": "TCP_FAILURE",
+          "kind": "FAILURE"
+        }
+      ],
+      "events_total": 11,
+      "events_dropped": 0,
+      "failure_category": "TCP_FAILURE",
+      "exception_nodes": [
+        {
+          "depth": 0,
+          "exception_class": "java.util.concurrent.ExecutionException",
+          "position": 0
+        },
+        {
+          "depth": 1,
+          "exception_class": "org.springframework.data.redis.RedisConnectionFailureException",
+          "position": 1
+        },
+        {
+          "depth": 2,
+          "exception_class": "io.lettuce.core.RedisConnectionException",
+          "position": 2
+        },
+        {
+          "depth": 3,
+          "exception_class": "java.nio.channels.ClosedChannelException",
+          "position": 3
+        }
+      ],
+      "exception_relations": [
+        {
+          "relation": "CAUSE",
+          "to": 3,
+          "from": 2
+        },
+        {
+          "relation": "CAUSE",
+          "to": 2,
+          "from": 1
+        },
+        {
+          "relation": "CAUSE",
+          "to": 1,
+          "from": 0
+        }
+      ],
+      "exceptions_truncated": false
+    },
+    "native_connections_started": 1,
+    "command_attempts_observed": 0,
+    "ping_attempts": 0,
+    "elapsed_millis": 2620,
+    "cleanup_complete": true,
+    "native_client_closed": true,
+    "owned_remote_resources_created": false
+  },
+  "cleanup_complete": true
+}

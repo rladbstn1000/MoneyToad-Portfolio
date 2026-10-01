@@ -1,0 +1,53 @@
+{
+  "status": "PASS_WITH_SCANNER_DEBT",
+  "baseline_files": 581,
+  "existing_modified_files": [
+    "docs/deployment/STATUS.md"
+  ],
+  "existing_deleted_files": [],
+  "new_files": [
+    "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockSqlBudget.java",
+    "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockSyntheticJdbc.java",
+    "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+    "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbeSafetyTest.java",
+    "docs/deployment/14-demo-admission-lock-tidb.md",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB/final-audit/summary.json",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB/local-cleanup-01/summary.json",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB/local-contracts-01/summary.json",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB/post-remote-local-correction-01/summary.json",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB/probe-0310925ef2b14aa2/summary.json",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB/probe-91c293f6c5124312/summary.json",
+    "scripts/verification/demo_admission_lock_tidb.py",
+    "scripts/verification/test_demo_admission_lock_tidb.py"
+  ],
+  "new_file_count": 13,
+  "product_and_existing_test_files_unchanged": true,
+  "past_documents_evidence_preserved": true,
+  "past_document_evidence_count": 171,
+  "previous_status_body_preserved": true,
+  "git_head_unchanged": true,
+  "git_index_unchanged": true,
+  "input_matches_executed_revision": true,
+  "new_private_task_ledger_unchanged_during_final_audit": true,
+  "old_provider_state_accessed": false,
+  "actual_private_value_matches": 0,
+  "new_evidence_forbidden_findings": 0,
+  "scanner": {
+    "status": "FAIL",
+    "existing_unresolved": 38,
+    "new_source_findings": 11,
+    "unresolved": 49,
+    "rules_or_allowlist_changed": false,
+    "new_source_classification": {
+      "synthetic_fixture_email_markers": 2,
+      "sql_column_or_model_field_expressions": 6,
+      "generated_value_assignments": 2,
+      "synthetic_non_disclosure_canary": 1
+    },
+    "manual_classification_is_not_automatic_pass": true
+  },
+  "remote_result": "FAIL_PRESERVED",
+  "post_correction_remote_connections": 0,
+  "owned_remote_and_ephemeral_local_cleanup": "PASS",
+  "public_deployment_ready": false
+}

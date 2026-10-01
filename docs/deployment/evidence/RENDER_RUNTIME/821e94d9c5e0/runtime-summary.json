@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "check": "prerequisites",
+      "status": "PASS"
+    },
+    {
+      "check": "compile-and-package",
+      "status": "PASS"
+    }
+  ],
+  "cleanup_complete": true,
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false,
+  "local_render_runtime_ready": false,
+  "host_architecture": "arm64",
+  "docker_architecture": "aarch64",
+  "failed_phase": "configuration-tests",
+  "failure_class": "CheckFailure",
+  "failed_check": "configuration-tests-command",
+  "diagnostic_categories": [],
+  "test_failures": [
+    {
+      "test": "OS_override_SPRING_DATASOURCE_HIKARI_DATASOURCEPROPERTIES_SSLMODE",
+      "failure_class": "java.lang.AssertionError",
+      "tags": []
+    },
+    {
+      "test": "OS_override_SPRING_JPA_HIBERNATE_DDLAUTO",
+      "failure_class": "java.lang.AssertionError",
+      "tags": []
+    }
+  ]
+}

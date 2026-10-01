@@ -1,0 +1,200 @@
+{
+  "image_files": 34,
+  "unique_images": 20,
+  "groups": [
+    {
+      "files": [
+        "docs/portfolio/evidence/selected-7feaad9fd2bd-logout.png",
+        "docs/portfolio/evidence/selected-a40f17391085-logout.png"
+      ],
+      "content_digest": "34ed1b7f6f47d215f4813aff57d7c72befc6fc0612d6919ff6ca0d1537e57046",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/portfolio/evidence/selected-a40f17391085-chart-restored.png",
+        "docs/portfolio/evidence/selected-7feaad9fd2bd-chart-restored.png"
+      ],
+      "content_digest": "6e3d3841fbbbb15371f6abc5b2148ba942b162690a617f117163a7f40ac55ad6",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/portfolio/evidence/selected-7feaad9fd2bd-chart-before.png",
+        "docs/portfolio/evidence/selected-a40f17391085-chart-before.png"
+      ],
+      "content_digest": "6269ecb2c17b5e32dd8b6932e53dbc539d6b5ac6781664c5a241cdd4decff106",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/portfolio/evidence/selected-a40f17391085-chart-after.png"
+      ],
+      "content_digest": "65df39f281b1fdc08c60d4698438b8ca7d4b1bf7647f1ce29c4e25d95a4eaa6a",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/portfolio/evidence/selected-7feaad9fd2bd-chart-after.png"
+      ],
+      "content_digest": "3300c0c59154512c3c91125b5b2d8ba7c92f995332322fc7da3b8cf36dbaf6a2",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/COLD_START_RECOVERY/mobile-final/mobile-768-after.png"
+      ],
+      "content_digest": "0e3af210d9944ed06ff2066aaf6e2879fc4bf1ea77734bf4d352721b367393a2",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/COLD_START_RECOVERY/mobile-final/mobile-390-after.png"
+      ],
+      "content_digest": "19d0da2cb3e31daf49e84923c8f2c8b4080843b7a6303c5e273d41c4402faf2b",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/COLD_START_RECOVERY/cold-browser-focus-02/cold-recovery-390.png"
+      ],
+      "content_digest": "69a515d2f3b0ce041eed6145adeca81f6da8f1affb1836b250d482ee62c2ba93",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/MOBILE_CHART/mobile-final/mobile-768-after.png"
+      ],
+      "content_digest": "ffcf6413ae5228a0c51ebefb36527d67fddc4a153326cb87963ab318686ada69",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/MOBILE_CHART/mobile-final/mobile-390-after.png"
+      ],
+      "content_digest": "d1de79b7b0b7924bcebc118f844500ab46ffe01140c96cb5c809344e523323b6",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/MOBILE_CHART/before-04/mobile-390-before.png"
+      ],
+      "content_digest": "e95084b3a57d4af7bcf9a84c8771ca8159572b7f0f3787d002fa512b2ce74285",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-2c2dce7668be-chart-restored.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-94e7decca3f6-chart-restored.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-9434e7bb039d-chart-restored.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-856f99ff5df8-chart-restored.png"
+      ],
+      "content_digest": "60c4c43df165883a59333238ff4ff68fc83af7b5a967bd661e104ad25d48ff0b",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-2c2dce7668be-chart-mobile.png"
+      ],
+      "content_digest": "c5afa3540637c73777fc06b92bac5a1c25b67eaa26d250266f23f1bb812154f0",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-94e7decca3f6-chart-before.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-2c2dce7668be-chart-before.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-9434e7bb039d-chart-before.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-856f99ff5df8-chart-before.png"
+      ],
+      "content_digest": "8902fa62435af9687df149beb486009b935baa498ba3236240aaf19b9509bb90",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-2c2dce7668be-logout.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-94e7decca3f6-logout.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-856f99ff5df8-logout.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-9434e7bb039d-logout.png"
+      ],
+      "content_digest": "ccbd3b632ef5dca34335b16f9966b0cdc031332d1ddb05fb16e9be556e019b4a",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-94e7decca3f6-chart-mobile.png"
+      ],
+      "content_digest": "cce313d45bc84a587c750ebc9a03b25504a8b33e6b4a6579cfd69c5e161a504b",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-94e7decca3f6-chart-after.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-9434e7bb039d-chart-after.png"
+      ],
+      "content_digest": "12d0bc78ed89a9e7376fccfc223831d8fe646b1555ae13b3bafd4a97388b66a8",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-016d954532e4/selected-2c2dce7668be-chart-after.png",
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-856f99ff5df8-chart-after.png"
+      ],
+      "content_digest": "ea2ae8fe4aead846b329b524f0b2a85bd8dac9b2c9ce50f28180bcf6c566af44",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-856f99ff5df8-chart-mobile.png"
+      ],
+      "content_digest": "e7dcd73e74a5379b4a9da09fb1c84187f2215deb6d94fe8c3cfa30ffb59f84fe",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    },
+    {
+      "files": [
+        "docs/deployment/evidence/AUTONOMOUS_CONTINUATION/browser-15ebb8a41245/selected-9434e7bb039d-chart-mobile.png"
+      ],
+      "content_digest": "0087b2adb8feb0c7ecc5fa2743a47d5a3d4ef09bb6a33a7f097e0abfc2c8d8fc",
+      "metadata_safe": true,
+      "visually_reviewed": true,
+      "visible_content": "Synthetic Chart transaction names/categories/amounts, masked header, or anonymous status UI; no identity or authentication value visible."
+    }
+  ]
+}

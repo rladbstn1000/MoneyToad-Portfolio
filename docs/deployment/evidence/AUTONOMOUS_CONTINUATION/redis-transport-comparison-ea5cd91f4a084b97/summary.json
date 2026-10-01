@@ -1,0 +1,290 @@
+{
+  "status": "FAIL",
+  "input_status": "PASS",
+  "provider_process_launched": true,
+  "read_only_operation": "JDK_TLS_LETTUCE_TRANSPORT_COMPARISON",
+  "automatic_retry": false,
+  "remote_key_writes": 0,
+  "database_operations": 0,
+  "login_attempts": 0,
+  "provider_selection": "HOLD",
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "public_deployment_ready": false,
+  "probe_compilation": "PASS",
+  "reserved_command_equivalents": 9408,
+  "remaining_command_equivalents": 592,
+  "reserved_login_attempts": 1,
+  "diagnostic_command_equivalents_reserved_this_run": 256,
+  "cleanup_command_equivalents_reserved": 2000,
+  "forced_child_termination": false,
+  "observation": {
+    "status": "FAIL",
+    "read_only_operation": "JDK_TLS_LETTUCE_TRANSPORT_COMPARISON",
+    "owned_remote_resources_created": false,
+    "remote_key_writes": 0,
+    "database_operations": 0,
+    "login_attempts": 0,
+    "automatic_retry": false,
+    "product_condition_exact": false,
+    "ssl_provider": "JDK_DEFAULT_TRUST",
+    "resolver": "SHARED_JDK_HOSTNAME_LOOKUP",
+    "os_dns_physical_connections": "NOT_OBSERVED",
+    "probe_owned_dns_sockets": 0,
+    "command_reservation": 256,
+    "connection_limit": 3,
+    "conditional_c_reason": "NOT_RUN_NO_SUPPORTED_BASIS",
+    "product_configdata": "PASS",
+    "setting_matches": {
+      "password_matches": true,
+      "port_matches": true,
+      "host_matches": true,
+      "username_matches": true,
+      "tls_matches": true,
+      "database_matches": true
+    },
+    "effective_settings": {
+      "native_control_deadline_millis": 20000,
+      "auto_reconnect": false,
+      "command_timeout_enabled": true,
+      "request_queue_limit": 2147483647,
+      "protocol_effective_preconnect": "RESP3",
+      "protocol_configured": "DEFAULT_NEGOTIATION",
+      "connect_timeout_millis": 3000,
+      "command_timeout_millis": 2000,
+      "ssl_handshake_timeout_millis": 10000,
+      "tls_verify_mode": "FULL",
+      "activation_timeout_millis": 2000,
+      "jdk_dns_deadline_millis": 5000
+    },
+    "versions": {
+      "netty": "4.1.124.Final",
+      "lettuce": "6.6.0.RELEASE/643bd47",
+      "java": "21.0.11+10-LTS"
+    },
+    "native_transport": "NioSocketChannel",
+    "environment_flags": {
+      "http_proxyHost_configured": false,
+      "https_proxyHost_configured": false,
+      "socksProxyHost_configured": false,
+      "javax_net_ssl_trustStore_configured": false,
+      "java_net_preferIPv4Stack_configured": false,
+      "java_net_preferIPv6Addresses_configured": false,
+      "io_netty_transport_noNative_configured": false,
+      "system_proxies_enabled": false
+    },
+    "dns_hostname_preserved": true,
+    "jdk_selected_address_family": "IPV4",
+    "prior_run_dns_target_comparison": "NOT_ESTABLISHED",
+    "controls": {
+      "A": {
+        "status": "FAIL",
+        "tcp": "FAIL",
+        "tls": "NOT_RUN",
+        "cleanup_complete": true,
+        "redis_commands_sent": 0,
+        "elapsed_millis": 3008,
+        "diagnostics": {
+          "phase": "TCP",
+          "stages": {
+            "DNS": "NOT_OBSERVED",
+            "TCP": "NOT_OBSERVED",
+            "TLS": "NOT_OBSERVED",
+            "HANDSHAKE": "NOT_OBSERVED",
+            "ACTIVE": "NOT_OBSERVED",
+            "EXPLICIT_PING": "NOT_OBSERVED"
+          },
+          "commands": {
+            "HELLO": {
+              "STARTED": 0,
+              "PASS": 0,
+              "FAIL": 0,
+              "UNEXPECTED_STATE": 0
+            },
+            "AUTH": {
+              "STARTED": 0,
+              "PASS": 0,
+              "FAIL": 0,
+              "UNEXPECTED_STATE": 0
+            },
+            "PING": {
+              "STARTED": 0,
+              "PASS": 0,
+              "FAIL": 0,
+              "UNEXPECTED_STATE": 0
+            },
+            "CLIENT": {
+              "STARTED": 0,
+              "PASS": 0,
+              "FAIL": 0,
+              "UNEXPECTED_STATE": 0
+            },
+            "SELECT": {
+              "STARTED": 0,
+              "PASS": 0,
+              "FAIL": 0,
+              "UNEXPECTED_STATE": 0
+            },
+            "UNEXPECTED_COMMAND": {
+              "STARTED": 0,
+              "PASS": 0,
+              "FAIL": 0,
+              "UNEXPECTED_STATE": 0
+            }
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "code": "TCP",
+              "kind": "PHASE",
+              "state": "NOT_OBSERVED"
+            },
+            {
+              "sequence": 2,
+              "code": "TCP_TIMEOUT",
+              "kind": "FAILURE",
+              "state": "FAIL"
+            }
+          ],
+          "events_total": 2,
+          "events_dropped": 0,
+          "failure_category": "TCP_TIMEOUT",
+          "exception_nodes": [
+            {
+              "depth": 0,
+              "exception_class": "java.net.SocketTimeoutException",
+              "position": 0
+            }
+          ],
+          "exception_relations": [],
+          "exceptions_truncated": false
+        }
+      },
+      "B": {
+        "status": "NOT_RUN"
+      },
+      "C": {
+        "status": "NOT_RUN"
+      }
+    },
+    "lifecycle": [
+      {
+        "control": "RUN",
+        "event": "INPUT_READY",
+        "elapsed_millis": 237
+      },
+      {
+        "control": "RUN",
+        "event": "DNS_BEGIN",
+        "elapsed_millis": 266
+      },
+      {
+        "control": "RUN",
+        "event": "DNS_PASS",
+        "elapsed_millis": 343
+      },
+      {
+        "control": "A",
+        "event": "TCP_BEGIN",
+        "elapsed_millis": 391
+      },
+      {
+        "control": "A",
+        "event": "CONTROL_FAIL",
+        "elapsed_millis": 3397
+      },
+      {
+        "control": "A",
+        "event": "CONTROL_CLEANUP_BEGIN",
+        "elapsed_millis": 3397
+      },
+      {
+        "control": "A",
+        "event": "SOCKET_CLOSE_BEGIN",
+        "elapsed_millis": 3397
+      },
+      {
+        "control": "A",
+        "event": "SOCKET_CLOSED",
+        "elapsed_millis": 3398
+      },
+      {
+        "control": "RUN",
+        "event": "RUN_CLEANUP_BEGIN",
+        "elapsed_millis": 3399
+      },
+      {
+        "control": "RUN",
+        "event": "RUN_CLEANUP_DONE",
+        "elapsed_millis": 3399
+      }
+    ],
+    "target_connections_started": 1,
+    "elapsed_millis": 3399,
+    "cleanup_complete": true,
+    "diagnostics": {
+      "phase": "DNS",
+      "stages": {
+        "DNS": "NOT_OBSERVED",
+        "TCP": "NOT_OBSERVED",
+        "TLS": "NOT_OBSERVED",
+        "HANDSHAKE": "NOT_OBSERVED",
+        "ACTIVE": "NOT_OBSERVED",
+        "EXPLICIT_PING": "NOT_OBSERVED"
+      },
+      "commands": {
+        "HELLO": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "AUTH": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "PING": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "CLIENT": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "SELECT": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        },
+        "UNEXPECTED_COMMAND": {
+          "STARTED": 0,
+          "PASS": 0,
+          "FAIL": 0,
+          "UNEXPECTED_STATE": 0
+        }
+      },
+      "events": [
+        {
+          "sequence": 1,
+          "code": "DNS",
+          "kind": "PHASE",
+          "state": "NOT_OBSERVED"
+        }
+      ],
+      "events_total": 1,
+      "events_dropped": 0,
+      "failure_category": "NOT_OBSERVED",
+      "exception_nodes": [],
+      "exception_relations": [],
+      "exceptions_truncated": false
+    }
+  },
+  "cleanup_complete": true,
+  "child_stopped": true
+}

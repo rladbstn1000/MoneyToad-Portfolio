@@ -1,0 +1,15 @@
+{
+  "status": "BLOCKED",
+  "phase": "offline-preflight",
+  "input_check": "BLOCKED",
+  "reason": "CONNECTION_FILE_MISSING",
+  "provider_connections_attempted": 0,
+  "remote_writes": 0,
+  "remote_cleanup": "NOT_NEEDED_NO_REMOTE_RESOURCES_CREATED",
+  "tidb_contracts_verified": false,
+  "upstash_functional_contracts_verified": false,
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "provider_selection": "HOLD",
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false
+}

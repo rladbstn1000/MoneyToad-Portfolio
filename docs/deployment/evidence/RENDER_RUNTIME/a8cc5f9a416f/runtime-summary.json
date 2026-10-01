@@ -1,0 +1,121 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "check": "prerequisites",
+      "status": "PASS"
+    },
+    {
+      "check": "compile-and-package",
+      "status": "PASS"
+    },
+    {
+      "check": "configuration-tests",
+      "status": "PASS",
+      "tests": 85,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "check": "owned-tls-services",
+      "status": "PASS"
+    },
+    {
+      "check": "host-published-loopback-connectivity",
+      "status": "PASS"
+    },
+    {
+      "check": "separate-schema-preparation",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-configdata-tls-integration",
+      "status": "PASS",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "check": "validate-did-not-change-schema",
+      "status": "PASS"
+    },
+    {
+      "check": "jdbc-untrusted-ca",
+      "status": "PASS"
+    },
+    {
+      "check": "jdbc-hostname-mismatch",
+      "status": "PASS"
+    },
+    {
+      "check": "jdbc-wrong-credential",
+      "status": "PASS"
+    },
+    {
+      "check": "missing-schema-validate",
+      "status": "PASS"
+    },
+    {
+      "check": "missing-schema-remains-empty",
+      "status": "PASS"
+    },
+    {
+      "check": "redis-untrusted-ca-actual-client-cause",
+      "status": "PASS"
+    },
+    {
+      "check": "redis-untrusted-ca",
+      "status": "PASS",
+      "http_status": 503,
+      "tokens_returned": false,
+      "database_unchanged": true
+    },
+    {
+      "check": "redis-hostname-mismatch-actual-client-cause",
+      "status": "PASS"
+    },
+    {
+      "check": "redis-hostname-mismatch",
+      "status": "PASS",
+      "http_status": 503,
+      "tokens_returned": false,
+      "database_unchanged": true
+    },
+    {
+      "check": "redis-wrong-credential-actual-client-cause",
+      "status": "PASS"
+    },
+    {
+      "check": "redis-wrong-credential",
+      "status": "PASS",
+      "http_status": 503,
+      "tokens_returned": false,
+      "database_unchanged": true
+    },
+    {
+      "check": "dockerignore-actual-context",
+      "status": "FAIL"
+    }
+  ],
+  "cleanup_complete": true,
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false,
+  "local_render_runtime_ready": false,
+  "host_architecture": "arm64",
+  "docker_architecture": "aarch64",
+  "dependency_versions": [
+    "HikariCP-6.3.2.jar",
+    "hibernate-core-6.6.26.Final.jar",
+    "lettuce-core-6.6.0.RELEASE.jar",
+    "mysql-connector-j-9.4.0.jar",
+    "spring-boot-3.5.5.jar"
+  ],
+  "failed_phase": "docker-build",
+  "failure_class": "CheckFailure",
+  "failed_check": "dockerignore-actual-context",
+  "test_failures": [],
+  "owned_docker_resources_remaining": 0,
+  "owned_ports_released": true
+}

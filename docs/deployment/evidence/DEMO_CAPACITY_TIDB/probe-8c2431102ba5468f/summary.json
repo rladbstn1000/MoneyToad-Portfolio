@@ -1,0 +1,48 @@
+{
+  "status": "PREPARED",
+  "phase": "TIDB_ADMISSION_CLEANUP",
+  "input_status": "NOT_CHECKED",
+  "provider_process_launched": false,
+  "old_provider_state_accessed": false,
+  "upstash_connections": 0,
+  "redis_commands": 0,
+  "http_logins": 0,
+  "reserved_command_equivalents": 0,
+  "budget_limit": 2000,
+  "work_limit": 1500,
+  "cleanup_reserved": 0,
+  "connection_limit": 8,
+  "public_deployment_ready": false,
+  "remote_demo_capacity_verified": false,
+  "remote_commit_ambiguity": "REMOTE_NOT_EXERCISED",
+  "static_plan": {
+    "work_components": {
+      "driver_connection_initialization": 128,
+      "reviewed_metadata_calls": 280,
+      "schema_and_grants": 110,
+      "two_v1_fixture_inserts": 630,
+      "admission_locks_and_transaction_state": 130,
+      "cleanup_sql_contract_calls": 150,
+      "privilege_denials_and_observations": 72
+    },
+    "work_upper_bound": 1500,
+    "cleanup_reserved_before_launch": 500,
+    "total_reserved_upper_bound": 2000,
+    "planned_physical_connections": 4,
+    "authorized_connection_limit": 8,
+    "provider_billing_measurement": false
+  },
+  "compilation": "PASS",
+  "local_java_tests": {
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "remote_execution": "NOT_PERFORMED",
+  "cleanup_complete": true,
+  "child_stopped": true,
+  "forced_child_termination": false,
+  "remaining_command_equivalents": 2000,
+  "remote_cleanup": "NOT_NEEDED_NO_PROVIDER_PROCESS"
+}

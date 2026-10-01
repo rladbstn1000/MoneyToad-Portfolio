@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "public_content_scan": "PASS",
+  "files_scanned": 468,
+  "unresolved": [],
+  "classified_exact_source_sites": 104,
+  "starting_files": 399,
+  "historical_documents_and_evidence_preserved": true,
+  "protected_historical_files": 62,
+  "existing_files_and_modes_preserved": true,
+  "history_unchanged": true,
+  "staged_files": 0,
+  "provider_connections_attempted": 0,
+  "remote_writes": 0,
+  "public_deployment_ready": false
+}

@@ -1,0 +1,19 @@
+{
+  "status": "BLOCKED",
+  "exit_code": 2,
+  "cleanup_complete": true,
+  "modes": [
+    {
+      "mode": "public-demo",
+      "networks": []
+    },
+    {
+      "mode": "local-demo",
+      "networks": []
+    }
+  ],
+  "failed_phase": "preflight",
+  "failure_classes": [],
+  "failure_tags": [],
+  "diagnostic": "dedicated Playwright Chromium must be provisioned first"
+}

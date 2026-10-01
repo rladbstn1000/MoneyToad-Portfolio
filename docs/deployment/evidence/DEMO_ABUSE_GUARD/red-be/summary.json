@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "exit_code": 1,
+  "cleanup_complete": true,
+  "suites": [
+    {
+      "test": "com.potg.don.auth.DemoGatewayBoundaryIntegrationTest",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "test": "directPublicRequestWithValidAccessCannotBypassGateway()",
+          "status": "FAIL",
+          "failure_sources": [],
+          "cause_classes": [
+            "org.opentest4j.AssertionFailedError"
+          ],
+          "failure_codes": []
+        }
+      ]
+    }
+  ],
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS",
+  "expected_red_observed": true,
+  "contract": "direct authenticated public request without gateway rejected before user lookup",
+  "provider_connections_attempted": 0
+}

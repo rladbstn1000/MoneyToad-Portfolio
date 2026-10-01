@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "files_scanned": 479,
+  "public_scan": "PASS",
+  "unresolved": [],
+  "actual_credential_match_files": [],
+  "protected_files_checked": 107,
+  "protected_files_changed": [],
+  "missing_preexisting_files": [],
+  "preexisting_mode_changes": [],
+  "modified_preexisting_files_since_console_checkpoint": [
+    "docs/deployment/STATUS.md",
+    "scripts/verification/fixtures/scan-classifications.json",
+    "scripts/verification/managed_provider_local.py"
+  ],
+  "product_changes_since_console_checkpoint": [],
+  "git_head_unchanged": true,
+  "staged_files": 0,
+  "checkpoint_caveat": "Source checkpoint was recorded after the username-prefix fix; its targeted delta is documented separately."
+}

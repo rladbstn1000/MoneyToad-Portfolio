@@ -1,0 +1,48 @@
+{
+  "status": "LOCAL_FUNCTIONAL_CONTRACTS_PASS",
+  "be": {
+    "tests": 530,
+    "general": 439,
+    "render": 91,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "fe": {
+    "tests": 252,
+    "failures": 0,
+    "skipped": 0
+  },
+  "typechecks": "PASS",
+  "builds": [
+    "oauth",
+    "demo"
+  ],
+  "lint": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "browser": {
+    "independent_runs": 2,
+    "cases_each": 4,
+    "external_app_requests": 0,
+    "cleanup_complete": true
+  },
+  "cleanup_complete": true,
+  "LOCAL_DEMO_CAPACITY_READY": true,
+  "LOCAL_DEMO_CLEANUP_READY": true,
+  "REMOTE_DEMO_CAPACITY_VERIFIED": false,
+  "PUBLIC_DEPLOYMENT_READY": false,
+  "remote_connections": 0,
+  "provider_state_accessed": false,
+  "source_checks": [
+    "be-full-02",
+    "fe-full-02",
+    "render-full-05",
+    "browser-full-01"
+  ],
+  "limited_cold_start_to_ready_seconds": 354.25,
+  "frontend_cold_readiness_deadline_seconds": 240,
+  "limited_cold_start_ux": "NOT_ESTABLISHED_WITHIN_FRONTEND_DEADLINE",
+  "original_public_scan": "FAIL_27_REVIEWED_NON_SECRET_FINDINGS_RULES_UNCHANGED"
+}

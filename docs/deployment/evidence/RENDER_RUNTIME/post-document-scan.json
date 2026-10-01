@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "files_scanned": 387,
+  "unresolved_count": 0,
+  "unresolved": [],
+  "existing_rules_unchanged": true,
+  "scope_and_historical_hashes_verified": true,
+  "head_unchanged": true,
+  "staged_changes": 0,
+  "diff_check": "PASS"
+}

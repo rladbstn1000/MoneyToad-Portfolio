@@ -1,0 +1,796 @@
+{
+  "count": 79,
+  "rows": [
+    {
+      "file": "be/src/main/java/com/potg/don/auth/entity/CustomUserDetails.java",
+      "line": 23,
+      "rule": "credential-assignment",
+      "site_digest": "d72743dadc85839b7bf3383040d8824165cc8978892ef65d93fb80de89cb1074",
+      "file_digest": "8335979d96f631798bdd568b25b6cf60c883c7bb8bc56b66c8afcbd76d28522c",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpIntegrationTest.java",
+      "line": 65,
+      "rule": "email-marker",
+      "site_digest": "52023aaa778c65fdc75e83fc89d01b7229f64ad1b099319599714c88a93cd4e4",
+      "file_digest": "596f141be4b69a847ab9b065802855da39b194b0b7659722dda1aa24942c5e4c",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpRequestContractTest.java",
+      "line": 53,
+      "rule": "email-marker",
+      "site_digest": "74f6b7719ff07f560bc06736780d0da6c5e783a8a339544ae4bcce3a4f12ef1c",
+      "file_digest": "078b6b89ba9ba2fd21be27a54ec69f60e27d650ac9bdb48c1442ea441b66ae8c",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpRequestContractTest.java",
+      "line": 335,
+      "rule": "email-marker",
+      "site_digest": "5b48837f3f9708739add639633aa48ad54646c75fd96a95770e090a590078c80",
+      "file_digest": "078b6b89ba9ba2fd21be27a54ec69f60e27d650ac9bdb48c1442ea441b66ae8c",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "line": 302,
+      "rule": "email-marker",
+      "site_digest": "09298bf409d23505057876ad8639285f38a21d7ac7b60beafe679aab666205e3",
+      "file_digest": "95f2e61481097604c7bd81510820cf418feeb1d72899cd5c35a49c5c4f6e32d7",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "line": 303,
+      "rule": "email-marker",
+      "site_digest": "5d1e27b0990cdb4d3b0ba0c9b454d9036f4b073358e082b7691ad1638cdef674",
+      "file_digest": "95f2e61481097604c7bd81510820cf418feeb1d72899cd5c35a49c5c4f6e32d7",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 41,
+      "rule": "email-marker",
+      "site_digest": "a448ab21a703ed4f32806c84435e957e8fa01f39c9c00994679b77d653984a37",
+      "file_digest": "d4b1272fed68b98a527df441372f0427bebbe2b4147d4cc55e1b9c0fed992616",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 98,
+      "rule": "email-marker",
+      "site_digest": "f3eecc8a97bbe42f63ea43b64248773e56941ae7bd5b8ae31518fdad86034039",
+      "file_digest": "d4b1272fed68b98a527df441372f0427bebbe2b4147d4cc55e1b9c0fed992616",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 126,
+      "rule": "email-marker",
+      "site_digest": "a90ef988a7896f1842e764fa4c1999df40e15c9589813a89ca75ec44c0d710ce",
+      "file_digest": "d4b1272fed68b98a527df441372f0427bebbe2b4147d4cc55e1b9c0fed992616",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 149,
+      "rule": "email-marker",
+      "site_digest": "481f6437e8cf7459007011e5b967ee7e449aa6aa95c64395481b00c0ea4e9ac5",
+      "file_digest": "d4b1272fed68b98a527df441372f0427bebbe2b4147d4cc55e1b9c0fed992616",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 171,
+      "rule": "email-marker",
+      "site_digest": "84fa6bcdcb996ac003d54bb083286f10a6f23f61d99d7829035f03abc0fe83cc",
+      "file_digest": "d4b1272fed68b98a527df441372f0427bebbe2b4147d4cc55e1b9c0fed992616",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 143,
+      "rule": "email-marker",
+      "site_digest": "a6b06504ff7132367d392f43dbeb05e0832abfea85d87cd1b8efc3b3db377885",
+      "file_digest": "268c35a0707fa58f3785a23828f5c891bfaabaecaff235a0c8a45efd0e815997",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 512,
+      "rule": "email-marker",
+      "site_digest": "09298bf409d23505057876ad8639285f38a21d7ac7b60beafe679aab666205e3",
+      "file_digest": "268c35a0707fa58f3785a23828f5c891bfaabaecaff235a0c8a45efd0e815997",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 513,
+      "rule": "email-marker",
+      "site_digest": "5d1e27b0990cdb4d3b0ba0c9b454d9036f4b073358e082b7691ad1638cdef674",
+      "file_digest": "268c35a0707fa58f3785a23828f5c891bfaabaecaff235a0c8a45efd0e815997",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 75,
+      "rule": "bearer-marker",
+      "site_digest": "b5a302368402167ba8dddda76cb50c8d83f2f0ae04abcfea1ce14781c9e91eaa",
+      "file_digest": "6b09784bec4a3f8c86d6e790bc3cc7fe462ee42bc29e1901153bb550ed8c8fde",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 223,
+      "rule": "cookie-assignment",
+      "site_digest": "8df4d7e9f7398880e303f1a25a09d091bb52391dbffc66271cddfffff088e0a2",
+      "file_digest": "6b09784bec4a3f8c86d6e790bc3cc7fe462ee42bc29e1901153bb550ed8c8fde",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 241,
+      "rule": "cookie-assignment",
+      "site_digest": "7347538d9e778cde0a8a0e348ceb6435070757b6d9bd5766ed3e3155dc4d5ce2",
+      "file_digest": "6b09784bec4a3f8c86d6e790bc3cc7fe462ee42bc29e1901153bb550ed8c8fde",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthFilterAvailabilityTest.java",
+      "line": 83,
+      "rule": "email-marker",
+      "site_digest": "dab41b4dc793688d46580efc9b1757c8cdbe3d2284c541f0be5962a2ef5bbd90",
+      "file_digest": "1de2780431f239da6a95bf09458539cf2e75e071e857b66890a55d60b70dc265",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 36,
+      "rule": "credential-assignment",
+      "site_digest": "039e236a01ff0a619689483234f597c8121655fe9ce025b1bed978e6d59b340b",
+      "file_digest": "e7710ff756cf0b0db4c3540d521f76f9106467a03dda4121502c7a15742670ac",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 90,
+      "rule": "email-marker",
+      "site_digest": "dc7a50897aca60a778d2e1e467d8678785a337235bb4dcc158133f92c6d61759",
+      "file_digest": "e7710ff756cf0b0db4c3540d521f76f9106467a03dda4121502c7a15742670ac",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 122,
+      "rule": "email-marker",
+      "site_digest": "570f38f9ff3b3cfb3b8bbe26f54cf57971ca264663d864dcb6055c639b00ca3f",
+      "file_digest": "e7710ff756cf0b0db4c3540d521f76f9106467a03dda4121502c7a15742670ac",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 218,
+      "rule": "email-marker",
+      "site_digest": "8b02036eb6c41be68d9016cc95dcba4d39b2bd50351299a7cd87d824eaba9e10",
+      "file_digest": "e7710ff756cf0b0db4c3540d521f76f9106467a03dda4121502c7a15742670ac",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 221,
+      "rule": "email-marker",
+      "site_digest": "a04814083f944fa63b82f85120dc3e1f58272e47de0d9aad56ff945e2ee536a8",
+      "file_digest": "e7710ff756cf0b0db4c3540d521f76f9106467a03dda4121502c7a15742670ac",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 143,
+      "rule": "email-marker",
+      "site_digest": "5cadd056f2343bba3ef7b407c993dcc21b2ed8f84059e387ef3ac83e829bd92e",
+      "file_digest": "4f6315aab15d1665554e1c088a32199085fe7acbd8cb505f9c7a1e399ca52b92",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 173,
+      "rule": "email-marker",
+      "site_digest": "6237f4b2ad5ed2a0465556d57a8da90e3cf9daaffbfce1ec73eafc9889eae7fa",
+      "file_digest": "4f6315aab15d1665554e1c088a32199085fe7acbd8cb505f9c7a1e399ca52b92",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 185,
+      "rule": "email-marker",
+      "site_digest": "cb44f2e588712fade8b78e3f0c6556c6598c7d701a64e4a7c941f260d436568e",
+      "file_digest": "4f6315aab15d1665554e1c088a32199085fe7acbd8cb505f9c7a1e399ca52b92",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionServiceTest.java",
+      "line": 142,
+      "rule": "email-marker",
+      "site_digest": "746d96b80102b41679d7f17d11f064b9db813bb4751d470a95fe998915c21a08",
+      "file_digest": "379c625c4b81cf9177fc2461aebe3432d4516ceb02bdd30b5f4efff0bc49dafa",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 82,
+      "rule": "email-marker",
+      "site_digest": "1e43ce802450d7a2893f48049c611e385687f614bbae992fb32b464d775240be",
+      "file_digest": "1a006bea6d889b6365aa7967ac94def7ed81fc9ce2c5ba539ad99e7417dd1e80",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 112,
+      "rule": "cookie-assignment",
+      "site_digest": "cafe884cb607047effe6cbe12bac14b85161461a39e89cd2522b29e13d2ac757",
+      "file_digest": "1a006bea6d889b6365aa7967ac94def7ed81fc9ce2c5ba539ad99e7417dd1e80",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 126,
+      "rule": "bearer-marker",
+      "site_digest": "42e617c7d50cc612463b551149c4e3e0860ba62e3fe89a8d59adf44d3ded69ad",
+      "file_digest": "1a006bea6d889b6365aa7967ac94def7ed81fc9ce2c5ba539ad99e7417dd1e80",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 127,
+      "rule": "cookie-assignment",
+      "site_digest": "7cd7eeb0cdfd808aa7ecacd9c9a81f494f9c1da61987c1717ed8bc7b00e37260",
+      "file_digest": "1a006bea6d889b6365aa7967ac94def7ed81fc9ce2c5ba539ad99e7417dd1e80",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 84,
+      "rule": "email-marker",
+      "site_digest": "aafe59d8eb78450b0b5843cdd66cfe6ea444a8794d9289f6751a8774e200672b",
+      "file_digest": "1d06389af5712a814927a35a890473502f62715486470f055fc8bad90c810dab",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 85,
+      "rule": "email-marker",
+      "site_digest": "91f24ea4c2c9fc2000288549d36a43e7e499f560eda666efb112af7b54200096",
+      "file_digest": "1d06389af5712a814927a35a890473502f62715486470f055fc8bad90c810dab",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 186,
+      "rule": "email-marker",
+      "site_digest": "1e25f64ef9eb730eba182517ecdfcc27ab7bfadc65f48c88f61754bc66ac8ecc",
+      "file_digest": "1d06389af5712a814927a35a890473502f62715486470f055fc8bad90c810dab",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/service/BudgetServiceOwnershipTest.java",
+      "line": 58,
+      "rule": "email-marker",
+      "site_digest": "b0468f919758ba4ec72b7cb7a9a08bc047cc6f80739e9574a75ebed4667e2309",
+      "file_digest": "f0c63544602c2994f17e10d5c9ce25ccd48758221546b2bc2254cb0be0f90535",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/service/BudgetServiceOwnershipTest.java",
+      "line": 59,
+      "rule": "email-marker",
+      "site_digest": "b147810b8f84efefcd8bba97a7781279d4899d18258de90a5109ffd43b85ea33",
+      "file_digest": "f0c63544602c2994f17e10d5c9ce25ccd48758221546b2bc2254cb0be0f90535",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/card/controller/CardControllerCsvContractTest.java",
+      "line": 72,
+      "rule": "credential-assignment",
+      "site_digest": "4b5b9ee1f5fffd9ca75ec267c62c1c88eda58e27a05cb67f0c160d806d97a11a",
+      "file_digest": "42441d827384c68e59288d5b8a56cad9927ca8fe19c4ae1d0cc11e5715dd5730",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/global/config/RenderRuntimeConfigurationTest.java",
+      "line": 155,
+      "rule": "credential-assignment",
+      "site_digest": "370d0dd2d3173007a496079cb83d690137f24c778c830795b41e645ddc13a0b0",
+      "file_digest": "b309e767d85f80b2fb602dc8f8333ef3c30559a1630611d6c2659a6aabe523ae",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 115,
+      "rule": "email-marker",
+      "site_digest": "f129ac26c0466925633dd8f654d0ae0fb8c6cc35efd0f7c28ae46c16885fa851",
+      "file_digest": "6293b1e365d7f6d781817fc76c9db83405a7e4dea542535d423ad313a55d4a7b",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 116,
+      "rule": "email-marker",
+      "site_digest": "015dbcb302d83f138a68694907f554df91a72fdf58d68061cfedd32ade5106b1",
+      "file_digest": "6293b1e365d7f6d781817fc76c9db83405a7e4dea542535d423ad313a55d4a7b",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 156,
+      "rule": "email-marker",
+      "site_digest": "cf1234367145d3e56c884ee1a888978059abfd9709e595ca16d751ac080e35fc",
+      "file_digest": "6293b1e365d7f6d781817fc76c9db83405a7e4dea542535d423ad313a55d4a7b",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 124,
+      "rule": "email-marker",
+      "site_digest": "b925644ed91b87102abaa0300b712e1514d63b823bf1293841eb57a3f28202e6",
+      "file_digest": "3b314bfc4f69117d6b4e42724f0f5202895d9e3d635dc4131439c2b2b7b08513",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 125,
+      "rule": "email-marker",
+      "site_digest": "0081c0bc7e6f82d445a90dbc019365f0dbb6c905cacfaae1f685abdf39377c17",
+      "file_digest": "3b314bfc4f69117d6b4e42724f0f5202895d9e3d635dc4131439c2b2b7b08513",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 158,
+      "rule": "bearer-marker",
+      "site_digest": "489746fa250b4c29ce35f78e4e489304aea411860d59ed431cc0ecff63641b4f",
+      "file_digest": "3b314bfc4f69117d6b4e42724f0f5202895d9e3d635dc4131439c2b2b7b08513",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 170,
+      "rule": "bearer-marker",
+      "site_digest": "a0b1fcae5f5ceb9e0edebf9713d4f4fb93d3cfcca305bd5e34b1f0478ad48987",
+      "file_digest": "3b314bfc4f69117d6b4e42724f0f5202895d9e3d635dc4131439c2b2b7b08513",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 227,
+      "rule": "email-marker",
+      "site_digest": "ef430c9e90a4f2dc1441656ab4baf36fbd641cb9b62936a4b4d0b4314a71da15",
+      "file_digest": "3b314bfc4f69117d6b4e42724f0f5202895d9e3d635dc4131439c2b2b7b08513",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/service/CsvServiceOwnershipTest.java",
+      "line": 50,
+      "rule": "email-marker",
+      "site_digest": "b2672e6458dde888a8c29ae155da72bff1d4cc2e7dc9df23f175c2d60912a080",
+      "file_digest": "fa3b5b3912c824b8a097ab6b6463d2d8665d9931fc0fc7c1a1a535b71e6b5754",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 161,
+      "rule": "credential-assignment",
+      "site_digest": "dc50a0e121dd604acfbcd7be3bd98e78b77cc4e8ba4d7f6f524c0722aede827c",
+      "file_digest": "c3f94659b2fc175b786767e9b5afb82ee0b61dc1b2bf3a2da38ee23610a85ce1",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 473,
+      "rule": "credential-assignment",
+      "site_digest": "64635a21ee27b3fd89d2bc2aede280c13e5a1feb87fdd67ecdddbcabf123e488",
+      "file_digest": "c3f94659b2fc175b786767e9b5afb82ee0b61dc1b2bf3a2da38ee23610a85ce1",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 482,
+      "rule": "credential-assignment",
+      "site_digest": "0b99f0846d588daacd084c4a7ee17727ef1c32ec3d225b436bc4fce9a8edc1cd",
+      "file_digest": "c3f94659b2fc175b786767e9b5afb82ee0b61dc1b2bf3a2da38ee23610a85ce1",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedRedisActivationLocalTest.java",
+      "line": 46,
+      "rule": "credential-assignment",
+      "site_digest": "d561e2f6befd99b14a4d9c6b30b475928fce8c458cdee8d623baa86da0628096",
+      "file_digest": "f9e4c7957cdd5fe8baa4580f045330b250a78e55383d6db492dca7c164d87443",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedSqlContracts.java",
+      "line": 64,
+      "rule": "email-marker",
+      "site_digest": "3abd04dd72d32814f8c702d0c4a401b6f4ae4bcbad8b881823a92f6fd3a6f8e1",
+      "file_digest": "7903f1e72ce63ad86ad93818d7287d1362482a939339ddc07092f08bc77a86f7",
+      "manual_review_reason": "Reserved-domain identity assertion/fixture; no real mailbox",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/RedisTransportComparisonTest.java",
+      "line": 37,
+      "rule": "credential-assignment",
+      "site_digest": "d561e2f6befd99b14a4d9c6b30b475928fce8c458cdee8d623baa86da0628096",
+      "file_digest": "71d82d63387d20985edf75a8f6f51d85339bf60f010b0743ebbede253a6280cb",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 187,
+      "rule": "cookie-assignment",
+      "site_digest": "488ba1e55f55c9c61ab9f65ce9532884ff15d9f33c90de4e72631e63a8532301",
+      "file_digest": "04facfc10ab88b05c9a26c66b76fca9eaf9d32c3e9355398b0b7418e1762ed1c",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 230,
+      "rule": "cookie-assignment",
+      "site_digest": "55134edbb4491baeeafdda009ea9c956b2e149d20d850f4afb8671087dbbbf61",
+      "file_digest": "04facfc10ab88b05c9a26c66b76fca9eaf9d32c3e9355398b0b7418e1762ed1c",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 253,
+      "rule": "bearer-marker",
+      "site_digest": "dd8264d08f3da300949641817665c05ca6591c7839f0e4af6122be9946da747a",
+      "file_digest": "04facfc10ab88b05c9a26c66b76fca9eaf9d32c3e9355398b0b7418e1762ed1c",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 255,
+      "rule": "bearer-marker",
+      "site_digest": "869b6a77e0f5db8c0fd83a1cb8b73f11617acaaefe160b9a47d176381bcf92bf",
+      "file_digest": "04facfc10ab88b05c9a26c66b76fca9eaf9d32c3e9355398b0b7418e1762ed1c",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 255,
+      "rule": "authorization-marker",
+      "site_digest": "869b6a77e0f5db8c0fd83a1cb8b73f11617acaaefe160b9a47d176381bcf92bf",
+      "file_digest": "04facfc10ab88b05c9a26c66b76fca9eaf9d32c3e9355398b0b7418e1762ed1c",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/package-lock.json",
+      "line": 391,
+      "rule": "cookie-header",
+      "site_digest": "8d58d6af8e52c4b3f96ff79a228a4d882f3da4fcabe034d0bcac7aa96aea92e8",
+      "file_digest": "62f7b26a26b4d657238ad72bfc0eb23d98e011e80c7dcce1c57f34a5201f7e0d",
+      "manual_review_reason": "npm dependency semantic-version field, not HTTP header",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/package-lock.json",
+      "line": 6160,
+      "rule": "cookie-header",
+      "site_digest": "9e727db19849c4cc4db57070acd86357d4386df4f0cc95e6f33303a6d10fadca",
+      "file_digest": "62f7b26a26b4d657238ad72bfc0eb23d98e011e80c7dcce1c57f34a5201f7e0d",
+      "manual_review_reason": "npm dependency semantic-version field, not HTTP header",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/src/api/demoInterceptors.ts",
+      "line": 21,
+      "rule": "bearer-marker",
+      "site_digest": "90b640d87b7652e4b89451e9cbdbb397a878cfd6f6779f88ec721b1bb13013dd",
+      "file_digest": "c806b1f1358f30260b670eb823e58a907649ab195e4525cc7108ca49cb2f43d0",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "line": 14,
+      "rule": "bearer-marker",
+      "site_digest": "c0beee1e09356fb2d012a663dd693580b54499eecb6979f6d22c4a5ecce8fb83",
+      "file_digest": "55683e51522c28c07de2fbe5da9368c8a20c2790e4ba93699d13b50f463112cb",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "line": 49,
+      "rule": "bearer-marker",
+      "site_digest": "e4aa57d3aa61133a03dfb1499d7fd97b5cdefc17529ef9b901ac23001c8fba7d",
+      "file_digest": "55683e51522c28c07de2fbe5da9368c8a20c2790e4ba93699d13b50f463112cb",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 28,
+      "rule": "bearer-marker",
+      "site_digest": "65860bcefce3937b608f5f17b582d3d69c73822f3ddba25db893ad1603bef5db",
+      "file_digest": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 28,
+      "rule": "authorization-marker",
+      "site_digest": "65860bcefce3937b608f5f17b582d3d69c73822f3ddba25db893ad1603bef5db",
+      "file_digest": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 37,
+      "rule": "bearer-marker",
+      "site_digest": "877c511f18e633eb00df249fab356c8ab466862f991f8d6d106a92e8f9cde309",
+      "file_digest": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 37,
+      "rule": "authorization-marker",
+      "site_digest": "877c511f18e633eb00df249fab356c8ab466862f991f8d6d106a92e8f9cde309",
+      "file_digest": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/a2_1_not_found_contract.py",
+      "line": 110,
+      "rule": "bearer-marker",
+      "site_digest": "4ea44b88604fc8da60b3b34a72a42d241cfe03ac9dd3b944bea80f23b10da6d1",
+      "file_digest": "dfc6149e5fc805e16b7272afb14fb7441c30b66345e7b9dab68283ed86e71ffb",
+      "manual_review_reason": "Memory interpolation, synthetic invalid-token assertion, or fixed comment describing request; no JWT bytes",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/managed_provider_local.py",
+      "line": 144,
+      "rule": "credential-assignment",
+      "site_digest": "6029e0104ff10d434db7d21d32cc7d11d3794836833233745dd4e7437d4e4e1e",
+      "file_digest": "7e6cc5203a31a30571e5e74eb597cdcd60a59489c77a53f832a2662808622430",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/public_evidence.py",
+      "line": 21,
+      "rule": "cookie-assignment",
+      "site_digest": "ceaaa60bcd02152e56311292a30e85516c0cb54f6570780bd61a206e10216d75",
+      "file_digest": "e5507534ecd8ee22209d0cdd4a67df40f5c3563e6190147b488c4a89cb0adbb4",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/public_scan.py",
+      "line": 17,
+      "rule": "cookie-assignment",
+      "site_digest": "0c1c2dbd82fbc7a57b559351cd02b9e67918e0db4179222e21a1efb2e3745a9f",
+      "file_digest": "a8232e26a0014a5e6b54dd49a87350feadd15a642609ddd6d7a63759ed81e064",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/test_managed_provider_recovery.py",
+      "line": 153,
+      "rule": "credential-assignment",
+      "site_digest": "af1d9bb266b351953ed93294616a3abc5ca3ebf7ce230bfc0dcd3841da8d374c",
+      "file_digest": "891c469f0881c27c46e42ab96deb32e4b4a96f37409bbbdb892db5fffda6885c",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 12,
+      "rule": "identity-field",
+      "site_digest": "b9f95ac0b0b00c5c2ebd64567611fcd21b65b97070bef16abe50b26842eb2a90",
+      "file_digest": "e3aa5b371dc30176115145c25e170bc4c51d8af7636b52843771b84b1794cb3b",
+      "manual_review_reason": "Negative scanner/sanitizer fixture; intended forbidden-field detection test",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 15,
+      "rule": "identity-field",
+      "site_digest": "cc3553a77bcc2260285db9cd324546eaa4871840cb1f17cdbd8731627ba14f6a",
+      "file_digest": "e3aa5b371dc30176115145c25e170bc4c51d8af7636b52843771b84b1794cb3b",
+      "manual_review_reason": "Negative scanner/sanitizer fixture; intended forbidden-field detection test",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 36,
+      "rule": "cookie-assignment",
+      "site_digest": "235dbb2553487a4670b847fcf638213291217c251d953772c10edaa7cd903211",
+      "file_digest": "e3aa5b371dc30176115145c25e170bc4c51d8af7636b52843771b84b1794cb3b",
+      "manual_review_reason": "Cookie-name visibility/prefix assertion, in-memory comparison, detector regex, or explicitly synthetic invalid token marker",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 42,
+      "rule": "credential-assignment",
+      "site_digest": "b845b17d5f487f7262b9314c4d3a02fedb1f92df7acbdea516dee898c29b5bf4",
+      "file_digest": "e3aa5b371dc30176115145c25e170bc4c51d8af7636b52843771b84b1794cb3b",
+      "manual_review_reason": "Parameter assignment / generated runtime credential / synthetic test-only invalid or isolated fixture; no operational credential",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 49,
+      "rule": "identity-field",
+      "site_digest": "4b415012fcab61a563cb6d78918015a577ebf3b60f5b07cb7e9d8d1bed04eeac",
+      "file_digest": "e3aa5b371dc30176115145c25e170bc4c51d8af7636b52843771b84b1794cb3b",
+      "manual_review_reason": "Negative scanner/sanitizer fixture; intended forbidden-field detection test",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "line": 37,
+      "rule": "identity-field",
+      "site_digest": "235782386cf3d6cd45ed0a250c475ac355b19077c01c12b3d8bfd20ef7b306a1",
+      "file_digest": "35f8960de97fce60ccc1bf9025b7188eb71c5ddde07c78bb14375644fb9ee88a",
+      "manual_review_reason": "Negative scanner/sanitizer fixture; intended forbidden-field detection test",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "line": 45,
+      "rule": "identity-field",
+      "site_digest": "4f9c801ad3531b5623edee843628b9aa69e4c38d806f39a111bc5d5da7d60915",
+      "file_digest": "35f8960de97fce60ccc1bf9025b7188eb71c5ddde07c78bb14375644fb9ee88a",
+      "manual_review_reason": "Negative scanner/sanitizer fixture; intended forbidden-field detection test",
+      "observed_real_secret_or_pii": false,
+      "scanner_approval": false
+    }
+  ],
+  "notice": "Independent content triage only; no classifications applied"
+}

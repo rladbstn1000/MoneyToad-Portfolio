@@ -1,0 +1,462 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "scope": "Local public-candidate audit at a point in time; not a provider probe or deployment-readiness result.",
+  "automatic_scan": {
+    "status": "FAIL",
+    "files_scanned_before_this_audit": 545,
+    "unresolved_count": 27,
+    "category_counts": {
+      "data-dump-candidate": 1,
+      "cookie-assignment": 2,
+      "email-marker": 3,
+      "credential-assignment": 17,
+      "identity-field": 1,
+      "bearer-marker": 2,
+      "authorization-marker": 1
+    },
+    "findings": [
+      {
+        "file": "be/src/main/resources/db/demo/V001__demo_admission.sql",
+        "category": "data-dump-candidate"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+        "line": 256,
+        "category": "cookie-assignment"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+        "line": 257,
+        "category": "cookie-assignment"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/auth/ManagedSchemaPreparation.java",
+        "line": 161,
+        "category": "email-marker"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthServiceTest.java",
+        "line": 257,
+        "category": "email-marker"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+        "line": 74,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+        "line": 113,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+        "line": 320,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+        "line": 321,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+        "line": 349,
+        "category": "email-marker"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+        "line": 431,
+        "category": "identity-field"
+      },
+      {
+        "file": "fe/tests/demo/demoAuth.test.tsx",
+        "line": 240,
+        "category": "bearer-marker"
+      },
+      {
+        "file": "fe/tests/demo/demoAuth.test.tsx",
+        "line": 252,
+        "category": "bearer-marker"
+      },
+      {
+        "file": "scripts/verification/a1_budget_ownership.py",
+        "line": 165,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/a1_budget_ownership.py",
+        "line": 348,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/a1_budget_ownership.py",
+        "line": 349,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/a1_budget_ownership.py",
+        "line": 350,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/demo_browser_e2e.py",
+        "line": 228,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/demo_browser_e2e.py",
+        "line": 230,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 269,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 270,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 351,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 353,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 354,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 441,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 461,
+        "category": "credential-assignment"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 651,
+        "category": "authorization-marker"
+      }
+    ]
+  },
+  "manual_review": {
+    "automatic_result_overridden": false,
+    "reviewed_non_secret_count": 27,
+    "unreviewed_count": 0,
+    "findings": [
+      {
+        "file": "be/src/main/resources/db/demo/V001__demo_admission.sql",
+        "category": "data-dump-candidate",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "fixed_empty_schema_capacity_singleton_initializer_not_a_data_dump"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+        "line": 256,
+        "category": "cookie-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "literal_cookie_prefix_parser_no_stored_value"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+        "line": 257,
+        "category": "cookie-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "literal_cookie_prefix_parser_no_stored_value"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/auth/ManagedSchemaPreparation.java",
+        "line": 161,
+        "category": "email-marker",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthServiceTest.java",
+        "line": 257,
+        "category": "email-marker",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+        "line": 74,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "synthetic_duplicate_input_rejection_fixture"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+        "line": 113,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "synthetic_loopback_input_fixture_not_issued"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+        "line": 320,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "owned_local_test_environment_lookup_no_literal_value"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+        "line": 321,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "owned_local_test_environment_lookup_no_literal_value"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+        "line": 349,
+        "category": "email-marker",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "reserved_invalid_domain_privilege_rejection_fixture"
+      },
+      {
+        "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+        "line": 431,
+        "category": "identity-field",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "sql_column_name_expression_only"
+      },
+      {
+        "file": "fe/tests/demo/demoAuth.test.tsx",
+        "line": 240,
+        "category": "bearer-marker",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "fe/tests/demo/demoAuth.test.tsx",
+        "line": 252,
+        "category": "bearer-marker",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/a1_budget_ownership.py",
+        "line": 165,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/a1_budget_ownership.py",
+        "line": 348,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/a1_budget_ownership.py",
+        "line": 349,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/a1_budget_ownership.py",
+        "line": 350,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/demo_browser_e2e.py",
+        "line": 228,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "ephemeral_owned_loopback_runtime_assignment_no_literal_value"
+      },
+      {
+        "file": "scripts/verification/demo_browser_e2e.py",
+        "line": 230,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 269,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 270,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 351,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 353,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 354,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 441,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 461,
+        "category": "credential-assignment",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      },
+      {
+        "file": "scripts/verification/render_runtime.py",
+        "line": 651,
+        "category": "authorization-marker",
+        "manual_review": "NON_SECRET_SOURCE",
+        "reason": "previously_reviewed_identical_source_line_moved"
+      }
+    ]
+  },
+  "content_checks": {
+    "hard_pattern_findings": [],
+    "public_document_evidence_findings": [],
+    "unexpected_artifact_findings": [],
+    "actual_runtime_values_in_findings": false
+  },
+  "source_delta": {
+    "start_file_count": 512,
+    "changed_existing_count": 24,
+    "changed_existing_files": [
+      "AGENTS.md",
+      "be/build.gradle",
+      "be/render.env.example",
+      "be/src/main/java/com/potg/don/auth/demo/DemoAuthExceptionHandler.java",
+      "be/src/main/java/com/potg/don/auth/demo/DemoAuthService.java",
+      "be/src/main/java/com/potg/don/demo/seed/DemoSeedService.java",
+      "be/src/main/resources/application-demo.yml",
+      "be/src/test/java/com/potg/don/auth/DemoAuthHttpIntegrationTest.java",
+      "be/src/test/java/com/potg/don/auth/DemoAuthHttpTestSupport.java",
+      "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "be/src/test/java/com/potg/don/auth/ManagedSchemaPreparation.java",
+      "be/src/test/java/com/potg/don/auth/RenderRuntimeTestSupport.java",
+      "be/src/test/java/com/potg/don/auth/RenderSchemaPreparation.java",
+      "be/src/test/java/com/potg/don/auth/demo/DemoAuthLoginTransactionTest.java",
+      "be/src/test/java/com/potg/don/auth/demo/DemoAuthServiceTest.java",
+      "docs/deployment/STATUS.md",
+      "fe/src/auth/demoCoordinator.ts",
+      "fe/tests/demo/demoAuth.test.tsx",
+      "scripts/verification/a1_budget_ownership.py",
+      "scripts/verification/demo_browser_e2e.py",
+      "scripts/verification/deployment_fe_checks.py",
+      "scripts/verification/public_evidence.py",
+      "scripts/verification/render_runtime.py"
+    ],
+    "new_file_count_before_this_audit": 33,
+    "new_files_before_this_audit": [
+      "be/src/main/java/com/potg/don/demo/admission/DemoAdmissionConfiguration.java",
+      "be/src/main/java/com/potg/don/demo/admission/DemoAdmissionException.java",
+      "be/src/main/java/com/potg/don/demo/admission/DemoAdmissionSchema.java",
+      "be/src/main/java/com/potg/don/demo/admission/DemoAdmissionStore.java",
+      "be/src/main/java/com/potg/don/demo/seed/DemoDatasetValidator.java",
+      "be/src/main/resources/db/demo/V001__demo_admission.sql",
+      "be/src/maintenance/java/com/potg/don/maintenance/CleanupCredentials.java",
+      "be/src/maintenance/java/com/potg/don/maintenance/CleanupFailure.java",
+      "be/src/maintenance/java/com/potg/don/maintenance/CleanupOptions.java",
+      "be/src/maintenance/java/com/potg/don/maintenance/DemoCleanupCommand.java",
+      "be/src/maintenance/java/com/potg/don/maintenance/DemoCleanupService.java",
+      "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "be/src/test/java/com/potg/don/auth/OwnedDemoSchemaPreparation.java",
+      "be/src/test/java/com/potg/don/demo/admission/DemoAdmissionSqlErrorTest.java",
+      "be/src/test/java/com/potg/don/demo/seed/DemoDatasetValidatorTest.java",
+      "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+      "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "docs/deployment/10-demo-capacity-cleanup.md",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/be-focus-01/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/be-focus-02/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/be-focus-03/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/be-full-01/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/be-full-02/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/browser-full-01/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/fe-full-01/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/fe-full-02/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/fe-wrapper-cleanup-01/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/render-full-01/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/render-full-02/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/render-full-03/summary.json",
+      "docs/deployment/evidence/DEMO_CAPACITY_CLEANUP/render-full-04/summary.json",
+      "scripts/verification/demo_capacity_checks.py",
+      "scripts/verification/test_demo_capacity_checks.py"
+    ],
+    "removed_files": [],
+    "mode_changed_files": []
+  },
+  "preservation": {
+    "protected_past_document_count": 131,
+    "past_reports_and_evidence_preserved": true,
+    "changed_protected_files": [],
+    "authorized_document_update_exclusions": [
+      "docs/deployment/STATUS.md"
+    ],
+    "scanner_and_review_rules_unchanged": true,
+    "scan_inputs_stable": true,
+    "owned_private_scan_copy_removed": true,
+    "staged_changes": 0,
+    "current_head_matches_preexisting_status_record": true,
+    "initial_git_byte_snapshot_available": false,
+    "git_operations_this_audit": "read_only"
+  },
+  "safety_tests": {
+    "status": "PASS",
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": [
+      "test_public_scan",
+      "test_public_evidence",
+      "test_demo_capacity_checks"
+    ]
+  },
+  "approval_review": {
+    "proposed_scan_classification_edit": "REJECTED",
+    "edit_executed": false,
+    "reason": "Automatic review interpreted the audit as read-only and rejected modification of secret-scan rules or review classifications. Existing rules and findings are retained."
+  },
+  "finalization_boundary": {
+    "product_source_frozen": true,
+    "render_checks_and_final_document_flags": "PENDING_SEPARATE_FINAL_RECHECK",
+    "automatic_public_scan_ready": false,
+    "public_deployment_ready": false,
+    "remote_provider_access_performed": false
+  }
+}

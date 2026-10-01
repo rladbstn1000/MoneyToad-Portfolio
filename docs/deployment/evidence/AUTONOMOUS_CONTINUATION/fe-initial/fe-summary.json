@@ -1,0 +1,101 @@
+{
+  "status": "FAIL",
+  "environment": "private-jsdom-msw-and-builds",
+  "checks": [
+    {
+      "check": "oauth-tests",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 151,
+      "passed": 151,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0,
+      "failed_cases": []
+    },
+    {
+      "check": "demo-tests",
+      "status": "FAIL",
+      "exit_code": 1,
+      "tests": 83,
+      "passed": 78,
+      "failed": 5,
+      "skipped": 0,
+      "todo": 0,
+      "failed_cases": [
+        {
+          "file": "fe/tests/demo/demoAuth.test.tsx",
+          "test": "actual readiness HTTP and initial waiting UI accepts exact JSON200 and transmits GET credentials/header without a body"
+        },
+        {
+          "file": "fe/tests/demo/systemFont.test.ts",
+          "test": "actual product system fonts uses no font-face or remote font URL (0)"
+        },
+        {
+          "file": "fe/tests/demo/systemFont.test.ts",
+          "test": "actual product system fonts uses no font-face or remote font URL (1)"
+        },
+        {
+          "file": "fe/tests/demo/systemFont.test.ts",
+          "test": "actual product system fonts uses no font-face or remote font URL (2)"
+        },
+        {
+          "file": "fe/tests/demo/systemFont.test.ts",
+          "test": "actual product system fonts defines a local system/Korean fallback stack without downloaded assets"
+        }
+      ]
+    },
+    {
+      "check": "test-types",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "check": "e2e-types",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "check": "functions-types",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "check": "oauth-build",
+      "status": "PASS",
+      "exit_code": 0,
+      "external_font_definitions": 0
+    },
+    {
+      "check": "demo-build",
+      "status": "PASS",
+      "exit_code": 0,
+      "external_font_definitions": 0
+    },
+    {
+      "check": "invalid-mode-build",
+      "status": "PASS",
+      "exit_code": 1
+    },
+    {
+      "check": "lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "locations": []
+    }
+  ],
+  "existing_tests": 176,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "tests": 234,
+  "new_tests": 58,
+  "dependencies": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  }
+}

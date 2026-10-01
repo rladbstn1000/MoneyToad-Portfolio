@@ -1,0 +1,15 @@
+{
+  "command": "vitest run tests/cloudflareProxy.test.ts",
+  "network_or_install": false,
+  "exit_code": 0,
+  "numTotalTests": 50,
+  "numPassedTests": 50,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "success": true,
+  "overlay": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  }
+}

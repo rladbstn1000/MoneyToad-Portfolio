@@ -1,0 +1,40 @@
+{
+  "status": "PASS_WITH_EXISTING_SCANNER_DEBT",
+  "baseline_files": 594,
+  "existing_modified_files": [
+    "docs/deployment/STATUS.md"
+  ],
+  "existing_deleted_files": [],
+  "new_files": [
+    "docs/deployment/15-demo-admission-lock-tidb-retry.md",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB_RETRY/final-audit/summary.json",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB_RETRY/local-checks-01/summary.json",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB_RETRY/probe-856e527496d04451/summary.json",
+    "docs/deployment/evidence/DEMO_ADMISSION_LOCK_TIDB_RETRY/probe-d68461679e9344b2/summary.json",
+    "scripts/verification/demo_admission_lock_tidb_retry.py"
+  ],
+  "new_file_count": 6,
+  "product_ddl_grants_and_existing_tests_unchanged": true,
+  "core_probe_and_classifier_unchanged": true,
+  "previous_status_body_preserved": true,
+  "past_document_evidence_count": 178,
+  "past_documents_evidence_preserved": true,
+  "git_head_unchanged": true,
+  "git_index_unchanged": true,
+  "input_matches_execution_revision": true,
+  "new_private_task_ledger_unchanged_during_final_audit": true,
+  "old_provider_state_accessed": false,
+  "actual_private_value_matches": 0,
+  "new_evidence_forbidden_findings": 0,
+  "scanner": {
+    "status": "FAIL",
+    "unresolved": 49,
+    "new_findings": 0,
+    "rules_or_allowlist_changed": false
+  },
+  "remote_execution_count": 1,
+  "connections_after_result": 0,
+  "remote_result": "FAIL_PRESERVED",
+  "owned_remote_and_ephemeral_local_cleanup": "PASS",
+  "public_deployment_ready": false
+}

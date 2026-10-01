@@ -1,0 +1,177 @@
+{
+  "status": "PASS",
+  "scope": "Independent frozen-source review, private clone scan, and synthetic negative inputs; no provider or real credentials used",
+  "source_digests": {
+    "scripts/verification/public_source_review.py": "cfd97e9ff36947d9bd8bad98827983bd65f4444cb854d033a1b78c183c758ced",
+    "scripts/verification/public_scan.py": "c7d759a185f4dc56adc778696f9cdc847e12b76bf984385296b1c23a32614b1f",
+    "scripts/verification/test_public_source_review.py": "d7bf7ddec7782a8c860d050b10aab4a0a42b79c3941830ebaefe9f73d9ca4293",
+    "scripts/verification/public_audit_scan.py": "e97195edb15c0ce797aa86eeec4de31dd97067ecd5fa9c1fe612e458b18a0898",
+    "scripts/verification/test_public_audit_scan.py": "5fabcc396ad2aa05f0bee009d37e8c01696fe15dee90b4988ce2b4b7f0578c65"
+  },
+  "source_unchanged_during_review": true,
+  "proposal_digest": "726b998aed23b1aa0192d7ed0a7636c96b3a28de0f571d5267de4e8be50c745f",
+  "proposal_rows": 148,
+  "metadata_issues": [],
+  "rule_preservation": {
+    "HARD": true,
+    "SITES": true,
+    "BAD_SUFFIXES": true,
+    "BAD_PARTS": true,
+    "public_evidence_bytes_unchanged": true
+  },
+  "independent_unit_tests": {
+    "tests": 55,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "failed_test_names": []
+  },
+  "adversarial_cases": [
+    {
+      "case": "cookie_template_concat",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "cookie_variable_concat",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "cookie_generator_concat",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "cookie_generator_argument_literal",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "cookie_literal_prefix",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "cookie_internal_suffix",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "credential_call_literal",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "credential_fallback_literal",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "identity_generator_concat",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "bearer_template_concat",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "bearer_template_prefix",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "bearer_template_suffix",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "bearer_literal_not_template",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "detector_neighbour_value",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "detector_authorization_literal_prefix",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "detector_cookie_literal_prefix",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "sql_selector_neighbour_value",
+      "semantic_rejected": true,
+      "fresh_metadata_scan_failed": true
+    },
+    {
+      "case": "invalid_utf8_evidence_txt",
+      "scan_failed": true,
+      "unreadable_text_failure": true
+    },
+    {
+      "case": "invalid_utf8_evidence_data",
+      "scan_failed": true,
+      "unreadable_text_failure": true
+    },
+    {
+      "case": "invalid_utf8_evidence_png",
+      "scan_failed": true,
+      "unreadable_text_failure": true
+    },
+    {
+      "case": "fresh_ddl_metadata_adjacent_credential",
+      "scan_failed": true
+    },
+    {
+      "case": "fresh_ddl_metadata_adjacent_email",
+      "scan_failed": true
+    },
+    {
+      "case": "fresh_ddl_metadata_adjacent_cookie",
+      "scan_failed": true
+    }
+  ],
+  "full_private_clone_scan": {
+    "status": "PASS",
+    "files_scanned": 789,
+    "classified_source_sites": 149,
+    "unresolved_count": 0,
+    "unresolved": []
+  },
+  "prior_classified_context_review": {
+    "reviewed": 79,
+    "same_site_digest_retained_in_final": 62,
+    "other_prior_sites_rewritten_and_scanned": 17
+  },
+  "reviewed_contracts": {
+    "v1_fallback_absent": true,
+    "broad_file_allow_absent": true,
+    "exact_file_and_rule_and_site_and_whole_file_bound": true,
+    "every_candidate_semantics_checked": true,
+    "line_number_diagnostic_only": true,
+    "line_shift_invalidates_file_digest": true,
+    "unused_or_duplicate_rows_fail": true,
+    "evidence_never_source_classified": true,
+    "unreadable_non_png_evidence_fails": true,
+    "hard_patterns_run_on_all_bytes": true,
+    "png_metadata_validation_preserved": true,
+    "no_metadata_auto_refresh_writer": true
+  },
+  "limitations": [
+    "This checks the reviewed snapshot and declared constructs; it is not a complete arbitrary-code taint analysis.",
+    "Binary visual review and full application regressions are separate root-agent checks."
+  ],
+  "raw_values_in_report": false,
+  "repository_mutations": false,
+  "sql_soft_scan_added_without_rule_weakening": true,
+  "entrypoint_review": "Read candidate selection, source/output ancestor link checks, copy digest/mode checks, exact scan count, before/after candidate set and source hashes, temporary cleanup and non-overwriting safe summary output. Ten independent entrypoint tests passed."
+}

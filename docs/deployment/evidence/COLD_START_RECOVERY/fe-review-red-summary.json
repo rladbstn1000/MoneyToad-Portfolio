@@ -1,0 +1,14 @@
+{
+  "phase": "REVIEW_RED",
+  "selection": "expired login cooldown after idle manual recovery",
+  "exit": 1,
+  "tests": 26,
+  "passed": 0,
+  "failed": 1,
+  "not_selected": 25,
+  "overlay": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  }
+}

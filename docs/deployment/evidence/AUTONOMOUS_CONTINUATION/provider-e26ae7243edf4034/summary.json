@@ -1,0 +1,139 @@
+{
+  "status": "PASS",
+  "input_status": "PASS",
+  "provider_input_ready": true,
+  "provider_process_launched": true,
+  "tidb_contracts_verified": true,
+  "upstash_functional_contracts_verified": true,
+  "login_recovery_verified": true,
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "provider_selection": "HOLD",
+  "managed_provider_contracts_verified": true,
+  "public_deployment_ready": false,
+  "input_revision_reference": "REDIS_PORT_CORRECTION",
+  "input_revision_verified": true,
+  "expected_command_equivalents_this_run": 6096,
+  "expected_login_attempts_this_run": 4,
+  "verification_budget_limit": 15568,
+  "probe_compilation": "PASS",
+  "observation": {
+    "status": "PASS",
+    "mode": "managed",
+    "checks": [
+      {
+        "status": "PASS",
+        "check": "explicit_owned_schema_tls_and_reviewed_ddl"
+      },
+      {
+        "status": "PASS",
+        "check": "actual_jdbc_timezone_dates_unicode_collation_constraints_identity_enum_bit_sum_rollback"
+      },
+      {
+        "status": "PASS",
+        "check": "two_visitors_actual_login_seed_queries_patch_aggregation_isolation"
+      },
+      {
+        "status": "PASS",
+        "check": "real_lua_rotation_absolute_expiry_reconnection_revocation_reuse"
+      },
+      {
+        "status": "PASS",
+        "check": "same_refresh_concurrency_one_success_final_session_absent"
+      },
+      {
+        "status": "PASS",
+        "check": "local_ambiguous_cas_no_retry_no_tokens_and_known_unavailable_503"
+      },
+      {
+        "status": "PASS",
+        "check": "actual_short_ttl_expiry_and_access_rejection"
+      }
+    ],
+    "timings_millis": {
+      "application_context_start": 3758,
+      "first_login": 18590,
+      "session_query": 507,
+      "subsequent_login": 17022,
+      "annual_query": 1361,
+      "subsequent_query": 818,
+      "first_refresh": 525,
+      "subsequent_refresh": 419,
+      "concurrent_fixture_login": 17002,
+      "ambiguous_result_fixture_login": 17044
+    },
+    "login_http_statuses": [
+      201,
+      201,
+      201,
+      201
+    ],
+    "observed_login_successes": 4,
+    "tidb_basic_contracts_verified": true,
+    "tidb_contracts_verified": true,
+    "login_recovery_verified": true,
+    "login_seed_api_verified": true,
+    "upstash_functional_contracts_verified": true,
+    "failover_revocation_guarantee": "NOT_ESTABLISHED",
+    "public_deployment_ready": false,
+    "reserved_command_equivalents": 15568,
+    "reserved_login_attempts": 5,
+    "cleanup_command_equivalents_reserved": 2000,
+    "database_product": "TiDB",
+    "database_version": "8.0.11-TiDB-v8.5.3-serverless",
+    "jdbc_driver_version": "mysql-connector-j-9.4.0 (Revision: d680767849154c8e136dfc3d8a0ae4d9fefd1fb7)",
+    "separate_restricted_runtime_account": true,
+    "seed_counts_per_login": {
+      "cards": 1,
+      "budgets": 72,
+      "users": 1,
+      "analysis_jobs": 0,
+      "transactions": 240
+    },
+    "chart_totals": {
+      "leak_after": 0,
+      "monthly_before": 908000,
+      "annual": 9990000,
+      "leak_before": 18000,
+      "monthly_after": 908000
+    },
+    "reconnection_scope": "explicit_client_connection_reset_not_provider_failover",
+    "failure_injection_scope": "local_store_result_boundary_after_actual_redis_command_not_provider_outage",
+    "external_application_requests": 0,
+    "wire_commands_observed": 66,
+    "wire_command_kinds": [
+      "DEL",
+      "EVAL",
+      "EVALSHA",
+      "EXISTS",
+      "HGETALL",
+      "PEXPIRE",
+      "PTTL"
+    ],
+    "noscript_failures_observed": 3,
+    "noscript_fallback_observation": "NOSCRIPT_OBSERVED",
+    "automatic_redis_command_replay": false,
+    "application_command_gate": "PRODUCT_LUA_AND_EXACT_OWNED_KEYS",
+    "provider_console_plan_region_quota": "NOT_INDEPENDENTLY_VERIFIED",
+    "limited_runtime_measurement": "NOT_RUN_BY_THIS_PROBE",
+    "provider_selection": "HOLD",
+    "owned_clients_closed": true,
+    "owned_client_resources_terminated": true,
+    "owned_schema_create_confirmed_count": 1,
+    "owned_runtime_account_create_confirmed_count": 1,
+    "owned_session_key_scope_count": 5,
+    "confirmed_session_create_count": 5,
+    "owned_keys_removed_and_absence_confirmed": true,
+    "owned_schema_removed_and_absence_confirmed": true,
+    "owned_account_removed": true,
+    "cleanup_complete": true
+  },
+  "reserved_command_equivalents": 15568,
+  "remaining_command_equivalents": 0,
+  "reserved_command_equivalents_this_run": 6096,
+  "reserved_login_attempts": 5,
+  "new_login_attempts": 4,
+  "cleanup_complete": true,
+  "child_stopped": true,
+  "forced_child_termination": false,
+  "remote_cleanup": "CONFIRMED"
+}

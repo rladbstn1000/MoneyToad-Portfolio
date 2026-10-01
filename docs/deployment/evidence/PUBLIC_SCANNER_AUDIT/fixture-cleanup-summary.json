@@ -1,0 +1,128 @@
+{
+  "status": "PASS_FOCUSED_ONLY",
+  "source_freeze_preserved": true,
+  "files": [
+    {
+      "path": "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+      "source_sha256": "dc8794ecdbd5ba6f5b6fe7b931ba6462644126214f42b9b0e6faf372085e35ff",
+      "before_sha256": "02c6b55f32bd56d3ee8b9eee0643d2a38c7f55c4330f93d65cdf3e2417e0ab12"
+    },
+    {
+      "path": "fe/tests/cloudflareProxy.test.ts",
+      "source_sha256": "4996c5f65e8175120b1452465836118353436f8b72ac2bd5f79eb0f6bc943dbb",
+      "before_sha256": "86892b919b93defd79be97a7d05b91ccfdfd69864aded3b8c941bb7ca999a379"
+    },
+    {
+      "path": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "source_sha256": "8fecc405fd30b026db12d6261399e9970b29edd3854c5f3ab890bc642d8637b9",
+      "before_sha256": "e7710ff756cf0b0db4c3540d521f76f9106467a03dda4121502c7a15742670ac"
+    },
+    {
+      "path": "be/src/test/java/com/potg/verification/managed/ManagedRedisActivationLocalTest.java",
+      "source_sha256": "beadadea9533edfcfcbd6cfcecd8403265658a349694f7c914224e40ea64d085",
+      "before_sha256": "f9e4c7957cdd5fe8baa4580f045330b250a78e55383d6db492dca7c164d87443"
+    },
+    {
+      "path": "be/src/test/java/com/potg/verification/managed/RedisTransportComparisonTest.java",
+      "source_sha256": "94366ca16c22d7c5d30bbafcf28f84a6434fdae02b642b1c66ee2739f5c1eaaa",
+      "before_sha256": "71d82d63387d20985edf75a8f6f51d85339bf60f010b0743ebbede253a6280cb"
+    },
+    {
+      "path": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "source_sha256": "5ce5f93fbf5ee5f922ec77bda62b73e1fec2ccd4a6cd29bea72d974ff1c53a8c",
+      "before_sha256": "6b09784bec4a3f8c86d6e790bc3cc7fe462ee42bc29e1901153bb550ed8c8fde"
+    },
+    {
+      "path": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "source_sha256": "406b25605ab9e2a1665786f4ea4182da58790706448ae9de4615b97e2fe98b8d",
+      "before_sha256": "1a006bea6d889b6365aa7967ac94def7ed81fc9ce2c5ba539ad99e7417dd1e80"
+    },
+    {
+      "path": "be/src/test/java/com/potg/don/global/config/RenderRuntimeConfigurationTest.java",
+      "source_sha256": "1795a2023a12347c2b26ef849462a7971192e511e834cc13c6dab1edf0b8f496",
+      "before_sha256": "b309e767d85f80b2fb602dc8f8333ef3c30559a1630611d6c2659a6aabe523ae"
+    },
+    {
+      "path": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "source_sha256": "d2e35a7506459f29f334a5d26fcd78ab98e14942f42d4152d7faf6a56f7918bc",
+      "before_sha256": "3b314bfc4f69117d6b4e42724f0f5202895d9e3d635dc4131439c2b2b7b08513"
+    }
+  ],
+  "product_changes": 0,
+  "raw_values_in_summary": false,
+  "triage": {
+    "file": "triage-be-fe.json",
+    "initial_candidates": 52,
+    "counts": {
+      "A": 0,
+      "B": 36,
+      "C": 3,
+      "D": 13,
+      "E": 0,
+      "F": 0
+    },
+    "scope_note": "Initial-state classification is retained; later strict semantic cleanup also covers explicitly assigned previously classified synthetic fixtures."
+  },
+  "fixture_semantics_preserved": [
+    "Duplicate configuration key stays duplicated with a runtime value.",
+    "JWT key retains sufficient material for the existing valid HS384 signature rejection case.",
+    "TLS keytool/SSL and RESP credentials share each generated fixture within the owning test.",
+    "Proxy request Authorization/Cookie and response cookie names/attributes retain exact forwarding assertions.",
+    "Controller reissue distinguishes legacy and demo cookies, matches the exact runtime demo value in mocks and verification, and retains access/refresh separation.",
+    "Malformed JWT input still has no dot separators; forbidden-log assertions include the exact runtime input.",
+    "Forbidden JDBC password query key is unchanged; only its value is runtime generated.",
+    "Two NotFound descriptive messages changed wording only; test methods, assertions, and requests are untouched."
+  ],
+  "verification": [
+    {
+      "file": "focused-be-initial-summary.json",
+      "status": "BLOCKED",
+      "reason": "Sandbox prevented Gradle local lock IPC; no tests ran in this attempt."
+    },
+    {
+      "file": "focused-be-canary-first-summary.json",
+      "status": "FAIL",
+      "tests": 59,
+      "failures": 1,
+      "reason": "The first random key was too short for an existing valid HS384 negative case; all assertions were preserved and fixture key generation was corrected."
+    },
+    {
+      "file": "focused-be-jwt-retry-summary.json",
+      "status": "PASS",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "focused-be-extra-fixtures-summary.json",
+      "status": "PASS",
+      "tests": 98,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "focused-fe-summary.json",
+      "status": "PASS",
+      "tests": 50,
+      "phase": "initial gateway canary cleanup"
+    },
+    {
+      "file": "focused-fe-runtime-fixtures-summary.json",
+      "status": "PASS",
+      "tests": 50,
+      "failures": 0,
+      "skipped": 0,
+      "phase": "final runtime fixture cleanup",
+      "dependency_overlay_removed": true,
+      "dependency_source_preserved": true
+    }
+  ],
+  "limits": [
+    "These are focused runs, not the complete repository regression. Root owns complete regression and final scanner verdict.",
+    "NotFound integration behavior was not rerun by this subagent because its changes only affect two descriptive strings. Root full regression includes it.",
+    "No production/provider endpoint or actual secret file was accessed.",
+    "Raw logs and raw test reports stay in the private audit directory and are not public evidence."
+  ]
+}

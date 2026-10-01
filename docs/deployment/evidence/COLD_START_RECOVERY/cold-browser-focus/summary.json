@@ -1,0 +1,18 @@
+{
+  "status": "FAIL",
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "browser_api_mocks": false,
+  "initial_ready_server_fixture": true,
+  "workers": 1,
+  "retries": 0,
+  "external_attempts": 0,
+  "cases": 0,
+  "tests": [],
+  "source_preserved": false,
+  "changed_source_paths": [
+    "fe/tests/demo/demoColdStartRecovery.test.tsx"
+  ],
+  "dependencies_preserved": true,
+  "owned_source_copy_removed": true
+}

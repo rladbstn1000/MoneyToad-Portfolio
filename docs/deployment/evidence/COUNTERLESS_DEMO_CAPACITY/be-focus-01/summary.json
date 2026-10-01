@@ -1,0 +1,36 @@
+{
+  "phase": "be",
+  "focused": true,
+  "status": "FAIL",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "selected_test_classes": [
+    "com.potg.don.auth.DemoAdmissionIntegrationTest",
+    "com.potg.don.auth.demo.DemoAuthLoginTransactionTest",
+    "com.potg.don.auth.demo.DemoAuthServiceTest",
+    "com.potg.don.demo.admission.DemoAdmissionSqlErrorTest",
+    "com.potg.don.demo.seed.DemoDatasetValidatorTest",
+    "com.potg.don.maintenance.DemoCleanupInputTest",
+    "com.potg.don.maintenance.DemoCleanupMySqlTest"
+  ],
+  "render_test_classes_in_separate_phase": [
+    "com.potg.don.auth.RenderRuntimeIntegrationTest",
+    "com.potg.don.auth.demo.RenderDemoBoundaryTest",
+    "com.potg.don.global.config.RenderRuntimeConfigurationTest"
+  ],
+  "exit_code": 2,
+  "checks": {
+    "status": "BLOCKED",
+    "exit_code": 2,
+    "cleanup_complete": true,
+    "suites": [],
+    "tests": 0,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS"
+  }
+}

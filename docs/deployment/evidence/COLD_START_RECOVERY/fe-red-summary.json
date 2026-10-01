@@ -1,0 +1,14 @@
+{
+  "phase": "RED",
+  "selection": "automatic budget exhaustion; existing callable APIs only",
+  "exit": 1,
+  "tests": 24,
+  "passed": 1,
+  "failed": 5,
+  "not_selected": 18,
+  "overlay": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  }
+}

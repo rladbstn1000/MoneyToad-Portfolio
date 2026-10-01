@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "owned_compile_directory_removed": true,
+  "owned_running_processes": 0,
+  "owned_ephemeral_local_resources": 0,
+  "private_delivery_file_absent": true,
+  "created_schema_count": 1,
+  "created_account_count": 2,
+  "owned_fixture_user_entries": 0,
+  "aging_attempted": false,
+  "private_audit_and_durable_task_ledger_retained": true,
+  "budget_reset_or_refund": false
+}

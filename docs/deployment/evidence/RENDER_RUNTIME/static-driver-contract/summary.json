@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "scope": "static-driver-property-contract",
+  "method": [
+    "Exact installed dependency JAR property definitions and runtime parsing without connecting",
+    "Exact installed dependency JAR bytecode inspection"
+  ],
+  "dependency_versions": {
+    "mysql_connector_j": "9.4.0",
+    "hikari_cp": "6.3.2"
+  },
+  "mapped_settings_verified": true,
+  "actual_connection": false,
+  "latency_fault_measurement": false,
+  "session_timezone_query": false,
+  "mysql_connector_j": [
+    {
+      "property": "connectTimeout",
+      "java_type": "Integer",
+      "configured_value": 5000,
+      "unit": "milliseconds",
+      "verified_mapping": "StandardSocketFactory passes the configured socket-connect timeout to Socket.connect. This is not a whole HTTP request deadline."
+    },
+    {
+      "property": "socketTimeout",
+      "java_type": "Integer",
+      "configured_value": 10000,
+      "unit": "milliseconds",
+      "verified_mapping": "NativeSocketConnection passes the configured network socket timeout to Socket.setSoTimeout. This is not a total transaction deadline."
+    },
+    {
+      "property": "connectionTimeZone",
+      "java_type": "String",
+      "configured_value": "Asia/Seoul",
+      "verified_mapping": "NativeProtocol parses the explicit geographic zone with ZoneId and sets the driver connection timezone."
+    },
+    {
+      "property": "forceConnectionTimeZoneToSession",
+      "java_type": "Boolean",
+      "configured_value": true,
+      "verified_mapping": "NativeProtocol.configureTimeZone sends SET SESSION time_zone using the configured geographic zone when enabled. A geographic zone requires corresponding server timezone data."
+    }
+  ],
+  "hikari_cp": [
+    {
+      "property": "connectionTimeout",
+      "configured_value": 5000,
+      "unit": "milliseconds",
+      "verified_mapping": "HikariPool.getConnection passes this timeout to ConcurrentBag.borrow with TimeUnit.MILLISECONDS. It limits pool acquisition, not query execution."
+    },
+    {
+      "property": "validationTimeout",
+      "configured_value": 2000,
+      "unit": "milliseconds",
+      "verified_mapping": "HikariConfig stores and validates this as a millisecond connection validation timeout."
+    },
+    {
+      "property": "maxLifetime",
+      "configured_value": 300000,
+      "unit": "milliseconds",
+      "verified_mapping": "HikariPool schedules MaxLifetimeTask in milliseconds with per-connection negative variance. Expiry marks a connection for soft eviction; an in-use connection is not forcibly terminated at exactly five minutes."
+    },
+    {
+      "property": "keepaliveTime",
+      "configured_value": 0,
+      "unit": "milliseconds",
+      "verified_mapping": "HikariPool only schedules KeepaliveTask for positive values; zero disables scheduled keepalive."
+    }
+  ],
+  "limitations": [
+    "No database or Redis connection was created by this static inspection.",
+    "No delayed connection, read timeout, pool exhaustion or five-minute connection-lifetime experiment was run.",
+    "No SELECT @@session.time_zone query was executed by this inspection.",
+    "Successful real TLS connections and application scenarios are reported separately in runtime-summary.json; this artifact does not extend those observations."
+  ],
+  "repository_source_changes": false,
+  "raw_bytecode_or_local_paths_included": false
+}

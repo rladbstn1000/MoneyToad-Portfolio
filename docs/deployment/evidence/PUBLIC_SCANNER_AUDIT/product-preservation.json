@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "runtime product bytes relative to the fixed audit start, not relative to HEAD",
+  "groups": {
+    "be/src/main": {
+      "files": 107,
+      "unchanged": true
+    },
+    "fe/src": {
+      "files": 64,
+      "unchanged": true
+    },
+    "fe/functions": {
+      "files": 2,
+      "unchanged": true
+    }
+  },
+  "browser_e2e_source_unchanged": true,
+  "package_and_lockfile_unchanged": true
+}

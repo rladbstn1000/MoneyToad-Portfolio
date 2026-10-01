@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "scope": "LOCAL_VERIFIER_CORRECTION_AFTER_REMOTE_FAILURE",
+  "java": {
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "python": {
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "tested_java_matches_final_source": true,
+  "correction": "EXPLICIT_NEGATIVE_PRIVILEGE_ASSERTIONS_ACCEPT_TIDB_8121_HY000_ONLY",
+  "positive_privilege_failure_remains_failure": true,
+  "successful_forbidden_statement_remains_failure": true,
+  "unknown_vendor_or_wrong_sql_state_remains_failure": true,
+  "product_busy_contract": "3572_HY000_UNCHANGED",
+  "diagnostics": "FIXED_ROLE_OPERATION_TAGS_ONLY_NOT_RETROACTIVE",
+  "product_changes": 0,
+  "remote_connections_after_correction": 0,
+  "remote_result_after_correction": "NOT_PERFORMED",
+  "original_remote_result": "FAIL_PRESERVED",
+  "reserved_command_equivalents": 2500,
+  "refunded_reservation": 0,
+  "safe_metrics": [
+    "SYNTHETIC_EARLY_FAILURE positions=776 max_work=1180 max_cleanup=47 max_connections=4 confirmed_tx_reset_recoveries=8",
+    "SYNTHETIC_NORMAL work=1180 cleanup=40 charged_work_positions=776 cleanup_positions=40 connections=4"
+  ],
+  "repeat_python_invocation_preparation_error": {
+    "kind": "WRONG_MODULE_SEARCH_PATH",
+    "provider_connections": 0,
+    "corrected_working_directory_only": true
+  }
+}

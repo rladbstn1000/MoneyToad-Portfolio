@@ -1,0 +1,271 @@
+{
+  "phase": "render",
+  "focused": false,
+  "status": "PASS",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "exit_code": 0,
+  "checks": {
+    "status": "PASS",
+    "checks": [
+      {
+        "check": "prerequisites",
+        "status": "PASS"
+      },
+      {
+        "check": "compile-and-package",
+        "status": "PASS"
+      },
+      {
+        "check": "configuration-tests",
+        "status": "PASS",
+        "tests": 86,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "check": "owned-tls-services",
+        "status": "PASS"
+      },
+      {
+        "check": "host-published-loopback-connectivity",
+        "status": "PASS"
+      },
+      {
+        "check": "separate-schema-preparation",
+        "status": "PASS"
+      },
+      {
+        "check": "maintenance-absent-from-runtime-artifact",
+        "status": "PASS"
+      },
+      {
+        "check": "packaged-cleanup-verify",
+        "status": "PASS"
+      },
+      {
+        "check": "packaged-cleanup-dry_run",
+        "status": "PASS"
+      },
+      {
+        "check": "actual-configdata-tls-integration",
+        "status": "PASS",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "check": "validate-did-not-change-schema",
+        "status": "PASS"
+      },
+      {
+        "check": "jdbc-untrusted-ca",
+        "status": "PASS"
+      },
+      {
+        "check": "jdbc-hostname-mismatch",
+        "status": "PASS"
+      },
+      {
+        "check": "jdbc-wrong-credential",
+        "status": "PASS"
+      },
+      {
+        "check": "missing-schema-validate",
+        "status": "PASS"
+      },
+      {
+        "check": "missing-schema-remains-empty",
+        "status": "PASS"
+      },
+      {
+        "check": "redis-untrusted-ca-actual-client-cause",
+        "status": "PASS"
+      },
+      {
+        "check": "redis-untrusted-ca-protected-api-no-business",
+        "status": "PASS"
+      },
+      {
+        "check": "redis-untrusted-ca",
+        "status": "PASS",
+        "http_status": 503,
+        "tokens_returned": false,
+        "database_unchanged": true
+      },
+      {
+        "check": "redis-hostname-mismatch-actual-client-cause",
+        "status": "PASS"
+      },
+      {
+        "check": "redis-hostname-mismatch-protected-api-no-business",
+        "status": "PASS"
+      },
+      {
+        "check": "redis-hostname-mismatch",
+        "status": "PASS",
+        "http_status": 503,
+        "tokens_returned": false,
+        "database_unchanged": true
+      },
+      {
+        "check": "redis-wrong-credential-actual-client-cause",
+        "status": "PASS"
+      },
+      {
+        "check": "redis-wrong-credential-protected-api-no-business",
+        "status": "PASS"
+      },
+      {
+        "check": "redis-wrong-credential",
+        "status": "PASS",
+        "http_status": 503,
+        "tokens_returned": false,
+        "database_unchanged": true
+      },
+      {
+        "check": "dockerignore-actual-context",
+        "status": "PASS"
+      },
+      {
+        "check": "runtime-image-contract",
+        "status": "PASS"
+      },
+      {
+        "check": "runtime-image-no-build-tools-or-source",
+        "status": "PASS"
+      },
+      {
+        "check": "runtime-java-version-observed",
+        "status": "PASS"
+      },
+      {
+        "check": "packaged-resources-reviewed",
+        "status": "PASS"
+      },
+      {
+        "check": "actual-container-limits-and-isolation",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-readiness-no-cookie",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-product-readiness",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-login-1",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-secure-cookie-1",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-session-1",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-protected-1",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-logout-1",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-revoked-access-1",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-login-2",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-secure-cookie-2",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-session-2",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-protected-2",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-logout-2",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-revoked-access-2",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-seed-row-delta",
+        "status": "PASS"
+      },
+      {
+        "check": "packaged-auth-logs-no-runtime-identifiers",
+        "status": "PASS"
+      },
+      {
+        "check": "limited-app-normal-shutdown",
+        "status": "PASS"
+      },
+      {
+        "check": "memory-observation-present",
+        "status": "PASS"
+      }
+    ],
+    "cleanup_complete": true,
+    "managed_provider_contracts_verified": false,
+    "public_deployment_ready": false,
+    "local_render_runtime_ready": true,
+    "host_java_version": "21.0.11",
+    "host_architecture": "arm64",
+    "docker_architecture": "aarch64",
+    "dependency_versions": [
+      "HikariCP-6.3.2.jar",
+      "hibernate-core-6.6.26.Final.jar",
+      "lettuce-core-6.6.0.RELEASE.jar",
+      "mysql-connector-j-9.4.0.jar",
+      "spring-boot-3.5.5.jar"
+    ],
+    "image_architecture": "arm64",
+    "emulation": false,
+    "runtime_java_version": "21.0.12.1",
+    "limited_readiness_observation": {
+      "attempts": 3,
+      "ready": true,
+      "ready_seconds_after_http_bound": 22.399,
+      "cold_start_to_ready_seconds": 215.738,
+      "same_product_settings": true,
+      "login_post_retries": 0
+    },
+    "local_resource_observation": {
+      "memory_limit_mib": 512,
+      "cpu_limit": 0.1,
+      "maximum_observed_memory_mib": 440.0,
+      "cold_start_seconds": 193.339,
+      "login_seconds": [
+        12.55,
+        6.502
+      ],
+      "oom_killed": false,
+      "exit_code": 143,
+      "managed_latency_simulated": false,
+      "render_equivalence_claimed": false,
+      "startup_safety_deadline_seconds": 600
+    },
+    "owned_docker_resources_remaining": 0,
+    "owned_ports_released": true
+  }
+}

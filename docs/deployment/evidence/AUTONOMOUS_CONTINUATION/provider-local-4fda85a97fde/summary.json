@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "provider_connections": 0,
+  "safety_tests": {
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "probe": {
+    "status": "PASS",
+    "mode": "local-rehearsal",
+    "checks": [
+      {
+        "check": "explicit_owned_schema_tls_and_reviewed_ddl",
+        "status": "PASS"
+      },
+      {
+        "check": "actual_jdbc_timezone_dates_unicode_collation_constraints_identity_enum_bit_sum_rollback",
+        "status": "PASS"
+      },
+      {
+        "check": "two_visitors_actual_login_seed_queries_patch_aggregation_isolation",
+        "status": "PASS"
+      },
+      {
+        "check": "real_lua_rotation_absolute_expiry_reconnection_revocation_reuse",
+        "status": "PASS"
+      },
+      {
+        "check": "same_refresh_concurrency_one_success_final_session_absent",
+        "status": "PASS"
+      },
+      {
+        "check": "local_ambiguous_cas_no_retry_no_tokens_and_known_unavailable_503",
+        "status": "PASS"
+      },
+      {
+        "check": "actual_short_ttl_expiry_and_access_rejection",
+        "status": "PASS"
+      }
+    ],
+    "timings_millis": {
+      "application_context_start": 3122,
+      "first_login": 881,
+      "session_query": 24,
+      "subsequent_login": 512,
+      "annual_query": 63,
+      "subsequent_query": 36,
+      "first_refresh": 25,
+      "subsequent_refresh": 13,
+      "concurrent_fixture_login": 278,
+      "ambiguous_result_fixture_login": 266
+    },
+    "failover_revocation_guarantee": "NOT_ESTABLISHED",
+    "public_deployment_ready": false,
+    "reserved_command_equivalents": 6096,
+    "reserved_login_attempts": 4,
+    "cleanup_command_equivalents_reserved": 2000,
+    "database_product": "MySQL",
+    "database_version": "8.4.11",
+    "jdbc_driver_version": "mysql-connector-j-9.4.0 (Revision: d680767849154c8e136dfc3d8a0ae4d9fefd1fb7)",
+    "separate_restricted_runtime_account": true,
+    "seed_counts_per_login": {
+      "transactions": 240,
+      "analysis_jobs": 0,
+      "users": 1,
+      "budgets": 72,
+      "cards": 1
+    },
+    "chart_totals": {
+      "monthly_after": 908000,
+      "leak_before": 18000,
+      "annual": 9990000,
+      "monthly_before": 908000,
+      "leak_after": 0
+    },
+    "reconnection_scope": "explicit_client_connection_reset_not_provider_failover",
+    "failure_injection_scope": "local_store_result_boundary_after_actual_redis_command_not_provider_outage",
+    "external_application_requests": 0,
+    "wire_commands_observed": 66,
+    "wire_command_kinds": [
+      "DEL",
+      "EVAL",
+      "EVALSHA",
+      "EXISTS",
+      "HGETALL",
+      "PEXPIRE",
+      "PTTL"
+    ],
+    "observed_login_successes": 4,
+    "provider_console_plan_region_quota": "NOT_INDEPENDENTLY_VERIFIED",
+    "limited_runtime_measurement": "NOT_RUN_BY_THIS_PROBE",
+    "tidb_contracts_verified": false,
+    "upstash_functional_contracts_verified": false,
+    "provider_selection": "HOLD",
+    "owned_keys_removed_and_absence_confirmed": true,
+    "owned_schema_removed_and_absence_confirmed": true,
+    "owned_account_removed": true,
+    "cleanup_complete": true
+  },
+  "process_exit": 0,
+  "local_owned_cleanup": true
+}

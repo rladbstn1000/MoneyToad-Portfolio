@@ -1,0 +1,46 @@
+{
+  "status": "INTERRUPTED",
+  "checks": [
+    {
+      "check": "prerequisites",
+      "status": "PASS"
+    },
+    {
+      "check": "compile-and-package",
+      "status": "PASS"
+    },
+    {
+      "check": "configuration-tests",
+      "status": "PASS",
+      "tests": 85,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "check": "owned-tls-services",
+      "status": "PASS"
+    },
+    {
+      "check": "host-published-loopback-connectivity",
+      "status": "PASS"
+    }
+  ],
+  "cleanup_complete": true,
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false,
+  "local_render_runtime_ready": false,
+  "host_java_version": "21.0.11",
+  "host_architecture": "arm64",
+  "docker_architecture": "aarch64",
+  "dependency_versions": [
+    "HikariCP-6.3.2.jar",
+    "hibernate-core-6.6.26.Final.jar",
+    "lettuce-core-6.6.0.RELEASE.jar",
+    "mysql-connector-j-9.4.0.jar",
+    "spring-boot-3.5.5.jar"
+  ],
+  "interruption_exercised": true,
+  "owned_docker_resources_remaining": 0,
+  "owned_ports_released": true
+}

@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "focused_tests": 130,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "module_counts": {
+    "test_public_source_review": 34,
+    "test_public_scan": 5,
+    "test_public_evidence": 6,
+    "test_managed_provider_recovery": 10,
+    "test_demo_admission_lock_tidb": 20,
+    "test_demo_capacity_tidb": 15,
+    "test_tidb_cleanup_remote": 27,
+    "test_public_audit_scan": 10,
+    "test_public_browser_series": 3
+  },
+  "provider_access": 0,
+  "classification_rows": 148,
+  "proposal_copy_scan": "PASS",
+  "unresolved": 0,
+  "unchanged_scanner_rules": {
+    "HARD": true,
+    "SITES": true,
+    "BAD_SUFFIXES": true,
+    "BAD_PARTS": true
+  },
+  "public_evidence_product_unchanged": true,
+  "changes": [
+    {
+      "file": "scripts/verification/public_source_review.py",
+      "kind": "added",
+      "source_digest": "cfd97e9ff36947d9bd8bad98827983bd65f4444cb854d033a1b78c183c758ced"
+    },
+    {
+      "file": "scripts/verification/public_scan.py",
+      "kind": "modified",
+      "source_digest": "c7d759a185f4dc56adc778696f9cdc847e12b76bf984385296b1c23a32614b1f"
+    },
+    {
+      "file": "scripts/verification/test_public_source_review.py",
+      "kind": "added",
+      "source_digest": "d7bf7ddec7782a8c860d050b10aab4a0a42b79c3941830ebaefe9f73d9ca4293"
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "kind": "modified",
+      "source_digest": "fda3ead5030b14331fc52bcc01f5d5390d53a65a4321c0df723f6e83ac89825f"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "kind": "modified",
+      "source_digest": "02227f085dcb5dc9f69fe1e7db5001e0e42970f956e6d49a97ecd0781c05fbbd"
+    },
+    {
+      "file": "scripts/verification/test_managed_provider_recovery.py",
+      "kind": "modified",
+      "source_digest": "c8e7cb13a1f5d8193edf95e3016f8ea9058f9643aa3b20213a71fd394835b8a2"
+    },
+    {
+      "file": "scripts/verification/test_demo_admission_lock_tidb.py",
+      "kind": "modified",
+      "source_digest": "da20e93eb1b40debbda336b4b31e0341816036124639f56e9021d01486252cdd"
+    },
+    {
+      "file": "scripts/verification/test_demo_capacity_tidb.py",
+      "kind": "modified",
+      "source_digest": "a8dc16ddeec2b6986b8c7a56311efea13a8d04968b2246b66b824b9ba06c7903"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "kind": "modified",
+      "source_digest": "3c678cb282a03227716af965af138a185b950bace2408f86fb5e7849f90ac158"
+    },
+    {
+      "file": "scripts/verification/a2_1_not_found_contract.py",
+      "kind": "modified",
+      "source_digest": "116b0ffbcda6cd46dd55104b3de2290a55f4b6f576eadbf72c116d377d4241f1"
+    }
+  ],
+  "test_assertions_weakened": false,
+  "v1_compatibility": false,
+  "source_public_metadata_applied": false,
+  "preparation_issues": [
+    "Three relative-path preparation commands used the verification subdirectory and failed before writes. Corrected commands and final focused tests passed."
+  ],
+  "metadata_contract": [
+    "exact path",
+    "whole file digest",
+    "candidate line digest",
+    "B classification only",
+    "narrow coded semantic predicate",
+    "literal-free lexical tokens",
+    "same-line occurrence count",
+    "stale and duplicate entries fail",
+    "evidence never source-classified"
+  ],
+  "evidence_policy": "All text formats scanned; non-UTF8 evidence fails unless it is a verified PNG. PNG hard-byte and metadata checks retained.",
+  "sql_soft_scan": "Enabled; fresh DDL metadata cannot suppress adjacent credential, email, or cookie values."
+}

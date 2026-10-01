@@ -1,0 +1,15 @@
+{
+  "status": "INPUT_REQUIRED",
+  "input_status": "BLOCKED",
+  "provider_input_ready": false,
+  "provider_process_launched": false,
+  "tidb_contracts_verified": false,
+  "upstash_functional_contracts_verified": false,
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "provider_selection": "HOLD",
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false,
+  "reason": "CONNECTION_FILE_MISSING",
+  "cleanup_complete": true,
+  "remote_cleanup": "NOT_NEEDED_NO_PROVIDER_PROCESS"
+}

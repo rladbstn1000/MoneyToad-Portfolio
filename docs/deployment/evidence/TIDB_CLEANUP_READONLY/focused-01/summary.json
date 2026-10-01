@@ -1,0 +1,840 @@
+{
+  "phase": "be",
+  "focused": true,
+  "status": "FAIL",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "selected_test_classes": [
+    "com.potg.don.auth.DemoAdmissionIntegrationTest",
+    "com.potg.don.auth.demo.DemoAuthLoginTransactionTest",
+    "com.potg.don.auth.demo.DemoAuthServiceTest",
+    "com.potg.don.demo.admission.DemoAdmissionSqlErrorTest",
+    "com.potg.don.demo.seed.DemoDatasetValidatorTest",
+    "com.potg.don.maintenance.CleanupReadOnlyGuardTest",
+    "com.potg.don.maintenance.DemoCleanupConnectorReadOnlyMySqlTest",
+    "com.potg.don.maintenance.DemoCleanupInputTest",
+    "com.potg.don.maintenance.DemoCleanupMySqlTest"
+  ],
+  "render_test_classes_in_separate_phase": [
+    "com.potg.don.auth.RenderRuntimeIntegrationTest",
+    "com.potg.don.auth.demo.RenderDemoBoundaryTest",
+    "com.potg.don.global.config.RenderRuntimeConfigurationTest"
+  ],
+  "exit_code": 1,
+  "checks": {
+    "status": "FAIL",
+    "exit_code": 1,
+    "cleanup_complete": true,
+    "suites": [
+      {
+        "test": "com.potg.don.auth.DemoAdmissionIntegrationTest",
+        "tests": 37,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "lastSlotConcurrentLoginHasOneNowaitLoserWithNoRedisOrSqlSideEffects()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          },
+          {
+            "test": "case-12",
+            "status": "PASS"
+          },
+          {
+            "test": "case-13",
+            "status": "PASS"
+          },
+          {
+            "test": "case-14",
+            "status": "PASS"
+          },
+          {
+            "test": "case-15",
+            "status": "PASS"
+          },
+          {
+            "test": "case-16",
+            "status": "PASS"
+          },
+          {
+            "test": "case-17",
+            "status": "PASS"
+          },
+          {
+            "test": "case-18",
+            "status": "PASS"
+          },
+          {
+            "test": "postConditionDetectsMissingMarkerBeforeCommitAndCompensatesRedis()",
+            "status": "PASS"
+          },
+          {
+            "test": "requiresNewCannotBorrowOuterClaimAndRestoredOuterClaimStillWorks()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-21",
+            "status": "PASS"
+          },
+          {
+            "test": "case-22",
+            "status": "PASS"
+          },
+          {
+            "test": "case-23",
+            "status": "PASS"
+          },
+          {
+            "test": "case-24",
+            "status": "PASS"
+          },
+          {
+            "test": "case-25",
+            "status": "PASS"
+          },
+          {
+            "test": "case-26",
+            "status": "PASS"
+          },
+          {
+            "test": "case-27",
+            "status": "PASS"
+          },
+          {
+            "test": "case-28",
+            "status": "PASS"
+          },
+          {
+            "test": "case-29",
+            "status": "PASS"
+          },
+          {
+            "test": "changedBoundConnectionCannotReuseClaim()",
+            "status": "PASS"
+          },
+          {
+            "test": "capacityTwoAllowsTwoLoginsThenRejectsWithoutDataAndExistingVisitorRemainsUsable()",
+            "status": "PASS"
+          },
+          {
+            "test": "markerSqlFailureRollsBackEveryDatasetRowAndRevokesCreatedRedisSession()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-33",
+            "status": "PASS"
+          },
+          {
+            "test": "case-34",
+            "status": "PASS"
+          },
+          {
+            "test": "case-35",
+            "status": "PASS"
+          },
+          {
+            "test": "case-36",
+            "status": "PASS"
+          },
+          {
+            "test": "case-37",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.demo.DemoAuthLoginTransactionTest",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "realUniqueEmailConstraintPreservesExistingUserAndNeverCreatesRedisSession()",
+            "status": "PASS"
+          },
+          {
+            "test": "failedRevokeCompensationStillReturnsNoTokensAndLeavesOnlyABoundedSession()",
+            "status": "PASS"
+          },
+          {
+            "test": "failedDatabaseCommitAfterRealRedisCreateRevokesKnownSidAndReturnsNoTokens()",
+            "status": "PASS"
+          },
+          {
+            "test": "actualRedisCreateThenLostResultRollsBackUserWithoutReturningCredentials()",
+            "status": "PASS"
+          },
+          {
+            "test": "realBudgetInsertFailureRollsBackUserCardAndAllTransactionsBeforeRedis()",
+            "status": "PASS"
+          },
+          {
+            "test": "actualDatabaseCommitWithLostAcknowledgementDoesNotDeleteTheCommittedUser()",
+            "status": "PASS"
+          },
+          {
+            "test": "concurrentCookieLessLoginIsBusyAndExplicitLaterLoginRemainsDistinct()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.demo.DemoAuthServiceTest",
+        "tests": 24,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "activeCookieRejectsLoginWithoutTransactionCreationOrRotation()",
+            "status": "PASS"
+          },
+          {
+            "test": "loginCapturesOneKoreanDateBeforeInstallingSeedAcrossMonthBoundary()",
+            "status": "PASS"
+          },
+          {
+            "test": "missingAuthenticatedDetailsCannotRevokeAnySession()",
+            "status": "PASS"
+          },
+          {
+            "test": "malformedAndWrongPurposeCookiesNeverReachDatabaseOrSessionStore()",
+            "status": "PASS"
+          },
+          {
+            "test": "deletedUserReissueDoesNotRotateOrRevoke()",
+            "status": "PASS"
+          },
+          {
+            "test": "everyAdmissionRefusalCreatesNeitherIdentityNorSession()",
+            "status": "PASS"
+          },
+          {
+            "test": "finalIntegrityFailureRollsBackAndRevokesBeforeAnyTokensReturn()",
+            "status": "PASS"
+          },
+          {
+            "test": "staleOrMismatchedCookieCannotCreateANewUserOrRevokeAnotherSession()",
+            "status": "PASS"
+          },
+          {
+            "test": "cookieForADeletedUserIsInvalidAndNeverRecreatesThatUser()",
+            "status": "PASS"
+          },
+          {
+            "test": "eachCookielessLoginCreatesAnIndependentServerIdentity()",
+            "status": "PASS"
+          },
+          {
+            "test": "failedCommitCompensatesOnlyTheAcknowledgedSessionAndDoesNotReturnTokens()",
+            "status": "PASS"
+          },
+          {
+            "test": "insertCollisionRollsBackWithoutCallingRedisOrReusingAnExistingUser()",
+            "status": "PASS"
+          },
+          {
+            "test": "reissueUsesTheExistingAtomicSessionServiceOnlyAfterVerifiedUserExistence()",
+            "status": "PASS"
+          },
+          {
+            "test": "existingCookieRedisFailureDoesNotStartASqlTransaction()",
+            "status": "PASS"
+          },
+          {
+            "test": "seedDatabaseFailureRollsBackWithoutCallingRedis()",
+            "status": "PASS"
+          },
+          {
+            "test": "partialSeedContractFailureRollsBackAndDoesNotBecomeAuthenticationSuccess()",
+            "status": "PASS"
+          },
+          {
+            "test": "reuseAndUnknownCasOutcomeRemainDomainFailuresWithoutRetry()",
+            "status": "PASS"
+          },
+          {
+            "test": "redisCreateFailureRollsBackWithoutReturningOrRetryingTokens()",
+            "status": "PASS"
+          },
+          {
+            "test": "createsOnlySyntheticIdentityAndReturnsTokensAfterItsOwnCommit()",
+            "status": "PASS"
+          },
+          {
+            "test": "unacknowledgedCreationRollsBackAndDoesNotGuessASessionIdentifier()",
+            "status": "PASS"
+          },
+          {
+            "test": "failedCompensationPreservesTheOriginalFailureAndDoesNotRetry()",
+            "status": "PASS"
+          },
+          {
+            "test": "markerFailureRollsBackAndRevokesOnlyTheCreatedSession()",
+            "status": "PASS"
+          },
+          {
+            "test": "logoutUsesOnlyTheAuthenticatedSessionAndPreservesStorageErrors()",
+            "status": "PASS"
+          },
+          {
+            "test": "unexpectedSessionImplementationFailureRollsBackAndRemainsAnError()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.demo.admission.DemoAdmissionSqlErrorTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "malformedCyclesTerminateWithoutInferringBusyFromMessages()",
+            "status": "PASS"
+          },
+          {
+            "test": "wrappedAndChainedExceptionsPreserveExactNowaitRecognition()",
+            "status": "PASS"
+          },
+          {
+            "test": "conflictingDeadlockOrConnectionFailureIsNeverReclassifiedAsBusy()",
+            "status": "PASS"
+          },
+          {
+            "test": "storeCannotRunOutsideTheBoundLoginTransaction()",
+            "status": "PASS"
+          },
+          {
+            "test": "onlyExactVendorAndSqlStateAreBusy()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.demo.seed.DemoDatasetValidatorTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "missingAndCorruptedImmutableTransactionsAreRejected()",
+            "status": "PASS"
+          },
+          {
+            "test": "unchangedAuthoredShapeHasNoMutableCategoryOrBudgetAmountDependency()",
+            "status": "PASS"
+          },
+          {
+            "test": "cardCountAndFinancialFieldsAreMandatory()",
+            "status": "PASS"
+          },
+          {
+            "test": "duplicateBudgetSlotsAndPredictionFieldsCannotLookLikeCompleteSeed()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.maintenance.CleanupReadOnlyGuardTest",
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "metadataConnectionAndInternalStatementStayEncapsulated()",
+            "status": "PASS"
+          },
+          {
+            "test": "reviewedSelectWithParametersAndRowsDelegatesOnce()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          },
+          {
+            "test": "case-12",
+            "status": "PASS"
+          },
+          {
+            "test": "case-13",
+            "status": "PASS"
+          },
+          {
+            "test": "case-14",
+            "status": "PASS"
+          },
+          {
+            "test": "case-15",
+            "status": "PASS"
+          },
+          {
+            "test": "case-16",
+            "status": "PASS"
+          },
+          {
+            "test": "preparedStatementCannotExecuteUpdatesBatchesAlternateSqlOrExposeConnection()",
+            "status": "PASS"
+          },
+          {
+            "test": "diagnosticsAndObjectMethodsContainOnlyFixedTag()",
+            "status": "PASS"
+          },
+          {
+            "test": "rowMutationAndStatementEscapeCannotReachDriver()",
+            "status": "PASS"
+          },
+          {
+            "test": "harmlessWhitespaceCaseAreAcceptedWithoutBroadeningSql()",
+            "status": "PASS"
+          },
+          {
+            "test": "driverInternalMetadataQueryIsNotReclassifiedAsApplicationSql()",
+            "status": "PASS"
+          },
+          {
+            "test": "genericConnectionMutationAndEscapePathsAreRejected()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.maintenance.DemoCleanupConnectorReadOnlyMySqlTest",
+        "tests": 9,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "applicationGuardRejectsWritesAndBatchBeforeActualJdbcDelegate()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "FAIL",
+            "failure_sources": [],
+            "cause_classes": [
+              "org.opentest4j.AssertionFailedError"
+            ],
+            "failure_codes": []
+          },
+          {
+            "test": "case-3",
+            "status": "FAIL",
+            "failure_sources": [],
+            "cause_classes": [
+              "org.opentest4j.AssertionFailedError"
+            ],
+            "failure_codes": []
+          },
+          {
+            "test": "driverLevelUnsupportedFixtureReproduces1235WithoutProviderConnection()",
+            "status": "PASS"
+          },
+          {
+            "test": "falsePropagationKeepsClientReadOnlyButDoesNotEnableServerReadOnly()",
+            "status": "PASS"
+          },
+          {
+            "test": "defaultPropagationActuallyEnablesServerReadOnlyReference()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "FAIL",
+            "failure_sources": [],
+            "cause_classes": [
+              "org.opentest4j.AssertionFailedError"
+            ],
+            "failure_codes": []
+          },
+          {
+            "test": "case-8",
+            "status": "FAIL",
+            "failure_sources": [],
+            "cause_classes": [
+              "org.opentest4j.AssertionFailedError"
+            ],
+            "failure_codes": []
+          },
+          {
+            "test": "falsePropagationApplyStaysWritableAndCommitsExactFiveDeletes()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.maintenance.DemoCleanupInputTest",
+        "tests": 29,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "case-1",
+            "status": "PASS"
+          },
+          {
+            "test": "case-2",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "case-5",
+            "status": "PASS"
+          },
+          {
+            "test": "case-6",
+            "status": "PASS"
+          },
+          {
+            "test": "case-7",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "case-10",
+            "status": "PASS"
+          },
+          {
+            "test": "case-11",
+            "status": "PASS"
+          },
+          {
+            "test": "permissionsSymlinkHardlinkAndGitDirectoryAreRejected()",
+            "status": "PASS"
+          },
+          {
+            "test": "defaultsAndExplicitModesHaveBoundedBatchAndNoDeleteByIdentityOption()",
+            "status": "PASS"
+          },
+          {
+            "test": "onlyConfirmedVendorNowaitFailureIsBusy()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-15",
+            "status": "PASS"
+          },
+          {
+            "test": "case-16",
+            "status": "PASS"
+          },
+          {
+            "test": "case-17",
+            "status": "PASS"
+          },
+          {
+            "test": "case-18",
+            "status": "PASS"
+          },
+          {
+            "test": "case-19",
+            "status": "PASS"
+          },
+          {
+            "test": "case-20",
+            "status": "PASS"
+          },
+          {
+            "test": "case-21",
+            "status": "PASS"
+          },
+          {
+            "test": "case-22",
+            "status": "PASS"
+          },
+          {
+            "test": "case-23",
+            "status": "PASS"
+          },
+          {
+            "test": "case-24",
+            "status": "PASS"
+          },
+          {
+            "test": "case-25",
+            "status": "PASS"
+          },
+          {
+            "test": "case-26",
+            "status": "PASS"
+          },
+          {
+            "test": "privateFileIsReadWithoutExposingValuesAndRequiresExactSchemaAndTls()",
+            "status": "PASS"
+          },
+          {
+            "test": "cliErrorsDoNotEchoAnyInputOrExceptionValues()",
+            "status": "PASS"
+          },
+          {
+            "test": "unknownDuplicateAndUnboundedDriverOptionsAreRejected()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.maintenance.DemoCleanupMySqlTest",
+        "tests": 36,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "categoryBudgetAndProfileEditsRemainSafeWithoutUsingEmailForProvenance()",
+            "status": "PASS"
+          },
+          {
+            "test": "commitAcknowledgementLossIsUnknownAndIsNeverAutomaticallyRetriedOrRefunded()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "oldestFirstLimitOnlyDeletesSelectedVisitAndNeverMoreThan100()",
+            "status": "PASS"
+          },
+          {
+            "test": "unexpectedMarkerDeletionDetectedByFinalCountRollsBackWholeBatch()",
+            "status": "PASS"
+          },
+          {
+            "test": "candidateAt24HourBoundaryUsesDatabaseUtcAndIsEligible()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "youngVisitAndUnexpiredSessionRemainUntouched()",
+            "status": "PASS"
+          },
+          {
+            "test": "unsupportedVersionAbortsInsteadOfSkippingOldCandidate()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-12",
+            "status": "PASS"
+          },
+          {
+            "test": "case-13",
+            "status": "PASS"
+          },
+          {
+            "test": "cleanupVersusCleanupNowaitLoserPerformsNoWrites()",
+            "status": "PASS"
+          },
+          {
+            "test": "actualCleanupTransactionBlocksActualLoginWithoutUserOrRedisCreation()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-16",
+            "status": "PASS"
+          },
+          {
+            "test": "case-17",
+            "status": "PASS"
+          },
+          {
+            "test": "case-18",
+            "status": "PASS"
+          },
+          {
+            "test": "case-19",
+            "status": "PASS"
+          },
+          {
+            "test": "case-20",
+            "status": "PASS"
+          },
+          {
+            "test": "affectedRowMismatchAfterActualDeleteRollsBackAllRowsAndMarkers()",
+            "status": "PASS"
+          },
+          {
+            "test": "unexpectedForeignKeyOrExtraTableIsRejectedBeforeDelete()",
+            "status": "PASS"
+          },
+          {
+            "test": "legacyUserAndCompleteUnmarkedDatasetRemainEveryColumnUnchanged()",
+            "status": "PASS"
+          },
+          {
+            "test": "analysisJobWithoutForeignKeyAbortsWholeBatch()",
+            "status": "PASS"
+          },
+          {
+            "test": "markerCountAboveMatchingMaximumIsRejectedBeforeAnyDelete()",
+            "status": "PASS"
+          },
+          {
+            "test": "visibleCrossSchemaCascadeIsRejectedWithoutReadingOrDeletingOtherSchemaRows()",
+            "status": "PASS"
+          },
+          {
+            "test": "oldSafeDatasetDeletesExactRowsAndMarkerCountWithoutFurtherDeleteOnRepeat()",
+            "status": "PASS"
+          },
+          {
+            "test": "dryRunAndVerifyIssueNoDmlAndPreserveEveryColumn()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-29",
+            "status": "PASS"
+          },
+          {
+            "test": "case-30",
+            "status": "PASS"
+          },
+          {
+            "test": "case-31",
+            "status": "PASS"
+          },
+          {
+            "test": "maxMismatchMissingAndMultipleCapacityRowsFailClosed()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-33",
+            "status": "PASS"
+          },
+          {
+            "test": "case-34",
+            "status": "PASS"
+          },
+          {
+            "test": "case-35",
+            "status": "PASS"
+          },
+          {
+            "test": "realMidDeleteSqlFailureRollsBackAlreadyDeletedTransactions()",
+            "status": "PASS"
+          }
+        ]
+      }
+    ],
+    "tests": 175,
+    "failures": 4,
+    "errors": 0,
+    "skipped": 0,
+    "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS"
+  }
+}

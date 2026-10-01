@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "e2e-types",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "check": "lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0
+    }
+  ],
+  "cleanup_complete": true,
+  "dependencies_preserved": true
+}

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "suites": [
+    {
+      "suite": "ManagedRedisActivationLocalTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "ManagedRedisConnectivityProbeTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "RedisActivationObservationTest",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "remote_connections": 0
+}

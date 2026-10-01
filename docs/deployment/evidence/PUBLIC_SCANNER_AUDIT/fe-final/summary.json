@@ -1,0 +1,93 @@
+{
+  "phase": "fe",
+  "focused": false,
+  "status": "PASS",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "exit_code": 0,
+  "checks": {
+    "status": "PASS",
+    "environment": "private-jsdom-msw-and-builds",
+    "checks": [
+      {
+        "check": "oauth-tests",
+        "status": "PASS",
+        "exit_code": 0,
+        "tests": 180,
+        "passed": 180,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "failed_cases": []
+      },
+      {
+        "check": "demo-tests",
+        "status": "PASS",
+        "exit_code": 0,
+        "tests": 148,
+        "passed": 148,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "failed_cases": []
+      },
+      {
+        "check": "test-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "e2e-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "functions-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "oauth-build",
+        "status": "PASS",
+        "exit_code": 0,
+        "external_font_definitions": 0,
+        "server_material_absent_from_bundle": true
+      },
+      {
+        "check": "demo-build",
+        "status": "PASS",
+        "exit_code": 0,
+        "external_font_definitions": 0,
+        "server_material_absent_from_bundle": true
+      },
+      {
+        "check": "invalid-mode-build",
+        "status": "PASS",
+        "exit_code": 1
+      },
+      {
+        "check": "lint",
+        "status": "PASS",
+        "exit_code": 0,
+        "errors": 0,
+        "warnings": 0,
+        "locations": []
+      }
+    ],
+    "existing_tests": 176,
+    "provider_connections_attempted": 0,
+    "source_preserved": true,
+    "historical_evidence_preserved": true,
+    "cleanup_complete": true,
+    "tests": 328,
+    "new_tests": 152,
+    "dependencies": {
+      "dependency_manifest_match": true,
+      "dependencies_preserved": true,
+      "overlay_removed": true
+    }
+  }
+}

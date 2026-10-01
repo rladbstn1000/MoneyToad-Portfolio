@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "title": "cold deadline stops polling; manual readiness never creates a visitor",
+      "status": "passed",
+      "milliseconds": 1577
+    }
+  ]
+}

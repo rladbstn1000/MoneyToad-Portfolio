@@ -1,0 +1,42 @@
+{
+  "selectors": [
+    "*DemoCleanupInputTest",
+    "*DemoJwtContractTest",
+    "*ManagedRedisActivationLocalTest",
+    "*RedisTransportComparisonTest"
+  ],
+  "dependency_network": false,
+  "resource_scope": "owned temp files and loopback TLS fixtures only",
+  "permission_retry": true,
+  "exit_code": 1,
+  "suites": [
+    {
+      "test_class": "com.potg.don.auth.demo.DemoJwtContractTest",
+      "tests": "12",
+      "failures": "1",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "test_class": "com.potg.verification.managed.RedisTransportComparisonTest",
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "test_class": "com.potg.don.maintenance.DemoCleanupInputTest",
+      "tests": "29",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "test_class": "com.potg.verification.managed.ManagedRedisActivationLocalTest",
+      "tests": "6",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ]
+}

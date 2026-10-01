@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "files_scanned": 488,
+  "public_scan": "PASS",
+  "unresolved": [],
+  "actual_credential_match_files": [],
+  "protected_files_checked": 115,
+  "protected_files_changed": [],
+  "missing_preexisting_files": [],
+  "mode_changes": [],
+  "product_changes": [],
+  "modified_preexisting_files": [
+    "docs/deployment/STATUS.md",
+    "scripts/verification/fixtures/scan-classifications.json",
+    "be/src/test/java/com/potg/verification/managed/ManagedRedisConnectivityProbe.java",
+    "be/src/test/java/com/potg/verification/managed/ManagedRedisConnectivityProbeTest.java",
+    "scripts/verification/managed_redis_connectivity.py",
+    "scripts/verification/test_managed_redis_connectivity.py"
+  ],
+  "git_head_unchanged": true,
+  "staged_files": 0,
+  "cumulative_reserved_commands": 7152,
+  "cumulative_login_attempts": 1,
+  "ownership_ledgers": 3,
+  "all_cleanup_confirmed": true,
+  "temporary_secret_delivery_files_remaining": 0
+}

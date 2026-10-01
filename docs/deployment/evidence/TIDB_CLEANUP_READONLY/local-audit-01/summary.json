@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "scope": "local cleanup compatibility and preservation audit; public scan remains separate FAIL",
+  "python_checks": {
+    "status": "PASS",
+    "tests": 25,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "modules": [
+      "test_tidb_cleanup_readonly_checks",
+      "test_demo_capacity_checks",
+      "test_demo_admission_lock_checks",
+      "test_counterless_demo_capacity_checks"
+    ],
+    "managed_provider_used": false,
+    "provider_connections_attempted": 0
+  },
+  "final_regressions": {
+    "focused-02": {
+      "status": "PASS",
+      "cleanup_complete": true
+    },
+    "be-final-01": {
+      "status": "PASS",
+      "cleanup_complete": true
+    },
+    "render-final-02": {
+      "status": "PASS",
+      "cleanup_complete": true
+    },
+    "fe-final-01": {
+      "status": "PASS",
+      "cleanup_complete": true
+    },
+    "browser-final-01": {
+      "status": "PASS",
+      "cleanup_complete": true
+    }
+  },
+  "backend_tests": 633,
+  "frontend_tests": 252,
+  "browser_independent_runs": 2,
+  "test_correction": {
+    "integer_object_comparisons_reproduced": 3,
+    "same_numeric_values_as_long_passed": 3,
+    "production_change_for_test_failure": false
+  },
+  "remote_connections": 0,
+  "provider_input_accessed": false,
+  "private_provider_state_accessed": false,
+  "new_remote_reservation": 0,
+  "start_files": 600,
+  "changed_existing_files": [
+    "be/src/maintenance/java/com/potg/don/maintenance/CleanupCredentials.java",
+    "be/src/maintenance/java/com/potg/don/maintenance/CleanupFailure.java",
+    "be/src/maintenance/java/com/potg/don/maintenance/DemoCleanupService.java",
+    "be/src/test/java/com/potg/don/global/config/RenderRuntimeConfigurationTest.java",
+    "be/src/test/java/com/potg/don/maintenance/DemoCleanupInputTest.java",
+    "docs/deployment/STATUS.md",
+    "scripts/verification/demo_capacity_checks.py",
+    "scripts/verification/render_runtime.py"
+  ],
+  "new_source_document_files": [
+    "be/cleanup.env.example",
+    "be/src/maintenance/java/com/potg/don/maintenance/CleanupReadOnlyGuard.java",
+    "be/src/test/java/com/potg/don/maintenance/CleanupReadOnlyGuardTest.java",
+    "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+    "docs/deployment/16-tidb-cleanup-readonly.md",
+    "scripts/verification/test_tidb_cleanup_readonly_checks.py",
+    "scripts/verification/tidb_cleanup_readonly_checks.py"
+  ],
+  "unexpected_changes": 0,
+  "final_source_preserved": true,
+  "historical_report_evidence_files": 183,
+  "historical_report_evidence_preserved": true,
+  "previous_status_body_preserved": true,
+  "head_preserved": true,
+  "index_preserved": true,
+  "scanner_status": "FAIL",
+  "scanner_unresolved": 51,
+  "previous_scanner_unresolved": 49,
+  "new_scanner_sites": [
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+      "line": 43,
+      "category": "credential-assignment"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+      "line": 226,
+      "category": "email-marker"
+    }
+  ],
+  "new_scanner_site_review": "local runner environment variable reference and reserved-domain synthetic fixture; no actual values published",
+  "scanner_rules_and_classifications_preserved": true,
+  "new_evidence_forbidden_findings": 0,
+  "initial_failed_evidence_preserved": true,
+  "owned_runner_cleanup_complete": true,
+  "LOCAL_DEMO_CAPACITY_READY": true,
+  "LOCAL_DEMO_CLEANUP_READY": true,
+  "REMOTE_DEMO_CAPACITY_VERIFIED": false,
+  "PUBLIC_DEPLOYMENT_READY": false
+}

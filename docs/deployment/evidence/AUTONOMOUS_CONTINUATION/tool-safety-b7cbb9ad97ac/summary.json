@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "group": "test_managed_all.py",
+      "tests": 33,
+      "status": "PASS"
+    },
+    {
+      "group": "test_public_all.py",
+      "tests": 14,
+      "status": "PASS"
+    },
+    {
+      "group": "test_dependency_overlay.py",
+      "tests": 7,
+      "status": "PASS"
+    }
+  ],
+  "provider_connections_attempted": 0
+}

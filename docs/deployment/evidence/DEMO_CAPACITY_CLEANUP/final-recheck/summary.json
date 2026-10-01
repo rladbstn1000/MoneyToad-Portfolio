@@ -1,0 +1,20 @@
+{
+  "status": "FINAL_RECHECK_PASS_WITH_UNCHANGED_PUBLIC_SCAN_WARNINGS",
+  "final_documents_rechecked": true,
+  "source_files_scanned": 415,
+  "historical_documents_and_evidence_checked": 131,
+  "historical_files_changed": 0,
+  "hard_secret_findings": 0,
+  "forbidden_evidence_findings": 0,
+  "original_public_scan_status": "FAIL",
+  "original_public_scan_warning_count": 27,
+  "automatic_pass_claimed": false,
+  "manual_review": "NON_SECRET_SOURCE_AND_FIXED_CAPACITY_INITIALIZER",
+  "scanner_rules_unchanged": true,
+  "classification_file_unchanged": true,
+  "staged_changes": 0,
+  "head_matches_previous_status": true,
+  "diff_check": "PASS",
+  "remote_provider_access": false,
+  "scan_copy_cleanup_complete": true
+}

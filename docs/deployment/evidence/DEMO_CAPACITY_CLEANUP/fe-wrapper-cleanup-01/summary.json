@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "scope": "failed-wrapper-before-test-launch",
+  "owned_private_copy_removed": true,
+  "database_processes_started": 0,
+  "frontend_test_processes_started": 0,
+  "cleanup_complete": true
+}

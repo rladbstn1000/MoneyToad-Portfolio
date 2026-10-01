@@ -1,0 +1,49 @@
+{
+  "status": "FAIL",
+  "input_status": "PASS",
+  "provider_input_ready": true,
+  "provider_process_launched": true,
+  "tidb_contracts_verified": false,
+  "upstash_functional_contracts_verified": false,
+  "upstash_failover_revocation_guarantee": "NOT_ESTABLISHED",
+  "provider_selection": "HOLD",
+  "managed_provider_contracts_verified": false,
+  "public_deployment_ready": false,
+  "probe_compilation": "PASS",
+  "observation": {
+    "status": "FAIL",
+    "mode": "managed",
+    "checks": [
+      {
+        "status": "PASS",
+        "check": "explicit_owned_schema_tls_and_reviewed_ddl"
+      },
+      {
+        "status": "PASS",
+        "check": "actual_jdbc_timezone_dates_unicode_collation_constraints_identity_enum_bit_sum_rollback"
+      }
+    ],
+    "timings_millis": {
+      "application_context_start": 5977,
+      "first_login": 17494
+    },
+    "failover_revocation_guarantee": "NOT_ESTABLISHED",
+    "public_deployment_ready": false,
+    "reserved_command_equivalents": 2640,
+    "reserved_login_attempts": 1,
+    "cleanup_command_equivalents_reserved": 2000,
+    "database_product": "TiDB",
+    "database_version": "8.0.11-TiDB-v8.5.3-serverless",
+    "jdbc_driver_version": "mysql-connector-j-9.4.0 (Revision: d680767849154c8e136dfc3d8a0ae4d9fefd1fb7)",
+    "separate_restricted_runtime_account": true,
+    "failed_phase": "TWO_VISITOR_HTTP_SEED_AND_CHART",
+    "contract": "ACTUAL_LOGIN_201",
+    "owned_keys_removed_and_absence_confirmed": true,
+    "owned_schema_removed_and_absence_confirmed": true,
+    "owned_account_removed": true,
+    "cleanup_complete": true,
+    "wire_commands_observed": 0
+  },
+  "cleanup_complete": true,
+  "remote_cleanup": "CONFIRMED"
+}

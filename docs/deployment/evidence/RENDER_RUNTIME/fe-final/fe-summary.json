@@ -1,0 +1,93 @@
+{
+  "phase": "fe",
+  "status": "PASS",
+  "existing_selectors_unchanged": true,
+  "historical_evidence_preserved": true,
+  "source_preserved": true,
+  "private_copy_removed": true,
+  "application_external_requests_allowed": false,
+  "exit_code": 0,
+  "regression": {
+    "status": "PASS",
+    "checks": [
+      {
+        "check": "node-version",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "npm-version",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "oauth-existing-tests",
+        "status": "PASS",
+        "exit_code": 0,
+        "tests": {
+          "numTotalTests": 125,
+          "numPassedTests": 125,
+          "numFailedTests": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0
+        }
+      },
+      {
+        "check": "demo-tests",
+        "status": "PASS",
+        "exit_code": 0,
+        "tests": {
+          "numTotalTests": 51,
+          "numPassedTests": 51,
+          "numFailedTests": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0
+        }
+      },
+      {
+        "check": "test-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "e2e-types",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "oauth-default-build",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "demo-build",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "check": "invalid-mode-build",
+        "status": "PASS",
+        "exit_code": 1
+      },
+      {
+        "check": "lint",
+        "status": "PASS",
+        "exit_code": 0,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  },
+  "entrypoint": {
+    "checks": [
+      {
+        "check": "fe",
+        "exit_code": 0,
+        "status": "PASS"
+      }
+    ],
+    "status": "PASS"
+  },
+  "node_version": "v22.14.0",
+  "npm_version": "10.9.2"
+}

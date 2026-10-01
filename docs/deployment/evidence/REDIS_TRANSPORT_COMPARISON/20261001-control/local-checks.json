@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "remote_connections_during_local_checks": 0,
+  "java_related": {
+    "status": "PASS",
+    "compile": "PASS",
+    "exit_code": 0,
+    "suites": [
+      {
+        "test": "com.potg.verification.managed.ManagedRedisActivationLocalTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "test": "com.potg.verification.managed.ManagedRedisConnectivityProbeTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "test": "com.potg.verification.managed.RedisActivationObservationTest",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "test": "com.potg.verification.managed.RedisTransportComparisonTest",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "final_java_impacted": {
+    "status": "PASS",
+    "compile": "PASS",
+    "exit_code": 0,
+    "suites": [
+      {
+        "test": "com.potg.verification.managed.RedisTransportComparisonTest",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "python": {
+    "tests": 29,
+    "new_tests": 19,
+    "existing_tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "projection_roundtrips": {
+    "java_early_rejection": "PASS",
+    "java_effective_header": "PASS",
+    "java_loopback_native_control": "PASS"
+  },
+  "preparation_history": {
+    "initial_java_tests": 32,
+    "initial_java_status": "PASS",
+    "added_test_generic_assertion_compile_error": 1,
+    "assertions_preserved": true,
+    "installed_version_projection_corrected_before_remote": true
+  },
+  "full_be_fe_e2e": "NOT_RUN_PRODUCT_UNCHANGED"
+}

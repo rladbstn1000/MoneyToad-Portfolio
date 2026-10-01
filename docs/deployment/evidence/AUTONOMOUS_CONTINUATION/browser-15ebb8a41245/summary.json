@@ -1,0 +1,37 @@
+{
+  "phase": "browser",
+  "status": "FAIL",
+  "source_preserved": false,
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "exit_code": 0,
+  "checks": {
+    "status": "PASS",
+    "expected_runs": 2,
+    "runs": [
+      {
+        "evidence_file": "browser-856f99ff5df8-summary.json",
+        "status": "PASS",
+        "cases": 4,
+        "external_attempts": 0,
+        "cleanup_complete": true
+      },
+      {
+        "evidence_file": "browser-9434e7bb039d-summary.json",
+        "status": "PASS",
+        "cases": 4,
+        "external_attempts": 0,
+        "cleanup_complete": true
+      }
+    ],
+    "workers": 1,
+    "retries": 0,
+    "product_api_mocks": false,
+    "font_policy": "product system fonts; no test transform"
+  },
+  "dependencies": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  }
+}
