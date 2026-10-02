@@ -1,3 +1,22 @@
+## 최신 public demo 전체 사용자 경험 — 로컬 PASS
+
+2026-10-02. clean main `f569d9cd0054ce5bd3661ac2fe957b6c3eba225a`에서 마당·장독대·Chart·조언·곳간·정보 입력 6개 페이지를 복원했다. 로그인 뒤 API 기준월 장독대로 이동하며, 실제 예산/거래 저장과 교차 재조회·방문별 메모리 프로필·경로별 자산 로딩을 연결했다. 예산 없는 항목은 기준 없음으로 표시하고 fake ID·소비 fallback·실시간 AI를 사용하지 않는다.
+
+**BE724, FE459(기존373+신규86), Python66 PASS**. 제품/test/E2E/Functions 타입, OAuth/demo build, invalid mode 거절, lint0/0 PASS. 실제 로컬 Chromium 전체 체험390/768/1440의3개, 기존 core독립2회각6개, mobile3개, cold-start1개 PASS. 외부앱/금지업무요청0·소유자원정리PASS·최종필수failure/error/skip/todo0이다. strict scanner PASS, 새 규칙/허용범위확대0·미분류/stale0이다.
+
+실제 예산40,000→60,000→40,000과 누수18,000→0→18,000, Chart분류변경 후 총908,000·누수0·annual leaked=false를 확인했다. 조언 갱신·곳간/정보입력·reload에서 실제 저장 유지와 메모리 프로필 초기화·자동login0·logout을 검증했다. 기존보호/API/쿠키A·D·E/제한 계약은 유지한다.
+
+BE·seed·schema·인증 엔진·gateway·provider·README·package/lockfile·과거evidence는 보존했다. 이번 원격provider/공개URL요청·stage/commit/push/배포0이다. 실제production은 기존 제품 `1d3479e39defe5777fa122846bf7988ec7e12c94`의 이전 UI이며 이번 로컬 구현이 배포됐다는 의미가 아니다. 기존 공급자 장애전환 미확인 보장도 바꾸지 않았다.
+
+```text
+FULL_DEMO_EXPERIENCE_LOCAL_READY=true
+PUBLIC_DEPLOYMENT_READY=false
+```
+
+상세: [23-full-demo-experience.md](23-full-demo-experience.md), [새 evidence](evidence/FULL_DEMO_EXPERIENCE/). 다음 별도 단계는 변경 검토와 승인된 commit/push/공개 배포 절차다. 이번에는 실행하지 않았다.
+
+---
+
 ## 최신 cookie E2E 시각 기준 분리 — 로컬 PASS
 
 2026-10-02. clean HEAD `be513cd0938d4cc37cd77ea04035b97ae41c83f2`에서 제품 변경 없이 검증 책임을 분리했다. browser cookie absolute expiry와 server session deadline의 직접 상한 비교는 `E-D ≈ L+K-Q`의 구조적 민감성 때문에 교체했다. **HISTORICAL_FAILURE_CAUSE=UNKNOWN**이며 과거 공개 실패 원인을 확정한 결과가 아니다.

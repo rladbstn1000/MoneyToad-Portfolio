@@ -1,0 +1,21 @@
+{
+  "status": "failed",
+  "cases": [
+    {
+      "title": "full original demo experience 390x844",
+      "status": "passed",
+      "milliseconds": 12934
+    },
+    {
+      "title": "full original demo experience 768x1024",
+      "status": "passed",
+      "milliseconds": 12336
+    },
+    {
+      "title": "full original demo experience 1440x1000",
+      "status": "failed",
+      "milliseconds": 2641,
+      "location": "93"
+    }
+  ]
+}

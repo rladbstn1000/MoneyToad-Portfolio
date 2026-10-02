@@ -1,0 +1,184 @@
+{
+  "phase": "chart",
+  "line": "93",
+  "categories": [
+    "ELEMENT_DETACHED"
+  ],
+  "chart": {
+    "viewportWidth": 1440,
+    "viewportHeight": 1000,
+    "documentOverflow": 0,
+    "overview": {
+      "left": 0,
+      "right": 1440,
+      "top": 0,
+      "bottom": 1000,
+      "width": 1440,
+      "height": 1000,
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "visibleStyle": true,
+      "opacity": 1
+    },
+    "lineWrapper": {
+      "left": 229.25,
+      "right": 1210.765625,
+      "top": 433.4375,
+      "bottom": 908.3125,
+      "width": 981.515625,
+      "height": 474.875,
+      "clientWidth": 982,
+      "scrollWidth": 982,
+      "visibleStyle": true,
+      "opacity": 1
+    },
+    "dots": [
+      {
+        "left": 289.25,
+        "right": 329.25,
+        "top": 510.8955078125,
+        "bottom": 550.8955078125,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 368.3409118652344,
+        "right": 408.3409118652344,
+        "top": 510.8955078125,
+        "bottom": 550.8955078125,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 447.43182373046875,
+        "right": 487.43182373046875,
+        "top": 510.8955078125,
+        "bottom": 550.8955078125,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 526.522705078125,
+        "right": 566.522705078125,
+        "top": 510.8955078125,
+        "bottom": 550.8955078125,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 605.6136474609375,
+        "right": 645.6136474609375,
+        "top": 451.5354919433594,
+        "bottom": 491.5354919433594,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 684.70458984375,
+        "right": 724.70458984375,
+        "top": 510.8955078125,
+        "bottom": 550.8955078125,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 763.7954711914062,
+        "right": 803.7954711914062,
+        "top": 510.8955078125,
+        "bottom": 550.8955078125,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 842.8863525390625,
+        "right": 882.8863525390625,
+        "top": 496.0555114746094,
+        "bottom": 536.0554809570312,
+        "width": 40,
+        "height": 39.999969482421875,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 921.977294921875,
+        "right": 961.977294921875,
+        "top": 488.635498046875,
+        "bottom": 528.635498046875,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 1001.0681762695312,
+        "right": 1041.068115234375,
+        "top": 471.5694885253906,
+        "bottom": 511.56951904296875,
+        "width": 39.99993896484375,
+        "height": 40.000030517578125,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 1080.1591796875,
+        "right": 1120.1591796875,
+        "top": 510.8955078125,
+        "bottom": 550.8955078125,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      },
+      {
+        "left": 1159.25,
+        "right": 1199.25,
+        "top": 510.8955078125,
+        "bottom": 550.8955078125,
+        "width": 40,
+        "height": 40,
+        "clientWidth": 0,
+        "scrollWidth": 0,
+        "visibleStyle": true,
+        "opacity": 1
+      }
+    ],
+    "activeDots": [],
+    "overlays": []
+  }
+}

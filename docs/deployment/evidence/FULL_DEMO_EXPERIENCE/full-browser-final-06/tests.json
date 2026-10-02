@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "title": "full original demo experience 390x844",
+      "status": "passed",
+      "milliseconds": 13121
+    },
+    {
+      "title": "full original demo experience 768x1024",
+      "status": "passed",
+      "milliseconds": 12477
+    },
+    {
+      "title": "full original demo experience 1440x1000",
+      "status": "passed",
+      "milliseconds": 13685
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "viewport": {
+    "width": 768,
+    "height": 1024
+  },
+  "pages": [
+    "landing",
+    "pot",
+    "chart",
+    "advice",
+    "mypage",
+    "user-info"
+  ],
+  "seedDelta": {
+    "users": 1,
+    "cards": 1,
+    "transactions": 240,
+    "budgets": 72
+  },
+  "threshold": {
+    "before": 40000,
+    "raised": 60000,
+    "restored": 40000
+  },
+  "total": 908000,
+  "leakBefore": 18000,
+  "leakAfter": 0,
+  "annualLeaked": false,
+  "historicalAdviceLeak": 120000,
+  "profileMemoryOnly": true,
+  "profileReloadReset": true,
+  "sessionDeadlineUnchanged": true,
+  "restoredCategory": true,
+  "loginCount": 1,
+  "automaticLogin": 0,
+  "externalAttempts": 0,
+  "forbiddenAttempts": 0,
+  "cookieRemoved": true,
+  "revokedAccessStatus": 401
+}

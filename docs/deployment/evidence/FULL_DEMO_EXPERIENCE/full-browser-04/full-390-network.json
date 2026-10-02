@@ -1,0 +1,565 @@
+{
+  "events": [
+    {
+      "order": 0,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "phase": "initial"
+    },
+    {
+      "order": 1,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "phase": "initial"
+    },
+    {
+      "order": 2,
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "phase": "initial"
+    },
+    {
+      "order": 3,
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "status": 401,
+      "phase": "initial"
+    },
+    {
+      "order": 4,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "phase": "login"
+    },
+    {
+      "order": 5,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 6,
+      "method": "POST",
+      "path": "/api/auth/demo/login",
+      "phase": "login"
+    },
+    {
+      "order": 7,
+      "method": "POST",
+      "path": "/api/auth/demo/login",
+      "status": 201,
+      "phase": "login"
+    },
+    {
+      "order": 8,
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "phase": "login"
+    },
+    {
+      "order": 9,
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 10,
+      "method": "GET",
+      "path": "/api/users",
+      "phase": "login"
+    },
+    {
+      "order": 11,
+      "method": "GET",
+      "path": "/api/users",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 12,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "login"
+    },
+    {
+      "order": 13,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 14,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "phase": "login"
+    },
+    {
+      "order": 15,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "login"
+    },
+    {
+      "order": 16,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 17,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "login"
+    },
+    {
+      "order": 18,
+      "method": "PATCH",
+      "path": "/api/budgets",
+      "phase": "pot-original"
+    },
+    {
+      "order": 19,
+      "method": "PATCH",
+      "path": "/api/budgets",
+      "status": 200,
+      "phase": "pot-original"
+    },
+    {
+      "order": 20,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "phase": "pot-original"
+    },
+    {
+      "order": 21,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "pot-original"
+    },
+    {
+      "order": 22,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "phase": "pot-original"
+    },
+    {
+      "order": 23,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "pot-original"
+    },
+    {
+      "order": 24,
+      "method": "PATCH",
+      "path": "/api/budgets",
+      "phase": "pot-original"
+    },
+    {
+      "order": 25,
+      "method": "PATCH",
+      "path": "/api/budgets",
+      "status": 200,
+      "phase": "pot-original"
+    },
+    {
+      "order": 26,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "phase": "pot-original"
+    },
+    {
+      "order": 27,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "pot-original"
+    },
+    {
+      "order": 28,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "phase": "pot-original"
+    },
+    {
+      "order": 29,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "pot-original"
+    },
+    {
+      "order": 30,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "chart"
+    },
+    {
+      "order": 31,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "chart"
+    },
+    {
+      "order": 32,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "phase": "chart"
+    },
+    {
+      "order": 33,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "phase": "chart"
+    },
+    {
+      "order": 34,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "phase": "chart"
+    },
+    {
+      "order": 35,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "status": 200,
+      "phase": "chart"
+    },
+    {
+      "order": 36,
+      "method": "PATCH",
+      "path": "/api/transactions/:n/category",
+      "phase": "chart"
+    },
+    {
+      "order": 37,
+      "method": "PATCH",
+      "path": "/api/transactions/:n/category",
+      "status": 200,
+      "phase": "chart"
+    },
+    {
+      "order": 38,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "chart"
+    },
+    {
+      "order": 39,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "phase": "chart"
+    },
+    {
+      "order": 40,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "phase": "chart"
+    },
+    {
+      "order": 41,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "phase": "chart"
+    },
+    {
+      "order": 42,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "status": 200,
+      "phase": "chart"
+    },
+    {
+      "order": 43,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "chart"
+    },
+    {
+      "order": 44,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "advice"
+    },
+    {
+      "order": 45,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "phase": "advice"
+    },
+    {
+      "order": 46,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "phase": "advice"
+    },
+    {
+      "order": 47,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "phase": "advice"
+    },
+    {
+      "order": 48,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "phase": "advice"
+    },
+    {
+      "order": 49,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "advice"
+    },
+    {
+      "order": 50,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "phase": "advice"
+    },
+    {
+      "order": 51,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "phase": "advice"
+    },
+    {
+      "order": 52,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "phase": "advice"
+    },
+    {
+      "order": 53,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "phase": "advice"
+    },
+    {
+      "order": 54,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "user-info"
+    },
+    {
+      "order": 55,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "phase": "user-info"
+    },
+    {
+      "order": 56,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "phase": "restore-held"
+    },
+    {
+      "order": 57,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "phase": "restore-held"
+    },
+    {
+      "order": 58,
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "phase": "restore-held"
+    },
+    {
+      "order": 59,
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "status": 200,
+      "phase": "restored"
+    },
+    {
+      "order": 60,
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "phase": "restored"
+    },
+    {
+      "order": 61,
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "status": 200,
+      "phase": "restored"
+    },
+    {
+      "order": 62,
+      "method": "GET",
+      "path": "/api/users",
+      "phase": "restored"
+    },
+    {
+      "order": 63,
+      "method": "GET",
+      "path": "/api/users",
+      "status": 200,
+      "phase": "restored"
+    },
+    {
+      "order": 64,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "restored"
+    },
+    {
+      "order": 65,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "restored"
+    },
+    {
+      "order": 66,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "phase": "restored"
+    },
+    {
+      "order": 67,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "phase": "restored"
+    },
+    {
+      "order": 68,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "restored"
+    },
+    {
+      "order": 69,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "restored"
+    },
+    {
+      "order": 70,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "phase": "restored"
+    },
+    {
+      "order": 71,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "phase": "restored"
+    },
+    {
+      "order": 72,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "phase": "restored"
+    },
+    {
+      "order": 73,
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "status": 200,
+      "phase": "restored"
+    },
+    {
+      "order": 74,
+      "method": "GET",
+      "path": "/api/transactions",
+      "phase": "logout"
+    },
+    {
+      "order": 75,
+      "method": "GET",
+      "path": "/api/users",
+      "phase": "logout"
+    },
+    {
+      "order": 76,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "phase": "logout"
+    },
+    {
+      "order": 77,
+      "method": "GET",
+      "path": "/api/users",
+      "status": 200,
+      "phase": "logout"
+    },
+    {
+      "order": 78,
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "phase": "logout"
+    },
+    {
+      "order": 79,
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "phase": "logout"
+    },
+    {
+      "order": 80,
+      "method": "POST",
+      "path": "/api/auth/demo/logout",
+      "phase": "logout"
+    },
+    {
+      "order": 81,
+      "method": "POST",
+      "path": "/api/auth/demo/logout",
+      "status": 204,
+      "phase": "logout"
+    },
+    {
+      "order": 82,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "phase": "logout"
+    },
+    {
+      "order": 83,
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "phase": "logout"
+    },
+    {
+      "order": 84,
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "phase": "logout"
+    },
+    {
+      "order": 85,
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "status": 401,
+      "phase": "logout"
+    }
+  ],
+  "externalAttempts": 0,
+  "forbiddenAttempts": 0,
+  "backendAttempts": 0
+}

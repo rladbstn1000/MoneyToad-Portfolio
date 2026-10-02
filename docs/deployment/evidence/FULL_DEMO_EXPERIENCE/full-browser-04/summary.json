@@ -1,0 +1,117 @@
+{
+  "status": "FAIL",
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "browser_api_mocks": false,
+  "workers": 1,
+  "retries": 0,
+  "external_attempts": 0,
+  "cases": 3,
+  "viewport_results": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pages": [
+        "landing",
+        "pot",
+        "chart",
+        "advice",
+        "mypage",
+        "user-info"
+      ],
+      "seedDelta": {
+        "users": 1,
+        "cards": 1,
+        "transactions": 240,
+        "budgets": 72
+      },
+      "threshold": {
+        "before": 40000,
+        "raised": 60000,
+        "restored": 40000
+      },
+      "total": 908000,
+      "leakBefore": 18000,
+      "leakAfter": 0,
+      "annualLeaked": false,
+      "historicalAdviceLeak": 120000,
+      "profileMemoryOnly": true,
+      "profileReloadReset": true,
+      "sessionDeadlineUnchanged": true,
+      "restoredCategory": true,
+      "loginCount": 1,
+      "automaticLogin": 0,
+      "externalAttempts": 0,
+      "forbiddenAttempts": 0,
+      "cookieRemoved": true,
+      "protectedPageBlocked": true,
+      "tokenRevocationCoveredByCore": true
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "pages": [
+        "landing",
+        "pot",
+        "chart",
+        "advice",
+        "mypage",
+        "user-info"
+      ],
+      "seedDelta": {
+        "users": 1,
+        "cards": 1,
+        "transactions": 240,
+        "budgets": 72
+      },
+      "threshold": {
+        "before": 40000,
+        "raised": 60000,
+        "restored": 40000
+      },
+      "total": 908000,
+      "leakBefore": 18000,
+      "leakAfter": 0,
+      "annualLeaked": false,
+      "historicalAdviceLeak": 120000,
+      "profileMemoryOnly": true,
+      "profileReloadReset": true,
+      "sessionDeadlineUnchanged": true,
+      "restoredCategory": true,
+      "loginCount": 1,
+      "automaticLogin": 0,
+      "externalAttempts": 0,
+      "forbiddenAttempts": 0,
+      "cookieRemoved": true,
+      "protectedPageBlocked": true,
+      "tokenRevocationCoveredByCore": true
+    }
+  ],
+  "setup_diagnostics": [
+    {
+      "status": "FAIL"
+    }
+  ],
+  "tests": [
+    {
+      "test": "full original demo experience 390x844",
+      "status": "passed"
+    },
+    {
+      "test": "full original demo experience 768x1024",
+      "status": "passed"
+    },
+    {
+      "test": "full original demo experience 1440x1000",
+      "status": "failed"
+    }
+  ],
+  "source_preserved": true,
+  "changed_source_paths": [],
+  "dependencies_preserved": true,
+  "owned_source_copy_removed": true
+}

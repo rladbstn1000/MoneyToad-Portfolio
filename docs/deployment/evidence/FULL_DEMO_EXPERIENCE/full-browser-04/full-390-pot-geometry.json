@@ -1,0 +1,60 @@
+{
+  "stage": {
+    "left": 0,
+    "right": 390,
+    "top": 224,
+    "bottom": 624,
+    "width": 390,
+    "height": 400
+  },
+  "nav": {
+    "left": 0,
+    "right": 390,
+    "top": 94,
+    "bottom": 224,
+    "width": 390,
+    "height": 130
+  },
+  "panel": {
+    "left": 0,
+    "right": 390,
+    "top": 624,
+    "bottom": 2529.078125,
+    "width": 390,
+    "height": 1905.078125
+  },
+  "pot": {
+    "left": 75.76923370361328,
+    "right": 314.2307815551758,
+    "top": 360.1538391113281,
+    "bottom": 614,
+    "width": 238.4615478515625,
+    "height": 253.84616088867188
+  },
+  "characters": [
+    {
+      "left": 0,
+      "right": 113.09375,
+      "top": 454.359375,
+      "bottom": 624,
+      "width": 113.09375,
+      "height": 169.640625,
+      "loaded": true
+    },
+    {
+      "left": 97.5,
+      "right": 171.59375,
+      "top": 549.90625,
+      "bottom": 624,
+      "width": 74.09375,
+      "height": 74.09375,
+      "loaded": true
+    }
+  ],
+  "viewportWidth": 390,
+  "viewportHeight": 844,
+  "potCenterVisible": true,
+  "potHitBelongsToStage": true,
+  "potIntersectsViewport": true,
+  "charactersInsideStage": true
+}

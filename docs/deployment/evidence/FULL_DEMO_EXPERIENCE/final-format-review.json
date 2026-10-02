@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Mypage.css trailing whitespace only",
+  "changed_lines": 16,
+  "css_output_identical": true,
+  "transform": "installed esbuild CSS minification",
+  "warnings": 0,
+  "functional_test_rerun_required": false
+}

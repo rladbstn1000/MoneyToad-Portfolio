@@ -1,0 +1,26 @@
+{
+  "status": "FAIL",
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "browser_api_mocks": false,
+  "workers": 1,
+  "retries": 0,
+  "external_attempts": 0,
+  "cases": 1,
+  "viewport_results": [],
+  "setup_diagnostics": [
+    {
+      "status": "FAIL"
+    }
+  ],
+  "tests": [
+    {
+      "test": "full original demo experience 390x844",
+      "status": "failed"
+    }
+  ],
+  "source_preserved": true,
+  "changed_source_paths": [],
+  "dependencies_preserved": true,
+  "owned_source_copy_removed": true
+}
