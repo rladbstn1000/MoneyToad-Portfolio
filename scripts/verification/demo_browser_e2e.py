@@ -71,7 +71,7 @@ def main():
 
 def run_once(args, runs, *, modes=('public-demo', 'local-demo'),
              browser_config='playwright.config.ts', expected_cases=3, browser_extra=None,
-             copy_screenshots=True, cold_start_fixture=False):
+             copy_screenshots=True, cold_start_fixture=False, browser_deadline=240):
     run_id = uuid.uuid4().hex[:12]
     dest = OUT / run_id
     dest.mkdir(parents=True)
@@ -294,9 +294,11 @@ def run_once(args, runs, *, modes=('public-demo', 'local-demo'),
                       (SELECT COUNT(*) FROM transactions),(SELECT COUNT(*) FROM budgets),
                       (SELECT COUNT(*) FROM cards WHERE card_no IS NOT NULL OR cvc IS NOT NULL),
                       (SELECT COUNT(*) FROM analysis_job),
-                      (SELECT COUNT(*) FROM transactions WHERE merchant_name='합성 장보기(분류 연습)' AND category='마트 / 편의점');"""
+                      (SELECT COUNT(*) FROM transactions WHERE merchant_name='합성 장보기(분류 연습)' AND category='마트 / 편의점'),
+                      (SELECT COUNT(*) FROM budgets WHERE category='카페' AND amount=60000),
+                      (SELECT COUNT(*) FROM budgets WHERE category='카페' AND amount=40000);"""
                     values = [int(x) for x in required(mysql + [sql]).split()]
-                    data = dict(zip(['users', 'cards', 'transactions', 'budgets', 'financial', 'jobs', 'changed'], values))
+                    data = dict(zip(['users', 'cards', 'transactions', 'budgets', 'financial', 'jobs', 'changed', 'cafeBudgetRaised', 'cafeBudgetOriginal'], values))
                     data['sessions'] = int(required(rediscli + ['DBSIZE']))
                     data['outbound'] = int((directory / 'outbound').read_text())
                     gateway = directory / 'gateway.jsonl'
@@ -322,7 +324,7 @@ def run_once(args, runs, *, modes=('public-demo', 'local-demo'),
             browser = spawn(['./node_modules/.bin/playwright', 'test', '--config', browser_config],
                             'chromium-' + mode, settings, FE)
             try:
-                code = browser.wait(timeout=240)
+                code = browser.wait(timeout=browser_deadline)
             except subprocess.TimeoutExpired:
                 raise Blocked('browser deadline exceeded') from None
             tests_path = evidence / 'tests.json'
@@ -331,6 +333,8 @@ def run_once(args, runs, *, modes=('public-demo', 'local-demo'),
                 row['status'] == 'passed' for row in tests.get('cases', []))
             result['checks'].append({'phase': phase, 'status': 'PASS' if passed else 'FAIL', 'exit_code': code})
             if not passed:
+                result['failure_tags'] = ['BROWSER_ASSERTION_LINE_' + row['location'] for row in tests.get('cases', [])
+                    if row.get('status') != 'passed' and isinstance(row.get('location'), str) and row['location'].isdigit()]
                 result['status'] = 'FAIL'
                 result_code = 1
                 break

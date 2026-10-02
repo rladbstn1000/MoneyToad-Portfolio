@@ -1,3 +1,4 @@
+import { clickDemoMenu, gotoDemoChart } from './demoNavigation';
 import { test } from './fixtures';
 import { expect, type Page } from '@playwright/test';
 import { writeFileSync } from 'node:fs';
@@ -24,14 +25,16 @@ async function snapshot(): Promise<Record<string, number>> {
 }
 async function chooseMonth(page: Page, month: number) {
   const mobileMonths = page.getByRole('navigation', { name: '월별 상세 보기', exact: true });
-  if (await mobileMonths.isVisible()) {
+  if (page.viewportSize()!.width <= 768) {
+    await expect(mobileMonths).toBeVisible();
     await mobileMonths.getByRole('button', { name: new RegExp(`년 ${month}월 상세 보기$`) }).click();
     await expect(page.locator('.jp-total')).toContainText('908,000원');
     return;
   }
   const dot = page.locator('#screen1 .recharts-line-dots image').nth(month - 1);
   await expect(page.locator('#screen1 .recharts-line-dots image')).toHaveCount(12);
-  await dot.scrollIntoViewIfNeeded();
+  await page.locator('.jp-linechart-wrap').scrollIntoViewIfNeeded();
+  await expect(dot).toBeVisible();
   // Recharts replaces the hit target with activeDot on pointer entry. Move the
   // pointer over its measured box, then use an ordinary actionable locator click.
   const active = page.locator('#screen1 .recharts-active-dot image');
@@ -147,7 +150,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 
     const annual = page.waitForResponse(response => pathname(response.url()) === '/api/transactions' && response.status() === 200);
     phase = 'login'; await start.click();
     check((await login).status() === 201, 'login created');
-    await expect(page).toHaveURL(/\/chart$/);
+    await gotoDemoChart(page);
     const seeded = await snapshot();
     check(seeded.users === before.users + 1 && seeded.cards === before.cards + 1
       && seeded.transactions === before.transactions + 240 && seeded.budgets === before.budgets + 72
@@ -200,7 +203,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 
       await page.setViewportSize({ width: 1440, height: 1000 });
       await page.getByRole('button', { name: '닫기', exact: true }).click();
       const logout = page.waitForResponse(response => pathname(response.url()) === `${auth}logout`);
-      await page.getByRole('button', { name: '체험 종료', exact: true }).click();
+      await clickDemoMenu(page, '체험 종료');
       check((await logout).status() === 204, 'baseline visitor logout');
       return;
     }
@@ -324,7 +327,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 
       patchSucceeded: true, sqlChangeObserved: true, restorePreserved: true, automaticLogin: 0 };
     await page.getByRole('button', { name: '닫기', exact: true }).click();
     const loggedOut = page.waitForResponse(response => pathname(response.url()) === `${auth}logout`);
-    phase = 'logout'; await page.getByRole('button', { name: '체험 종료', exact: true }).click();
+    phase = 'logout'; await clickDemoMenu(page, '체험 종료');
     check((await loggedOut).status() === 204, 'logout success');
     check(!(await context.cookies()).some(item => item.name === 'demoRefreshToken'), 'cookie removed');
     check((await snapshot()).sessions === before.sessions, 'session removed');

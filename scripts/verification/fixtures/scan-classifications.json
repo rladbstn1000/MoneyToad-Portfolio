@@ -2544,10 +2544,10 @@
     },
     {
       "file": "fe/e2e/demo.spec.ts",
-      "line": 189,
+      "line": 191,
       "category": "cookie-assignment",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "404f3cd0c502acc2891bf941cf5cf30fda3893700e3c004411fb07dfd140fee6",
+      "file_digest": "2bc0ec8e603c3123535ddd70355963092b9696e01c36831a4b0a0906283c457b",
       "content_digest": "488ba1e55f55c9c61ab9f65ce9532884ff15d9f33c90de4e72631e63a8532301",
       "semantic_category": "cookie-name-boundary",
       "expected_construct": [
@@ -2603,10 +2603,10 @@
     },
     {
       "file": "fe/e2e/demo.spec.ts",
-      "line": 232,
+      "line": 234,
       "category": "cookie-assignment",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "404f3cd0c502acc2891bf941cf5cf30fda3893700e3c004411fb07dfd140fee6",
+      "file_digest": "2bc0ec8e603c3123535ddd70355963092b9696e01c36831a4b0a0906283c457b",
       "content_digest": "55134edbb4491baeeafdda009ea9c956b2e149d20d850f4afb8671087dbbbf61",
       "semantic_category": "cookie-name-boundary",
       "expected_construct": [
@@ -2645,10 +2645,10 @@
     },
     {
       "file": "fe/e2e/demo.spec.ts",
-      "line": 260,
+      "line": 262,
       "category": "bearer-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "404f3cd0c502acc2891bf941cf5cf30fda3893700e3c004411fb07dfd140fee6",
+      "file_digest": "2bc0ec8e603c3123535ddd70355963092b9696e01c36831a4b0a0906283c457b",
       "content_digest": "dd8264d08f3da300949641817665c05ca6591c7839f0e4af6122be9946da747a",
       "semantic_category": "fixed-no-output-comment",
       "expected_construct": [
@@ -2658,10 +2658,10 @@
     },
     {
       "file": "fe/e2e/demo.spec.ts",
-      "line": 262,
+      "line": 264,
       "category": "bearer-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "404f3cd0c502acc2891bf941cf5cf30fda3893700e3c004411fb07dfd140fee6",
+      "file_digest": "2bc0ec8e603c3123535ddd70355963092b9696e01c36831a4b0a0906283c457b",
       "content_digest": "869b6a77e0f5db8c0fd83a1cb8b73f11617acaaefe160b9a47d176381bcf92bf",
       "semantic_category": "runtime-request-header",
       "expected_construct": [
@@ -2678,10 +2678,10 @@
     },
     {
       "file": "fe/e2e/demo.spec.ts",
-      "line": 262,
+      "line": 264,
       "category": "authorization-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "404f3cd0c502acc2891bf941cf5cf30fda3893700e3c004411fb07dfd140fee6",
+      "file_digest": "2bc0ec8e603c3123535ddd70355963092b9696e01c36831a4b0a0906283c457b",
       "content_digest": "869b6a77e0f5db8c0fd83a1cb8b73f11617acaaefe160b9a47d176381bcf92bf",
       "semantic_category": "runtime-request-header",
       "expected_construct": [
@@ -3116,7 +3116,7 @@
       "line": 240,
       "category": "bearer-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "97115d25014cd48f22181405aa99f506119d7ff6b7841bed7ffe9cb3202f5f8b",
+      "file_digest": "e3c4a27b5203e573b6e370ed7d87cd4a0d1f151bb45e7684b7ab5d979a8b78a4",
       "content_digest": "d78e494573c35c76ea2098a80a602a5aedc57769405941bad9ab9088c9514602",
       "semantic_category": "runtime-request-header",
       "expected_construct": [
@@ -3145,7 +3145,7 @@
       "line": 252,
       "category": "bearer-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "97115d25014cd48f22181405aa99f506119d7ff6b7841bed7ffe9cb3202f5f8b",
+      "file_digest": "e3c4a27b5203e573b6e370ed7d87cd4a0d1f151bb45e7684b7ab5d979a8b78a4",
       "content_digest": "1c301d2ddc0b727bc7335c773053d728a2658d39512e23bfab8d0639b48d85d0",
       "semantic_category": "runtime-request-header",
       "expected_construct": [
@@ -3319,7 +3319,7 @@
       "line": 191,
       "category": "credential-assignment",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599",
+      "file_digest": "827cc7746bfd882b18ba7575abc8b4efd4d45a7de9234f433e89fb5692de411f",
       "content_digest": "fd8896b613113d28366ee7d19abd48d94a5d1f9218a3bcaa5b0a0fe1c06b0fd2",
       "semantic_category": "runtime-credential-expression",
       "expected_construct": [
@@ -3339,7 +3339,7 @@
       "line": 230,
       "category": "credential-assignment",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599",
+      "file_digest": "827cc7746bfd882b18ba7575abc8b4efd4d45a7de9234f433e89fb5692de411f",
       "content_digest": "1e964d4a9873d5d1e12e67c2ef6b3ad31529912beb677e006f812caa6108c83b",
       "semantic_category": "runtime-credential-expression",
       "expected_construct": [
@@ -3367,7 +3367,7 @@
       "line": 232,
       "category": "credential-assignment",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599",
+      "file_digest": "827cc7746bfd882b18ba7575abc8b4efd4d45a7de9234f433e89fb5692de411f",
       "content_digest": "e9b0e8a9586b9ab4572ca29b3751f14045c58ded1db134b6d7aa6e2023f9c239",
       "semantic_category": "runtime-credential-expression",
       "expected_construct": [
@@ -3391,7 +3391,7 @@
       "line": 234,
       "category": "credential-assignment",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "8097c17085090f6eb7a4c57d9d76276deded8a77a5e817f5fa4c0a217a088599",
+      "file_digest": "827cc7746bfd882b18ba7575abc8b4efd4d45a7de9234f433e89fb5692de411f",
       "content_digest": "b23c92d98a237511397c993386b7c85cda01b40319d4d3a03bfba6d7b02f5839",
       "semantic_category": "runtime-credential-expression",
       "expected_construct": [

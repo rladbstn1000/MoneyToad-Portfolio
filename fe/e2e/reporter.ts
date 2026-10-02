@@ -5,7 +5,7 @@ import { writeFileSync } from 'node:fs';
 export default class SafeReporter implements Reporter {
   private cases: { title: string; status: string; milliseconds: number; location?: string }[] = [];
   onTestEnd(test: TestCase, result: TestResult) {
-    const location = result.errors[0]?.stack?.match(/(?:demo|mobile-chart|cold-start)\.spec\.ts:(\d+):\d+/)?.[1];
+    const location = result.errors[0]?.stack?.match(/(?:demo|mobile-chart|cold-start|full-experience)\.spec\.ts:(\d+):\d+/)?.[1];
     this.cases.push({ title: test.title, status: result.status, milliseconds: result.duration, location });
     console.log(`${test.title}: ${result.status}${location ? ` (assertion line ${location})` : ''}`);
   }

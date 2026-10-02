@@ -43,7 +43,7 @@ const server = setupServer(
   http.post(`${ORIGIN}/api/auth/demo/logout`, ({ request }) => record(request, logoutReply)),
   http.all(`${ORIGIN}/api/*`, ({ request }) => {
     const path = new URL(request.url).pathname;
-    if (!/^\/api\/(test\/|users$|transactions(?:\/|$))/.test(path)) {
+    if (!/^\/api\/(test\/|users$|budgets(?:\/|$)|transactions(?:\/|$))/.test(path)) {
       unhandled++;
       return new HttpResponse(null, { status: 500 });
     }
@@ -383,7 +383,7 @@ describe('real App, provider, route guard and protected queries', () => {
     expect(count('/transactions/peer')).toBe(0);
     expect(count('/reissue')).toBe(1); expect(count('/users')).toBe(1);
   });
-  it('landing explicit login confirms session and navigates to Chart; duplicate click issues one login', async () => {
+  it('landing explicit login confirms session and navigates to API-month Pot; duplicate click issues one login', async () => {
     refreshReply = () => new HttpResponse(null, { status: 401 });
     await renderApp('/');
     const button = await screen.findByRole('button', { name: '샘플 데이터로 체험하기' });
@@ -443,12 +443,39 @@ describe('real App, provider, route guard and protected queries', () => {
     expect(old.getQueryData(['private'])).toBeUndefined(); expect(count('/login')).toBe(0);
     expect(screen.getByRole('button', { name: '샘플 데이터로 체험하기' })).toBeInTheDocument();
   });
-  it.each(['/userInfo', '/mypage', '/pot/1', '/toadAdvice'])('does not mount excluded demo route %s', async path => {
+  const restoredRoutes = ['/userInfo', '/mypage', '/pot/1', '/toadAdvice'];
+  it.each(restoredRoutes)('anonymous demo still blocks restored route %s', async path => {
     refreshReply = () => new HttpResponse(null, { status: 401 }); await renderApp(path);
-    await screen.findByRole('heading', { name: '준비 중입니다' });
-    await waitFor(() => expect(runtime.store.getState().status).toBe('anonymous'));
-    expect(count('/users') + count('/transactions') + count('/cards') + count('/ai/')).toBe(0);
+    await screen.findByRole('button', { name: '샘플 데이터로 체험하기' });
+    expect(runtime.store.getState().status).toBe('anonymous');
+    expect(document.querySelector('[data-demo-page]')).toBeNull();
+    expect(count('/users') + count('/transactions') + count('/budgets') + count('/cards') + count('/ai/')).toBe(0);
   });
+  it.each(restoredRoutes)('restoring demo blocks restored route %s and all protected requests', async path => {
+    const gate = deferred<Response>(); refreshReply = () => gate.promise;
+    await renderApp(path);
+    await waitFor(() => expect(count('/reissue')).toBe(1));
+    expect(document.querySelector('[data-demo-page]')).toBeNull();
+    expect(count('/users') + count('/transactions') + count('/budgets') + count('/cards') + count('/ai/')).toBe(0);
+    gate.resolve(new HttpResponse(null, { status: 401 }));
+    await screen.findByRole('button', { name: '샘플 데이터로 체험하기' });
+  });
+  it.each(restoredRoutes)('unavailable demo blocks restored route %s', async path => {
+    refreshReply = () => new HttpResponse(null, { status: 503 }); await renderApp(path);
+    await screen.findByRole('button', { name: '연결 다시 시도' });
+    expect(document.querySelector('[data-demo-page]')).toBeNull();
+    expect(count('/users') + count('/transactions') + count('/budgets') + count('/cards') + count('/ai/')).toBe(0);
+  });
+  it.each([['/userInfo', 'user-info'], ['/mypage', 'mypage'], ['/pot/1', 'pot'], ['/toadAdvice', 'advice']])(
+    'authenticated demo mounts the real restored page %s', async (path, page) => {
+      await renderApp(path);
+      await waitFor(() => expect(document.querySelector(`[data-demo-page="${page}"]`)).not.toBeNull());
+      expect(runtime.store.getState().status).toBe('authenticated');
+      expect(count('/users')).toBe(1); // Existing common authentication gate only.
+      expect(count('/cards') + count('/ai/') + count('/transactions/peer')).toBe(0);
+      expect(requests.filter(row => row.path === '/api/users' && row.method !== 'GET')).toHaveLength(0);
+      if (page === 'mypage' || page === 'user-info') expect(count('/transactions') + count('/budgets')).toBe(0);
+    });
   it('demo callback does not consume an OAuth URL token or query cards', async () => {
     refreshReply = () => new HttpResponse(null, { status: 401 }); await renderApp('/auth/callback?accessToken=synthetic-ignored');
     await screen.findByRole('button', { name: '샘플 데이터로 체험하기' });

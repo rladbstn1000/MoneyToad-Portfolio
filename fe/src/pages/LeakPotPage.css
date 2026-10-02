@@ -332,3 +332,46 @@
 .summary{ margin-top:0; margin-bottom:60px; font-size:18px; text-align:center; flex-shrink:0; }
 .summary-leak{ font-weight:bold; color:#a12a2a; }
 .summary-good{ font-weight:bold; color:#166534; }
+
+/* Demo retains the pot scene while giving every control its own readable space. */
+.demo-pot-page { overflow-y:auto; overflow-x:clip; min-height:100dvh; height:100dvh; }
+.demo-pot-notice { margin:8px 20px; text-align:center; font-size:14px; }
+.demo-pot-page .main-container { min-height:660px; align-items:stretch; gap:0; }
+.demo-pot-stage { position:relative; flex:1; min-width:0; min-height:620px; margin-right:540px; }
+.demo-pot-stage .pot-container { position:absolute; }
+.demo-pot-stage .characters { width:100%; pointer-events:none; }
+.demo-pot-stage .kongjwi { width:min(36%, 328px); }
+.demo-pot-stage .toad { width:min(23%, 192px); margin-left:-4%; }
+.demo-pot-page .control-panel { box-sizing:border-box; min-width:0; width:500px; height:640px; right:20px; bottom:0; }
+.demo-pot-page .panel-title { margin-top:48px; font-size:24px; }
+.demo-pot-anchor { margin:6px 36px; text-align:center; font-size:13px; }
+.demo-pot-page .sliders-container { padding:10px 40px; }
+.demo-pot-page .slider-header { flex-wrap:wrap; }
+.demo-budget-state { margin:0 0 12px; font-size:13px; line-height:1.5; }
+.demo-budget-error { color:#8d2020; font-size:14px; }
+.demo-pot-page .summary { margin-bottom:40px; }
+.demo-pot-page .custom-slider:focus-visible { outline:3px solid #28427b; outline-offset:3px; border-radius:6px; }
+.demo-pot-page .custom-slider:disabled { cursor:not-allowed; }
+.demo-pot-page .custom-slider:disabled + .coin-thumb { opacity:.55; }
+.demo-pot-page .month-button:focus-visible { outline:3px solid #28427b; outline-offset:2px; }
+@media (max-width:900px) {
+  /* Natural page flow prevents the tall panel from being centered above the pot. */
+  .demo-pot-page { display:block; }
+  .demo-pot-page .month-navigation { padding:8px 16px; }
+  .demo-pot-page .month-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; }
+  .demo-pot-page .month-button { min-height:44px; min-width:0; aspect-ratio:1; }
+  .demo-pot-page .month-badge { font-size:12px; padding:3px; right:0; top:0; }
+  .demo-pot-page .main-container { display:flex; flex:none; flex-direction:column; min-height:0; align-items:stretch; justify-content:flex-start; }
+  .demo-pot-stage { flex:none; margin-right:0; height:400px; min-height:0; width:100%; }
+  .demo-pot-stage .characters { z-index:1; }
+  .demo-pot-stage .kongjwi { width:29%; }
+  .demo-pot-stage .toad { width:19%; }
+  .demo-pot-page .control-panel { position:relative; flex:none; inset:auto; width:100%; max-width:none; height:auto; max-height:none; padding:16px; background-size:100% 100%; }
+  .demo-pot-page .panel-title { margin-top:28px; padding-top:0; font-size:23px; }
+  .demo-pot-anchor { margin:8px 16px; }
+  .demo-pot-page .sliders-container { overflow:visible; padding:12px 18px; }
+  .demo-pot-page .slider-header { align-items:flex-start; }
+  .demo-pot-page .slider-label { font-size:16px; }
+  .demo-pot-page .slider-legend { font-size:13px; flex-wrap:wrap; }
+  .demo-pot-page .summary { margin:12px 0 32px; font-size:18px; }
+}

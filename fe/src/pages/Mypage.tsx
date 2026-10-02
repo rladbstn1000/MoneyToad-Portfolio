@@ -1,4 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { authMode } from "../auth/authMode";
+import { useDemoExperience } from "../demo/useDemoExperience";
+import { DEMO_AGES, type DemoProfile } from "../demo/demoProfile";
 import Header from "../components/Header";
 import "./Mypage.css";
 import { useUserInfoQuery } from "../api/queries/userQuery";
@@ -52,6 +56,10 @@ const loadUser = (apiUserData?: ApiUserInfo, cardData?: CardInfo): LocalUserInfo
 };
 
 export default function MyPage() {
+  return authMode === "demo" ? <DemoMyPage /> : <OAuthMyPage />;
+}
+
+function OAuthMyPage() {
   const [phase, setPhase] = useState<Phase>("CLOSED");
 
   const { data: userData } = useUserInfoQuery();
@@ -364,4 +372,81 @@ export default function MyPage() {
       </div>
     </div>
   );
+}
+
+function DemoMyPage() {
+  const [phase, setPhase] = useState<Phase>('CLOSED');
+  const paperOpener = useRef<HTMLButtonElement>(null);
+  const previousPhase = useRef(phase);
+  const closePaper = useCallback(() => setPhase('SITTING'), []);
+  useEffect(() => {
+    if (previousPhase.current === 'PAPER' && phase === 'SITTING') paperOpener.current?.focus();
+    previousPhase.current = phase;
+  }, [phase]);
+  const hint = phase === 'CLOSED' ? '문을 열고 콩쥐를 만나 보세요.'
+    : phase === 'OPEN' ? '콩쥐에게 다가가 보세요.' : '콩쥐가 내미는 종이에서 샘플 설정을 바꿔 보세요.';
+  return <main className="mp-wrap mp-demo" data-demo-page="mypage">
+    <div className="mp-fixed-header" inert={phase === 'PAPER'}><Header /></div>
+    <div className="mp-scene-frame" aria-hidden={phase === 'PAPER'} inert={phase === 'PAPER'}>
+      <img className="mp-bg" src={phase === 'CLOSED' ? IMG_CLOSE : phase === 'OPEN' ? IMG_OPEN : IMG_SIT}
+        alt={phase === 'CLOSED' ? '문이 닫힌 초가집' : phase === 'OPEN' ? '문이 열린 초가집에서 손짓하는 콩쥐' : '종이를 내미는 콩쥐'} draggable={false} />
+      {phase === 'CLOSED' && <button className="hotspot door" aria-label="문 열기" onClick={() => setPhase('OPEN')} />}
+      {phase === 'OPEN' && <button className="hotspot kong" aria-label="콩쥐에게 다가가기" onClick={() => setPhase('SITTING')} />}
+      {(phase === 'SITTING' || phase === 'PAPER') && <button className="hotspot paper" aria-label="문서 보기" onClick={() => setPhase('PAPER')} />}
+    </div>
+    <section className="mp-demo-directions" aria-label="곳간 안내" hidden={phase === 'PAPER'}>
+      <p>{hint}</p>
+      {phase === 'CLOSED' && <button className="btn primary" onClick={() => setPhase('OPEN')}>문 열고 들어가기</button>}
+      {phase === 'OPEN' && <button className="btn primary" onClick={() => setPhase('SITTING')}>콩쥐 만나기</button>}
+      {(phase === 'SITTING' || phase === 'PAPER') && <button ref={paperOpener} className="btn primary" onClick={() => setPhase('PAPER')}>샘플 정보 보기</button>}
+      <Link to="/userInfo">정보 입력 과정 체험</Link>
+    </section>
+    {phase === 'PAPER' && <DemoProfilePaper onClose={closePaper} />}
+  </main>;
+}
+
+function DemoProfilePaper({ onClose }: { onClose: () => void }) {
+  const { profile, updateProfile } = useDemoExperience();
+  const [draft, setDraft] = useState(profile);
+  const [saved, setSaved] = useState(false);
+  const dialog = useRef<HTMLDivElement>(null);
+  const close = useRef<HTMLButtonElement>(null);
+  const dirty = draft.gender !== profile.gender || draft.age !== profile.age || draft.cardPreset !== profile.cardPreset;
+  useEffect(() => {
+    close.current?.focus();
+    const element = dialog.current;
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); onClose(); }
+      if (event.key !== 'Tab' || !element) return;
+      const controls = Array.from(element.querySelectorAll<HTMLElement>('button:not(:disabled), a[href], select, [tabindex="0"]'));
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    element?.addEventListener('keydown', keydown);
+    return () => element?.removeEventListener('keydown', keydown);
+  }, [onClose]);
+  const change = (update: Partial<DemoProfile>) => { setDraft(current => ({ ...current, ...update })); setSaved(false); };
+  return <div className="paper-modal">
+    <div ref={dialog} className="paper-stage mp-demo-paper" role="dialog" aria-modal="true" aria-labelledby="demo-profile-title" aria-describedby="demo-profile-note">
+      <img className="paper-img" src={IMG_PAPER} alt="" aria-hidden="true" />
+      <form className="paper-content" onSubmit={event => { event.preventDefault(); updateProfile(draft); setSaved(true); }}>
+        <header className="paper-header"><h1 id="demo-profile-title">콩쥐의 정보 수정하기</h1><button ref={close} className="btn ghost" type="button" onClick={onClose} aria-label="정보 창 닫기">닫기</button></header>
+        <p id="demo-profile-note" className="mp-demo-note">가상의 인물과 샘플 카드로 체험해요. 설정은 이 탭에서만 유지되고 새로고침하면 초기화돼요.</p>
+        <div className="paper-body">
+          <section className="paper-block" aria-labelledby="demo-profile-basic"><h2 id="demo-profile-basic">샘플 인물</h2>
+            <p className="mp-demo-name">이름 <strong>{profile.displayName}</strong></p>
+            <fieldset><legend>샘플 성별</legend><div className="seg">{(['여성', '남성'] as const).map(gender => <button key={gender} type="button" className={`chip ${draft.gender === gender ? 'on' : ''}`} aria-pressed={draft.gender === gender} onClick={() => change({ gender })}>{gender}</button>)}</div></fieldset>
+            <label className="field"><span>샘플 나이</span><select className="input" value={draft.age} onChange={event => change({ age: Number(event.target.value) as DemoProfile['age'] })}>{DEMO_AGES.map(age => <option key={age} value={age}>{age}세</option>)}</select></label>
+          </section>
+          <section className="paper-block" aria-labelledby="demo-profile-card"><h2 id="demo-profile-card">샘플 카드</h2><p>연습용 카드의 모양을 골라 보세요. 거래와 예산은 그대로 유지돼요.</p>
+            <div className="mp-demo-cards">{(['A', 'B'] as const).map(cardPreset => <button key={cardPreset} type="button" className={`mp-demo-card mp-demo-card-${cardPreset.toLowerCase()}`} aria-pressed={draft.cardPreset === cardPreset} onClick={() => change({ cardPreset })}><span aria-hidden="true">{cardPreset === 'A' ? '🌿' : '🌼'}</span><strong>샘플 카드 {cardPreset}</strong><small>{cardPreset === 'A' ? '초록 잎' : '노란 꽃'}</small></button>)}</div>
+          </section>
+        </div>
+        <p className="mp-demo-feedback" role="status">{saved ? '샘플 설정을 저장했어요.' : dirty ? '바꾼 설정을 저장하거나 취소할 수 있어요.' : '원하는 샘플 설정을 골라 보세요.'}</p>
+        <footer className="mp-demo-actions"><button className="btn ghost" type="button" onClick={() => { setDraft(profile); setSaved(false); }}>변경 취소</button><button className="btn primary" type="submit" disabled={!dirty}>샘플 설정 저장</button></footer>
+      </form>
+    </div>
+  </div>;
 }

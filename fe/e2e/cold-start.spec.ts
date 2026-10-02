@@ -1,3 +1,4 @@
+import { clickDemoMenu, gotoDemoChart } from './demoNavigation';
 import { test } from './fixtures';
 import { expect } from '@playwright/test';
 import { writeFileSync } from 'node:fs';
@@ -113,7 +114,7 @@ test('cold deadline stops polling; manual readiness never creates a visitor', as
   await start.click();
   check((await login).status() === 201, 'explicit real login created');
   await session; await annual;
-  await expect(page).toHaveURL(/\/chart$/);
+  await gotoDemoChart(page);
   await expect(page.locator('#screen1')).toBeVisible();
   check(requests('POST', `${auth}login`) === 1, 'one explicit login');
   const seeded = await snapshot();
@@ -121,7 +122,7 @@ test('cold deadline stops polling; manual readiness never creates a visitor', as
     && seeded.financial === 0 && seeded.jobs === 0 && seeded.sessions === 1, 'real isolated seed and session');
   phase = 'logout';
   const logout = page.waitForResponse(response => pathOf(response.url()) === `${auth}logout`);
-  await page.getByRole('button', { name: '체험 종료', exact: true }).click();
+  await clickDemoMenu(page, '체험 종료');
   check((await logout).status() === 204, 'real logout');
   await expect(start).toBeEnabled();
   check(!(await context.cookies()).some(value => value.name === 'demoRefreshToken'), 'refresh cookie removed');

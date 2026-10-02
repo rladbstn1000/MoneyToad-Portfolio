@@ -36,3 +36,18 @@
   cursor: pointer;
   font-family: inherit;
 }
+
+/* Demo navigation keeps the original menu labels without widening the page. */
+.demo-header .nav { width: 100%; gap: 0; }
+.demo-header .demo-menu-links { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: clamp(4px, 2vw, 28px); }
+.demo-header .nav-item { min-height: 44px; display: inline-flex; align-items: center; padding: 12px 10px; }
+.demo-menu-toggle { display: none; }
+.demo-header :focus-visible { outline: 3px solid #ffd400; outline-offset: 3px; }
+@media (max-width: 900px) {
+  .demo-header { padding: 8px 12px; box-sizing: border-box; }
+  .demo-header .nav { flex-direction: column; align-items: stretch; }
+  .demo-header .demo-menu-toggle { display: block; align-self: flex-end; min-width: 104px; min-height: 44px; padding: 8px 16px; border: 1px solid #e9d6a8; border-radius: 8px; background: #302719; color: #fff; font: inherit; }
+  .demo-header .demo-menu-links { display: none; margin-top: 8px; padding: 8px; border-radius: 8px; background: #302719; }
+  .demo-header .demo-menu-links.is-open { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+  .demo-header .nav-item { justify-content: center; padding: 8px 4px; font-size: 16px; text-align: center; }
+}

@@ -8,6 +8,14 @@ import React, {
   useState,
 } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { authMode } from "../auth/authMode";
+import { useAuthStore } from "../store/authStore";
+import { useDemoPeriod } from "../demo/useDemoPeriod";
+import { adaptDemoBudgets, parseDemoBudgetMonth } from "../demo/demoBudgetPresentation";
+import { useDemoBudgetChanges } from "../demo/useDemoBudgetChanges";
+import { monthlyBudgetQueryKeys } from "../api/queryKeys";
+import { getMonthlyBudgets } from "../api/services/budgets";
 import { useUpdateBudgetMutation } from "../api/mutation/budgetMutation";
 import {
   useMonthlyBudgetsQuery,
@@ -20,7 +28,7 @@ import "./LeakPotPage.css";
 
 /* ------------------------------ 타입 ------------------------------ */
 interface Category {
-  id: number;
+  id: number | null;
   name: string;
   spending: number;
   threshold: number;
@@ -423,7 +431,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
 
               return (
                 <image
-                  key={cat.id}
+                  key={cat.name}
                   href={broken}
                   className="crack"
                   x={(-450 / 2) * crackScale + x}
@@ -451,7 +459,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
 
               return (
                 <foreignObject
-                  key={cat.id}
+                  key={cat.name}
                   x={x - 225 * baseScale}
                   y={y - 225 * baseScale}
                   width={450 * baseScale}
@@ -500,7 +508,9 @@ const CustomSlider: React.FC<{
   isLeaking: boolean;
   handleThresholdChange: (id: number, value: number) => void;
   formatter: Intl.NumberFormat;
-}> = ({ cat, isLeaking, handleThresholdChange, formatter }) => {
+  disabled?: boolean;
+  budgetMissing?: boolean;
+}> = ({ cat, isLeaking, handleThresholdChange, formatter, disabled = false, budgetMissing = false }) => {
 
   const max = Math.max(600000, cat.spending * 1.5);
   const spendingPct = (cat.spending / max) * 100;
@@ -508,7 +518,7 @@ const CustomSlider: React.FC<{
   const thresholdPct = Math.min((cat.threshold / max) * 100, 100);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleThresholdChange(cat.id, parseInt(e.target.value, 10));
+    if (typeof cat.id === "number") handleThresholdChange(cat.id, parseInt(e.target.value, 10));
   };
 
   return (
@@ -524,10 +534,10 @@ const CustomSlider: React.FC<{
             {formatter.format(cat.spending)}냥
           </strong>
           <span className="legend-sep"> | </span>
-          <span className="legend-label">한도</span>
-          <strong className="legend-value">
-            {formatter.format(cat.threshold)}냥
-          </strong>
+          {budgetMissing ? <strong className="legend-value">기준 예산 없음</strong> : <>
+            <span className="legend-label">한도</span>
+            <strong className="legend-value">{formatter.format(cat.threshold)}냥</strong>
+          </>}
         </div>
       </div>
 
@@ -556,19 +566,21 @@ const CustomSlider: React.FC<{
         )}
         <input
           type="range"
+          disabled={disabled}
           min={0}
           max={max}
           step={5000}
           value={cat.threshold}
           onChange={handleChange}
           aria-label={`${cat.name} 한도`}
+          aria-valuetext={budgetMissing ? "기준 예산 없음" : undefined}
           className={`custom-slider ${isLeaking ? "is-leaking" : ""}`}
         />
         <div
           className="coin-thumb"
           aria-hidden="true"
           style={{ left: `var(--threshold-pct)` }}
-          title={`한도: ${formatter.format(cat.threshold)}냥`}
+          title={budgetMissing ? "기준 예산 없음" : `한도: ${formatter.format(cat.threshold)}냥`}
         />
       </div>
     </div>
@@ -602,7 +614,7 @@ const calculateYearMonth = (
 };
 
 /* ------------------------------ LeakPotPage ------------------------------ */
-const LeakPotPage = () => {
+const OAuthLeakPotPage = () => {
   const now = new Date();
   const nowMonth = now.getMonth() + 1;
   const nowYear = now.getFullYear();
@@ -661,7 +673,7 @@ const LeakPotPage = () => {
     // pending 상태와 병합 (드래그 중인 값 우선)
     return baseCategories.map(cat => ({
       ...cat,
-      threshold: pendingThresholds[cat.id] ?? cat.threshold
+      threshold: (cat.id === null ? undefined : pendingThresholds[cat.id]) ?? cat.threshold
     })).sort((a, b) => b.spending - a.spending);
   }, [budgetData, isBudgetLoading, pendingThresholds]);;;
 
@@ -802,7 +814,7 @@ const LeakPotPage = () => {
               <div className="sliders-container">
                 {categories.map((cat) => (
                   <CustomSlider
-                    key={cat.id}
+                    key={cat.name}
                     cat={cat}
                     isLeaking={cat.spending > cat.threshold}
                     handleThresholdChange={handleThresholdChange}
@@ -828,4 +840,87 @@ const LeakPotPage = () => {
   );
 };
 
-export default LeakPotPage;
+function DemoLeakPotPage() {
+  const { query, period } = useDemoPeriod();
+  const { month: monthParam } = useParams();
+  const navigate = useNavigate();
+  const generation = useAuthStore(state => state.generation);
+  const status = useAuthStore(state => state.status);
+  const month = parseDemoBudgetMonth(monthParam);
+  useEffect(() => {
+    if (period && month === null) navigate(`/pot/${period.monthIndex + 1}`, { replace: true });
+  }, [period, month, navigate]);
+  const rootVars = { "--bg": `url(${bgImage})`, "--paper": `url(${paper})`,
+    "--pointer": `url(${customPointer})` } as React.CSSProperties;
+  return <div className="app-container demo-pot-page" data-demo-page="pot" style={rootVars}>
+    <Header />
+    <p className="demo-pot-notice">합성 소비와 직접 작성한 기준 예산입니다. AI 예측이 아닙니다.</p>
+    {status !== 'authenticated' || query.isPending ? <p role="status">장독대의 기준월을 확인하고 있습니다.</p>
+      : query.isError ? <section role="alert">기준월을 불러오지 못했습니다. <button onClick={() => void query.refetch()}>다시 조회</button></section>
+      : !period ? <p role="alert">체험 기간 데이터를 확인할 수 없습니다.</p>
+      : month !== null ? <DemoMonthlyPot key={`${generation}/${period.yearsByMonth[month - 1]}/${month}`}
+          year={period.yearsByMonth[month - 1]} month={month} generation={generation}
+          anchorYear={period.year} anchorMonth={period.monthIndex + 1}
+          leakIndex={buildLeakIndex((query.data ?? []).map(row => ({ budgetDate: row.date, leaked: row.leaked })))} />
+      : <p role="status">기준월로 이동하고 있습니다.</p>}
+  </div>;
+}
+
+function DemoMonthlyPot({ year, month, generation, anchorYear, anchorMonth, leakIndex }: {
+  year: number; month: number; generation: number; anchorYear: number; anchorMonth: number;
+  leakIndex: Map<string, boolean>;
+}) {
+  const navigate = useNavigate();
+  const query = useQuery({ queryKey: monthlyBudgetQueryKeys.monthly(year, month),
+    queryFn: () => getMonthlyBudgets({ year, month }), retry: false });
+  const { pending, saving, errors, change } = useDemoBudgetChanges(year, month, generation);
+  const rows = useMemo(() => adaptDemoBudgets(query.data), [query.data]);
+  const categories = useMemo(() => (rows ?? []).map(row => ({
+    ...adaptBudgetDataToCategory(row),
+    threshold: row.id === null ? row.budget : pending[row.id]?.amount ?? row.budget,
+  })).sort((a, b) => b.spending - a.spending), [rows, pending]);
+  const leaking = categories.map((cat, originalIndex) => ({ ...cat, originalIndex }))
+    .filter(cat => cat.spending > cat.threshold);
+  const totalLeak = leaking.reduce((sum, cat) => sum + cat.spending - cat.threshold, 0);
+  const formatter = new Intl.NumberFormat("ko-KR");
+  const ready = query.isSuccess && rows !== null && rows.length > 0;
+  return <>
+    <MonthNavigation selectedMonth={month} nowMonth={anchorMonth} nowYear={anchorYear}
+      leakIndex={leakIndex} onMonthChange={next => navigate(`/pot/${next}`)}
+      optimisticCurrentMonthLeaked={ready ? totalLeak > 0 : undefined} />
+    {query.isPending ? <p role="status">월별 소비와 한도를 불러오고 있습니다.</p>
+      : query.isError ? <section role="alert">월별 소비를 불러오지 못했습니다. <button onClick={() => void query.refetch()}>다시 조회</button></section>
+      : rows === null ? <p role="alert">월별 소비 데이터 형식을 확인할 수 없습니다.</p>
+      : rows.length === 0 ? <p role="status">이 달의 기준 예산이 없습니다.</p>
+      : <div className="main-container">
+        <div className="demo-pot-stage" aria-label={`${year}년 ${month}월 누수 시각화`}>
+          <PotVisualization leakingCategories={leaking} totalLeak={totalLeak} formatter={formatter} />
+        </div>
+        <section className="control-panel" aria-label="카테고리별 소비 한도">
+          <h2 className="panel-title">{year}년 {month}월 지출을 다스리시오</h2>
+          <p className="demo-pot-anchor">기준월 {anchorYear}년 {anchorMonth}월 · 한도는 저장 후 다시 조회합니다.</p>
+          <div className="sliders-container">
+            {categories.map(cat => <div key={cat.name} className="demo-budget-row">
+              <CustomSlider cat={cat} isLeaking={cat.spending > cat.threshold} formatter={formatter}
+                handleThresholdChange={change} budgetMissing={cat.id === null} disabled={cat.id === null || saving.has(cat.id)} />
+              <p className="demo-budget-state">
+                {cat.id === null ? "기준 예산 없음 · 체험에서 조정할 수 없음"
+                  : saving.has(cat.id) ? "한도를 저장하고 있습니다."
+                  : pending[cat.id] ? "변경한 한도를 저장할 예정입니다." : "방문자 전용 기준 예산"}
+                {cat.spending > cat.threshold && ` · 누수 ${formatter.format(cat.spending - cat.threshold)}원`}
+              </p>
+              {cat.id !== null && errors[cat.id] && <p role="alert" className="demo-budget-error">{errors[cat.id]}</p>}
+            </div>)}
+          </div>
+          <div className="summary" aria-live="polite">
+            {totalLeak > 0 ? <p className="summary-leak">총 {formatter.format(totalLeak)}냥이 새고 있소!</p>
+              : <p className="summary-good">완벽하오! 새는 돈이 없소!</p>}
+          </div>
+        </section>
+      </div>}
+  </>;
+}
+
+export default function LeakPotPage() {
+  return authMode === "demo" ? <DemoLeakPotPage /> : <OAuthLeakPotPage />;
+}

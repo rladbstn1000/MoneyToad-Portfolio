@@ -1,3 +1,7 @@
+import { authMode } from "../auth/authMode";
+import { useDemoExperience } from "../demo/useDemoExperience";
+import { DEMO_AGES } from "../demo/demoProfile";
+import { Link } from "react-router-dom";
 import { SCENE_BG } from "../assets/pageAssets";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +24,10 @@ type Gender = "여성" | "남성" | "";
 type Step = "intro" | "gender" | "age" | "account";
 
 export default function UserInfoInputPage() {
+  return authMode === "demo" ? <DemoUserInfoInput /> : <OAuthUserInfoInput />;
+}
+
+function OAuthUserInfoInput() {
   const navigate = useNavigate();
   const registerCardMutation = useRegisterCardMutation();
   const updateUserBasicInfoMutation = useUpdateUserBasicInfoMutation();
@@ -291,4 +299,60 @@ export default function UserInfoInputPage() {
       </div>
     </div>
   );
+}
+
+const demoQuestions = [
+  '반갑구나! 오늘은 가상의 콩쥐가 되어 장독대를 둘러보자.\n샘플 인물과 연습용 카드를 함께 골라 보거라.',
+  '먼저 샘플 인물의 성별을 골라 보거라.\n너의 실제 정보를 알려 줄 필요는 없단다.',
+  '이번에는 샘플 인물의 나이를 골라 보거라.\n준비된 나이 중 마음에 드는 것을 고르면 된다.',
+  '마지막으로 연습용 카드를 골라 보거라.\n잎과 꽃 중 어떤 그림이 마음에 드느냐?',
+];
+
+function DemoUserInfoInput() {
+  const { profile, updateProfile } = useDemoExperience();
+  const [draft, setDraft] = useState(profile);
+  const [step, setStep] = useState(0);
+  const [typed, setTyped] = useState('');
+  const [ready, setReady] = useState(false);
+  const [revealed, setRevealed] = useState('');
+  const navigate = useNavigate();
+  const question = demoQuestions[step];
+  useEffect(() => {
+    setTyped('');
+    setReady(false);
+    if (revealed === question || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      setTyped(question); setReady(true); return;
+    }
+    let count = 0;
+    let reply: ReturnType<typeof setTimeout> | undefined;
+    const timer = setInterval(() => {
+      count += 1;
+      setTyped(question.slice(0, count));
+      if (count >= question.length) {
+        clearInterval(timer);
+        reply = setTimeout(() => setReady(true), 200);
+      }
+    }, 18);
+    return () => { clearInterval(timer); clearTimeout(reply); };
+  }, [question, revealed]);
+  const finish = () => { updateProfile(draft); navigate('/pot'); };
+  return <main className="ui-wrap ui-demo" data-demo-page="user-info">
+    <div className="ui-scene" style={{ backgroundImage: `url(${SCENE_BG})` }}>
+      <div className="ui-demo-top"><Link to="/mypage">콩쥐의 곳간으로</Link><span>샘플 설정 {step + 1} / 4</span></div>
+      <div className="ui-convo">
+        <h1 className="ui-demo-title">콩쥐와 첫 인사</h1>
+        <p className="ui-demo-note">가상의 설정만 골라요. 새로고침하면 초기화돼요.</p>
+        <div className="bubble toad tail-right center" aria-live="polite"><span className="ui-demo-sr-only">{question}</span><span aria-hidden="true" className={ready ? '' : 'typing'}>{typed}</span></div>
+        {!ready && <button className="btn ghost ui-demo-skip" type="button" onClick={() => setRevealed(question)}>대화 바로 보기</button>}
+        {ready && <div className="bubble kong tail-left center appear">
+          {step === 0 && <p>샘플 인물의 설정을 바꿔 볼게요!</p>}
+          {step === 1 && <fieldset><legend>샘플 성별</legend><div className="gender-group">{(['여성', '남성'] as const).map(gender => <button key={gender} className={`gender-btn ${draft.gender === gender ? 'on' : ''}`} type="button" aria-pressed={draft.gender === gender} onClick={() => setDraft(current => ({ ...current, gender }))}>{gender}</button>)}</div></fieldset>}
+          {step === 2 && <fieldset><legend>샘플 나이</legend><div className="ui-demo-choices">{DEMO_AGES.map(age => <button key={age} className="btn ghost" type="button" aria-pressed={draft.age === age} onClick={() => setDraft(current => ({ ...current, age }))}>{age}세</button>)}</div></fieldset>}
+          {step === 3 && <fieldset><legend>샘플 카드</legend><div className="ui-demo-choices">{(['A', 'B'] as const).map(cardPreset => <button key={cardPreset} className="btn ghost ui-demo-card" type="button" aria-pressed={draft.cardPreset === cardPreset} onClick={() => setDraft(current => ({ ...current, cardPreset }))}><span aria-hidden="true">{cardPreset === 'A' ? '🌿' : '🌼'}</span> 샘플 카드 {cardPreset}</button>)}</div><p className="help">모양만 바뀌고 준비된 거래와 예산은 유지돼요.</p></fieldset>}
+          <div className="ui-actions center">{step > 0 && <button className="btn ghost" type="button" onClick={() => setStep(current => current - 1)}>이전</button>}<button className="btn primary" type="button" onClick={step === 3 ? finish : () => setStep(current => current + 1)}>{step === 0 ? '샘플 설정 시작' : step === 3 ? '샘플 설정 완료' : '다음'}</button></div>
+        </div>}
+        <button className="btn ghost ui-demo-direct" type="button" onClick={finish}>샘플로 바로 시작</button>
+      </div>
+    </div>
+  </main>;
 }

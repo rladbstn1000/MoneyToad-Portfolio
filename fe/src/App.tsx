@@ -1,6 +1,9 @@
 import { scrollLandingAssets, leakPotAssets, userInfoAssets, chartAssets, mypageAssets, notFoundAssets, toadAdviceAssets } from "./assets/pageAssets";
 import { authMode } from './auth/authMode';
-import { DemoComingSoon } from './components/DemoAuthStatus';
+import DemoPeriodEntry from './demo/DemoPeriodEntry';
+import DemoExperienceProvider from './demo/DemoExperienceProvider';
+import { demoPageAssets } from './demo/demoPageAssets';
+import { useAuthStore } from './store/authStore';
 import { useEffect, useState } from "react";
 import { useLocation, Routes, Route, Navigate } from "react-router-dom";
 import ScrollLandingPage from "./pages/ScrollLandingPage";
@@ -15,7 +18,7 @@ import LoadingOverlay from "./components/LoadingOverlay";
 import ToadAdvice from "./pages/ToadAdvice";
 
 
-const allAssets = authMode === 'demo' ? [...scrollLandingAssets, ...chartAssets] : [
+const allAssets = [
   ...scrollLandingAssets,
   ...userInfoAssets,
   ...leakPotAssets,
@@ -27,17 +30,20 @@ const allAssets = authMode === 'demo' ? [...scrollLandingAssets, ...chartAssets]
 
 export default function App() {
   const location = useLocation();
+  const generation = useAuthStore(state => state.generation);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (location.pathname.startsWith("/pot/")) {
+    if (authMode !== 'demo' && location.pathname.startsWith("/pot/")) {
       setLoading(false);         
       return;
     }
 
+    let cancelled = false;
     setLoading(true);
+    const assets = authMode === 'demo' ? demoPageAssets(location.pathname) : allAssets;
     Promise.all(
-      allAssets.map(
+      assets.map(
         (src) =>
           new Promise<void>((resolve) => {
             if (src.endsWith(".json")) {
@@ -50,18 +56,24 @@ export default function App() {
             }
           })
       )
-    ).finally(() => setLoading(false));
+    ).finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
   }, [location]);
 
   return (
     <>
       {loading && <LoadingOverlay />}
-      {authMode === 'demo' ? <Routes>
+      {authMode === 'demo' ? <DemoExperienceProvider key={generation}><Routes>
         <Route path="/" element={<ScrollLandingPage />} />
+        <Route path="/pot" element={<RouteGuard><DemoPeriodEntry /></RouteGuard>} />
+        <Route path="/pot/:month" element={<RouteGuard><LeakPotPage /></RouteGuard>} />
         <Route path="/chart" element={<RouteGuard><ChartPage /></RouteGuard>} />
+        <Route path="/toadAdvice" element={<RouteGuard><ToadAdvice /></RouteGuard>} />
+        <Route path="/mypage" element={<RouteGuard><Mypage /></RouteGuard>} />
+        <Route path="/userInfo" element={<RouteGuard><UserInfoInputPage /></RouteGuard>} />
         <Route path="/auth/callback" element={<Navigate to="/" replace />} />
-        <Route path="*" element={<DemoComingSoon />} />
-      </Routes> : <Routes>
+        <Route path="*" element={<NotFound />} />
+      </Routes></DemoExperienceProvider> : <Routes>
         <Route path="/" element={<ScrollLandingPage />} />
         <Route path="/userInfo" element={<RouteGuard><UserInfoInputPage /></RouteGuard>} />
         <Route path="/pot/:month" element={<RouteGuard><LeakPotPage /></RouteGuard>} />

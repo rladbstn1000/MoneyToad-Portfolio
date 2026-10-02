@@ -1,3 +1,4 @@
+import { clickDemoMenu, gotoDemoChart } from './demoNavigation';
 import { test } from './fixtures';
 import { expect, type Page, type BrowserContext, type Response } from '@playwright/test';
 import { writeFileSync } from 'node:fs';
@@ -41,7 +42,8 @@ async function chooseMonth(page: Page, month: number) {
   const dots = page.locator('#screen1 .recharts-line-dots image');
   await expect(dots).toHaveCount(12);
   const target = dots.nth(month - 1);
-  await target.scrollIntoViewIfNeeded();
+  await page.locator('.jp-linechart-wrap').scrollIntoViewIfNeeded();
+  await expect(target).toBeVisible();
   const box = await target.boundingBox();
   check(box !== null, 'month dot has real geometry');
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
@@ -128,7 +130,7 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
   const stored = await cookie(context);
   const browserNow = await page.evaluate(() => Date.now());
   check(stored.expires * 1000 > browserNow, 'cookie stored and currently valid in browser clock');
-  await expect(page).toHaveURL(/\/chart$/);
+  await gotoDemoChart(page);
   const seeded = await snapshot();
   check(seeded.users - before.users === 1 && seeded.cards - before.cards === 1 &&
     seeded.transactions - before.transactions === 240 && seeded.budgets - before.budgets === 72 &&
@@ -250,7 +252,7 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
   }
   phase = 'logout';
   const loggedOut = page.waitForResponse(r => pathOf(r.url()) === `${auth}logout`);
-  await page.getByRole('button', { name: '체험 종료', exact: true }).click();
+  await clickDemoMenu(page, '체험 종료');
   const logout = await loggedOut;
   check(logout.status() === 204, 'actual logout');
   const deletedCookie = await parsePublicDemoSetCookie(logout, { deployment: cookieDeployment, operation: 'delete' });
@@ -334,6 +336,7 @@ test('gateway scope and bounded login manual retry', async ({ page, context }) =
   check(login.status() === 201, 'abuse visitor created');
   const browserHeaders = await login.request().allHeaders();
   check(!('x-moneytoad-gateway' in browserHeaders) && !('x-moneytoad-client-ip' in browserHeaders), 'internal headers absent from browser');
+  await gotoDemoChart(page);
   await expect(page.locator('#screen1')).toBeVisible();
   const stable = await snapshot();
   // Active RT rejects duplicate creation with409, but admitted attempts consume quota.
@@ -351,7 +354,7 @@ test('gateway scope and bounded login manual retry', async ({ page, context }) =
   check((await reissued).status() === 200, 'existing visit restores while login limited');
   await expect(page.locator('#screen1')).toBeVisible();
   const out = page.waitForResponse(r => pathOf(r.url()) === `${auth}logout`);
-  await page.getByRole('button', { name: '체험 종료', exact: true }).click();
+  await clickDemoMenu(page, '체험 종료');
   check((await out).status() === 204, 'existing visit logs out while login limited');
   check(!(await context.cookies()).some(c => c.name === 'demoRefreshToken'), 'limited visit cookie removed by explicit logout');
   await expect(start).toBeEnabled();
@@ -370,9 +373,10 @@ test('gateway scope and bounded login manual retry', async ({ page, context }) =
   const retried = page.waitForResponse(r => pathOf(r.url()) === `${auth}login`);
   await start.click();
   check((await retried).status() === 201, 'manual retry succeeds after actual window');
+  await gotoDemoChart(page);
   await expect(page.locator('#screen1')).toBeVisible();
   const finalOut = page.waitForResponse(r => pathOf(r.url()) === `${auth}logout`);
-  await page.getByRole('button', { name: '체험 종료', exact: true }).click();
+  await clickDemoMenu(page, '체험 종료');
   check((await finalOut).status() === 204, 'retry visit explicitly revoked');
   check((await snapshot()).sessions === stable.sessions - 1, 'abuse scenario revokes only its visits and preserves prior sessions');
 });

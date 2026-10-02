@@ -27,7 +27,7 @@ export interface UpdateCategoryRequest {
 }
 
 export interface MonthlyBudgetResponse {
-  id: number;
+  id: number | null;
   budget: number;
   spending: number;
   category: string;

@@ -644,3 +644,83 @@
     width: 100%;
   }
 }
+
+/* Keep original artwork while making restored demo interactions reachable. */
+.toad-advice-container .advice-card {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  min-width: 0;
+}
+.toad-advice-container .advice-card:focus-visible {
+  outline: 3px solid #452f19;
+  outline-offset: 6px;
+}
+.toad-advice-container .modal-content {
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.toad-advice-container .modal-close { width: 44px; height: 44px; z-index: 1; }
+.toad-advice-container .modal-left,
+.toad-advice-container .modal-right { min-width: 0; box-sizing: border-box; }
+.toad-advice-container .insight-merchant { overflow-wrap: anywhere; }
+.toad-advice-container .ta-demo-notice {
+  margin: 4px auto;
+  max-width: 900px;
+  padding: 8px 12px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  background: #452f19d9;
+  border-radius: 8px;
+}
+.toad-advice-container.demo-advice .page-hero { grid-template-rows: auto auto auto auto 1fr; }
+@media (max-width: 1100px) {
+  .toad-advice-container .hero-bottom { flex-direction: column; width: min(700px, 100%); margin: 16px auto; }
+  .toad-advice-container .hero-bottom > * { flex: none; width: 100%; }
+  .toad-advice-container .page,
+  .toad-advice-container.demo-advice .page-hero {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    grid-template-rows: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 32px;
+  }
+  .toad-advice-container.snap-container { scroll-snap-type: none; }
+  .toad-advice-container .scroll-hint { position: static; align-self: center; }
+  .toad-advice-container .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; }
+  .toad-advice-container .cards-page-header { box-sizing: border-box; grid-template-columns: 1fr; }
+  .toad-advice-container .cards-page-stats { gap: 16px; grid-auto-flow: initial; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .toad-advice-container .cstat { text-align: center; }
+  .toad-advice-container .cstat-label { font-size: 14px; }
+}
+@media (max-width: 820px) {
+  .toad-advice-container .ta-month-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .toad-advice-container .ta-month-img { width: min(100%, 64px); height: auto; }
+  .toad-advice-container .ta-month-button { min-width: 0; min-height: 44px; }
+  .toad-advice-container .ta-month-badge { padding: 2px 4px; white-space: nowrap; }
+  .toad-advice-container .ta-month-navigation { height: auto; min-height: 300px; }
+  .toad-advice-container .modal-flex { flex-direction: column; gap: 16px; }
+  .toad-advice-container .modal-left,
+  .toad-advice-container .modal-right { width: 100%; }
+  .toad-advice-container .modal-content { padding: 60px 16px 20px; }
+}
+@media (max-width: 520px) {
+  .toad-advice-container .page,
+  .toad-advice-container.demo-advice .page-hero { padding-inline: 12px; }
+  .toad-advice-container .cards-grid { grid-template-columns: minmax(0, 1fr); }
+  .toad-advice-container .stats-title { white-space: nowrap; font-size: 20px; }
+  .toad-advice-container .stat-number { font-size: 20px; }
+  .toad-advice-container .stats-grid { gap: 4px; }
+  .toad-advice-container .stat-label { font-size: 13px; }
+  .toad-advice-container .insights-title { font-size: 20px; }
+}

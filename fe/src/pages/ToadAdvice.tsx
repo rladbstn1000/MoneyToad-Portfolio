@@ -1,15 +1,20 @@
 import { CATEGORY_ICONS } from "../assets/pageAssets";
 import type { ReactNode } from "react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDoojoQuery } from "../api";
 import { useYearlyBudgetLeaksQuery } from '../api/queries/budgetQuery';
 import Header from "../components/Header";
 import type { YearlyBudgetLeakResponse } from '../types';
+import { authMode } from '../auth/authMode';
+import { useDemoPeriod } from '../demo/useDemoPeriod';
+import { useMonthlyTransactionsQuery } from '../api/queries/transactionQuery';
+import { useMonthlyBudgetsQuery } from '../api/queries/budgetQuery';
+import { buildDemoAdvice, preparedDemoComment, type AdviceCard } from '../demo/demoAdvice';
 import "./ToadAdvice.css";
 
 /* ===== 카테고리 아이콘 (.webp) ===== */
 const getCategoryImage = (category: string) =>
-  CATEGORY_ICONS[category] ?? "/toadAdvice/etc.webp";
+  CATEGORY_ICONS[category] ?? CATEGORY_ICONS[category.replace(/\s*\/\s*/g, "/")] ?? "/toadAdvice/etc.webp";
 
 /* ===== 공통 유틸 ===== */
 const won = (n: number) =>
@@ -271,6 +276,26 @@ const MonthNavigation: React.FC<{
 
 /* ===== 메인 컴포넌트 ===== */
 export default function ToadAdvice() {
+  return authMode === 'demo' ? <DemoToadAdvice /> : <OAuthToadAdvice />;
+}
+
+function DemoToadAdvice() {
+  const { query, period } = useDemoPeriod();
+  const [chosenMonth, setChosenMonth] = useState<number | null>(null);
+  const selectedMonth = chosenMonth ?? (period ? period.monthIndex + 1 : 0);
+  const selectedYear = period?.yearsByMonth[selectedMonth - 1] ?? 0;
+  const budgets = useMonthlyBudgetsQuery(selectedYear, selectedMonth);
+  const transactions = useMonthlyTransactionsQuery(selectedYear, selectedMonth);
+  const result = useMemo(() => buildDemoAdvice(budgets.data ?? [], transactions.data ?? []), [budgets.data, transactions.data]);
+  const leakData = query.data?.map(row => ({ budgetDate: row.date, leaked: row.leaked }));
+  return <AdviceView demo nowMonth={period ? period.monthIndex + 1 : 0} nowYear={period?.year ?? 0}
+    selectedMonth={selectedMonth} selectedYear={selectedYear} onMonthChange={setChosenMonth}
+    yearlyLeakData={leakData} advices={result.advices} detailsByCategory={result.details}
+    loading={query.isLoading || (!!period && (budgets.isLoading || transactions.isLoading))}
+    failed={query.isError || (query.isSuccess && !period) || budgets.isError || transactions.isError} />;
+}
+
+function OAuthToadAdvice() {
   // 오늘 (연/월)
   const now = new Date();
   const nowMonth = now.getMonth() + 1;
@@ -333,25 +358,55 @@ export default function ToadAdvice() {
       .sort((a, b) => b.over - a.over);
   }, [preds]);
 
+  return <AdviceView nowMonth={nowMonth} nowYear={nowYear} selectedMonth={selectedMonth} selectedYear={selectedYear}
+    onMonthChange={setSelectedMonth} yearlyLeakData={yearlyLeakData} advices={advices} detailsByCategory={detailsByCategory}
+    loading={isLoading || isYearlyLeakLoading} failed={!!error || !selectedSheet || !!yearlyLeakError} />;
+}
+
+function AdviceView({ demo = false, nowMonth, nowYear, selectedMonth, selectedYear, onMonthChange,
+  yearlyLeakData, advices, detailsByCategory, loading, failed }: {
+  demo?: boolean; nowMonth: number; nowYear: number; selectedMonth: number; selectedYear: number;
+  onMonthChange: (month: number) => void; yearlyLeakData: YearlyBudgetLeakResponse[] | undefined;
+  advices: AdviceCard[]; detailsByCategory: DetailMap; loading: boolean; failed: boolean;
+}) {
   const hasAdvice = advices.length > 0;
-  const totalOverspend = useMemo(() => advices.reduce((s, a) => s + a.over, 0), [advices]);
-  const avgPct = useMemo(
-    () => (advices.length > 0 ? Math.round(advices.reduce((s, a) => s + a.pct, 0) / advices.length) : 0),
-    [advices]
-  );
-
-  // 모달
-  const [open, setOpen] = useState<null | { id: string; title: string; detail: string; over: number }>(null);
-  const openDetail: CategoryDetail | undefined = open ? detailsByCategory[normalizeKey(open.title)] : undefined;
-  const insight = open ? buildInsights(open.title, openDetail, open.over) : null;
-
-  // 월 변경 핸들러
-  const handleMonthChange = useCallback((m: number) => setSelectedMonth(m), []);
+  const assessedAdvices = advices.filter(row => row.basis !== 'missing');
+  const missingBasisCount = advices.length - assessedAdvices.length;
+  const totalOverspend = assessedAdvices.reduce((sum, row) => sum + row.over, 0);
+  const comparable = assessedAdvices.flatMap(row => row.pct === null ? [] : [row.pct]);
+  const avgPct = comparable.length ? Math.round(comparable.reduce((sum, pct) => sum + pct, 0) / comparable.length) : null;
+  const [openId, setOpenId] = useState<string | null>(null);
+  const open = advices.find(row => row.id === openId);
+  const trigger = useRef<HTMLButtonElement | null>(null);
+  const dialog = useRef<HTMLDivElement | null>(null);
+  const closeButton = useRef<HTMLButtonElement | null>(null);
+  const close = useCallback(() => {
+    setOpenId(null);
+    trigger.current?.focus();
+  }, []);
+  useEffect(() => {
+    if (!open) return;
+    closeButton.current?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); close(); }
+      if (event.key === 'Tab' && dialog.current) {
+        const controls = [...dialog.current.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, [tabindex="0"]')];
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open, close]);
+  const openDetail: CategoryDetail | undefined = open ? detailsByCategory[normalizeKey(open.category)] : undefined;
+  const insight = open ? buildInsights(open.category, openDetail, open.over) : null;
+  const handleMonthChange = (month: number) => { close(); onMonthChange(month); };
 
   // 로딩/에러 처리
-  if (isLoading || isYearlyLeakLoading) {
+  if (loading) {
     return (
-      <div className="toad-advice-container snap-container">
+      <div className="toad-advice-container snap-container" data-demo-page={demo ? "advice" : undefined}>
         <Header />
         <div style={{ padding: "2rem", textAlign: "center", color: "#fff" }}>
           <h2>데이터를 불러오는 중...</h2>
@@ -359,9 +414,9 @@ export default function ToadAdvice() {
       </div>
     );
   }
-  if (error || !selectedSheet || yearlyLeakError) {
+  if (failed) {
     return (
-      <div className="toad-advice-container">
+      <div className="toad-advice-container" data-demo-page={demo ? "advice" : undefined}>
         <Header />
         <div style={{ padding: "2rem", textAlign: "center", color: "#fff" }}>
           <h2>데이터가 아직 준비되지 않았습니다.</h2>
@@ -371,12 +426,13 @@ export default function ToadAdvice() {
   }
 
   return (
-    <div className="toad-advice-container snap-container">
+    <div className={`toad-advice-container snap-container${demo ? ' demo-advice' : ''}`} data-demo-page={demo ? "advice" : undefined}>
       {/* ===== Page 1: 히어로 (월 선택 + 요약 액자) ===== */}
       <section className="page page-hero">
         <Header />
         <h1 className="main-title">두꺼비의 소비내역 조언소</h1>
         <p className="main-subtitle">원하는 달을 선택하면 해당 월의 누수 내역을 볼 수 있어요</p>
+        {demo && <p className="ta-demo-notice">공개 데모에서는 샘플 소비 데이터를 기반으로 미리 생성된 분석 결과를 제공합니다. 현재 소비·한도·누수는 실제 체험 데이터에 반영됩니다.</p>}
 
         <div className="hero-bottom">
           {/* 좌측: 월 선택 네비 */}
@@ -391,12 +447,12 @@ export default function ToadAdvice() {
           {/* 우측: 요약 액자 */}
           <div className="stats-card big">
             <h2 className="stats-title big">
-              {selectedYear < nowYear ? `작년 ${selectedMonth}월 과소비 현황` : `${selectedMonth}월 과소비 현황`}
+              {selectedYear < nowYear ? `작년 ${selectedMonth}월` : `${selectedMonth}월`} {missingBasisCount ? '소비 확인' : '과소비 현황'}
             </h2>
             {hasAdvice ? (
               <div className="stats-grid big">
                 <div className="stat-item stat-red">
-                  <div className="stat-number">{advices.length}개</div>
+                  <div className="stat-number">{assessedAdvices.length}개</div>
                   <div className="stat-label">과소비 항목</div>
                 </div>
                 <div className="stat-item stat-orange">
@@ -404,8 +460,8 @@ export default function ToadAdvice() {
                   <div className="stat-label">총 과소비 금액</div>
                 </div>
                 <div className="stat-item stat-blue">
-                  <div className="stat-number">{avgPct}%</div>
-                  <div className="stat-label">평균 초과율</div>
+                  <div className="stat-number">{avgPct === null ? "—" : `${avgPct}%`}</div>
+                  <div className="stat-label">{demo ? "샘플 기준 평균 대비" : "평균 초과율"}</div>
                 </div>
               </div>
             ) : (
@@ -414,6 +470,7 @@ export default function ToadAdvice() {
           </div>
         </div>
 
+        {missingBasisCount > 0 && <p className="ta-demo-notice">비교 기준 없음: {missingBasisCount}개. 과소비 항목 수·금액·평균은 기준 예산이 있는 항목만 포함합니다.</p>}
         {hasAdvice && <div className="scroll-hint">아래로 스크롤</div>}
       </section>
 
@@ -422,11 +479,11 @@ export default function ToadAdvice() {
         <section className="page page-cards">
           <header className="cards-page-header">
             <h2 className="cards-page-title">
-              {selectedYear < nowYear ? `작년 ${selectedMonth}월 과소비 요약` : `${selectedMonth}월 과소비 요약`}
+              {selectedYear < nowYear ? `작년 ${selectedMonth}월` : `${selectedMonth}월`} {missingBasisCount ? '소비 확인' : '과소비 요약'}
             </h2>
             <div className="cards-page-stats">
               <div className="cstat">
-                <div className="cstat-number">{advices.length}개</div>
+                <div className="cstat-number">{assessedAdvices.length}개</div>
                 <div className="cstat-label">과소비 항목</div>
               </div>
               <div className="cstat">
@@ -434,29 +491,23 @@ export default function ToadAdvice() {
                 <div className="cstat-label">총 과소비 금액</div>
               </div>
               <div className="cstat">
-                <div className="cstat-number">{avgPct}%</div>
-                <div className="cstat-label">평균 초과율</div>
+                <div className="cstat-number">{avgPct === null ? "—" : `${avgPct}%`}</div>
+                <div className="cstat-label">{demo ? "샘플 기준 평균 대비" : "평균 초과율"}</div>
               </div>
             </div>
           </header>
 
           <div className="cards-grid">
             {advices.map((advice, index) => (
-              <div
+              <button
+                type="button"
                 key={advice.id}
                 className="advice-card slide-in-up"
                 style={{ animationDelay: `${index * 60}ms` }}
-                onClick={() =>
-                  setOpen({
-                    id: advice.id,
-                    title: advice.category,
-                    detail: advice.detail,
-                    over: advice.over,
-                  })
-                }
+                onClick={event => { trigger.current = event.currentTarget; setOpenId(advice.id); }}
               >
                 <div className="card-inner">
-                  <div className="severity-badge">!</div>
+                  {advice.basis !== 'missing' && <div className="severity-badge">!</div>}
                   <div className="card-content">
                     <div className="card-header">
                       <img
@@ -468,26 +519,26 @@ export default function ToadAdvice() {
                         draggable={false}
                       />
                       <div className="amount-info">
-                        <div className="over-amount">-{won(advice.over)}</div>
+                        <div className="over-amount">{advice.basis === 'missing' ? `실제 소비 ${won(advice.spending)}` : `-${won(advice.over)}`}</div>
                         <div className="over-percent">
-                          {advice.pct === 0
-                            ? "평균과 같음"
-                            : `평균보다 ${Math.abs(advice.pct).toFixed(1)}% ${advice.pct > 0 ? "높음" : "낮음"}`}
+                          {advice.basis === 'missing' ? "비교 기준 없음" : advice.pct === null ? "샘플 기준 평균 미제공" : advice.pct === 0
+                            ? (demo ? "샘플 기준 평균과 같음" : "평균과 같음")
+                            : `${demo ? "샘플 기준 평균" : "평균"}보다 ${Math.abs(advice.pct).toFixed(1)}% ${advice.pct > 0 ? "높음" : "낮음"}`}
                         </div>
                       </div>
                     </div>
                     <h3 className="category-title">{advice.category}</h3>
-                    <div className="progress-container">
+                    {advice.basis !== 'missing' && <div className="progress-container">
                       <div className="progress-bar">
                         <div
                           className="progress-fill"
-                          style={{ width: `${Math.min(100, (advice.pct / 50) * 100)}%` }}
+                          style={{ width: `${demo ? Math.max(0, Math.min(100, ((advice.pct ?? 0) / 50) * 100)) : Math.min(100, ((advice.pct ?? 0) / 50) * 100)}%` }}
                         />
                       </div>
-                    </div>
+                    </div>}
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </section>
@@ -496,9 +547,9 @@ export default function ToadAdvice() {
       {/* ===== 모달 ===== */}
       {open && (
         <div className="modal-overlay">
-          <div className="modal-backdrop" onClick={() => setOpen(null)} />
-          <div className="modal-content scale-in">
-            <button className="modal-close" onClick={() => setOpen(null)}>
+          <div className="modal-backdrop" onClick={close} />
+          <div className="modal-content scale-in" ref={dialog} role="dialog" aria-modal="true" aria-labelledby="advice-modal-title">
+            <button className="modal-close" ref={closeButton} aria-label="조언 상세 닫기" onClick={close}>
               ×
             </button>
 
@@ -508,14 +559,14 @@ export default function ToadAdvice() {
                 <div className="modal-header">
                   <img
                     className="modal-icon"
-                    src={getCategoryImage(open.title)}
-                    alt={open.title}
+                    src={getCategoryImage(open.category)}
+                    alt={open.category}
                     width={120}
                     height={120}
                     draggable={false}
                   />
-                  <h3 className="modal-title">{open.title}</h3>
-                  <div className="modal-amount">과소비: {won(open.over)}</div>
+                  <h3 className="modal-title" id="advice-modal-title">{open.category}</h3>
+                  <div className="modal-amount">{open.basis === 'missing' ? `실제 소비: ${won(open.spending)}` : `과소비: ${won(open.over)}`}</div>
                 </div>
                 <div className="modal-body">
                   <p className="modal-detail">{highlightNumbers(open.detail)}</p>
@@ -524,7 +575,7 @@ export default function ToadAdvice() {
 
               {/* 오른쪽 */}
               <aside className="modal-right">
-                <h4 className="insights-title">AI를 활용한 두꺼비의 코멘트</h4>
+                <h4 className="insights-title">{demo ? "샘플 분석을 바탕으로 한 두꺼비의 코멘트" : "AI를 활용한 두꺼비의 코멘트"}</h4>
 
                 <div className="insight-card">
                   <div className="insight-tag">가장 많이 쓴 곳</div>
@@ -536,7 +587,7 @@ export default function ToadAdvice() {
                         <span className="dot">•</span>
                         <span>{fmtDate(openDetail.mostSpent.date)}</span>
                       </div>
-                      <p className="insight-ai">{multiline(insight?.spentText)}</p>
+                      <p className="insight-ai">{demo ? preparedDemoComment(open.category, open.basis !== 'missing') : multiline(insight?.spentText)}</p>
                     </>
                   ) : (
                     <div className="insight-empty">데이터가 없소.</div>
@@ -553,7 +604,7 @@ export default function ToadAdvice() {
                         <span className="dot">•</span>
                         <span>총 {won(openDetail.mostFrequent.totalAmount)}</span>
                       </div>
-                      <p className="insight-ai">{multiline(insight?.freqText)}</p>
+                      <p className="insight-ai">{demo ? `이 상점의 실제 거래는 ${openDetail.mostFrequent.count}회입니다. 카테고리 전체의 거래 횟수와 구분해 살펴보시오.` : multiline(insight?.freqText)}</p>
                     </>
                   ) : (
                     <div className="insight-empty">데이터가 없소.</div>

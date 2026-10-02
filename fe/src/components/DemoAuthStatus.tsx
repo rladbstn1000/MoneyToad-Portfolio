@@ -27,12 +27,12 @@ export default function DemoAuthStatus({ landing = false }: { landing?: boolean 
   const act = async () => {
     try {
       if (status === 'startupSlow') { await manualCheckDemoReady(); return; }
-      if (status === 'authenticated') { navigate('/chart'); return; }
+      if (status === 'authenticated') { navigate('/pot'); return; }
       if (status === 'unavailable') {
         if (recovery === 'logout') { await logoutDemo(); return; }
         await restoreDemo();
       } else await loginDemo();
-      if (useAuthStore.getState().status === 'authenticated') navigate('/chart');
+      if (useAuthStore.getState().status === 'authenticated') navigate('/pot');
     } catch { /* The coordinator publishes a sanitized, recoverable state. */ }
   };
   const waitingMessage = operation === 'readiness' ? '데모 서버 시작 중입니다. 처음 연결할 때 잠시 걸릴 수 있습니다.'
@@ -55,9 +55,4 @@ export default function DemoAuthStatus({ landing = false }: { landing?: boolean 
     <button type="button" disabled={busy || coolingDown} onClick={() => void act()}>{label}</button>
     {!landing && <Link to="/">마당으로</Link>}
   </section>;
-}
-
-export function DemoComingSoon() {
-  return <main className="demo-auth"><h1>준비 중입니다</h1>
-    <p>현재 체험에서는 씀씀이 화면을 이용할 수 있습니다.</p><Link to="/chart">씀씀이로</Link><Link to="/">마당으로</Link></main>;
 }

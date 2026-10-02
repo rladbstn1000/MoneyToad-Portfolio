@@ -125,7 +125,7 @@ def one_report(paths):
 
 def evidence_output(root, directory, label):
     """Only distinct reviewed evidence namespaces; never arbitrary output paths."""
-    if directory not in ('DEMO_CAPACITY_CLEANUP', 'COUNTERLESS_DEMO_CAPACITY', 'DEMO_ADMISSION_LOCK', 'TIDB_CLEANUP_READONLY', 'DEMO_ABUSE_GUARD', 'MOBILE_CHART', 'COLD_START_RECOVERY', 'PUBLIC_SCANNER_AUDIT', 'COOKIE_E2E_TIME_BASIS'):
+    if directory not in ('DEMO_CAPACITY_CLEANUP', 'COUNTERLESS_DEMO_CAPACITY', 'DEMO_ADMISSION_LOCK', 'TIDB_CLEANUP_READONLY', 'DEMO_ABUSE_GUARD', 'MOBILE_CHART', 'COLD_START_RECOVERY', 'PUBLIC_SCANNER_AUDIT', 'COOKIE_E2E_TIME_BASIS', 'FULL_DEMO_EXPERIENCE'):
         raise ValueError('EVIDENCE_DIRECTORY_REJECTED')
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}', label):
         raise ValueError('EVIDENCE_LABEL_REJECTED')
