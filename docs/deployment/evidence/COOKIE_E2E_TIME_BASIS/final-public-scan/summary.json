@@ -1,0 +1,902 @@
+{
+  "status": "PASS",
+  "files_scanned": 826,
+  "unresolved": [],
+  "classified_source_sites": [
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoGatewaySettings.java",
+      "line": 19,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoGatewaySettings.java",
+      "line": 27,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/entity/CustomUserDetails.java",
+      "line": 23,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/main/resources/db/demo/V001__demo_admission.sql",
+      "category": "data-dump-candidate",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/main/resources/db/demo/V002__demo_admission_lock.sql",
+      "category": "data-dump-candidate",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 286,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 287,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 384,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAdmissionIntegrationTest.java",
+      "line": 385,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpIntegrationTest.java",
+      "line": 65,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpRequestContractTest.java",
+      "line": 53,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthHttpRequestContractTest.java",
+      "line": 335,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "line": 302,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoAuthProfileBoundaryTest.java",
+      "line": 303,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 41,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 98,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 126,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 149,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoChartSeedInstallationTest.java",
+      "line": 171,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoGatewayBoundaryIntegrationTest.java",
+      "line": 24,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 143,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 512,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/DemoSessionBoundaryIntegrationTest.java",
+      "line": 513,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/ManagedSchemaPreparation.java",
+      "line": 163,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/RenderRuntimeIntegrationTest.java",
+      "line": 294,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 225,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthControllerTest.java",
+      "line": 243,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthFilterAvailabilityTest.java",
+      "line": 83,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoAuthServiceTest.java",
+      "line": 258,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 36,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 91,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 123,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 219,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoJwtContractTest.java",
+      "line": 222,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 143,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 173,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionFilterContractTest.java",
+      "line": 185,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/DemoSessionServiceTest.java",
+      "line": 142,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 83,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 113,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 127,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/auth/demo/RenderDemoBoundaryTest.java",
+      "line": 128,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 84,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 85,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/BudgetOwnershipIntegrationTest.java",
+      "line": 186,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/service/BudgetServiceOwnershipTest.java",
+      "line": 58,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/budget/service/BudgetServiceOwnershipTest.java",
+      "line": 59,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/card/controller/CardControllerCsvContractTest.java",
+      "line": 72,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+      "line": 43,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupConnectorReadOnlyMySqlTest.java",
+      "line": 226,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 403,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 404,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 459,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/maintenance/DemoCleanupMySqlTest.java",
+      "line": 636,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 115,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 116,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/CsvBoundaryIntegrationTest.java",
+      "line": 156,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 124,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 125,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/NotFoundContractIntegrationTest.java",
+      "line": 227,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/don/transaction/service/CsvServiceOwnershipTest.java",
+      "line": 50,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockSyntheticJdbc.java",
+      "line": 167,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockSyntheticJdbc.java",
+      "line": 175,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 238,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 248,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 255,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 284,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 427,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/admissionlock/AdmissionLockTiDbProbe.java",
+      "line": 499,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 166,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 170,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 219,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 339,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/capacity/CapacityTiDbProbe.java",
+      "line": 413,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+      "line": 177,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
+      "line": 185,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 327,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 404,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupTiDbProbe.java",
+      "line": 474,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 161,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 473,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedProviderProbe.java",
+      "line": 482,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedRedisActivationLocalTest.java",
+      "line": 46,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/ManagedSqlContracts.java",
+      "line": 64,
+      "category": "email-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "be/src/test/java/com/potg/verification/managed/RedisTransportComparisonTest.java",
+      "line": 37,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 189,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 232,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 260,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 262,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "line": 262,
+      "category": "authorization-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/functions/api/[[path]].ts",
+      "line": 47,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/package-lock.json",
+      "line": 391,
+      "category": "cookie-header",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/package-lock.json",
+      "line": 6160,
+      "category": "cookie-header",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/src/api/demoInterceptors.ts",
+      "line": 21,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "line": 14,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "line": 49,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 28,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 28,
+      "category": "authorization-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 37,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "line": 37,
+      "category": "authorization-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 12,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 13,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 21,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 58,
+      "category": "authorization-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 131,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 152,
+      "category": "cookie-header",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/cloudflareProxy.test.ts",
+      "line": 178,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 240,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "fe/tests/demo/demoAuth.test.tsx",
+      "line": 252,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 165,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 348,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 349,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/a1_budget_ownership.py",
+      "line": 350,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/demo_admission_lock_tidb.py",
+      "line": 450,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/demo_admission_lock_tidb.py",
+      "line": 451,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 191,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 230,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 232,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/demo_browser_e2e.py",
+      "line": 234,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 397,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/demo_capacity_tidb.py",
+      "line": 398,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/managed_provider_local.py",
+      "line": 144,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/public_evidence.py",
+      "line": 21,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/public_scan.py",
+      "line": 18,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/public_source_review.py",
+      "line": 112,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/public_source_review.py",
+      "line": 116,
+      "category": "bearer-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/public_source_review.py",
+      "line": 182,
+      "category": "cookie-header",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 313,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 314,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 394,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 395,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 397,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 398,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 485,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 505,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/render_runtime.py",
+      "line": 695,
+      "category": "authorization-marker",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_demo_admission_lock_tidb.py",
+      "line": 123,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_demo_capacity_tidb.py",
+      "line": 122,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_managed_provider_recovery.py",
+      "line": 154,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 13,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 16,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 37,
+      "category": "cookie-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 43,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_public_evidence.py",
+      "line": 50,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "line": 49,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_public_scan.py",
+      "line": 57,
+      "category": "identity-field",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 137,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/test_tidb_cleanup_remote.py",
+      "line": 299,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    },
+    {
+      "file": "scripts/verification/tidb_cleanup_remote.py",
+      "line": 646,
+      "category": "credential-assignment",
+      "classification": "B_NON_SECRET_SOURCE_PATTERN"
+    }
+  ],
+  "source_preserved": true,
+  "owned_copy_removed": true,
+  "candidate_selection": "all tracked and nonignored untracked files; no scan exclusions added"
+}

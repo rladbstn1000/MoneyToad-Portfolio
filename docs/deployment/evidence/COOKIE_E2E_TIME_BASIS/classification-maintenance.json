@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "rules_changed": false,
+  "new_classification_rows": 0,
+  "existing_rows_rebound": 6,
+  "scope_widened": false,
+  "reviewed_sites": [
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "category": "cookie-assignment",
+      "same_site_content": true,
+      "same_construct": true,
+      "same_occurrences": true
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "category": "cookie-assignment",
+      "same_site_content": true,
+      "same_construct": true,
+      "same_occurrences": true
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "category": "bearer-marker",
+      "same_site_content": true,
+      "same_construct": true,
+      "same_occurrences": true
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "category": "bearer-marker",
+      "same_site_content": true,
+      "same_construct": true,
+      "same_occurrences": true
+    },
+    {
+      "file": "fe/e2e/demo.spec.ts",
+      "category": "authorization-marker",
+      "same_site_content": true,
+      "same_construct": true,
+      "same_occurrences": true
+    },
+    {
+      "file": "scripts/verification/public_evidence.py",
+      "category": "cookie-assignment",
+      "same_site_content": true,
+      "same_construct": true,
+      "same_occurrences": true
+    }
+  ]
+}

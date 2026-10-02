@@ -1,0 +1,1275 @@
+{
+  "scope": "Runtime and maintenance source/resources; FE source/Functions/public assets; product build/runtime/TypeScript/environment-example manifests. Git wrapper normalization is checked separately from this raw product-byte manifest.",
+  "baseline_head": "be513cd0938d4cc37cd77ea04035b97ae41c83f2",
+  "files": [
+    {
+      "file": "be/.dockerignore",
+      "sha256": "346c8c80758bc28c8a1299243a8daacefa0e07dcfcc67df7b4567c04479c167d",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/.env.example",
+      "sha256": "21188c03448c26d62d94aa524e6a341220c4efbd050d2fa1a36a54c7c08db32c",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/Dockerfile",
+      "sha256": "3559219fcf47880055663713455d9fbe51e1d29271b67724037ad2210f7688b4",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/build.gradle",
+      "sha256": "80986da20d571dfb68848fedc86b8b7c24ef43f7c76f5394889b1f4bf5c86615",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/settings.gradle",
+      "sha256": "1f9e6aaa60fd0aa5f99dcb41db5db7de470a31f54d9a32bb1810b817ec7e1565",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/DonApplication.java",
+      "sha256": "cdf4e391b16da051e5d44437f199e04216e6c4bbfe6c0317250976dfac7acfbc",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/HealthCheckController.java",
+      "sha256": "db18495c13be826b813015dd0a7c6fb5d1cca52b80caa06a6e95989eaed45355",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/analysisJob/entity/AnalysisJob.java",
+      "sha256": "62d0cb5dd1699821940e4979570d55ed16b5d9d12d7efc3299b4a7040b9ad6a0",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/analysisJob/repository/AnalysisJobRepository.java",
+      "sha256": "0dd8b8b3e6c1a987900dd20a9d44677d0d4055b9135ef7f3d9a804d7c1f4efd5",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/analysisJob/scheduler/AnalysisJobScheduler.java",
+      "sha256": "289cd78f9cbcebcbd2947d30e4915e45889a20397c53291c878afeaeefaaf046",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/analysisJob/service/AnalysisJobService.java",
+      "sha256": "ee3bfb5be6f63d7c8ee18ea54d08193ea77b462b6205bee9a76f59036b1c8d3e",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/controller/AuthController.java",
+      "sha256": "deca13ce69bff944ef238ba2df0f7a919001d152b43c077c7ef38c5ba7410839",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoAbuseLimiter.java",
+      "sha256": "3d1d52ed850be44c460f65dc98fd5756b2b455955d9e273cd6647651dd1fb30e",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoAbuseRequestInterceptor.java",
+      "sha256": "702e06e96439bc161c78cb4a43afc1cb76e05724080c392fbcc5a73f41af5197",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoAuthController.java",
+      "sha256": "7ec236cb33b26649fa53273c62635c8188a60aaac3620ef1f6033675cc9eb878",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoAuthException.java",
+      "sha256": "c67da61ee861af7375d6a84ff4f363f502279a32181c2c48b3bd52d0c2abfcd1",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoAuthExceptionHandler.java",
+      "sha256": "18a4acbce69a95f0a3e2f1f8262bc5bbbecf9b90c0b9277821b2925333a909ce",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoAuthHttpConfiguration.java",
+      "sha256": "1748cfad06ae5a9735c3af5ad1105e873748a9df67409363ab2628be5d79b3df",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoAuthRequestInterceptor.java",
+      "sha256": "3530e8c326eb27e7fde729315a79c8dd49cc44353fe5571b74f169fc47bef6cc",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoAuthService.java",
+      "sha256": "342d1974e08157bccbcb2e9d94e3ce4cf9ea94966521627ccfa785bb2c547011",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoClientAddress.java",
+      "sha256": "955e2ae8cc9c82f767f6736b6d59e25c6ef3242f8f7c73950358671cad518da0",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoGatewayFilter.java",
+      "sha256": "e01af643e3a883037efebb027f7e3384b10a53042a25e76494247421fd7ca406",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoGatewaySettings.java",
+      "sha256": "e553f7e80eb943db36b84a97e9591f4d8e785139227e6963e12a133bb02c9c82",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoReadinessController.java",
+      "sha256": "aa9580bdbb23282c4149c12a7b0800096596297cfd32e6f4087a488d5a353207",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoReadinessService.java",
+      "sha256": "bff3320fdc88ad85a698509f453158e78f9f5436908e29ca4b1864c402ed35a0",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoRefreshCookie.java",
+      "sha256": "4b789b811f5151817cb271c1c55fabe26c2d8e465e71f2557984532d6290f4a8",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoSessionGuard.java",
+      "sha256": "9521b9dbed8c8e164b6266903f45e6a12bfb2ee8ad855d4793d6f474fa362975",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoSessionService.java",
+      "sha256": "4d49b680a29bd525c9e63471d66396b82ccbefcd69eef515a8484bd88c618734",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/demo/DemoSessionStore.java",
+      "sha256": "d65c219323b13f1322211bb8d55802405f47aedaeddd382f8831e7829f3b1931",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/dto/AccessTokenResponse.java",
+      "sha256": "a85aff4296b95f49da38ab0cfab772fc8f1e3c2e0e4d8cd8deefdd71d76cdc71",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/dto/ReissueRequest.java",
+      "sha256": "92e3e5665ff7638263db7573c197b17646cf68d88502ac14bc7bfd9e17ae9dea",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/dto/TokenResponse.java",
+      "sha256": "96e4ee3cade2b562753b93e343d734a13b7fd0512b7980fe519efca9b22a63d6",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/entity/CustomUserDetails.java",
+      "sha256": "8335979d96f631798bdd568b25b6cf60c883c7bb8bc56b66c8afcbd76d28522c",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/jwt/JwtAuthenticationFilter.java",
+      "sha256": "79736e3f194693b40fea72ffb11268f68fe29f914b0ee8e2ab78c74837cde24d",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/jwt/JwtUtil.java",
+      "sha256": "9c9b8c3195a8762e4adccd520bbe1be421aa58a49b798708ffc56dadd7816cac",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/jwt/RefreshTokenStore.java",
+      "sha256": "5652e048310071239d402b59a0d1a8bd032942312a386b045fe417daaeff31ab",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/oauth/CookieUtil.java",
+      "sha256": "5069620b63fd71483c371f5b4063a02ec48294a6348118cfe3ee478b0cc1ca76",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/oauth/CustomOAuth2User.java",
+      "sha256": "e9a6cd707fbae5771eaf43a05f15e0d7eee5d284779c0aecf9e164cae99c7b50",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/oauth/CustomOAuth2UserService.java",
+      "sha256": "7fd5d8e683914b7cd1039d667161b15ddc49c2daaf8ab5f1cd4a3bae647c71cf",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/oauth/OAuth2SuccessHandler.java",
+      "sha256": "26efa1bec2f0c695f6f68d0491b871d831880d12d7bdfbe16fb51c316cffd6fb",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/auth/service/AuthService.java",
+      "sha256": "4b0c27da86ab14bf6dff273029708970a6494f32b609697570c2143f55e30022",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/budget/controller/BudgetController.java",
+      "sha256": "3c9587656f9f0c1865368b34d6d2dc8f3b2375ea7490b0cdf702b8cc1f6791d7",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/budget/dto/request/BudgetUpdateRequest.java",
+      "sha256": "c8d932f65138e12b83b79b8310cb34c18602f546bae4ebd9c84888e8a8349a53",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/budget/dto/response/BudgetResponse.java",
+      "sha256": "cd93184ac3db811c4eede6f635cc795acff122a0b760e6571416626b49f66e66",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/budget/dto/response/BudgetUpdateResponse.java",
+      "sha256": "3a883bfc45f8d42606d5ffcf2102fc9c49d1f42757b81da101851076f04624fb",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/budget/dto/response/IsLeakedResponse.java",
+      "sha256": "0e4c42775ddc1f15e1719eedabb5a0938cc401b7a68a2bc5b42436b3f68e958d",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/budget/entity/Budget.java",
+      "sha256": "2f180fbe1c6b6b7d82ba7284ef23d152e4d6e082245c44de2af54b433d83a32d",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/budget/repository/BudgetRepository.java",
+      "sha256": "89affb17510757c33ef9911947d9ab405717e4b1ac29d82653d970693b82bd11",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/budget/service/BudgetService.java",
+      "sha256": "4b134b50f68ccaa9f3cd02a539c35412fa1d74745a20480d23f3133bad5a6a30",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/card/controller/CardController.java",
+      "sha256": "8f0b192835d5b332f4c23a022e86017e4b8fa31bc920ebefc773a85e618baf2a",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/card/dto/request/CardRequest.java",
+      "sha256": "700e2e8bf45993fb805144185d38a9d8139ffcda0d113cc41f650c900758beed",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/card/dto/response/CardResponse.java",
+      "sha256": "27f33035567c2463d5f735f7ece0d429b0e32fe5f3a206769c6b9af770a05d1b",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/card/entity/Card.java",
+      "sha256": "82937f9201f4c73ec645a27c0bb441ca79c8e20465c49918b6ec4e4789905025",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/card/repository/CardRepository.java",
+      "sha256": "bd2e45e6bed643577e56f69d13665dc0c06ec32c48bc0f48c79d043408cafd22",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/card/service/CardService.java",
+      "sha256": "bd19ea8128ac17c5cc19f7e84f54f43c51180573e0d800d39d134ea333455a5b",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/demo/admission/DemoAdmissionConfiguration.java",
+      "sha256": "f45703afb4748da1afbee53084325f7cc20e3fe0a2c9956422bc625d4feda1cb",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/demo/admission/DemoAdmissionException.java",
+      "sha256": "3e8f5ce8ac17f6229862524abd3e43a8b2a8f8e86f65671d8781fc8764d170db",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/demo/admission/DemoAdmissionSchema.java",
+      "sha256": "766ebc71eefc8f2c637e85fa999f43c3bf49ca6ab315b6ebb44c01fed3a1e782",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/demo/admission/DemoAdmissionStore.java",
+      "sha256": "7e088f907ffe0080166849f86b5f7f6bddd4d779180c30cea4c95d6a6d7ed869",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/demo/seed/DemoDatasetValidator.java",
+      "sha256": "091983c3ba6e769dcb4f7ac2a715cea26c7a41eb067b8f0a04fc0b19840acf84",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/demo/seed/DemoSeedScenario.java",
+      "sha256": "0b84076fd50ef7e21aaeed5a19f58f64080ce7b8b5f33455964a9e87028ef7ec",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/demo/seed/DemoSeedService.java",
+      "sha256": "b671591a5a2782a0bf1b3a97bf30ec5102336e35d76c27bb51203ee192aa94a6",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/dummy/entity/Dummy.java",
+      "sha256": "3336208b09434f4215a9ea05309dfb358e841027fb20a2964016ae070358baa0",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/dummy/repository/DummyRepository.java",
+      "sha256": "ad6f80f7d91774518298c19d90c1236c8d99d4981615f7423aae76f40f40559e",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/dummy/service/DummyService.java",
+      "sha256": "aa70dfc22eb8978832125db1d27d8fbdcfa6970512e5bb79a78606f78447a861",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/exception/GlobalExceptionHandler.java",
+      "sha256": "786a814f354b3491479f46880b187488458f144f91024c4d84a4108518761b83",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/AuthProfileGuardConfiguration.java",
+      "sha256": "8ddc50f37aabc89c17479f2f9010333749e4d55e660d4aabc00e009344d027bd",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/ChartPeriodConfiguration.java",
+      "sha256": "597fbac4930ba878ad12a6ae6070e8bf4ecfefe496ef3740e4b77bc47fa27134",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/RedisConfig.java",
+      "sha256": "0db9489cc6acd277b9590cf2f90d379aacd47948026534a5ed3c850998740525",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/RenderRuntimeSettings.java",
+      "sha256": "7721050fd8a8b800c56a8c08c53ce04b1c06d844f849ce30a237bc7b662431b3",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/SecurityConfig.java",
+      "sha256": "031b39402bc4129abf24e33525f70bd8cd0e2f1651131b06f76c5b395053dc11",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/SwaggerConfig.java",
+      "sha256": "97a9a6cd1122a500bde3bee651e6722e244d683606b8a638cc7b384540ce80ac",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/config/WebClientConfig.java",
+      "sha256": "fc7894e27df236837c2987685c4c0f8b878cf72f4a22112eaa8bd4d48394dabb",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/entity/BaseTimeEntity.java",
+      "sha256": "584770f90337f891569fc4b506516b55aee0ddea5fe95ad42b363435fbbc7c07",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/global/util/LeakCategories.java",
+      "sha256": "b977fbb8fd1865174f951c8ccee6772a888b57ececba228653e338072622630f",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/client/CsvClient.java",
+      "sha256": "55e2cfeba5434ab13947725057b42d15a8f02114b3a2d084efab4ecbb3ac62cd",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/controller/TransactionController.java",
+      "sha256": "a7749f5db9736b0d1064ede7455ab4c47d997a0607b89d42081887ce81481ac2",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/request/UpdateCategoryRequest.java",
+      "sha256": "5accc6332165ac73051666cd093ae0b2a983f39f8c2ecbe25a408af28395a56e",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/response/AnalysisTriggerResponse.java",
+      "sha256": "fc6288548b4689b2fe61081df4be0a6572415d5b9654e6dc7350898a4f3d71e8",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/response/BaselineResponse.java",
+      "sha256": "8d2b34cfdf1f53e899ba56569ceba97d06380feeff65bc9c0fd333a37bced287",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/response/CsvStatusResponse.java",
+      "sha256": "a48fd749d22ccfbb6db6857b3f176cde7d3f0a9ebda7f00eeb80d9286566a2c6",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/response/CsvUploadResponse.java",
+      "sha256": "40632a47e72fe6d29b281f4bffff5b96618c809cc627c62646eac375a9bb1b5e",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/response/MonthlyCategorySpendingResponse.java",
+      "sha256": "0b01324afffbb9fbf25e6e775f2dcfe5d7732e54bd51c58a0e5a42004fe61a0e",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/response/MonthlyPeerSpendingResponse.java",
+      "sha256": "851c9300b9b1dd1afe1e52ae9ccd3e155cb5df74021055c92f689de55e0bf97c",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/response/MonthlySpendingResponse.java",
+      "sha256": "0395613112f9a7715847958d56f3eefaf7bcb9d2b5b4da90e31ea4ed7da11bd5",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/dto/response/TransactionResponse.java",
+      "sha256": "0018665698e2af494ee101dbf55401b150fd907ccbac8fd3763d1314723d5873",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/entity/PeerTransactionStats.java",
+      "sha256": "57625e623a3fd276a08fe02eb659f7f15bdf860e6b450925c5919c57d9f9b42d",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/entity/Transaction.java",
+      "sha256": "2831a1e770fe592db2bf71dd2e368e64a6de8c3411b4378127886a827e4d2079",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/projection/CategoryTotalProjection.java",
+      "sha256": "a0d4529726e490f7ea466f8feaee8e9a9f6f3dab6f1a66ef74ccb6e696b50139",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/projection/MonthlyCategoryTotalRow.java",
+      "sha256": "7ae57193f9597872fbd776baf074a345be58819685d667f210441ebd0df079c1",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/projection/MonthlyPeerSum.java",
+      "sha256": "51b3b8a6db9950e420a290c86024918957fe7d82e9b93d326fc6ec6ff952546b",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/projection/MonthlyTotalProjection.java",
+      "sha256": "2873ccf962dd4eb7311c85463d2f3d425adcc844d8ceba1c76e85cfb893de810",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/repository/PeerTransactionStatsRepository.java",
+      "sha256": "828b128d1bc586effb15a3fd3c8f853a6fd457904ae8d6d56453d42ee443d2e9",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/repository/TransactionRepository.java",
+      "sha256": "76b55912a282b4113efa3372c029a6e5263d50f4fd224e7b8a635313d7ac4332",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/service/ChartPeriodResolver.java",
+      "sha256": "bf4171d7c4380ac24f9b9635a9a890e515b3c707a02f77dc7d64d79c8152073d",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/service/CsvService.java",
+      "sha256": "362f334d1fd0d5bea1909a97ebaf4cbd56f55bc6a9e27f70263df9c84aa03efb",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/service/PeerTransactionStatsService.java",
+      "sha256": "be9dd2276c846f28324cd869a7c7f1e86b20d3d9790c5c8ab942cfb223b54d39",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/transaction/service/TransactionService.java",
+      "sha256": "8ddf41427f9966d5391f868be0901671105af9f05ba3ab589e9450f878cee91a",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/user/controller/UserController.java",
+      "sha256": "145902723e41488d5ae592181c3c1bfa35e1f82af14750fa114d2945356d0c8e",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/user/dto/request/UpdateProfileRequest.java",
+      "sha256": "aa99ee715c640755449eb09a1d6869d11f8129b549055ddbcf57f30e1c11827e",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/user/dto/response/UserResponse.java",
+      "sha256": "7865ef67ad0b54d041228a7f429f4992d7f658bb6f590b222de8115a33eb5846",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/user/entity/User.java",
+      "sha256": "6ed424cf2a515830ca9bdcdc88d5f571ef0dcbf58fb9847fdf066f7c0297ff04",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/user/repository/UserRepository.java",
+      "sha256": "b2778f419d76aa3f386400a3f534f1a12b0280e2f7007322954d1a68a0d2e743",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/java/com/potg/don/user/service/UserService.java",
+      "sha256": "0ffacb858787117aaee14c50c5096a443e7bc8f0d66e6f24505afc652cf31207",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/resources/application-demo.yml",
+      "sha256": "0ad54f129bee6a76a0027bcb95d1413626dedc39f091cbbf1ecf16086e0919bd",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/resources/application-render.yml",
+      "sha256": "2b64063a9d2e91aa87d22ad0886fb70a3ea78e5325797b6a06d6f76aeed341a6",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/resources/application.yml",
+      "sha256": "5aca87b053247d32aac3d09398d6eb8f1ff3445526ca4ac8fdfd52400387d98d",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/resources/db/demo/V001__demo_admission.sql",
+      "sha256": "71271023a254777e12b730522b4f00d721b6664de8fecd5db5f400e6e1563c27",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/resources/db/demo/V002__demo_admission_lock.sql",
+      "sha256": "87f1f7d1130ecf41d530978433c9725ada6351f34d707779a88265fbd48f3a93",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/resources/redis/demo-session-create.lua",
+      "sha256": "d069d260bb168fd221e61a45ff8583517ae65431c2e2def6b1163afad356939d",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/resources/redis/demo-session-find-active.lua",
+      "sha256": "4ff686b503e1461f9dfce6c2ae8edb95590d47de709d04e6c0bc7698005b6d67",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/main/resources/redis/demo-session-rotate.lua",
+      "sha256": "b45efc82095d4e07086a72b39c329290872fb575cc2cc93f8732c4d0a95db7b6",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/maintenance/java/com/potg/don/maintenance/CleanupCredentials.java",
+      "sha256": "b01d6ef29225457c797b02cefa7a95a55708561971ab7add070491c0421d9129",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/maintenance/java/com/potg/don/maintenance/CleanupFailure.java",
+      "sha256": "179a23edc1944955c3ed51867cafe6c8bb0f1fa39ce0a8582e08dc6691ceb719",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/maintenance/java/com/potg/don/maintenance/CleanupOptions.java",
+      "sha256": "75f52a091187d16d4deee6cb38d6782be0e04a4dc5a4bdb809fc26f1ab15bdb3",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/maintenance/java/com/potg/don/maintenance/CleanupReadOnlyGuard.java",
+      "sha256": "afbc65cd32e225aca6ed74a22606314e8fffa41e1029aa4ccea275d1df631bcb",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/maintenance/java/com/potg/don/maintenance/DemoCleanupCommand.java",
+      "sha256": "2d87d7855fa3bafaa8bc1587151c54ce2ada577c313ef168e07c822b0ffbc8f1",
+      "mode": "0o644"
+    },
+    {
+      "file": "be/src/maintenance/java/com/potg/don/maintenance/DemoCleanupService.java",
+      "sha256": "3eb3e468402d68aa0c1c858b486e88987408d222bcf5c363ceda3c27007c82de",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/.dockerignore",
+      "sha256": "f62599eacab35e1c046e84748b8bf8d7d37f3fab61e9b994927fa8fcc410172e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/.env.example",
+      "sha256": "183ce93271970a52a71df9a344f5729aa759ccc58beab5f3bceadb315a37fa44",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/Dockerfile",
+      "sha256": "2b232bedf8829acf11c72922966c4fe004abbd90adcf1ad217a96304f33c14be",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/eslint.config.js",
+      "sha256": "7a39f6bf29b2b84a243df3330c218b9688114594081bd1280a32ffaa4766d023",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/functions/api/[[path]].ts",
+      "sha256": "f617a683f99ffe8b378d164ac20792721a43bfc897bbe51bf58f98a1d63383b9",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/functions/api/index.ts",
+      "sha256": "e46ff96c875483a16784c76d5f9c6acfebe5c6cd6dbb5e6c3a7f6269bb5eceb4",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/index.html",
+      "sha256": "83143769fb0f44d09e4ebc74c47dad4a508d3238b8adca28750037ea73c7da5e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/package-lock.json",
+      "sha256": "62f7b26a26b4d657238ad72bfc0eb23d98e011e80c7dcce1c57f34a5201f7e0d",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/package.json",
+      "sha256": "ae9d302d779fc4257208b2a8066dd219f4f2997301f293e3771f121fa9d0619f",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/pages.env.example",
+      "sha256": "c65d88995a1082db67c2cd90bec63960714087af2d9fc992a714bbd11eda669c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/404.webp",
+      "sha256": "14943cc21550f333560cd8ed87f3aff8ecb8e157333e063222bb784e88d8b13e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/_routes.json",
+      "sha256": "805f874241a8333b37e28748ad19882e0593f5c5e368e7ab4f62ae5c7b5b4437",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/background.webp",
+      "sha256": "dd9aeb06bb09e46966da8c13e3f1fd23712b612fc6ce8a565d32e4f04906c528",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/detailBackground.webp",
+      "sha256": "8476184088b443da441d0786fcc40005f4854ef0b23c1b62182dad01bf9e00df",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/flower.webp",
+      "sha256": "554e3a7a64a07cdfd9a9666995b820c717ff2f2c19f1fb1627532d773734107e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/flower_gray.webp",
+      "sha256": "fd9d5b4f86bd34e764ad38e47f56ea87a43921b52d3174223241584e520a8abd",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/leaf.webp",
+      "sha256": "8650b3015ebcdb9a1e302b7f1c2b9eacd0f5b5790270f086d6e799ebe9dbdcb7",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/leaf_gray.webp",
+      "sha256": "cbea823dbddde29c64c20a1d80b7ce17af8218211ee3ac2f23f8a1e4f259e93d",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/sitting_girl.webp",
+      "sha256": "a8b9d840e4f5475c88313dbf98f59462c55f889e7f9441fd28ef6846c7307d49",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/toad.webp",
+      "sha256": "55ed221cf589cc1d03f4902de170671ff56d3baa4bcfdd399bd51f2ce37647f6",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/charts/water.webp",
+      "sha256": "d645d9f2d4feef0c205342a1ea2f46c570bf05a2d59a2e00c114c677510cc135",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/landing/landing1.webp",
+      "sha256": "effa7372a6e67080ba7b61f3bd56c64dede56549a58d75115b4d239587985684",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/landing/landing2.webp",
+      "sha256": "35e9305bcc225efb68cb40b597d8736013a9c39958a3588af223c103b303bfaf",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/landing/landing3.webp",
+      "sha256": "dde46d5e5a310d0d836e5233d6224ffaa9424e2d819fe5e57517056dfe33190c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/landing/landing4.webp",
+      "sha256": "9e81ba94cec5c6faeb5084c9e5c194b4953c714b337350a51075050d666cbab6",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/angryToad.webp",
+      "sha256": "bb82123e9fe5f0acd01c7654215ccedc8d99192c08ac0036dea1155cc708de03",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/bad.webp",
+      "sha256": "7a7f887d0bcdf35690d2ddd8719e48f3fb651871c97860909ea9158936dbd8b9",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/bad_gray.webp",
+      "sha256": "90cc1b119f524cbf0283e6c5e37a58dd33825bb5c6d12de747e54148fe904f2e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/broken.webp",
+      "sha256": "212688fe72e1d3628ba0c0e1d20fd89a129ef743dbce13951d50d0cb7d284486",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/cryingKongjwi.webp",
+      "sha256": "ee26cbb966065b8ea15e48ac21fc4662e277c4316073e77962bb128824b1cfc5",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/good.webp",
+      "sha256": "370955e4fd756652b23c6a0cfcacada8da683f5ac989d0ba317afc5c39851113",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/good_gray.webp",
+      "sha256": "45e7da22bed3de4292ff024ed9467d273f86e0e24cd96c67e5d90990c31b2b29",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/happyKongjwi.webp",
+      "sha256": "832972b09c498872d6bd7b8ba9815912e27be8bb3cbe5067fcc3f51a7c9dfec4",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/happyToad.webp",
+      "sha256": "003e87a227701a47dc9cd518a89cba7d998c32898bdb979155abb7fc4db5b10c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/joseon-bg.webp",
+      "sha256": "88d2f5226002f5464762fca41a546bd96e3413cd359f49247575790220437e35",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/money.webp",
+      "sha256": "f7d94b0e9e6d896f88ff462db6b030db61949eb659a6c37051eaa5c6f2b030c5",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/paper.webp",
+      "sha256": "ceab3f6469d24c5dae1f2a06c7a265b8ec10df65077a8c981f294940ad71ddca",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/pot.webp",
+      "sha256": "e680d989df6ff68849381384816f184fd8e3997f64ecde7379fc27fdc8783c3e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/tooltip.webp",
+      "sha256": "6d76514c139c1b2a5c2d18d6f1e0e177834b54e6f39c9e241afe3c8b68f84e63",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/leakPot/water.json",
+      "sha256": "7cfa1b724eaf17bb25208c111aa27dd162d450ed923fdf410cdcf71d4d3e80fb",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/loading/kongjwi.webp",
+      "sha256": "7ca2bf8d15ce431ffa0e6c1759723794ba85ae29a2273550c59c1933c2a39459",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/loading/toad.webp",
+      "sha256": "94fead897996be28af0a6cd651af68784a36a54e9fd463593eecfd9bf834ac9e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/mypage/close.webp",
+      "sha256": "7a7bb969126bae17569d42a66815966e42ca25b6fbdc7fc05170e099a772ba56",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/mypage/open.webp",
+      "sha256": "e504e5fc1154c02a688785d4f12d9c712967c3c9bfa84fc53bc42ac5de582726",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/mypage/paper.webp",
+      "sha256": "de3bba9c7a3414d81b3bd9954a3b6a596e84a3a968211691124f1e25caa503b1",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/mypage/sitting.webp",
+      "sha256": "f988db954c8992fab8f3a5af624021ab5ba15f735efc48a4f672bf33c04dfb6f",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/angryToad.webp",
+      "sha256": "8667e6836f0c63d42058c8316fd2df517e6b7216a1bb15d9175234590433e96c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/background.webp",
+      "sha256": "93c78ab9ff6e6962aef887f1c321670bd62b4d486dc6a893e7494a77635534cc",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/card.webp",
+      "sha256": "5db19fef6f7ee995e2fdc9d1414ab1fcd15a4a2cdfaa075b92bb40697df6bc51",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/culture.webp",
+      "sha256": "ab3d5d7880cc9e73e3ca887b68276e3bc4a4cd36eb18364fc5be633aaf374296",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/eat.webp",
+      "sha256": "d1183a9e1f3a88f3cf41b50d9453941e40030c9dc95683af7671f78a68e375de",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/edu.webp",
+      "sha256": "04e71853e4fa4acee42eb159296c0af4bfa3b00770ac8e8fc6bf314924222707",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/etc.webp",
+      "sha256": "35f2798ce017eb98316d2d8dcb6cf99c51144bd7a29dc5350bc7811602a01ad3",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/event.webp",
+      "sha256": "e997b694e2c84c8a83b40a2e070938609758a6d623304a5243eae31ae5621af6",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/fashion.webp",
+      "sha256": "649a5e2991fb1bf9ab432516faaee1d08a261e5089b87abb3842b206f4e7cbc9",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/happyToad.webp",
+      "sha256": "13f79551095da0e40c3973cb8e38eb9b4a95e529e750d1c92c9bb64cc731ced8",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/health.webp",
+      "sha256": "c67b51fce300e7caf549c82a4a890722c27aa140eb25e6bb6ef5b26d409b436c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/house.webp",
+      "sha256": "f53aa87626bfa08fd88070574fd2f686b77196e803562f34be099fd4d64395c6",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/living.webp",
+      "sha256": "2c0cc7144c8aff500ff7dbdf9addec5ad9e4f067d64a4b591cd6891de8f009b3",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/market.webp",
+      "sha256": "91dd33cd7ea5d795637feeca75557c56b5c569e494916ad747af77aabf4f62dd",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/tax.webp",
+      "sha256": "5681fd942ff1a9aeacd6d1bdd63944006ee358a7e4bfb768fa93db9ca67fa373",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/tea.webp",
+      "sha256": "f9a9ed3e0de39184e17bc4ef967b6d759e9ec77c4e67be18e64ec829793c9428",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/total.webp",
+      "sha256": "e7abef07c4d66b80d0c731b8656f07b27dc9d6f317273f6ffc04078c827dab99",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/toadAdvice/transport.webp",
+      "sha256": "7fe9d930c2e1baa04236dbbb486f9c7b8f89f9867762d7d73451072d31db0b1a",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/public/userInfo/talk-scene.webp",
+      "sha256": "6887e9b6dc45996c7e8ac8d926dc3431e209314c1fb8af407ea909e06c59ee53",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/App.tsx",
+      "sha256": "b2ec7cef75c6dc87f48f27857855d9f474a58b981dcf4808f4ee1ea246fe3469",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/client.ts",
+      "sha256": "459d8c7f86b6d8cb10e23ee8c50bd5d9e5b858fce8611101748c1c29995a9c88",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/demoInterceptors.ts",
+      "sha256": "c806b1f1358f30260b670eb823e58a907649ab195e4525cc7108ca49cb2f43d0",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/index.ts",
+      "sha256": "4389d63d1f2a47086f7222be4562d47d52153fdc9f4f2ebb9834f82a0d2b1135",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/interceptors.ts",
+      "sha256": "55683e51522c28c07de2fbe5da9368c8a20c2790e4ba93699d13b50f463112cb",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/mutation/budgetMutation.ts",
+      "sha256": "cbdbffd471002fc39669f3d9f1312f4c1147f084d34e99363d84b27bf39ca7a1",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/mutation/cardMutation.ts",
+      "sha256": "fd5a2d2e27c90b44814ee92f41ee5d2aca1fe5e1420bf0bd31d90ef2e8c858cb",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/mutation/transactionMutation.ts",
+      "sha256": "ef609ee98b801944dd9036e4fa4eeec6a7d2321222a3e4e2957661d87d39aa06",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/mutation/userMutation.ts",
+      "sha256": "c071353a96b10c618518d9cf6af839ffba8dfb259693bf20bc4a5ba69ec7c5c7",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/queries/budgetQuery.ts",
+      "sha256": "3762de58a74d0d3f601b7f3d4ac83fb8907cf4403bac8d3e1264a20e4bb9d895",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/queries/cardQuery.ts",
+      "sha256": "16f7ba3891e590d7b2f09bdf5174df2d1789787d8d39fb4cb4abe2e12fd343dd",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/queries/doojoQuery.ts",
+      "sha256": "6a72d5f288c9e95a29cf6b370f330f06c7e90e12a3030bad1e2fe9d293d8033d",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/queries/transactionQuery.ts",
+      "sha256": "8282d06092ee9983a2c2407e2d5e1468a36b728ec75267f3a66eca21d8488b2c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/queries/userQuery.ts",
+      "sha256": "95a920f9c70c2d749135923f0cc9655b1d4d27b2e219f383dc73f3f2194ad542",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/queryKeys.ts",
+      "sha256": "17b6fe609ca8032b60262820b48cbe92f637bb959c9c9ab32ff9682c07ae8f0b",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/services/auth.ts",
+      "sha256": "5a2f8a4e1d53840b40abed35865cfb89fdf3d7f2154bb3915b832d3b0b9ee6a4",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/services/budgets.ts",
+      "sha256": "b843fde8a1a5e371fb437b0517629fc3dc11efded6fbf82355619d2ece547fc3",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/services/cards.ts",
+      "sha256": "7cd84dd93a88d5719888163806de282a81d1cb9f85ef4adef797cd0e0aa0be6e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/services/demoAuth.ts",
+      "sha256": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/services/doojo.ts",
+      "sha256": "4194ed535ff9173271b2ace15eb0c0b02445fe34e38f14bada93ed460a54de52",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/services/transactions.ts",
+      "sha256": "74c5984d355cf46f743a7ad769c8eea2bd947b11ff3457ab40078a21cb6b5aa2",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/api/services/users.ts",
+      "sha256": "0b86913396f583570f4b21234498c410d2a7e2063aba3523a8a42edf1453d99e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/assets/pageAssets.ts",
+      "sha256": "dc6cf87141e25cf1f54328c13d33552e0bb200f2b7b38c20097be15ac76497ce",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/auth/AuthProvider.tsx",
+      "sha256": "5a41a2c59297ea6aa39d2f257f78efb42ebcaa2e2db83eb1bcde62d0d7a963cc",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/auth/authMode.ts",
+      "sha256": "687b63fa11c0adb04089459b23972feef9e4e3ababe4d569583fa98f32c87aa4",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/auth/demoCoordinator.ts",
+      "sha256": "0f72a6483e4372a7c7a0c9252666ca035145fdc0b22acbfeb36501fa77f73469",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/auth/demoQueryClient.ts",
+      "sha256": "d9441e2d4920e9eded461063cc1304cd518b4fde16b417ef596487605f9fc04e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/auth/demoRateLimit.ts",
+      "sha256": "45e33b7b55d750e9ebb6504aabe100e6e566fd6b36e93beefefb2083cea2f840",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/auth/demoReadiness.ts",
+      "sha256": "46967f57051094697e27fed42fe0ac3dd87e5f0bc1f16d190eca15fb1a8c8c36",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/DemoAuthStatus.css",
+      "sha256": "d34e43f951ecf02b7c5bb5b265f3b9665d735c2046bc6fbef0d35ac0b0d73138",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/DemoAuthStatus.tsx",
+      "sha256": "905740db5e936720c460b498b9956c918197d9d0a60c8236dc3282f271811cd2",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/DemoHeader.tsx",
+      "sha256": "f5ac5526cf2564df0949dd17bf0f2b763739eff862262282e6cf8d5e37de0b46",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/Header.css",
+      "sha256": "9aae3bd51be5a604113fcf764e82362cdbc4c392cdf8b0c3c4b143838610cca6",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/Header.tsx",
+      "sha256": "3e262ec3aaa6d586cdcf34de8a2633fb38c63cf41136c05a876eaf8a3397b4f8",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/JPSelect.css",
+      "sha256": "1f70ab34aba3165645d19a4e8c9267f2aa7b25551d7b8f8c785f283dc7a2994a",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/JPSelect.tsx",
+      "sha256": "62d9018aa74931eb32a436cdad16fb6c742bd82f6dbbb657a4d1e155a60bb1a6",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/LoadingOverlay.css",
+      "sha256": "44d1d54f7c3f8f854b2757a9f3383781fa4cdfd303d4eebda2fd4c3507772b00",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/LoadingOverlay.tsx",
+      "sha256": "b57a7618ebdbe98e18d8a3df4590eeba2c00149968c5346eb5d6cc3bcc43578f",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/components/RouteGuard.tsx",
+      "sha256": "f5345904750de0b9d5deef6eb29de4c8b911db0176ab7dc63fd0c69e821bdac3",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/hooks/usePreloadImages.ts",
+      "sha256": "5e4e578ce5f2253b9cba07351477c60e7e8cb1a7978b0ade892ba6737640b09a",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/index.css",
+      "sha256": "aeb6e5e20926563830afcf0c636139e233a6bd382a8ca03c7fa583c38e703c36",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/main.tsx",
+      "sha256": "741c91867a572f48af0b91089370638b0b8362c46050c1f12011445917c5df8c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/AuthCallback.tsx",
+      "sha256": "72d961d082afc84b60f7d331037c1c3e01fa88626b09abb0680938966df310b0",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/ChartPage.css",
+      "sha256": "7c113200dbc9018dc8653b2ff9fec98fd70a5a31083c9e74f27d5adec5482673",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/ChartPage.tsx",
+      "sha256": "2c18ddbf4e18de788691f9d1625652aa259cf3054c5d9d5abc15301e6ad61ed8",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/LeakPotPage.css",
+      "sha256": "b72647d5cb2944f9fd90ab6ac700ea27fecf300b01bf79781f7f4954a7abe33e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/LeakPotPage.tsx",
+      "sha256": "11f58d7dccfab7a06f1b9fbdecb0fe73729fc8e306cc1ba13ebae0e97f27bf78",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/Mypage.css",
+      "sha256": "16c61a5169fc61dcdb4593e5dfeb4dc7c3d76db77a44d2fab058c464e812c43b",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/Mypage.tsx",
+      "sha256": "8544deeeb68067d8477c899462c60221e23abb778891c53675121eab99a6013c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/NotFound.css",
+      "sha256": "408b2f541b04c7de00f86abd56f200ab11f5ec1cb08f5705d53b41a5ad3886c4",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/NotFound.tsx",
+      "sha256": "e26539af7601f6e8a0f938acdc8a448ece389992c94a6d25a2d75683db157122",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/ScrollLandingPage.css",
+      "sha256": "8ea0ffcb33d0b0785d72468a81559995f1fe43cc14b541b20794563c46e4cd46",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/ScrollLandingPage.tsx",
+      "sha256": "8fc3dda67c34e73546d0b1b6fc97cbb7fec3735d2a3ba5cfc0ec5ed7f05a85f6",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/ToadAdvice.css",
+      "sha256": "dd73bcfa2b29b1c57a8f665c2952158637acabaa32875779fd914f0595b23476",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/ToadAdvice.tsx",
+      "sha256": "930105bf29189b906ca5453b1174f68e6e95ca638d9f9c3e5e8d3e5653a1c272",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/UserInfoInputPage.css",
+      "sha256": "97b8b42f06c119c5121a44b6f9fd0e897fba99774256cfb84c6156c1cdfe9f7e",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/UserInfoInputPage.tsx",
+      "sha256": "30238c9bf8ad46b8f38ffe3513f69b340351ba1fc485e52e3c2f9b3d96545c90",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/chartDataBoundary.ts",
+      "sha256": "2a831a3aeae6dbf6bcf755bf2c6982ec1472b3cd1a84462f558df361563e7814",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/pages/demoChartPeriod.ts",
+      "sha256": "a16694f26258cfb0852bb14a74a16d5ebceb88e7a7229a936934f0e88f5a842c",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/store/authStore.ts",
+      "sha256": "84965c7fe399ea3d109adc541bff786b73fc447c78d63317ff3818f9f8f3dda9",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/types/doojo.ts",
+      "sha256": "bbd1b9212d59656e60ab1814f5bed5e81b07584693491c3c8bf674b97253c79a",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/types/index.ts",
+      "sha256": "4c22df42f606d01c825c6f6179851f24238cdef84293e216aed6c6e8a9ff69dc",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/types/user.ts",
+      "sha256": "2d37085b4ff601c66400278e986fcfe20b815b2eab80bfef1015b64097ed4e5a",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/src/vite-env.d.ts",
+      "sha256": "776ecadf677522ab8497980f3d950f53ff112a1d0c50dca453102867ee546c38",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/tailwind.config.js",
+      "sha256": "f9aca582431534ee12e6fb773cb685d4ae6a354492ab13b6e3fe8e2493005250",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/tsconfig.app.json",
+      "sha256": "d3253563fe89a2239388793869758593d26d6262252429aad4a69c068c18351f",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/tsconfig.functions.json",
+      "sha256": "bebd27d1ebbb0a166803bd1093998523033d4b96fa77fe3a68628abd51548e47",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/tsconfig.json",
+      "sha256": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/tsconfig.node.json",
+      "sha256": "dbece770acebd1448ab84fbdae194dc23670ee2e91ebcb1b534cace99cd0bea6",
+      "mode": "0o644"
+    },
+    {
+      "file": "fe/vite.config.ts",
+      "sha256": "d6c8352406f3a7ec1cd516f83afb6bf23c4128a7196bdc3e38cc749cc4fdcb63",
+      "mode": "0o644"
+    }
+  ],
+  "file_count": 253,
+  "baseline_digest": "954a58caf1cab5cc35e90dd7330985c87792e90bd7aed2edaf3518868afbcc21",
+  "current_digest": "954a58caf1cab5cc35e90dd7330985c87792e90bd7aed2edaf3518868afbcc21",
+  "changed": 0
+}

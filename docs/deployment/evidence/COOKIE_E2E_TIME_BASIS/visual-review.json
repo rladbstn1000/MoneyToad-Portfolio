@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "screenshots_reviewed": 3,
+  "visible_identity_or_credentials": false,
+  "screenshots": [
+    "mobile-three-viewports/mobile-390-after.png",
+    "mobile-three-viewports/mobile-768-after.png",
+    "cold-start-recovery/cold-recovery-390.png"
+  ]
+}

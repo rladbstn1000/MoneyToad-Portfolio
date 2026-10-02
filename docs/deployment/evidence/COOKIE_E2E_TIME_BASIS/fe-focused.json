@@ -1,0 +1,28 @@
+{
+  "helper-unit": {
+    "exit_code": 0,
+    "numTotalTests": 45,
+    "numPassedTests": 45,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "failed_cases": []
+  },
+  "test-types": {
+    "exit_code": 0
+  },
+  "e2e-types": {
+    "exit_code": 0
+  },
+  "lint-target": {
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0,
+    "locations": []
+  },
+  "dependencies": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  },
+  "cleanup_complete": true
+}

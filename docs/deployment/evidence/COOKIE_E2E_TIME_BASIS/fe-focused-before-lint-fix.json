@@ -1,0 +1,37 @@
+{
+  "preparation_retry_reason": "FOCUS_REPORT_PATH_CANONICALIZATION",
+  "previous_copy_cleanup_complete": true,
+  "helper-unit": {
+    "exit_code": 0,
+    "numTotalTests": 43,
+    "numPassedTests": 43,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "failed_cases": []
+  },
+  "test-types": {
+    "exit_code": 0
+  },
+  "e2e-types": {
+    "exit_code": 0
+  },
+  "lint-target": {
+    "exit_code": 1,
+    "errors": 1,
+    "warnings": 0,
+    "locations": [
+      {
+        "file": "e2e/publicDemoCookie.ts",
+        "line": 41,
+        "rule": "no-control-regex",
+        "message": "Unexpected control character(s) in regular expression: \\x00, \\x1f."
+      }
+    ]
+  },
+  "dependencies": {
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  },
+  "cleanup_complete": true
+}

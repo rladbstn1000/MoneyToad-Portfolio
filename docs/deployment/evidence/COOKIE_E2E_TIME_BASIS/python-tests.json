@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "tests": 64,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "network_used": false,
+  "scanner_rules_changed": false,
+  "new_classifications": 0
+}

@@ -1,3 +1,22 @@
+## 최신 cookie E2E 시각 기준 분리 — 로컬 PASS
+
+2026-10-02. clean HEAD `be513cd0938d4cc37cd77ea04035b97ae41c83f2`에서 제품 변경 없이 검증 책임을 분리했다. browser cookie absolute expiry와 server session deadline의 직접 상한 비교는 `E-D ≈ L+K-Q`의 구조적 민감성 때문에 교체했다. **HISTORICAL_FAILURE_CAUSE=UNKNOWN**이며 과거 공개 실패 원인을 확정한 결과가 아니다.
+
+A: 실제 Set-Cookie의 정수 Max-Age·보안 속성, D: 실제 DemoRefreshCookie fixed Clock, E: reissue 전후 API absolute deadline 동일성으로 검증한다. 브라우저에 저장된 유효성은 browser Date.now만 사용한다. 기존 RT 전송·HttpOnly·삭제·Redis/JWT 폐기·소유권·gateway/rate 제한은 그대로다. 임의 tolerance/optional storage interval은 추가하지 않았다.
+
+**BE724(기존721+신규3), FE373(기존328+신규45), Python64 PASS**. 제품/test/E2E/Functions 타입·BE compile·OAuth/demo build·invalid mode 거절·lint0/0 PASS. Chromium core독립2회각6, mobile3, cold-start1 PASS. 외부앱요청0·소유자원정리PASS·최종필수failure/error/skip0이다. strict scanner PASS, 규칙/허용범위확대0·미분류0. 기존6개 source 분류는 동일 표현/횟수/construct의 파일digest·행 위치만 갱신했다.
+
+제품253파일 raw bytes/mode 불변을 digest로 기록하고 전체 변경을 test/verification/docs로 제한했다. 초기 test lint 준비 오류와 교정·최종PASS를 분리해 보존했다. 과거evidence·HEAD/index 유지, 공개URL/provider요청·stage/commit/push/redeploy0이다. public full E2E 완료를 주장하지 않으며 기존 공급자 장애전환 보장도 승격하지 않는다.
+
+```text
+COOKIE_E2E_TIME_BASIS_READY=true
+PUBLIC_DEPLOYMENT_READY=false
+```
+
+상세: [22-cookie-e2e-time-basis.md](22-cookie-e2e-time-basis.md), [새 evidence](evidence/COOKIE_E2E_TIME_BASIS/). 다음 별도 단계는 commit/push와 필요 시 동일 제품 provenance 재배포 후 actual public full E2E다. 이번에는 수행하지 않았다.
+
+---
+
 ## 최신 공개 scanner 전체 감사·정제 — PASS
 
 2026-10-02. 전체 공개 후보749파일·HEAD/index를 고정하고 기존FAIL79를 재현했다. 79개 전부 검토 결과 source 표현44·합성fixture8·오래된 위치분류27, 실제 secret/PII·UNKNOWN0이다. 테스트용 고정 값을 runtime canary로 정제하고, 정확한 파일/전체 내용/site/최소 construct/출현 횟수에 묶인 strict 분류148행(149곳)을 적용했다. 파일 변경·stale·중복·실제값 혼입은 실패한다.

@@ -1,0 +1,84 @@
+{
+  "phase": "be",
+  "focused": true,
+  "status": "PASS",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "selected_test_classes": [
+    "com.potg.don.auth.demo.DemoRefreshCookieTest"
+  ],
+  "render_test_classes_in_separate_phase": [
+    "com.potg.don.auth.RenderRuntimeIntegrationTest",
+    "com.potg.don.auth.demo.RenderDemoBoundaryTest",
+    "com.potg.don.global.config.RenderRuntimeConfigurationTest"
+  ],
+  "exit_code": 0,
+  "checks": {
+    "status": "PASS",
+    "exit_code": 0,
+    "cleanup_complete": true,
+    "suites": [
+      {
+        "test": "com.potg.don.auth.demo.DemoRefreshCookieTest",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "oneWholeSecondRemainingIsRepresentedWithoutExtension()",
+            "status": "PASS"
+          },
+          {
+            "test": "publicCookieUsesTheExactSecureHttpOnlyHostOnlyScope()",
+            "status": "PASS"
+          },
+          {
+            "test": "maxAgeFloorsTheRemainingAbsoluteLifetime()",
+            "status": "PASS"
+          },
+          {
+            "test": "everyMillisecondCreationPhaseHonorsTheSameAbsoluteDeadline()",
+            "status": "PASS"
+          },
+          {
+            "test": "exactAndFractionalSecondRemaindersNeverRoundTheCookieUp()",
+            "status": "PASS"
+          },
+          {
+            "test": "reissuedCookieDoesNotResetTheOriginalSessionLifetime()",
+            "status": "PASS"
+          },
+          {
+            "test": "explicitlyValidatedLocalSettingsAreTheOnlyInsecureCookieMode()",
+            "status": "PASS"
+          },
+          {
+            "test": "exactOneHourAndLongerRemaindersShareTheDefensiveCeiling()",
+            "status": "PASS"
+          },
+          {
+            "test": "defensiveCookieCeilingNeverExceedsOneHour()",
+            "status": "PASS"
+          },
+          {
+            "test": "deletionUsesTheSamePublicAndLocalScopesWithZeroLifetime()",
+            "status": "PASS"
+          },
+          {
+            "test": "expirationAndSubsecondRemainderRefuseToIssueACookie()",
+            "status": "PASS"
+          }
+        ]
+      }
+    ],
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS"
+  }
+}
