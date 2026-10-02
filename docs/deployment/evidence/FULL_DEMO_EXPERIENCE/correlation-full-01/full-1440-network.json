@@ -1,0 +1,607 @@
+{
+  "events": [
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "requestStartOrder": 7,
+      "phase": "initial"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "requestStartOrder": 7,
+      "responseOrder": 20,
+      "phase": "initial"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "requestStartOrder": 21,
+      "phase": "initial"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "status": 401,
+      "requestStartOrder": 21,
+      "responseOrder": 22,
+      "phase": "initial"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "requestStartOrder": 23,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "requestStartOrder": 23,
+      "responseOrder": 24,
+      "phase": "login"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/login",
+      "requestStartOrder": 25,
+      "phase": "login"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/login",
+      "status": 201,
+      "requestStartOrder": 25,
+      "responseOrder": 26,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "requestStartOrder": 27,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "status": 200,
+      "requestStartOrder": 27,
+      "responseOrder": 28,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "requestStartOrder": 29,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "status": 200,
+      "requestStartOrder": 29,
+      "responseOrder": 30,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 31,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 31,
+      "responseOrder": 32,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "requestStartOrder": 48,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 49,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "requestStartOrder": 48,
+      "responseOrder": 65,
+      "phase": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 49,
+      "responseOrder": 67,
+      "phase": "login"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/budgets",
+      "requestStartOrder": 69,
+      "phase": "pot-original"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/budgets",
+      "status": 200,
+      "requestStartOrder": 69,
+      "responseOrder": 70,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "requestStartOrder": 71,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 72,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "requestStartOrder": 71,
+      "responseOrder": 73,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 72,
+      "responseOrder": 74,
+      "phase": "pot-original"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/budgets",
+      "requestStartOrder": 75,
+      "phase": "pot-original"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/budgets",
+      "status": 200,
+      "requestStartOrder": 75,
+      "responseOrder": 76,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "requestStartOrder": 77,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 78,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "requestStartOrder": 77,
+      "responseOrder": 79,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 78,
+      "responseOrder": 80,
+      "phase": "pot-original"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 90,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 90,
+      "responseOrder": 100,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "requestStartOrder": 101,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "requestStartOrder": 102,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "requestStartOrder": 101,
+      "responseOrder": 103,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "status": 200,
+      "requestStartOrder": 102,
+      "responseOrder": 104,
+      "phase": "chart"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/transactions/:n/category",
+      "requestStartOrder": 105,
+      "phase": "chart"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/transactions/:n/category",
+      "status": 200,
+      "requestStartOrder": 105,
+      "responseOrder": 106,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 107,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "requestStartOrder": 108,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "requestStartOrder": 109,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "requestStartOrder": 108,
+      "responseOrder": 110,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "status": 200,
+      "requestStartOrder": 109,
+      "responseOrder": 111,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 107,
+      "responseOrder": 112,
+      "phase": "chart"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 137,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "requestStartOrder": 138,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "requestStartOrder": 139,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "requestStartOrder": 139,
+      "responseOrder": 162,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "requestStartOrder": 138,
+      "responseOrder": 163,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 137,
+      "responseOrder": 164,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "requestStartOrder": 165,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "requestStartOrder": 166,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "requestStartOrder": 166,
+      "responseOrder": 167,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "requestStartOrder": 165,
+      "responseOrder": 168,
+      "phase": "advice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 179,
+      "phase": "user-info"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "requestStartOrder": 189,
+      "phase": "user-info"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "requestStartOrder": 206,
+      "phase": "restore-held"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "requestStartOrder": 206,
+      "responseOrder": 228,
+      "phase": "restore-held"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "requestStartOrder": 229,
+      "phase": "restore-held"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "status": 200,
+      "requestStartOrder": 229,
+      "responseOrder": 244,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "requestStartOrder": 245,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/session",
+      "status": 200,
+      "requestStartOrder": 245,
+      "responseOrder": 246,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "requestStartOrder": 247,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "status": 200,
+      "requestStartOrder": 247,
+      "responseOrder": 248,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 249,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 249,
+      "responseOrder": 250,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "requestStartOrder": 251,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "requestStartOrder": 251,
+      "responseOrder": 252,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 264,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 264,
+      "responseOrder": 274,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "requestStartOrder": 276,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "requestStartOrder": 277,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n",
+      "status": 200,
+      "requestStartOrder": 276,
+      "responseOrder": 279,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions/:n/:n/categories",
+      "status": 200,
+      "requestStartOrder": 277,
+      "responseOrder": 280,
+      "phase": "restored"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "requestStartOrder": 301,
+      "phase": "logout"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "requestStartOrder": 302,
+      "phase": "logout"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "requestStartOrder": 310,
+      "phase": "logout"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "status": 200,
+      "requestStartOrder": 302,
+      "responseOrder": 318,
+      "phase": "logout"
+    },
+    {
+      "method": "GET",
+      "path": "/api/budgets/:n/:n",
+      "status": 200,
+      "requestStartOrder": 310,
+      "responseOrder": 319,
+      "phase": "logout"
+    },
+    {
+      "method": "GET",
+      "path": "/api/transactions",
+      "status": 200,
+      "requestStartOrder": 301,
+      "responseOrder": 320,
+      "phase": "logout"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/logout",
+      "requestStartOrder": 322,
+      "phase": "logout"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/logout",
+      "status": 204,
+      "requestStartOrder": 322,
+      "responseOrder": 324,
+      "phase": "logout"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "requestStartOrder": 334,
+      "phase": "logout"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/demo/ready",
+      "status": 200,
+      "requestStartOrder": 334,
+      "responseOrder": 353,
+      "phase": "logout"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "requestStartOrder": 356,
+      "phase": "logout"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/demo/reissue",
+      "status": 401,
+      "requestStartOrder": 356,
+      "responseOrder": 372,
+      "phase": "logout"
+    }
+  ],
+  "externalAttempts": 0,
+  "forbiddenAttempts": 0,
+  "backendAttempts": 0
+}

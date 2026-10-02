@@ -1,13 +1,14 @@
 import { test } from './fixtures';
-import { expect, type Page, type Response } from '@playwright/test';
+import { expect, type Page, type Request, type Response } from '@playwright/test';
 import { writeFileSync } from 'node:fs';
 import { clickDemoMenu, gotoDemoChart } from './demoNavigation';
 import { parsePublicDemoSetCookie } from './publicDemoCookie';
+import { createResponseTimeline } from './responseTimeline';
 
 const origin = process.env.E2E_ORIGIN!;
 const auth = '/api/auth/demo/';
-type Event = { order: number; method: string; path: string; status?: number; phase: string };
-let events: Event[] = [], external = 0, forbidden = 0, phase = 'initial';
+let timeline: ReturnType<typeof createResponseTimeline<Request, Response>>;
+let external = 0, forbidden = 0, phase = 'initial';
 let mutations: Record<string, number> = {};
 const pathOf = (url: string) => new URL(url).pathname;
 const object = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
@@ -118,7 +119,8 @@ async function shot(page: Page, label: string) {
 
 // Continue only real owned-origin requests. API responses are never replaced.
 test.beforeEach(async ({ context }) => {
-  events = []; external = 0; forbidden = 0; phase = 'initial'; mutations = {};
+  external = 0; forbidden = 0; phase = 'initial'; mutations = {};
+  timeline = createResponseTimeline<Request, Response>(context, () => phase);
   await context.route('**/*', async route => {
     const request = route.request(), url = new URL(request.url());
     if (url.origin !== origin) { external++; await route.abort(); return; }
@@ -140,14 +142,7 @@ test.beforeEach(async ({ context }) => {
     await route.continue();
   });
   await context.routeWebSocket(/.*/, socket => { external++; socket.close(); });
-  context.on('request', request => {
-    const path = pathOf(request.url());
-    if (path.startsWith('/api/')) events.push({ order: events.length, method: request.method(), path: path.replace(/\/\d+(?=\/|$)/g, '/:n'), phase });
-  });
-  context.on('response', response => {
-    const path = pathOf(response.url());
-    if (path.startsWith('/api/')) events.push({ order: events.length, method: response.request().method(), path: path.replace(/\/\d+(?=\/|$)/g, '/:n'), status: response.status(), phase });
-  });
+
 });
 test.afterEach(async ({ page }, info) => {
   if (info.status !== 'passed') {
@@ -158,9 +153,10 @@ test.afterEach(async ({ page }, info) => {
   }
   try {
     const state = await snapshot();
-    writeFileSync(`${process.env.E2E_ARTIFACTS}/full-${page.viewportSize()!.width}-network.json`, JSON.stringify({ events, externalAttempts: external, forbiddenAttempts: forbidden, backendAttempts: state.outbound }));
+    writeFileSync(`${process.env.E2E_ARTIFACTS}/full-${page.viewportSize()!.width}-network.json`, JSON.stringify({ events: timeline.records(), externalAttempts: external, forbiddenAttempts: forbidden, backendAttempts: state.outbound }));
     check(external === 0 && forbidden === 0 && state.outbound === 0, 'external AI peer cards and forbidden mutations zero');
   } finally {
+    timeline.dispose();
     for (const error of info.errors) {
       const line = error.stack?.match(/full-experience\.spec\.ts:(\d+):\d+/)?.[1];
       error.message = ''; error.errorContext = undefined;
@@ -180,7 +176,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 
     await expect(page.locator('.dk-content.show .dk-title')).toHaveText('콩쥐의 장독대');
     const start = page.getByRole('button', { name: '샘플 데이터로 체험하기', exact: true });
     await expect(start).toBeEnabled();
-    check(!events.some(event => event.path === `${auth}login`), 'no automatic initial login');
+    check(!timeline.records().some(event => event.path === `${auth}login`), 'no automatic initial login');
     const before = await snapshot();
     const loginPromise = page.waitForResponse(response => pathOf(response.url()) === `${auth}login`);
     const sessionPromise = page.waitForResponse(response => pathOf(response.url()) === `${auth}session` && response.status() === 200);
@@ -246,12 +242,19 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 
     await expect(practice.getByRole('combobox')).toContainText('카페');
     await noOverflow(page, 'chart-detail');
     const patchPromise = page.waitForResponse(response => response.request().method() === 'PATCH' && /\/transactions\/\d+\/category$/.test(pathOf(response.url())));
-    const changedAnnual = page.waitForResponse(response => pathOf(response.url()) === '/api/transactions' && response.status() === 200);
     await practice.getByRole('combobox').click(); await page.getByRole('option', { name: '마트 / 편의점', exact: true }).click();
-    check((await patchPromise).status() === 200, 'actual category PATCH');
-    const afterAnnual: unknown = await (await changedAnnual).json();
+    const patched = await patchPromise;
+    check(patched.status() === 200, 'actual category PATCH');
+    const patchResponseOrder = timeline.responseOrder(patched);
+    // All observers were attached before UI interaction. Cached fast responses and
+    // later responses must both belong to a request started after PATCH success.
+    const [annualRefetch] = await Promise.all([
+      '/api/transactions', '/api/transactions/:n/:n', '/api/transactions/:n/:n/categories',
+    ].map(path => timeline.waitForResponseStartedAfter({ method: 'GET', path, status: 200, after: patchResponseOrder })));
+    const afterAnnual: unknown = await annualRefetch.json();
     check(Array.isArray(afterAnnual) && afterAnnual.some(value => object(value) && value.date === latest.date && value.totalAmount === 908000 && value.leaked === false), 'annual same total leakfalse');
     await expect(page.locator('.jp-leak')).toHaveText('누수 금액: 0원'); await expect(page.locator('.jp-total')).toContainText('908,000원');
+    await expect(practice.getByRole('combobox')).toContainText('마트 / 편의점');
     check((await snapshot()).changed === before.changed + 1, 'actual SQL category change');
     await page.getByRole('button', { name: '닫기', exact: true }).click();
 
@@ -316,7 +319,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 
     try {
       await seen; await expect(page.getByText('체험 연결을 확인하고 있습니다.', { exact: true })).toBeVisible();
       await expect(page.locator('[data-demo-page="pot"]')).toHaveCount(0);
-      check(!events.some(event => event.phase === 'restore-held' && protectedPath(event.path)), 'restore protected requests zero');
+      check(!timeline.records().some(event => event.phase === 'restore-held' && protectedPath(event.path)), 'restore protected requests zero');
       phase = 'restored'; release(); await reload;
     } finally { release(); }
     const reissued = await restored;
@@ -346,9 +349,9 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 
     await expect(start).toBeEnabled(); check(!(await context.cookies()).some(row => row.name === 'demoRefreshToken'), 'cookie removed');
     check((await snapshot()).sessions === 0, 'Redis session revoked');
     await page.goto(`/pot/${month}`); await expect(start).toBeEnabled(); await expect(page.locator('[data-demo-page="pot"]')).toHaveCount(0);
-    check(events.filter(event => event.path === `${auth}login` && event.status === undefined).length === 1, 'single login and no auto-new-visit');
-    check(events.filter(event => event.path === '/api/budgets' && event.method === 'PATCH' && event.status === undefined).length === 2, 'only two explicit threshold writes');
-    check(events.filter(event => /\/transactions\/:n\/category$/.test(event.path) && event.method === 'PATCH' && event.status === undefined).length === 1, 'one explicit category write');
+    check(timeline.records().filter(event => event.path === `${auth}login` && event.status === undefined).length === 1, 'single login and no auto-new-visit');
+    check(timeline.records().filter(event => event.path === '/api/budgets' && event.method === 'PATCH' && event.status === undefined).length === 2, 'only two explicit threshold writes');
+    check(timeline.records().filter(event => /\/transactions\/:n\/category$/.test(event.path) && event.method === 'PATCH' && event.status === undefined).length === 1, 'one explicit category write');
     writeFileSync(`${process.env.E2E_ARTIFACTS}/full-${viewport.width}-contract.json`, JSON.stringify({ viewport, pages: ['landing', 'pot', 'chart', 'advice', 'mypage', 'user-info'],
       seedDelta: { users: 1, cards: 1, transactions: 240, budgets: 72 }, threshold: { before: 40000, raised: 60000, restored: 40000 },
       total: 908000, leakBefore: 18000, leakAfter: 0, annualLeaked: false, historicalAdviceLeak: 120000,

@@ -1,0 +1,34 @@
+{
+  "scope": "verification-only synthetic observations",
+  "remoteRequests": 0,
+  "red": {
+    "selector": "legacy response-arrival order",
+    "tests": 13,
+    "passed": 10,
+    "failed": 3,
+    "skipped": 0,
+    "expectedFailure": true
+  },
+  "green": {
+    "selector": "request-start order after successful mutation response",
+    "tests": 14,
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0
+  },
+  "additionalGreenCase": "previously observed stale response arriving before mutation success",
+  "checks": {
+    "cachedFastResponse": true,
+    "futureResponse": true,
+    "missingStartRejected": true,
+    "finiteWait": true,
+    "dispose": true,
+    "safeMetadata": true,
+    "boundedRecords": true
+  },
+  "files": {
+    "fe/e2e/responseTimeline.ts": "6eeb1f112c0f2a6a0ed8b45453b46eb6782260923c5a67643f382451a2ecc0cf",
+    "fe/e2e/full-experience.spec.ts": "fdfdeec12b9f50025d2ce04e569cb07f26eec4d0d36f4c78758e8baec1fc8a19",
+    "fe/tests/responseTimeline.test.ts": "850ef005c261ca7289fed4dbc4d9381846b24d5da2cba5deb2a276d57db59615"
+  }
+}

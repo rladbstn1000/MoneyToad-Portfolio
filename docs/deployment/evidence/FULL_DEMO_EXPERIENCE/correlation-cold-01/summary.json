@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "cleanup_complete": true,
+  "managed_provider_used": false,
+  "browser_api_mocks": false,
+  "initial_ready_server_fixture": true,
+  "workers": 1,
+  "retries": 0,
+  "external_attempts": 0,
+  "cases": 1,
+  "setup_diagnostics": [
+    {
+      "status": "PASS"
+    }
+  ],
+  "tests": [
+    {
+      "test": "cold deadline stops polling; manual readiness never creates a visitor",
+      "status": "passed"
+    }
+  ],
+  "contract": {
+    "browserClockAdvance": true,
+    "productionTimingChanged": false,
+    "initialReadyFixture": "server-side exact-path 503; no browser API mock",
+    "manualReadyBackend": "real Spring",
+    "initialReadyRequests": 1,
+    "automaticReadyAfterDeadline": 0,
+    "manualReadyRequests": 1,
+    "automaticPostsAfterManual": 0,
+    "explicitLoginPosts": 1,
+    "chartReached": true,
+    "logoutConfirmed": true,
+    "externalAttempts": 0,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "bodyOverflow": 0,
+      "readable": true,
+      "buttonHeight": 48.78125
+    }
+  },
+  "source_preserved": true,
+  "changed_source_paths": [],
+  "dependencies_preserved": true,
+  "owned_source_copy_removed": true
+}

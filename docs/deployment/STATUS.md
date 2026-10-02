@@ -1,3 +1,22 @@
+## 최신 PATCH 이후 응답 선택 경합 교정 — 로컬 PASS
+
+2026-10-02. main `9e52a4ca90838b420fddb750b4c311ea869c06bf`의 제품 bytes를 유지하고 검증기만 교정했다. 실제 공개 이전 실행에서 stale annual 응답을 선택한 경합은 확인됐으나 제품 재집계 결과는 미관측이었다. 요청 시작/응답 순서를 함께 기록하고, PATCH200 뒤에 시작된 실제 연간·월별·카테고리 응답만 선택한다. 이미 도착한 응답과 이후 응답 모두 지원하며 explicit fetch·sleep·mock·기대값 완화는 없다.
+
+합성 RED13개 중3FAIL → GREEN14PASS. 최종 FE473(기존459+신규14), 제품/test/E2E/Functions 타입·OAuth/demo build·invalid mode·lint0/0 PASS. 실제 로컬 전체체험390/768/1440의3개, core독립2회각6개, mobile3개, cold 수동복구1개 PASS. 외부 요청0·소유자원정리PASS. 최초 새 테스트 문법의 타입 준비 실패는 보존했고 설정 완화 없이 테스트 선언만 교정했다.
+
+이번 BE724 전체와 Cookie D fixed-clock11개는 제품/BE 테스트 불변으로 기존 근거를 유지한다. cookie A/E는 core에서 재확인했다. 자연 cold-start와 공급자 장애전환 보장은 새로 관측하지 않았다. README·제품·provider·scanner 규칙 변경0이다. strict public scanner PASS·미해결0이다.
+
+아래 이전 STATUS 본문은 당시 로컬 결과를 보존한다. 현재 실제 production은 위 기준 SHA로 전체 UI가 배포된 상태이나 이전 public full E2E는 Chart 응답 선택에서 실패했다. 이번 로컬 성공을 공개 전체 여정 성공으로 대신하지 않는다. 승인된 다음 절차는 검증 commit/push → 같은 SHA 수동 배포(auto OFF) → 신규 방문자 최대1명의 독립 public full E2E다. 그 공개 실행 결과는 별도 정제 기록과 최종 응답으로 보고한다.
+
+```text
+POST_PATCH_RESPONSE_CORRELATION_LOCAL_READY=true
+PUBLIC_DEPLOYMENT_READY=false
+```
+
+상세: [24-post-patch-response-correlation.md](24-post-patch-response-correlation.md).
+
+---
+
 ## 최신 public demo 전체 사용자 경험 — 로컬 PASS
 
 2026-10-02. clean main `f569d9cd0054ce5bd3661ac2fe957b6c3eba225a`에서 마당·장독대·Chart·조언·곳간·정보 입력 6개 페이지를 복원했다. 로그인 뒤 API 기준월 장독대로 이동하며, 실제 예산/거래 저장과 교차 재조회·방문별 메모리 프로필·경로별 자산 로딩을 연결했다. 예산 없는 항목은 기준 없음으로 표시하고 fake ID·소비 fallback·실시간 AI를 사용하지 않는다.
