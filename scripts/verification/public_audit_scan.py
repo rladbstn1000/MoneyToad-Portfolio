@@ -40,11 +40,11 @@ def safe_path(relative, *, output=False):
     return current
 
 
-def main():
+def main(*, evidence_directory='PUBLIC_SCANNER_AUDIT'):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run-label', required=True)
     args = parser.parse_args()
-    output = evidence_output(ROOT, 'PUBLIC_SCANNER_AUDIT', args.run_label)
+    output = evidence_output(ROOT, evidence_directory, args.run_label)
     output = safe_path(output.relative_to(ROOT), output=True)
     env = {key: value for key, value in os.environ.items() if not key.startswith('GIT_')}
     env['GIT_OPTIONAL_LOCKS'] = '0'

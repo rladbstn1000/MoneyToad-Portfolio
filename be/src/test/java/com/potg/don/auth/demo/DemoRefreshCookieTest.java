@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.Clock;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneOffset;
 
@@ -31,6 +32,54 @@ class DemoRefreshCookieTest {
 	void maxAgeFloorsTheRemainingAbsoluteLifetime() {
 		ResponseCookie cookie = writer(true, NOW).create("synthetic-cookie-value", NOW.plusSeconds(15).plusMillis(999));
 		assertThat(cookie.getMaxAge().getSeconds()).isEqualTo(15);
+	}
+
+	@Test
+	void exactAndFractionalSecondRemaindersNeverRoundTheCookieUp() {
+		for (long remainderMillis : new long[] {0, 1, 10, 999}) {
+			Instant absolute = NOW.plusSeconds(15).plusMillis(remainderMillis);
+			long remainingWholeSeconds = Duration.between(NOW, absolute).getSeconds();
+			ResponseCookie cookie = writer(true, NOW).create("synthetic-cookie-value", absolute);
+			assertThat(cookie.getMaxAge().getSeconds())
+				.as("Max-Age with %s milliseconds of fractional remainder", remainderMillis)
+				.isEqualTo(15)
+				.isEqualTo(Math.min(remainingWholeSeconds, 3600))
+				.isPositive()
+				.isLessThanOrEqualTo(remainingWholeSeconds);
+		}
+	}
+
+	@Test
+	void exactOneHourAndLongerRemaindersShareTheDefensiveCeiling() {
+		for (Duration remaining : new Duration[] {
+			Duration.ofSeconds(3600), Duration.ofSeconds(3600).plusMillis(1),
+			Duration.ofSeconds(3601), Duration.ofSeconds(4000).plusMillis(999)
+		}) {
+			ResponseCookie cookie = writer(true, NOW).create("synthetic-cookie-value", NOW.plus(remaining));
+			assertThat(cookie.getMaxAge().getSeconds())
+				.as("Max-Age for a remaining lifetime of %s", remaining)
+				.isEqualTo(3600)
+				.isEqualTo(Math.min(remaining.getSeconds(), 3600))
+				.isPositive()
+				.isLessThanOrEqualTo(remaining.getSeconds());
+		}
+	}
+
+	@Test
+	void everyMillisecondCreationPhaseHonorsTheSameAbsoluteDeadline() {
+		Instant secondBoundary = Instant.parse("2030-01-01T00:00:00Z");
+		Instant absolute = secondBoundary.plusSeconds(3600);
+		for (int phaseMillis = 0; phaseMillis < 1000; phaseMillis++) {
+			Instant createdAt = secondBoundary.plusMillis(phaseMillis);
+			long remainingWholeSeconds = Duration.between(createdAt, absolute).getSeconds();
+			ResponseCookie cookie = writer(true, createdAt).create("synthetic-cookie-value", absolute);
+			assertThat(cookie.getMaxAge().getSeconds())
+				.as("Max-Age at creation phase %s milliseconds", phaseMillis)
+				.isEqualTo(phaseMillis == 0 ? 3600 : 3599)
+				.isEqualTo(Math.min(remainingWholeSeconds, 3600))
+				.isPositive()
+				.isLessThanOrEqualTo(remainingWholeSeconds);
+		}
 	}
 
 	@Test

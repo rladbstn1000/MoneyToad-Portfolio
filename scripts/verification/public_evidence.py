@@ -111,7 +111,16 @@ def browser(source, directory):
         if cookie:
             entry['cookie_attributes'] = {key: cookie[key] for key in ('httpOnly', 'secure',
                 'sameSite', 'path', 'domainAttributeAbsent', 'sentOnReissue', 'jsVisible',
-                'absoluteExpiryUnchanged', 'removedOnLogout') if key in cookie}
+                'absoluteExpiryUnchanged', 'removedOnLogout', 'browserClockValidity') if key in cookie}
+            for source_key, output_key in (('loginCookie', 'login_max_age'),
+                                           ('rotatedCookie', 'reissue_max_age'),
+                                           ('deletedCookie', 'logout_max_age')):
+                metadata = cookie.get(source_key)
+                if metadata is not None:
+                    age = metadata.get('maxAge') if isinstance(metadata, dict) else None
+                    if type(age) is not int or not (0 <= age <= 3600):
+                        raise ValueError('COOKIE_METADATA_PROJECTION_REJECTED')
+                    entry['cookie_attributes'][output_key] = age
         seed = read('seed-counts.json')
         if seed:
             entry['seed_counts'] = counts(seed)

@@ -97,7 +97,7 @@ def main(*, evidence_directory='MOBILE_CHART', entrypoint='scripts/verification/
     parser.add_argument('--dependencies', type=Path, required=True)
     parser.add_argument('--run-label', required=True)
     parser.add_argument('--worker', action='store_true')
-    parser.add_argument('--evidence-directory', choices=('MOBILE_CHART', 'COLD_START_RECOVERY', 'PUBLIC_SCANNER_AUDIT'), default=evidence_directory)
+    parser.add_argument('--evidence-directory', choices=('MOBILE_CHART', 'COLD_START_RECOVERY', 'PUBLIC_SCANNER_AUDIT', 'COOKIE_E2E_TIME_BASIS'), default=evidence_directory)
     args = parser.parse_args()
     if args.worker:
         if not (ROOT / '.mobile-copy-owner').is_file(): parser.error('OWNED_COPY_REQUIRED')

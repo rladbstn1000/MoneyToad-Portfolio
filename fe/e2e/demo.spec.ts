@@ -1,12 +1,14 @@
 import { test } from './fixtures';
 import { expect, type Page, type BrowserContext, type Response } from '@playwright/test';
 import { writeFileSync } from 'node:fs';
+import { parsePublicDemoSetCookie } from './publicDemoCookie';
 
 type Event = { order: number; method: string; path: string; status?: number; phase: string };
 const auth = '/api/auth/demo/';
 const origin = process.env.E2E_ORIGIN!;
 const probe = `${new URL(origin).protocol}//127.0.0.1:${process.env.E2E_PROBE_PORT}`;
 const secure = origin.startsWith('https:');
+const cookieDeployment = secure ? 'public-demo' : 'local-demo';
 const headers = { 'Content-Type': 'application/json', 'X-MoneyToad-Demo': '1' };
 let events: Event[] = [], external = 0, phase = 'initial';
 function check(value: boolean, label: string): asserts value { if (!value) { writeFileSync(`${process.env.E2E_ARTIFACTS}/failed-check.json`, JSON.stringify({ check: label })); throw new Error(label); } }
@@ -122,10 +124,10 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
   const requestHeaders = await login.request().allHeaders();
   check(login.request().postData() === '{}' && requestHeaders.origin === origin &&
     requestHeaders['x-moneytoad-demo'] === '1' && requestHeaders['content-type'].startsWith('application/json'), 'browser login request');
-  const setCookie = (await login.headersArray()).find(h => h.name.toLowerCase() === 'set-cookie')?.value ?? '';
-  check(!/;\s*domain=/i.test(setCookie) && /;\s*httponly/i.test(setCookie), 'host only HttpOnly cookie');
+  const loginCookie = await parsePublicDemoSetCookie(login, { deployment: cookieDeployment, operation: 'issue' });
   const stored = await cookie(context);
-  check(stored.expires * 1000 <= absolute && stored.expires * 1000 > Date.now(), 'cookie absolute expiry');
+  const browserNow = await page.evaluate(() => Date.now());
+  check(stored.expires * 1000 > browserNow, 'cookie stored and currently valid in browser clock');
   await expect(page).toHaveURL(/\/chart$/);
   const seeded = await snapshot();
   check(seeded.users - before.users === 1 && seeded.cards - before.cards === 1 &&
@@ -229,7 +231,10 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
   oldAccess = await access(reissued);
   check((await reissued.request().allHeaders()).cookie?.includes(`demoRefreshToken=${stored.value}`) === true, 'actual refresh cookie sent');
   check(await expiry(await restoredSession) === absolute, 'absolute expiry unchanged');
-  check((await cookie(context)).expires * 1000 <= absolute, 'rotated cookie expiry bounded');
+  const rotatedCookie = await parsePublicDemoSetCookie(reissued, { deployment: cookieDeployment, operation: 'issue' });
+  const rotatedStored = await cookie(context);
+  const restoredBrowserNow = await page.evaluate(() => Date.now());
+  check(rotatedStored.expires * 1000 > restoredBrowserNow, 'rotated cookie currently valid in browser clock');
   await page.unroute(`${origin}${auth}ready`);
   await page.unroute(`${origin}${auth}reissue`); await page.unroute(`${origin}${auth}session`);
   await expect(page.locator('#screen1')).toBeVisible();
@@ -246,7 +251,9 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
   phase = 'logout';
   const loggedOut = page.waitForResponse(r => pathOf(r.url()) === `${auth}logout`);
   await page.getByRole('button', { name: '체험 종료', exact: true }).click();
-  check((await loggedOut).status() === 204, 'actual logout');
+  const logout = await loggedOut;
+  check(logout.status() === 204, 'actual logout');
+  const deletedCookie = await parsePublicDemoSetCookie(logout, { deployment: cookieDeployment, operation: 'delete' });
   await expect(start).toBeEnabled();
   check(!(await context.cookies()).some(c => c.name === 'demoRefreshToken'), 'cookie removed');
   check((await snapshot()).sessions === 0, 'Redis session removed');
@@ -265,6 +272,7 @@ test('real demo visit: login, Chart, reload and revoke', async ({ page, context 
     name: stored.name, httpOnly: stored.httpOnly, secure: stored.secure, sameSite: stored.sameSite,
     path: stored.path, domainAttributeAbsent: true, sentOnReissue: true, jsVisible: false,
     absoluteExpiryUnchanged: true, removedOnLogout: true,
+    loginCookie, rotatedCookie, deletedCookie, browserClockValidity: true,
   }, null, 2));
 });
 
