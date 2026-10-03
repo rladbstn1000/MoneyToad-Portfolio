@@ -1,3 +1,21 @@
+## 최신 전체 화면 공개 여정 — PASS
+
+2026-10-03. 실제 공개 제품 SHA는 `d020d837f2830125696d2038eb4a4c969864432e`, 검증기는 `public-harness-v2`다. 신규 방문자 1명·Chromium context 1개·실행 1회·자동 retry 0회로 마당·장독대·씀씀이·조언·곳간·정보 입력 전체 여정과 최종 outcome PASS를 확인했다.
+
+예산 PATCH 2회·category PATCH 1회와 PATCH 응답 뒤 시작된 실제 GET 재집계, 총 소비 908,000 유지·누수 0·annual leaked=false, 390/768/1440의 6개 화면, 곳간 P01~P14, reload/reissue/session 복원·체험 종료를 검증했다. 폐기 AT 401·직접 backend 403, 외부/금지/읽기 예산 초과/변경 상한 초과 요청 0, 최종 오류 0·exit 0·소유 자원 정리 PASS다.
+
+Cookie A/E는 실제 공개 응답 PASS이며 D는 기존 fixed-clock 근거를 유지한다. 이번 공개 실행의 결과를 전체 BE/FE 재실행으로 표기하지 않는다. 자연 cold-start는 **NOT_OBSERVED**, 공급자 장애전환 이후 폐기 보장은 기존 미확인 상태다. 과거 public Mypage 실패 원인은 이번 PASS와 별개로 **UNKNOWN**을 유지한다.
+
+```text
+FULL_DEMO_EXPERIENCE_PUBLIC_READY=true
+PUBLIC_DEPLOYMENT_READY=true
+HISTORICAL_PUBLIC_MYPAGE_FAILURE_CAUSE=UNKNOWN
+```
+
+[공개 전체 여정 검증 요약](public-full-experience-verified.md)에 검증기 manifest checksum과 결과 범위를 기록했다. 이번 마무리는 문서만 갱신하며 공개 여정 재실행·제품 변경·재배포는 없다. 문서 커밋 이후 GitHub HEAD와 배포 제품 SHA가 달라도 위 제품 배포는 유지한다. 자동 배포 OFF 설정은 변경하지 않는다. 아래 FAIL/UNKNOWN/로컬 결과와 readiness 기록은 당시 상태 그대로 보존한다.
+
+---
+
 ## 최신 PATCH 이후 응답 선택 경합 교정 — 로컬 PASS
 
 2026-10-02. main `9e52a4ca90838b420fddb750b4c311ea869c06bf`의 제품 bytes를 유지하고 검증기만 교정했다. 실제 공개 이전 실행에서 stale annual 응답을 선택한 경합은 확인됐으나 제품 재집계 결과는 미관측이었다. 요청 시작/응답 순서를 함께 기록하고, PATCH200 뒤에 시작된 실제 연간·월별·카테고리 응답만 선택한다. 이미 도착한 응답과 이후 응답 모두 지원하며 explicit fetch·sleep·mock·기대값 완화는 없다.
