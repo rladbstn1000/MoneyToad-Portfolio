@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "files_scanned": 1071,
+  "unresolved_count": 0,
+  "source_classification_count": 149,
+  "scanner_rules_changed": false,
+  "new_source_classifications": 0,
+  "existing_source_metadata_records_updated": 4,
+  "scanner_regression_tests": 39,
+  "receiver_matches_tested_candidate": true,
+  "unexpected_files": 0
+}

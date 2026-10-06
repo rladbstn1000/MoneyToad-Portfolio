@@ -137,19 +137,39 @@ describe('legacy budget behavior through actual query, mutation and API', () => 
     const svg = crack?.ownerSVGElement;
     const body = svg?.querySelector('path[fill="white"]');
     if (!crack || !svg || !body) throw new Error('Missing pot SVG');
+    const container = crack.closest('.pot-visualization')!;
+    vi.spyOn(container, 'getBoundingClientRect').mockReturnValue(new DOMRect(100, 60, 800, 500));
+    vi.spyOn(svg, 'getBoundingClientRect').mockReturnValue(new DOMRect(340, 90, 500, 520));
     let inside = true;
     Object.defineProperty(svg, 'createSVGPoint', { value: () => ({ x: 0, y: 0, matrixTransform: () => ({ x: 10, y: 10 }) }) });
     Object.defineProperty(body, 'getScreenCTM', { value: () => ({ inverse: () => ({}) }) });
     Object.defineProperty(body, 'isPointInFill', { value: () => inside });
     fireEvent.mouseEnter(crack, { clientX: 10, clientY: 10 });
     expect(screen.getByText('식비: 100,000냥 누수')).toBeInTheDocument();
-    fireEvent.mouseMove(svg, { clientX: 10, clientY: 10 });
-    expect(screen.getByText('식비: 100,000냥 누수')).toBeInTheDocument();
+    fireEvent.mouseMove(svg, { clientX: 400, clientY: 120 });
+    expect(screen.getByText('식비: 100,000냥 누수')).toHaveStyle({ left: '300px', top: '60px' });
     inside = false; fireEvent.mouseMove(svg, { clientX: 30, clientY: 30 });
     expect(screen.queryByText('식비: 100,000냥 누수')).not.toBeInTheDocument();
   });
 });
 describe('Doojo object/nullable contract through actual adapter and page', () => {
+  it('keeps OAuth month queries unchanged when opening the on-page detail section', async () => {
+    mount('advice'); await screen.findByRole('heading', { name: '식비' });
+    const completedQueries = [...monthQueries];
+    fireEvent.click(screen.getByRole('button', { name: '카테고리별 소비 조언 보기 ↓' }));
+    expect(screen.getByRole('heading', { name: '9월 과소비 요약' })).toHaveFocus();
+    expect(monthQueries).toEqual(completedQueries);
+    const card = screen.getByRole('button', { name: /식비/ });
+    fireEvent.click(card); fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument(); expect(card).toHaveFocus();
+  });
+  it('keeps a usable empty-result destination for successful OAuth no-advice data', async () => {
+    sheets = [sheet(9, { 식비: prediction(0, false) })]; mount('advice');
+    await screen.findByText('축하하오! 과소비 항목이 없소!');
+    fireEvent.click(screen.getByRole('button', { name: '이번 달 소비 결과 보기 ↓' }));
+    expect(screen.getByRole('heading', { name: '9월 소비 확인 결과' })).toHaveFocus();
+    expect(monthQueries).toEqual(['?year=2026&month=9']);
+  });
   it('keeps amount arithmetic, nullable exclusions, ordering and modal detail', async () => {
     const view = mount('advice');
     await screen.findByRole('heading', { name: '식비' });

@@ -17,6 +17,43 @@ const expectPage = (page: number) => expect(screen.getByRole('button', { name: `
 const unlock = () => act(() => vi.advanceTimersByTime(700));
 
 describe('landing lint refactor behavior', () => {
+  it('places story copy inside the exact-ratio image scene instead of a separate column', () => {
+    const { container } = mount();
+    const layout = container.querySelector('.dk-page .dk-story-layout');
+    const scene = layout?.querySelector('.dk-story-scene');
+    const image = screen.getByRole('img', { name: '콩쥐의 꿈 이야기 그림' });
+    const copy = layout?.querySelector('.dk-content');
+    expect(scene).toContainElement(image);
+    expect(image).toHaveAttribute('src', '/landing/landing1.webp');
+    expect(image).toHaveAttribute('width', '1549');
+    expect(image).toHaveAttribute('height', '1033');
+    expect(scene).toContainElement(copy as HTMLElement);
+    expect(scene?.nextElementSibling).toBeNull();
+    expect(copy?.parentElement).toBe(scene);
+    expect(container.querySelector('.dk-page--1')).toHaveStyle({ '--scene-ratio': String(1549 / 1033) });
+    expect(copy).not.toContainElement(image);
+    expect(container.querySelectorAll('.dk-page')).toHaveLength(4);
+    expect(screen.getAllByRole('button', { name: /Go to page/ })).toHaveLength(4);
+  });
+  it('retains all four stories with their own image dimensions and overlay anchors', () => {
+    const { container } = mount();
+    const stories = [
+      ['콩쥐의 꿈', 1549, 1033], ['두꺼비를 만나다', 1493, 995],
+      ['장독대의 비밀', 2048, 1365], ['콩쥐의 장독대', 1280, 853],
+    ] as const;
+    stories.forEach(([title, width, height], index) => {
+      if (index > 0) { unlock(); fireEvent.click(screen.getByRole('button', { name: `Go to page ${index + 1}` })); }
+      const image = screen.getByRole('img', { name: `${title} 이야기 그림` });
+      const scene = image.closest('.dk-story-scene');
+      expect(image).toHaveAttribute('width', String(width));
+      expect(image).toHaveAttribute('height', String(height));
+      expect(scene).toContainElement(screen.getByRole('heading', { name: title }));
+      expect(scene?.querySelector('.dk-desc')).not.toBeEmptyDOMElement();
+      expect(container.querySelector(`.dk-page--${index + 1}`)).toHaveStyle({ '--scene-ratio': String(width / height) });
+      expect(scene?.querySelector('.dk-content')).toHaveClass('show');
+    });
+    expect(container.querySelector('.dk-counter')).toHaveTextContent('04/04');
+  });
   it('keeps the 700ms lock and wheel/key boundaries under StrictMode', () => {
     const { landing } = mount();
     fireEvent.keyDown(window, { key: 'ArrowUp' }); expectPage(1);

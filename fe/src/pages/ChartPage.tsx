@@ -28,7 +28,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { transactionQueryKeys } from "../api/queryKeys";
 import { belongsToPeriod, findEditableTransaction, isTransactionId } from "./chartDataBoundary";
 import type { ChartPeriod } from "./chartDataBoundary";
-import { authMode } from "../auth/authMode";
+import { authMode, isLocalDemo } from "../auth/authMode";
 import { parseDemoChartPeriod } from "./demoChartPeriod";
 
 const isDemo = authMode === "demo";
@@ -159,7 +159,7 @@ const CustomTooltip = ({ active, payload, label }: ChartTooltipProps) => {
 
 export default function ChartPage() {
   /* 무대(연못)의 비율 고정용 상태 */
-  const [pondAR, setPondAR] = useState(16 / 9);
+  const [pondAR, setPondAR] = useState(1280 / 853);
   const [compactLayout, setCompactLayout] = useState(
     () => window.matchMedia?.("(max-width: 900px)").matches ?? false
   );
@@ -439,6 +439,7 @@ export default function ChartPage() {
     updateCategoryMutation.mutate({
       transactionId: transaction.id,
       data: { category: cat },
+      period,
     }, {
       onError: () => setSaveError({
         period: String(period.year) + "/" + period.month,
@@ -651,14 +652,12 @@ export default function ChartPage() {
 
       {/* ===== 화면 1: 라인차트 섹션 ===== */}
       <section id="screen1" className="jp-screen" ref={screen1Ref}>
-        {/* '무대' : 고정 비율 컨테이너 */}
-        <div className="jp-stage" style={{ aspectRatio: pondAR }}>
-          <div className="jp-page-title-section">
-            <h1>월간 소비 비교</h1>
+        <div className="jp-page-title-section">
+            <h1>{isDemo ? "월간 소비 내역" : "월간 소비 비교"}</h1>
             <p>연꽃과 잎을 클릭하면 해당 달의 상세 소비를 볼 수 있습니다!</p>
             {isDemo && <>
-              <p>직접 작성한 합성 소비·기준 예산입니다. AI 예측이 아닙니다.{demoPeriod && ` 기준월 ${demoPeriod.anchor}`}</p>
-              <p>또래 비교 데이터는 이번 체험에서 제공하지 않습니다.</p>
+              <p>{isLocalDemo ? "샘플 소비·기준 예산" : "직접 작성한 합성 소비·기준 예산입니다. AI 예측이 아닙니다."}{demoPeriod && ` ${isLocalDemo ? "샘플 기준월" : "기준월"} ${demoPeriod.anchor}`}</p>
+              <details className="jp-demo-explanation"><summary>샘플 데이터 안내</summary><p>또래 비교 데이터는 이번 체험에서 제공하지 않습니다.{isLocalDemo && " AI 예측이 아닙니다."}</p></details>
             </>}
             <div className="jp-query-status">
               {yearQuery.isError ? (
@@ -681,6 +680,7 @@ export default function ChartPage() {
             </div>
           </div>
 
+        <div className="jp-stage" style={{ aspectRatio: pondAR }}>
           {/* 연못 바닥: onLoad에서 실제 비율로 교체 */}
           <img
             src="/charts/water.webp"
@@ -751,6 +751,7 @@ export default function ChartPage() {
               </LineChart>
             </ResponsiveContainer>
           </div>
+        </div>
           <nav className="jp-mobile-months" aria-label="월별 상세 보기">
             {lineData.map(point => {
               const { currentYear, currentMonth } = getCurrentDateInfo();
@@ -764,7 +765,6 @@ export default function ChartPage() {
               </button>;
             })}
           </nav>
-        </div>
       </section>
 
       {/* ===== 화면 2: 상세(선택 시 나타남) ===== */}

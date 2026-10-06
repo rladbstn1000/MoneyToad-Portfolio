@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "starting_point": "uncommitted step25 source",
+  "files": [
+    {
+      "file": "fe/e2e/local-demo.spec.ts",
+      "sha256": "b153934aa4882313744c66e7bf9000a58bce16d1315bef04a43be9a5dea32b72"
+    },
+    {
+      "file": "fe/e2e/pot-visual-fixture.tsx",
+      "sha256": "a6e64cdaf364e4ef03002f6f5042ce7bb4ca090f361f18ff009e5e8042768f49"
+    },
+    {
+      "file": "fe/src/pages/LeakPotPage.css",
+      "sha256": "8036c94c6c79f2355ca2481efcdb8faf30236f565173bae1ad58b4c0eb6b3789"
+    },
+    {
+      "file": "fe/src/pages/LeakPotPage.tsx",
+      "sha256": "19aacfbb78020772d3cb5cf0418c080531be7547f1e14db85af54f3a2968f42b"
+    },
+    {
+      "file": "fe/src/pages/ScrollLandingPage.css",
+      "sha256": "43623c5595f736b542363d4db9e852d6c2d9ba2352466f9c5231a7895ef71e62"
+    },
+    {
+      "file": "fe/src/pages/ScrollLandingPage.tsx",
+      "sha256": "1c6611db648487a3cc9c6829798e738c75134b0b1e398d91e87f6b395872c346"
+    },
+    {
+      "file": "fe/src/pages/ToadAdvice.css",
+      "sha256": "95064a3b9a050b03dbcd63a1ac6c01f900266e4834d456ca99584ad5c11c3d4d"
+    },
+    {
+      "file": "fe/src/pages/ToadAdvice.tsx",
+      "sha256": "1f2ac2fcb1afa29cf5fa5281022f5c46c5492887491958b97fa23f368ea3b57a"
+    },
+    {
+      "file": "fe/src/pages/potLeakAnchors.ts",
+      "sha256": "41a1c4b1b1beda28088577a3281593e3e22d15ababf3acf8900b1f74b6def065"
+    },
+    {
+      "file": "fe/tests/LandingLintRegression.test.tsx",
+      "sha256": "d122c562e046fdcfe727c1ec86f5f209df14169301ce797691f9194699c4b152"
+    },
+    {
+      "file": "fe/tests/LegacyLintRegression.test.tsx",
+      "sha256": "c762842983c409bf0aa3127cab6ab71b745a13b15ea0449a38167218d95144af"
+    },
+    {
+      "file": "fe/tests/demo/demoAdvice.test.tsx",
+      "sha256": "91409c7f9285a385a6ebf53b79f3f102df92ba13203c5f421bf1fd358b892fe5"
+    },
+    {
+      "file": "fe/tests/demo/demoLeakPot.test.tsx",
+      "sha256": "9c16c056e7a24a47a222c475b268f02e90d5d45644782f1ae93d79de5fc21682"
+    },
+    {
+      "file": "fe/tests/local/localAdviceNavigation.test.tsx",
+      "sha256": "e7d1a5b44d5701a56e340fe9fa74cd59b7f17abb8884aaed4abec81f40dad479"
+    },
+    {
+      "file": "fe/tests/potLeakAnchors.test.ts",
+      "sha256": "4c801a438c2a396d39a01ac1adde1e5ed0f83496029d6bf73e164709b504c508"
+    },
+    {
+      "file": "scripts/verification/local_demo_checks.py",
+      "sha256": "14e26764725d1deeececcb0e656db83faf5200178a97c9a4117926d46d909d45"
+    }
+  ],
+  "product_modules": 7,
+  "seed_auth_api_chart_unchanged": true
+}

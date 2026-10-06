@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "title": "local complete journey and memory reset",
+      "status": "passed",
+      "milliseconds": 10681
+    },
+    {
+      "title": "local geometry 390x844",
+      "status": "passed",
+      "milliseconds": 2378
+    },
+    {
+      "title": "local geometry 768x1024",
+      "status": "passed",
+      "milliseconds": 2578
+    },
+    {
+      "title": "local geometry 1440x1000",
+      "status": "passed",
+      "milliseconds": 2629
+    },
+    {
+      "title": "local geometry 1920x1080",
+      "status": "passed",
+      "milliseconds": 1328
+    },
+    {
+      "title": "local geometry 2560x1440",
+      "status": "passed",
+      "milliseconds": 1889
+    },
+    {
+      "title": "local geometry 3840x2160",
+      "status": "passed",
+      "milliseconds": 3356
+    },
+    {
+      "title": "local geometry 1920x900",
+      "status": "passed",
+      "milliseconds": 1169
+    },
+    {
+      "title": "local direct route external-history return and no asset blocking",
+      "status": "passed",
+      "milliseconds": 383
+    }
+  ],
+  "globalErrors": 0
+}

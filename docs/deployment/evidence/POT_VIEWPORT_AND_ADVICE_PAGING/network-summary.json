@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "cases": 16,
+  "static_requests": 501,
+  "api_attempts": 0,
+  "external_attempts": 0,
+  "page_errors": 0,
+  "backend_started": false,
+  "provider_connections": 0,
+  "automatic_retries": 0
+}

@@ -8,14 +8,12 @@ import React, {
   useState,
 } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { authMode } from "../auth/authMode";
+import { authMode, isLocalDemo } from "../auth/authMode";
 import { useAuthStore } from "../store/authStore";
+import { useLocalDemoStore } from "../demo/localDemoStore";
 import { useDemoPeriod } from "../demo/useDemoPeriod";
 import { adaptDemoBudgets, parseDemoBudgetMonth } from "../demo/demoBudgetPresentation";
 import { useDemoBudgetChanges } from "../demo/useDemoBudgetChanges";
-import { monthlyBudgetQueryKeys } from "../api/queryKeys";
-import { getMonthlyBudgets } from "../api/services/budgets";
 import { useUpdateBudgetMutation } from "../api/mutation/budgetMutation";
 import {
   useMonthlyBudgetsQuery,
@@ -25,6 +23,7 @@ import Header from "../components/Header";
 import LoadingOverlay from "../components/LoadingOverlay";
 import type { MonthlyBudgetResponse, YearlyBudgetLeakResponse } from "../types";
 import "./LeakPotPage.css";
+import { getPotLeakGeometry, getLocalPotLeakGeometry, POT_IMAGE_FRAME } from "./potLeakAnchors";
 
 /* ------------------------------ 타입 ------------------------------ */
 interface Category {
@@ -34,26 +33,12 @@ interface Category {
   threshold: number;
   initialBudget: number;
 }
-interface LeakingCategory extends Category {
-  originalIndex: number;
-}
 interface TooltipState {
   visible: boolean;
   content: string;
   x: number;
   y: number;
 }
-interface LeakAnchor {
-  u: number;
-  v: number;
-  scale: number;
-}
-interface AbsPosition {
-  x: number;
-  y: number;
-  scale: number;
-}
-
 /* ------------------------------ 데이터 ------------------------------ */
 const INITIAL_CATEGORIES: Category[] = [
   { id: 1, name: "식비", spending: 300000, threshold: 300000, initialBudget: 300000 },
@@ -77,33 +62,11 @@ const MONTHS = Array.from({ length: 12 }, (_, i) => ({
 
 /* ------------------------------ 레이아웃 상수 ------------------------------ */
 const VIEWBOX_W = 500;
-const VIEWBOX_H = 520;
-const FLOOR_Y = 515;
-const POT_W = 310;
-const POT_H = 330;
-const POT_X = 95;
-const POT_Y = FLOOR_Y - 8 - POT_H;
-
-/* ------------------------------ 균열 위치 ------------------------------ */
-const LEAK_ANCHORS: LeakAnchor[] = [
-  { u: 0.5, v: 0.35, scale: 0.17 },
-  { u: 0.3, v: 0.4, scale: 0.15 },
-  { u: 0.7, v: 0.42, scale: 0.16 },
-  { u: 0.2, v: 0.55, scale: 0.14 },
-  { u: 0.8, v: 0.58, scale: 0.18 },
-  { u: 0.48, v: 0.5, scale: 0.15 },
-  { u: 0.35, v: 0.75, scale: 0.2 },
-  { u: 0.65, v: 0.78, scale: 0.19 },
-  { u: 0.52, v: 0.82, scale: 0.16 },
-  { u: 0.75, v: 0.65, scale: 0.17 },
-  { u: 0.28, v: 0.68, scale: 0.14 },
-  { u: 0.6, v: 0.48, scale: 0.18 },
-];
-const anchorToAbs = (a: LeakAnchor): AbsPosition => ({
-  x: POT_X + a.u * POT_W,
-  y: POT_Y + a.v * POT_H,
-  scale: a.scale,
-});
+// The demo owns its layout height, so reserve the measured maximum water
+// trajectory below the 480-unit floor. OAuth keeps its existing parent sizing.
+const VIEWBOX_H = authMode === "demo" ? 700 : 520;
+const FLOOR_Y = 480;
+const { x: POT_X, y: POT_Y, width: POT_W, height: POT_H } = POT_IMAGE_FRAME;
 
 /* ------------------------------ 유틸: 연-월 누수 인덱스 ------------------------------ */
 const buildLeakIndex = (rows: YearlyBudgetLeakResponse[] = []) => {
@@ -195,12 +158,12 @@ const WATER_STREAM_ORIGIN_X_RATIO = 0.03;
 const WATER_STREAM_ORIGIN_Y_RATIO = 0.28;
 
 interface PotVisualizationProps {
-  leakingCategories: LeakingCategory[];
+  leakingCategories: Category[];
   totalLeak: number;
   formatter: Intl.NumberFormat;
 }
 
-const PotVisualization: React.FC<PotVisualizationProps> = ({
+export const PotVisualization: React.FC<PotVisualizationProps> = ({
   leakingCategories,
   totalLeak,
   formatter,
@@ -213,7 +176,12 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
       .catch(console.error);
   }, []);
 
-  const hasLeak = leakingCategories.length > 0;
+  const visibleLeaks = leakingCategories.filter(category => category.spending > category.threshold
+    && (!isLocalDemo || category.id !== null));
+  const geometryFor = (category: Category) => isLocalDemo
+    ? getLocalPotLeakGeometry(category.name, category.spending, category.id === null ? null : category.threshold)
+    : { ...getPotLeakGeometry(category.name, category.spending - category.threshold), ratio: undefined };
+  const hasLeak = visibleLeaks.length > 0;
   const puddleScale = Math.min(1.0 + totalLeak / 300000, 2.2);
 
   // tooltip
@@ -259,7 +227,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
     return { x: e.clientX - rect.left, y: e.clientY - rect.top };
   };
 
-  const handleCrackEnter = (e: React.MouseEvent, cat: LeakingCategory) => {
+  const handleCrackEnter = (e: React.MouseEvent, cat: Category) => {
     const leakAmount = cat.spending - cat.threshold;
     const { x, y } = toLocal(e);
     setTooltip({
@@ -272,9 +240,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
 
   const handleSvgMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = e.currentTarget as SVGSVGElement;
-    const rect = svg.getBoundingClientRect();
-    const lx = e.clientX - rect.left;
-    const ly = e.clientY - rect.top;
+    const { x: lx, y: ly } = toLocal(e);
 
     if (potBodyRef.current) {
       const pt = svg.createSVGPoint();
@@ -300,7 +266,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
 
   return (
     <div
-      className="pot-container"
+      className="pot-container pot-visualization"
       ref={potRef}
       style={{ pointerEvents: "auto" }}
     >
@@ -369,7 +335,7 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
           {/* puddle */}
           <g
             id="puddle-group"
-            transform={`translate(0, -25)`}
+            transform="translate(0, -2)"
             style={{
               opacity: hasLeak ? 0.7 : 0,
               transition: "opacity 0.7s ease-out",
@@ -418,52 +384,55 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
             />
           </g>
 
-          {/* 균열 */}
+          {/* Every visible category owns a fixed anchor, including its water origin. */}
           <g id="cracks">
-            {leakingCategories.map((cat) => {
-              const anchor =
-                LEAK_ANCHORS[cat.originalIndex % LEAK_ANCHORS.length];
-              const { x, y, scale: baseScale } = anchorToAbs(anchor);
-              const leakAmount = cat.spending - cat.threshold;
-              const crackScale =
-                baseScale *
-                Math.max(0.4, Math.min(1.5, 0.4 + leakAmount / 80000));
-
+            {visibleLeaks.map((cat) => {
+              const geometry = geometryFor(cat);
               return (
                 <image
                   key={cat.name}
                   href={broken}
                   className="crack"
-                  x={(-450 / 2) * crackScale + x}
-                  y={(-450 / 2) * crackScale + y}
-                  width={450 * crackScale}
-                  height={450 * crackScale}
+                  data-category={cat.name}
+                  data-leak-amount={cat.spending - cat.threshold}
+                  data-crack-scale={geometry.crackScale}
+                  data-leak-ratio={geometry.ratio}
+                  data-anchor-u={geometry.anchor.u}
+                  data-anchor-v={geometry.anchor.v}
+                  data-origin-x={geometry.x}
+                  data-origin-y={geometry.y}
+                  x={geometry.left}
+                  y={geometry.top}
+                  width={geometry.width}
+                  height={geometry.height}
                   onMouseEnter={(e) => handleCrackEnter(e, cat)}
                 />
               );
             })}
           </g>
 
-          {/* 물줄기 */}
           <g id="waters">
-            {leakingCategories.map((cat) => {
-              const anchor =
-                LEAK_ANCHORS[cat.originalIndex % LEAK_ANCHORS.length];
-              const { x, y, scale: baseScale } = anchorToAbs(anchor);
-              const leakAmount = cat.spending - cat.threshold;
+            {visibleLeaks.map((cat) => {
+              const { anchor, x, y, waterScale, ratio } = geometryFor(cat);
               const isLeft = anchor.u < 0.5;
-              const waterScale = Math.max(
-                0.2,
-                Math.min(2.0, 0.3 + leakAmount / 80000)
-              );
-
               return (
                 <foreignObject
                   key={cat.name}
-                  x={x - 225 * baseScale}
-                  y={y - 225 * baseScale}
-                  width={450 * baseScale}
-                  height={450 * baseScale}
+                  className="pot-leak-stream"
+                  data-category={cat.name}
+                  data-leak-amount={cat.spending - cat.threshold}
+                  data-water-scale={waterScale}
+                  data-leak-ratio={ratio}
+                  data-water-width={WATER_BASE_W * waterScale}
+                  data-water-height={WATER_BASE_H * waterScale}
+                  data-anchor-u={anchor.u}
+                  data-anchor-v={anchor.v}
+                  data-origin-x={x}
+                  data-origin-y={y}
+                  x={x}
+                  y={y}
+                  width={1}
+                  height={1}
                   style={{ overflow: "visible", pointerEvents: "none" }}
                 >
                   <div className={`water-animation ${isLeft ? "flip" : ""}`}>
@@ -477,16 +446,8 @@ const PotVisualization: React.FC<PotVisualizationProps> = ({
                           position: "absolute",
                           width: `${WATER_BASE_W * waterScale}px`,
                           height: `${WATER_BASE_H * waterScale}px`,
-                          left: `calc(50% - ${
-                            WATER_BASE_W *
-                            waterScale *
-                            WATER_STREAM_ORIGIN_X_RATIO
-                          }px)`,
-                          top: `calc(50% - ${
-                            WATER_BASE_H *
-                            waterScale *
-                            WATER_STREAM_ORIGIN_Y_RATIO
-                          }px)`,
+                          left: -WATER_BASE_W * waterScale * WATER_STREAM_ORIGIN_X_RATIO,
+                          top: -WATER_BASE_H * waterScale * WATER_STREAM_ORIGIN_Y_RATIO,
                           pointerEvents: "none",
                         }}
                       />
@@ -621,7 +582,7 @@ const OAuthLeakPotPage = () => {
   const { month } = useParams();
   const navigate = useNavigate();
 
-  const [leakingCategories, setLeakingCategories] = useState<LeakingCategory[]>(
+  const [leakingCategories, setLeakingCategories] = useState<Category[]>(
     []
   );
   const [totalLeak, setTotalLeak] = useState<number>(0);
@@ -722,9 +683,7 @@ const OAuthLeakPotPage = () => {
 
   // 누수 계산
   useEffect(() => {
-    const currentLeaking = categories
-      .map((cat, index) => ({ ...cat, originalIndex: index }))
-      .filter((cat) => cat.spending > cat.threshold);
+    const currentLeaking = categories.filter((cat) => cat.spending > cat.threshold);
     const currentTotalLeak = currentLeaking.reduce(
       (sum, cat) => sum + (cat.spending - cat.threshold),
       0
@@ -844,7 +803,9 @@ function DemoLeakPotPage() {
   const { query, period } = useDemoPeriod();
   const { month: monthParam } = useParams();
   const navigate = useNavigate();
-  const generation = useAuthStore(state => state.generation);
+  const remoteGeneration = useAuthStore(state => state.generation);
+  const localGeneration = useLocalDemoStore(state => state.generation);
+  const generation = isLocalDemo ? localGeneration : remoteGeneration;
   const status = useAuthStore(state => state.status);
   const month = parseDemoBudgetMonth(monthParam);
   useEffect(() => {
@@ -852,10 +813,10 @@ function DemoLeakPotPage() {
   }, [period, month, navigate]);
   const rootVars = { "--bg": `url(${bgImage})`, "--paper": `url(${paper})`,
     "--pointer": `url(${customPointer})` } as React.CSSProperties;
-  return <div className="app-container demo-pot-page" data-demo-page="pot" style={rootVars}>
+  return <div className={`app-container demo-pot-page${isLocalDemo ? " local-pot-page" : ""}`} data-demo-page="pot" style={rootVars}>
     <Header />
-    <p className="demo-pot-notice">합성 소비와 직접 작성한 기준 예산입니다. AI 예측이 아닙니다.</p>
-    {status !== 'authenticated' || query.isPending ? <p role="status">장독대의 기준월을 확인하고 있습니다.</p>
+    <p className="demo-pot-notice">{isLocalDemo ? "샘플 소비와 기준 예산으로 누수를 살펴보세요." : "합성 소비와 직접 작성한 기준 예산입니다. AI 예측이 아닙니다."}</p>
+    {(!isLocalDemo && status !== 'authenticated') || query.isPending ? <p role="status">장독대의 기준월을 확인하고 있습니다.</p>
       : query.isError ? <section role="alert">기준월을 불러오지 못했습니다. <button onClick={() => void query.refetch()}>다시 조회</button></section>
       : !period ? <p role="alert">체험 기간 데이터를 확인할 수 없습니다.</p>
       : month !== null ? <DemoMonthlyPot key={`${generation}/${period.yearsByMonth[month - 1]}/${month}`}
@@ -871,16 +832,14 @@ function DemoMonthlyPot({ year, month, generation, anchorYear, anchorMonth, leak
   leakIndex: Map<string, boolean>;
 }) {
   const navigate = useNavigate();
-  const query = useQuery({ queryKey: monthlyBudgetQueryKeys.monthly(year, month),
-    queryFn: () => getMonthlyBudgets({ year, month }), retry: false });
+  const query = useMonthlyBudgetsQuery(year, month, { retry: false });
   const { pending, saving, errors, change } = useDemoBudgetChanges(year, month, generation);
   const rows = useMemo(() => adaptDemoBudgets(query.data), [query.data]);
   const categories = useMemo(() => (rows ?? []).map(row => ({
     ...adaptBudgetDataToCategory(row),
     threshold: row.id === null ? row.budget : pending[row.id]?.amount ?? row.budget,
   })).sort((a, b) => b.spending - a.spending), [rows, pending]);
-  const leaking = categories.map((cat, originalIndex) => ({ ...cat, originalIndex }))
-    .filter(cat => cat.spending > cat.threshold);
+  const leaking = categories.filter(cat => cat.spending > cat.threshold);
   const totalLeak = leaking.reduce((sum, cat) => sum + cat.spending - cat.threshold, 0);
   const formatter = new Intl.NumberFormat("ko-KR");
   const ready = query.isSuccess && rows !== null && rows.length > 0;
@@ -897,16 +856,19 @@ function DemoMonthlyPot({ year, month, generation, anchorYear, anchorMonth, leak
           <PotVisualization leakingCategories={leaking} totalLeak={totalLeak} formatter={formatter} />
         </div>
         <section className="control-panel" aria-label="카테고리별 소비 한도">
+          <img className="demo-paper-decoration" src={paper} alt="" aria-hidden="true" width={500} height={750} />
+          <div className="demo-paper-safe-area">
           <h2 className="panel-title">{year}년 {month}월 지출을 다스리시오</h2>
-          <p className="demo-pot-anchor">기준월 {anchorYear}년 {anchorMonth}월 · 한도는 저장 후 다시 조회합니다.</p>
-          <div className="sliders-container">
+          <p className="demo-pot-anchor">{isLocalDemo ? "샘플 기준월" : "기준월"} {anchorYear}년 {anchorMonth}월{!isLocalDemo && " · 한도는 저장 후 다시 조회합니다."}</p>
+          <p className="demo-panel-scroll-hint">목록을 내려 모든 카테고리를 확인하세요.</p>
+          <div className="sliders-container" tabIndex={0} aria-label="스크롤 가능한 예산 목록">
             {categories.map(cat => <div key={cat.name} className="demo-budget-row">
               <CustomSlider cat={cat} isLeaking={cat.spending > cat.threshold} formatter={formatter}
                 handleThresholdChange={change} budgetMissing={cat.id === null} disabled={cat.id === null || saving.has(cat.id)} />
               <p className="demo-budget-state">
                 {cat.id === null ? "기준 예산 없음 · 체험에서 조정할 수 없음"
                   : saving.has(cat.id) ? "한도를 저장하고 있습니다."
-                  : pending[cat.id] ? "변경한 한도를 저장할 예정입니다." : "방문자 전용 기준 예산"}
+                  : pending[cat.id] ? "변경한 한도를 저장할 예정입니다." : isLocalDemo ? "이 탭의 샘플 기준 예산" : "방문자 전용 기준 예산"}
                 {cat.spending > cat.threshold && ` · 누수 ${formatter.format(cat.spending - cat.threshold)}원`}
               </p>
               {cat.id !== null && errors[cat.id] && <p role="alert" className="demo-budget-error">{errors[cat.id]}</p>}
@@ -915,6 +877,7 @@ function DemoMonthlyPot({ year, month, generation, anchorYear, anchorMonth, leak
           <div className="summary" aria-live="polite">
             {totalLeak > 0 ? <p className="summary-leak">총 {formatter.format(totalLeak)}냥이 새고 있소!</p>
               : <p className="summary-good">완벽하오! 새는 돈이 없소!</p>}
+          </div>
           </div>
         </section>
       </div>}

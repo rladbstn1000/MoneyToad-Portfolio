@@ -1,0 +1,377 @@
+{
+  "past_evidence_preserved": true,
+  "attempts": [
+    {
+      "scope": "browser-first",
+      "status": "FAIL",
+      "cleanup_complete": true,
+      "reason": "Compile failed on a newly introduced nullable parent element type; corrected explicitly before browser execution.",
+      "observed_cases": [],
+      "global_errors": 0
+    },
+    {
+      "scope": "browser-second",
+      "status": "FAIL",
+      "cleanup_complete": true,
+      "reason": "Twelve cases passed; the actual-slider observer sent rapid keys without awaiting each committed controlled-input value. Updated the test to observe every 5000-unit native key step.",
+      "observed_cases": [
+        {
+          "title": "local complete journey and memory reset",
+          "status": "passed",
+          "milliseconds": 10876
+        },
+        {
+          "title": "local geometry 390x844",
+          "status": "passed",
+          "milliseconds": 7473
+        },
+        {
+          "title": "local geometry 768x1024",
+          "status": "passed",
+          "milliseconds": 7982
+        },
+        {
+          "title": "local geometry 1440x1000",
+          "status": "passed",
+          "milliseconds": 8807
+        },
+        {
+          "title": "local geometry 1920x1080",
+          "status": "passed",
+          "milliseconds": 7894
+        },
+        {
+          "title": "local geometry 2560x1440",
+          "status": "passed",
+          "milliseconds": 10159
+        },
+        {
+          "title": "local geometry 3840x2160",
+          "status": "passed",
+          "milliseconds": 15597
+        },
+        {
+          "title": "local geometry 1920x900",
+          "status": "passed",
+          "milliseconds": 7391
+        },
+        {
+          "title": "local direct route external-history return and no asset blocking",
+          "status": "passed",
+          "milliseconds": 391
+        },
+        {
+          "title": "local fixed crack anchors at one three five and maximum categories",
+          "status": "passed",
+          "milliseconds": 3813
+        },
+        {
+          "title": "local advice keyboard wheel reduced motion and empty result navigation",
+          "status": "passed",
+          "milliseconds": 493
+        },
+        {
+          "title": "local slider full range changes visible severity and preserves Lottie instance",
+          "status": "passed",
+          "milliseconds": 5076
+        },
+        {
+          "title": "local actual budget sliders span housing range without external scroll",
+          "status": "failed",
+          "milliseconds": 15180,
+          "assertionLine": "423"
+        }
+      ],
+      "global_errors": 1
+    },
+    {
+      "scope": "browser-third",
+      "status": "FAIL",
+      "cleanup_complete": true,
+      "reason": "Fifteen cases passed; modal scroll was sampled before compositor completion. Actual scroll extent and delayed completion were confirmed; changed the assertion to poll for actual progress, preserving background-position checks.",
+      "observed_cases": [
+        {
+          "title": "local complete journey and memory reset",
+          "status": "passed",
+          "milliseconds": 10828
+        },
+        {
+          "title": "local geometry 390x844",
+          "status": "passed",
+          "milliseconds": 7233
+        },
+        {
+          "title": "local geometry 768x1024",
+          "status": "passed",
+          "milliseconds": 8127
+        },
+        {
+          "title": "local geometry 1440x1000",
+          "status": "passed",
+          "milliseconds": 8912
+        },
+        {
+          "title": "local geometry 1920x1080",
+          "status": "passed",
+          "milliseconds": 7929
+        },
+        {
+          "title": "local geometry 2560x1440",
+          "status": "passed",
+          "milliseconds": 10024
+        },
+        {
+          "title": "local geometry 3840x2160",
+          "status": "passed",
+          "milliseconds": 15694
+        },
+        {
+          "title": "local geometry 1920x900",
+          "status": "passed",
+          "milliseconds": 7526
+        },
+        {
+          "title": "local direct route external-history return and no asset blocking",
+          "status": "passed",
+          "milliseconds": 422
+        },
+        {
+          "title": "local fixed crack anchors at one three five and maximum categories",
+          "status": "passed",
+          "milliseconds": 3898
+        },
+        {
+          "title": "local advice keyboard wheel reduced motion and empty result navigation",
+          "status": "passed",
+          "milliseconds": 493
+        },
+        {
+          "title": "local slider full range changes visible severity and preserves Lottie instance",
+          "status": "passed",
+          "milliseconds": 5043
+        },
+        {
+          "title": "local actual budget sliders span housing range without external scroll",
+          "status": "passed",
+          "milliseconds": 2610
+        },
+        {
+          "title": "local advice intentional gesture paging no-preference",
+          "status": "passed",
+          "milliseconds": 7874
+        },
+        {
+          "title": "local advice intentional gesture paging reduce",
+          "status": "passed",
+          "milliseconds": 1799
+        },
+        {
+          "title": "local advice long content and modal retain internal reading",
+          "status": "failed",
+          "milliseconds": 2078,
+          "assertionLine": "482"
+        }
+      ],
+      "global_errors": 1
+    },
+    {
+      "scope": "browser-final",
+      "status": "FAIL",
+      "cleanup_complete": true,
+      "reason": "Fourteen cases passed; reduced-motion keyboard navigation could arrive before its observer frame cleared the transition flag. Fixed product input handling to recognize the actual completed position and added a no-frame-flush regression.",
+      "observed_cases": [
+        {
+          "title": "local complete journey and memory reset",
+          "status": "passed",
+          "milliseconds": 10742
+        },
+        {
+          "title": "local geometry 390x844",
+          "status": "passed",
+          "milliseconds": 7256
+        },
+        {
+          "title": "local geometry 768x1024",
+          "status": "passed",
+          "milliseconds": 7915
+        },
+        {
+          "title": "local geometry 1440x1000",
+          "status": "passed",
+          "milliseconds": 8904
+        },
+        {
+          "title": "local geometry 1920x1080",
+          "status": "passed",
+          "milliseconds": 8065
+        },
+        {
+          "title": "local geometry 2560x1440",
+          "status": "passed",
+          "milliseconds": 9925
+        },
+        {
+          "title": "local geometry 3840x2160",
+          "status": "passed",
+          "milliseconds": 14986
+        },
+        {
+          "title": "local geometry 1920x900",
+          "status": "passed",
+          "milliseconds": 7357
+        },
+        {
+          "title": "local direct route external-history return and no asset blocking",
+          "status": "passed",
+          "milliseconds": 405
+        },
+        {
+          "title": "local fixed crack anchors at one three five and maximum categories",
+          "status": "passed",
+          "milliseconds": 3829
+        },
+        {
+          "title": "local advice keyboard wheel reduced motion and empty result navigation",
+          "status": "passed",
+          "milliseconds": 515
+        },
+        {
+          "title": "local slider full range changes visible severity and preserves Lottie instance",
+          "status": "passed",
+          "milliseconds": 5015
+        },
+        {
+          "title": "local actual budget sliders span housing range without external scroll",
+          "status": "passed",
+          "milliseconds": 2601
+        },
+        {
+          "title": "local advice intentional gesture paging no-preference",
+          "status": "passed",
+          "milliseconds": 7750
+        },
+        {
+          "title": "local advice intentional gesture paging reduce",
+          "status": "failed",
+          "milliseconds": 15533,
+          "assertionLine": "450"
+        }
+      ],
+      "global_errors": 1
+    },
+    {
+      "scope": "advice-focus",
+      "status": "PASS",
+      "cleanup_complete": true,
+      "reason": "Three affected advice cases passed after the correction; this focused result does not replace the full suite.",
+      "observed_cases": [
+        {
+          "title": "local advice intentional gesture paging no-preference",
+          "status": "passed",
+          "milliseconds": 7889
+        },
+        {
+          "title": "local advice intentional gesture paging reduce",
+          "status": "passed",
+          "milliseconds": 1764
+        },
+        {
+          "title": "local advice long content and modal retain internal reading",
+          "status": "passed",
+          "milliseconds": 2169
+        }
+      ],
+      "global_errors": 0
+    },
+    {
+      "scope": "browser-verified",
+      "status": "PASS",
+      "cleanup_complete": true,
+      "reason": "Final fixed source: all sixteen cases passed.",
+      "observed_cases": [
+        {
+          "title": "local complete journey and memory reset",
+          "status": "passed",
+          "milliseconds": 10702
+        },
+        {
+          "title": "local geometry 390x844",
+          "status": "passed",
+          "milliseconds": 7322
+        },
+        {
+          "title": "local geometry 768x1024",
+          "status": "passed",
+          "milliseconds": 8012
+        },
+        {
+          "title": "local geometry 1440x1000",
+          "status": "passed",
+          "milliseconds": 8856
+        },
+        {
+          "title": "local geometry 1920x1080",
+          "status": "passed",
+          "milliseconds": 8012
+        },
+        {
+          "title": "local geometry 2560x1440",
+          "status": "passed",
+          "milliseconds": 9875
+        },
+        {
+          "title": "local geometry 3840x2160",
+          "status": "passed",
+          "milliseconds": 14989
+        },
+        {
+          "title": "local geometry 1920x900",
+          "status": "passed",
+          "milliseconds": 7426
+        },
+        {
+          "title": "local direct route external-history return and no asset blocking",
+          "status": "passed",
+          "milliseconds": 424
+        },
+        {
+          "title": "local fixed crack anchors at one three five and maximum categories",
+          "status": "passed",
+          "milliseconds": 3850
+        },
+        {
+          "title": "local advice keyboard wheel reduced motion and empty result navigation",
+          "status": "passed",
+          "milliseconds": 500
+        },
+        {
+          "title": "local slider full range changes visible severity and preserves Lottie instance",
+          "status": "passed",
+          "milliseconds": 5144
+        },
+        {
+          "title": "local actual budget sliders span housing range without external scroll",
+          "status": "passed",
+          "milliseconds": 2623
+        },
+        {
+          "title": "local advice intentional gesture paging no-preference",
+          "status": "passed",
+          "milliseconds": 7756
+        },
+        {
+          "title": "local advice intentional gesture paging reduce",
+          "status": "passed",
+          "milliseconds": 1773
+        },
+        {
+          "title": "local advice long content and modal retain internal reading",
+          "status": "passed",
+          "milliseconds": 2149
+        }
+      ],
+      "global_errors": 0
+    }
+  ],
+  "preview_observer_correction": "A private preview selector was initially read on the wrong page; it was scoped to the pot observation. Final preview check passed without product changes."
+}

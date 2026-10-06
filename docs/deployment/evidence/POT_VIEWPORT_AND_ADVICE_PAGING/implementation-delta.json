@@ -1,0 +1,19 @@
+{
+  "starting_point": "step25 through step27 uncommitted tree",
+  "modified_code_test_runner_files": [
+    "fe/e2e/local-demo.spec.ts",
+    "fe/e2e/pot-visual-fixture.tsx",
+    "fe/src/pages/LeakPotPage.css",
+    "fe/src/pages/LeakPotPage.tsx",
+    "fe/src/pages/ToadAdvice.tsx",
+    "fe/src/pages/potLeakAnchors.ts",
+    "scripts/verification/local_demo_checks.py"
+  ],
+  "new_code_test_files": [
+    "fe/src/pages/adviceSectionPaging.ts",
+    "fe/tests/adviceSectionPaging.test.ts",
+    "fe/tests/local/localPotVisual.test.tsx"
+  ],
+  "landing_chart_auth_data_provider_scanner_assets_readme_backend_unchanged": true,
+  "source_or_evidence_deletions": 0
+}

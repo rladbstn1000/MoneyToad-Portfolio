@@ -1,0 +1,30 @@
+{
+  "initial_static_browser": {
+    "status": "FAIL",
+    "cause": "NEW_PROBE_KEYS_SENT_BEFORE_CONTROLLED_VALUE_RENDER",
+    "expected": 60000,
+    "observed": 45000,
+    "api_attempts": 0,
+    "cleanup_complete": true,
+    "resolution": "Await each real keyboard step value; no forced DOM or product delay"
+  },
+  "initial_fe": {
+    "status": "FAIL",
+    "oauth_failures": 1,
+    "demo_failures": 1,
+    "cause": "OLD_STATIC_CSS_ASSERTIONS",
+    "resolution": "Retain system font literal; replace obsolete inner scroll assertion with natural page flow and preserve touch/grid assertions"
+  },
+  "initial_remote_full": {
+    "status": "FAIL",
+    "cause": "MOBILE_POT_MINIMUM_HEIGHT_REGRESSION",
+    "observed_height": 340,
+    "required_height": 390,
+    "resolution": "Restore CSS minimum 390; existing browser assertion unchanged",
+    "cleanup_complete": true
+  },
+  "final_static_browser": "PASS",
+  "final_fe": "PASS",
+  "final_remote_full": "PASS",
+  "automatic_retry": 0
+}

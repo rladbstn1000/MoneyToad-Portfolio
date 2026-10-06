@@ -1,0 +1,38 @@
+{
+  "observations": [
+    {
+      "screen": "landing",
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "backgroundSize": "cover",
+      "bodyOverflow": 0
+    },
+    {
+      "screen": "pot",
+      "panel": {
+        "left": 1400,
+        "right": 1900,
+        "width": 500,
+        "height": 640
+      },
+      "content": null,
+      "bodyOverflow": 0
+    },
+    {
+      "screen": "chart",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "regions": [
+        {
+          "kind": "jp-linechart-wrap",
+          "top": 469.359375,
+          "bottom": 963.828125,
+          "height": 494.46875
+        }
+      ]
+    }
+  ],
+  "externalAttempts": 0
+}

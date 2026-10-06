@@ -3,6 +3,9 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { logoutDemo } from '../auth/demoCoordinator';
 import { useAuthStore } from '../store/authStore';
 import './Header.css';
+import { isLocalDemo } from '../auth/authMode';
+import { useLocalDemoStore } from '../demo/localDemoStore';
+import LocalDemoNotice from '../demo/LocalDemoNotice';
 
 export default function DemoHeader() {
   const operation = useAuthStore(state => state.operation);
@@ -20,6 +23,7 @@ export default function DemoHeader() {
     return () => window.removeEventListener('keydown', close);
   }, [open]);
   const logout = async () => {
+    if (isLocalDemo) { useLocalDemoStore.getState().end(); navigate('/', { replace: true }); return; }
     try { await logoutDemo(); navigate('/', { replace: true }); }
     catch { /* The existing guard displays the recoverable logout state. */ }
   };
@@ -32,7 +36,9 @@ export default function DemoHeader() {
       <NavLink to="/chart" className="nav-item">콩쥐의 씀씀이</NavLink>
       <NavLink to="/toadAdvice" className="nav-item">두꺼비의 조언</NavLink>
       <NavLink to="/mypage" className="nav-item">콩쥐의 곳간</NavLink>
-      <button className="nav-item logout-btn" type="button" disabled={operation === 'logout'} onClick={() => void logout()}>체험 종료</button>
+      {isLocalDemo && <button className="nav-item logout-btn" type="button" onClick={() => useLocalDemoStore.getState().reset()}>처음부터 다시하기</button>}
+      <button className="nav-item logout-btn" type="button" disabled={!isLocalDemo && operation === 'logout'} onClick={() => void logout()}>체험 종료</button>
+      {isLocalDemo && <LocalDemoNotice />}
     </div>
   </nav></header>;
 }

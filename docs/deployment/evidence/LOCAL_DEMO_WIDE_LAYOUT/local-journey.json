@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "loadingTimings": {
+    "documentResponseMs": 5.5,
+    "domContentLoadedMs": 45.5,
+    "loadEventMs": 45.5,
+    "scripts": {
+      "count": 1,
+      "maxDurationMs": 6.099999964237213
+    },
+    "images": {
+      "count": 1,
+      "maxDurationMs": 5.100000023841858
+    }
+  },
+  "startToControlsMs": 63.976999999999975,
+  "budgetRecalculationMs": 113.32666699999999,
+  "categoryRecalculationMs": 105.19412500000021,
+  "fullReloadResets": true,
+  "internalHistoryPreserves": true,
+  "newTabIndependent": true,
+  "resetAndEnd": true,
+  "staticOnly": true
+}

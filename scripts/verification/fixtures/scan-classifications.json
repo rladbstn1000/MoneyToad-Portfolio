@@ -2808,10 +2808,10 @@
     },
     {
       "file": "fe/src/api/services/demoAuth.ts",
-      "line": 28,
+      "line": 32,
       "category": "bearer-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "file_digest": "9ceaee9a89fd08728ea03fd458fe9d3ea78390aa363a3d37200c6d18559ac500",
       "content_digest": "65860bcefce3937b608f5f17b582d3d69c73822f3ddba25db893ad1603bef5db",
       "semantic_category": "runtime-request-header",
       "expected_construct": [
@@ -2828,10 +2828,10 @@
     },
     {
       "file": "fe/src/api/services/demoAuth.ts",
-      "line": 28,
+      "line": 32,
       "category": "authorization-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "file_digest": "9ceaee9a89fd08728ea03fd458fe9d3ea78390aa363a3d37200c6d18559ac500",
       "content_digest": "65860bcefce3937b608f5f17b582d3d69c73822f3ddba25db893ad1603bef5db",
       "semantic_category": "runtime-request-header",
       "expected_construct": [
@@ -2848,10 +2848,10 @@
     },
     {
       "file": "fe/src/api/services/demoAuth.ts",
-      "line": 37,
+      "line": 42,
       "category": "bearer-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "file_digest": "9ceaee9a89fd08728ea03fd458fe9d3ea78390aa363a3d37200c6d18559ac500",
       "content_digest": "877c511f18e633eb00df249fab356c8ab466862f991f8d6d106a92e8f9cde309",
       "semantic_category": "runtime-request-header",
       "expected_construct": [
@@ -2881,10 +2881,10 @@
     },
     {
       "file": "fe/src/api/services/demoAuth.ts",
-      "line": 37,
+      "line": 42,
       "category": "authorization-marker",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "b7ef71784badd13cef171e054150afa1aeedbca63a36dd77fc7c153d89ee32db",
+      "file_digest": "9ceaee9a89fd08728ea03fd458fe9d3ea78390aa363a3d37200c6d18559ac500",
       "content_digest": "877c511f18e633eb00df249fab356c8ab466862f991f8d6d106a92e8f9cde309",
       "semantic_category": "runtime-request-header",
       "expected_construct": [

@@ -13,7 +13,7 @@ export default defineConfig({
     env: { VITE_AUTH_MODE: 'oauth', VITE_BACK_URL: testOrigin },
     setupFiles: ['./tests/setup.ts'],
     include: ['./tests/**/*.test.{ts,tsx}'],
-    exclude: ['./tests/demo/**/*.test.{ts,tsx}'],
+    exclude: ['./tests/demo/**/*.test.{ts,tsx}', './tests/local/**/*.test.{ts,tsx}'],
     fileParallelism: false,
     restoreMocks: true,
     testTimeout: 10000,

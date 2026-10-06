@@ -23,7 +23,11 @@ body,
 } /* 스크롤 금지 */
 
 .jp-wrap {
-  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow-y: auto;
+  width: 100%;
+  min-width: 0;
   background: url("/charts/background.webp") no-repeat center top fixed;
   background-size: cover;
   color: #fff;
@@ -45,23 +49,25 @@ body,
    화면 1 (헤더 + 연못/라인차트)
 ========================= */
 #screen1.jp-screen {
-  height: 100vh;
+  min-height: 100dvh;
+  flex: none;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-top: var(--header-h); /* 헤더만큼 내려앉히기 */
+  gap: 24px;
+  padding: calc(var(--header-h) + 24px) 24px 32px;
   box-sizing: border-box;
   position: relative;
-  overflow: hidden;
 }
 
 /* 무대(연못) – 비율 유지 + 뷰포트에 맞춰 축소/확대 */
 .jp-stage {
   position: relative;
-  width: min(var(--stage-max-w), calc(100vw - 2 * var(--stage-side-pad)));
-  aspect-ratio: var(--stage-ar);
+  width: min(1280px, 100%);
+  min-width: 0;
+  flex: none;
+  aspect-ratio: 1280 / 853;
   height: auto;
-  max-height: calc(100vh - var(--header-h) - var(--stage-bottom-gap));
   margin: 0 auto;
 }
 
@@ -71,16 +77,17 @@ body,
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
   z-index: 2;
 }
 
-/* 타이틀(문구) – 무대 내부 퍼센트 좌표(비율 고정) */
+/* Copy is a sibling before the pond: longer explanations expand normal flow. */
 .jp-page-title-section {
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  top: 12%;
+  width: min(100%, 960px);
+  min-width: 0;
+  position: relative;
   text-align: center;
+  flex: none;
   z-index: 5;
 }
 .jp-page-title-section h1 {
@@ -163,9 +170,10 @@ body,
   position: absolute;
   left: 14.5%;
   right: 14.5%;
-  top: 39%;
-  bottom: 13%;
-  height: max(300px, calc(100% - 37% - 10%));
+  top: 43%;
+  bottom: 12%;
+  min-width: 0;
+  min-height: 0;
   z-index: 4;
   display: flex;
   align-items: center;
@@ -459,19 +467,16 @@ td .jp-select-trigger {
   }
 
   #screen1.jp-screen {
-    height: 100dvh;
-    align-items: flex-start;
+    align-items: center;
     padding: calc(var(--header-h) + 16px) 12px 24px;
-    overflow: auto;
+    gap: 16px;
   }
   .jp-stage {
     width: 100%;
     min-width: 0;
-    max-height: none;
     aspect-ratio: auto !important;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: block;
+    max-width: 640px;
   }
   .jp-page-title-section {
     position: static;
@@ -483,23 +488,36 @@ td .jp-select-trigger {
     font-size: 16px;
     line-height: 1.5;
   }
-  .jp-water-image,
+  .jp-water-image {
+    display: block;
+    position: relative;
+    height: auto;
+    aspect-ratio: 1280 / 853;
+  }
   .jp-page-image,
   .jp-toad-image {
-    display: none;
+    display: block;
+    top: 3%;
+    bottom: auto;
+    width: 27%;
+    height: auto;
   }
+  .jp-page-image { left: 5%; }
+  .jp-toad-image { right: 5%; }
   .jp-linechart-wrap {
     position: relative;
     inset: auto;
-    height: 300px;
+    height: 320px;
     width: 100%;
     min-width: 0;
+    margin-top: 16px;
     flex: none;
   }
   .jp-mobile-months {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
+    width: min(100%, 640px);
   }
   .jp-mobile-months button {
     min-height: 44px;
@@ -701,3 +719,8 @@ td .jp-select-trigger {
     padding: 0;
   }
 }
+
+.jp-demo-explanation { color:#bbdefb; font-size:14px; }
+.jp-demo-explanation summary { min-height:44px; display:list-item; align-content:center; cursor:pointer; }
+.jp-demo-explanation p { margin:0 0 12px; }
+.jp-demo-explanation summary:focus-visible { outline:3px solid #d4af37; outline-offset:2px; }

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "starting_files": 1231,
+  "head_and_index_entries_unchanged": true,
+  "preexisting_source_preserved_before_apply": true,
+  "past_evidence_and_status_body_preserved": true,
+  "final_fe_source_and_regression_and_preview_files_equal": 220,
+  "bytes_and_modes_equal": true,
+  "font_data_auth_backend_packages_scanner_readme_assets_unchanged": true,
+  "deletions": 0,
+  "development_cleanup": {
+    "child_stopped": true,
+    "overlay": {
+      "dependency_manifest_match": true,
+      "dependencies_preserved": true,
+      "overlay_removed": true
+    }
+  },
+  "preview_retained": true
+}

@@ -9,6 +9,8 @@ type Page = {
   title: string;
   description: string;
   backgroundImage: string;
+  imageWidth: number;
+  imageHeight: number;
 };
 
 type TrackVars = React.CSSProperties & {
@@ -18,6 +20,7 @@ type TrackVars = React.CSSProperties & {
 
 type PageVars = React.CSSProperties & {
   "--bg"?: string;
+  "--scene-ratio"?: string;
 };
 
 export default function ScrollLandingPage() {
@@ -48,6 +51,8 @@ export default function ScrollLandingPage() {
       description:
         "콩쥐는 부자가 되고 싶었습니다.\n매일매일 가난한 생활에 지친 콩쥐는\n언젠가는 꼭 부자가 되어 행복하게 살고 싶다고 생각했어요.",
       backgroundImage: "/landing/landing1.webp",
+      imageWidth: 1549,
+      imageHeight: 1033,
     },
     {
       id: 2,
@@ -55,12 +60,16 @@ export default function ScrollLandingPage() {
       description:
         "그래서 마을에서 유명한 자산관리사 두꺼비를 찾아갔습니다.\n두꺼비 선생님은 콩쥐의 소비 습관을 분석하기 시작했어요",
       backgroundImage: "/landing/landing2.webp",
+      imageWidth: 1493,
+      imageHeight: 995,
     },
     {
       id: 3,
       title: "장독대의 비밀",
       description: `두꺼비 선생님은 콩쥐에게 말했습니다.\n"콩쥐야, 먼저 네 장독대의 누수를 막아야 한단다.\n새는 곳을 막지 않으면 아무리 많이 담아도 소용없어."`,
       backgroundImage: "/landing/landing3.webp",
+      imageWidth: 2048,
+      imageHeight: 1365,
     },
     {
       id: 4,
@@ -68,6 +77,8 @@ export default function ScrollLandingPage() {
       description:
         "과연 콩쥐가 장독대의 누수를 모두 막아\n마을 최고의 부자가 될 수 있을까요?",
       backgroundImage: "/landing/landing4.webp",
+      imageWidth: 1280,
+      imageHeight: 853,
     },
   ];
 
@@ -127,8 +138,8 @@ export default function ScrollLandingPage() {
   }, [currentPage, isScrolling, total, scrollToPage]);
 
   const trackStyle: TrackVars = {
-    "--track-h": `${total * 100}vh`,
-    "--offset": `${currentPage * 100}vh`,
+    "--track-h": `${total * 100}dvh`,
+    "--offset": `${currentPage * 100}dvh`,
   };
 
   const handlePrimary = () => {
@@ -153,13 +164,30 @@ export default function ScrollLandingPage() {
         {pages.map((p, i) => (
           <section
             key={p.id}
-            className="dk-page"
-            style={{ "--bg": `url(${p.backgroundImage})` } as PageVars}
+            className={`dk-page dk-page--${p.id}`}
+            style={{
+              "--bg": currentPage === i ? `url(${p.backgroundImage})` : "none",
+              "--scene-ratio": String(p.imageWidth / p.imageHeight),
+            } as PageVars}
           >
-            <div className="dk-overlay" />
-            <div className={`dk-content ${currentPage === i ? "show" : ""}`}>
-              <h1 className="dk-title">{p.title}</h1>
-              <p className="dk-desc">{p.description}</p>
+            <div className="dk-overlay" aria-hidden="true" />
+            <div className="dk-story-layout">
+              <div className="dk-story-scene">
+                {(i <= currentPage + 1) && <img
+                  className="dk-story-image"
+                  src={p.backgroundImage}
+                  alt={`${p.title} 이야기 그림`}
+                  width={p.imageWidth}
+                  height={p.imageHeight}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  fetchPriority={i === 0 ? "high" : "auto"}
+                  draggable={false}
+                />}
+                <div className={`dk-content ${currentPage === i ? "show" : ""}`}>
+                  <h1 className="dk-title">{p.title}</h1>
+                  <p className="dk-desc">{p.description}</p>
+                </div>
+              </div>
             </div>
           </section>
         ))}

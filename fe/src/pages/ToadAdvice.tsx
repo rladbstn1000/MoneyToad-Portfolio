@@ -11,6 +11,7 @@ import { useMonthlyTransactionsQuery } from '../api/queries/transactionQuery';
 import { useMonthlyBudgetsQuery } from '../api/queries/budgetQuery';
 import { buildDemoAdvice, preparedDemoComment, type AdviceCard } from '../demo/demoAdvice';
 import "./ToadAdvice.css";
+import { useAdviceSectionPaging } from "./adviceSectionPaging";
 
 /* ===== 카테고리 아이콘 (.webp) ===== */
 const getCategoryImage = (category: string) =>
@@ -380,6 +381,10 @@ function AdviceView({ demo = false, nowMonth, nowYear, selectedMonth, selectedYe
   const trigger = useRef<HTMLButtonElement | null>(null);
   const dialog = useRef<HTMLDivElement | null>(null);
   const closeButton = useRef<HTMLButtonElement | null>(null);
+  const detailHeading = useRef<HTMLHeadingElement | null>(null);
+  const scrollContainer = useRef<HTMLDivElement | null>(null);
+  const overviewSection = useRef<HTMLElement | null>(null);
+  const showDetails = useAdviceSectionPaging(scrollContainer, overviewSection, detailHeading, !loading && !failed);
   const close = useCallback(() => {
     setOpenId(null);
     trigger.current?.focus();
@@ -426,11 +431,11 @@ function AdviceView({ demo = false, nowMonth, nowYear, selectedMonth, selectedYe
   }
 
   return (
-    <div className={`toad-advice-container snap-container${demo ? ' demo-advice' : ''}`} data-demo-page={demo ? "advice" : undefined}>
+    <div ref={scrollContainer} className={`toad-advice-container snap-container${demo ? ' demo-advice' : ''}`} data-demo-page={demo ? "advice" : undefined}>
       {/* ===== Page 1: 히어로 (월 선택 + 요약 액자) ===== */}
-      <section className="page page-hero">
+      <section ref={overviewSection} className="page page-hero" aria-labelledby="advice-overview-title">
         <Header />
-        <h1 className="main-title">두꺼비의 소비내역 조언소</h1>
+        <h1 className="main-title" id="advice-overview-title" tabIndex={-1}>두꺼비의 소비내역 조언소</h1>
         <p className="main-subtitle">원하는 달을 선택하면 해당 월의 누수 내역을 볼 수 있어요</p>
         {demo && <p className="ta-demo-notice">공개 데모에서는 샘플 소비 데이터를 기반으로 미리 생성된 분석 결과를 제공합니다. 현재 소비·한도·누수는 실제 체험 데이터에 반영됩니다.</p>}
 
@@ -445,104 +450,113 @@ function AdviceView({ demo = false, nowMonth, nowYear, selectedMonth, selectedYe
           />
 
           {/* 우측: 요약 액자 */}
-          <div className="stats-card big">
-            <h2 className="stats-title big">
-              {selectedYear < nowYear ? `작년 ${selectedMonth}월` : `${selectedMonth}월`} {missingBasisCount ? '소비 확인' : '과소비 현황'}
-            </h2>
-            {hasAdvice ? (
-              <div className="stats-grid big">
-                <div className="stat-item stat-red">
-                  <div className="stat-number">{assessedAdvices.length}개</div>
-                  <div className="stat-label">과소비 항목</div>
+          <div className="ta-summary-panel">
+            <div className="stats-card big">
+              <h2 className="stats-title big">
+                {selectedYear < nowYear ? `작년 ${selectedMonth}월` : `${selectedMonth}월`} {missingBasisCount ? '소비 확인' : '과소비 현황'}
+              </h2>
+              {hasAdvice ? (
+                <div className="stats-grid big">
+                  <div className="stat-item stat-red">
+                    <div className="stat-number">{assessedAdvices.length}개</div>
+                    <div className="stat-label">과소비 항목</div>
+                  </div>
+                  <div className="stat-item stat-orange">
+                    <div className="stat-number">{won(totalOverspend)}</div>
+                    <div className="stat-label">총 과소비 금액</div>
+                  </div>
+                  <div className="stat-item stat-blue">
+                    <div className="stat-number">{avgPct === null ? "—" : `${avgPct}%`}</div>
+                    <div className="stat-label">{demo ? "샘플 기준 평균 대비" : "평균 초과율"}</div>
+                  </div>
                 </div>
-                <div className="stat-item stat-orange">
-                  <div className="stat-number">{won(totalOverspend)}</div>
-                  <div className="stat-label">총 과소비 금액</div>
-                </div>
-                <div className="stat-item stat-blue">
-                  <div className="stat-number">{avgPct === null ? "—" : `${avgPct}%`}</div>
-                  <div className="stat-label">{demo ? "샘플 기준 평균 대비" : "평균 초과율"}</div>
-                </div>
-              </div>
-            ) : (
-              <div className="stats-empty">축하하오! 과소비 항목이 없소!</div>
-            )}
+              ) : (
+                <div className="stats-empty">축하하오! 과소비 항목이 없소!</div>
+              )}
+            </div>
           </div>
         </div>
 
         {missingBasisCount > 0 && <p className="ta-demo-notice">비교 기준 없음: {missingBasisCount}개. 과소비 항목 수·금액·평균은 기준 예산이 있는 항목만 포함합니다.</p>}
-        {hasAdvice && <div className="scroll-hint">아래로 스크롤</div>}
+
+        <div className="ta-detail-navigation">
+          <button type="button" className="ta-detail-button" aria-controls="advice-details"
+            aria-describedby="advice-details-help" onClick={showDetails}>
+            {hasAdvice ? '카테고리별 소비 조언 보기 ↓' : '이번 달 소비 결과 보기 ↓'}
+          </button>
+          <p id="advice-details-help" className="ta-detail-help">
+            {hasAdvice ? '아래에서 항목별 소비와 조언을 확인할 수 있어요.' : '아래에서 이번 달의 소비 확인 결과를 볼 수 있어요.'}
+          </p>
+        </div>
       </section>
 
-      {/* ===== Page 2: 카드 목록 (누수 있을 때만) ===== */}
-      {hasAdvice && (
-        <section className="page page-cards">
-          <header className="cards-page-header">
-            <h2 className="cards-page-title">
-              {selectedYear < nowYear ? `작년 ${selectedMonth}월` : `${selectedMonth}월`} {missingBasisCount ? '소비 확인' : '과소비 요약'}
-            </h2>
-            <div className="cards-page-stats">
-              <div className="cstat">
-                <div className="cstat-number">{assessedAdvices.length}개</div>
-                <div className="cstat-label">과소비 항목</div>
-              </div>
-              <div className="cstat">
-                <div className="cstat-number">{won(totalOverspend)}</div>
-                <div className="cstat-label">총 과소비 금액</div>
-              </div>
-              <div className="cstat">
-                <div className="cstat-number">{avgPct === null ? "—" : `${avgPct}%`}</div>
-                <div className="cstat-label">{demo ? "샘플 기준 평균 대비" : "평균 초과율"}</div>
-              </div>
+      {/* ===== 상세 결과: 조언 카드 또는 해당 월의 빈 결과 ===== */}
+      <section className="page page-cards" id="advice-details" aria-labelledby="advice-details-title">
+        <header className="cards-page-header">
+          <h2 className="cards-page-title" id="advice-details-title" ref={detailHeading} tabIndex={-1}>
+            {selectedYear < nowYear ? `작년 ${selectedMonth}월` : `${selectedMonth}월`} {hasAdvice ? (missingBasisCount ? '소비 확인' : '과소비 요약') : '소비 확인 결과'}
+          </h2>
+          {hasAdvice && <div className="cards-page-stats">
+            <div className="cstat">
+              <div className="cstat-number">{assessedAdvices.length}개</div>
+              <div className="cstat-label">과소비 항목</div>
             </div>
-          </header>
+            <div className="cstat">
+              <div className="cstat-number">{won(totalOverspend)}</div>
+              <div className="cstat-label">총 과소비 금액</div>
+            </div>
+            <div className="cstat">
+              <div className="cstat-number">{avgPct === null ? "—" : `${avgPct}%`}</div>
+              <div className="cstat-label">{demo ? "샘플 기준 평균 대비" : "평균 초과율"}</div>
+            </div>
+          </div>}
+        </header>
 
-          <div className="cards-grid">
-            {advices.map((advice, index) => (
-              <button
-                type="button"
-                key={advice.id}
-                className="advice-card slide-in-up"
-                style={{ animationDelay: `${index * 60}ms` }}
-                onClick={event => { trigger.current = event.currentTarget; setOpenId(advice.id); }}
-              >
-                <div className="card-inner">
-                  {advice.basis !== 'missing' && <div className="severity-badge">!</div>}
-                  <div className="card-content">
-                    <div className="card-header">
-                      <img
-                        className="category-img"
-                        src={getCategoryImage(advice.category)}
-                        alt={advice.category}
-                        width={44}
-                        height={44}
-                        draggable={false}
-                      />
-                      <div className="amount-info">
-                        <div className="over-amount">{advice.basis === 'missing' ? `실제 소비 ${won(advice.spending)}` : `-${won(advice.over)}`}</div>
-                        <div className="over-percent">
-                          {advice.basis === 'missing' ? "비교 기준 없음" : advice.pct === null ? "샘플 기준 평균 미제공" : advice.pct === 0
-                            ? (demo ? "샘플 기준 평균과 같음" : "평균과 같음")
-                            : `${demo ? "샘플 기준 평균" : "평균"}보다 ${Math.abs(advice.pct).toFixed(1)}% ${advice.pct > 0 ? "높음" : "낮음"}`}
-                        </div>
+        {hasAdvice ? <div className="cards-grid">
+          {advices.map((advice, index) => (
+            <button
+              type="button"
+              key={advice.id}
+              className="advice-card slide-in-up"
+              style={{ animationDelay: `${index * 60}ms` }}
+              onClick={event => { trigger.current = event.currentTarget; setOpenId(advice.id); }}
+            >
+              <div className="card-inner">
+                {advice.basis !== 'missing' && <div className="severity-badge">!</div>}
+                <div className="card-content">
+                  <div className="card-header">
+                    <img
+                      className="category-img"
+                      src={getCategoryImage(advice.category)}
+                      alt={advice.category}
+                      width={44}
+                      height={44}
+                      draggable={false}
+                    />
+                    <div className="amount-info">
+                      <div className="over-amount">{advice.basis === 'missing' ? `실제 소비 ${won(advice.spending)}` : `-${won(advice.over)}`}</div>
+                      <div className="over-percent">
+                        {advice.basis === 'missing' ? "비교 기준 없음" : advice.pct === null ? "샘플 기준 평균 미제공" : advice.pct === 0
+                          ? (demo ? "샘플 기준 평균과 같음" : "평균과 같음")
+                          : `${demo ? "샘플 기준 평균" : "평균"}보다 ${Math.abs(advice.pct).toFixed(1)}% ${advice.pct > 0 ? "높음" : "낮음"}`}
                       </div>
                     </div>
-                    <h3 className="category-title">{advice.category}</h3>
-                    {advice.basis !== 'missing' && <div className="progress-container">
-                      <div className="progress-bar">
-                        <div
-                          className="progress-fill"
-                          style={{ width: `${demo ? Math.max(0, Math.min(100, ((advice.pct ?? 0) / 50) * 100)) : Math.min(100, ((advice.pct ?? 0) / 50) * 100)}%` }}
-                        />
-                      </div>
-                    </div>}
                   </div>
+                  <h3 className="category-title">{advice.category}</h3>
+                  {advice.basis !== 'missing' && <div className="progress-container">
+                    <div className="progress-bar">
+                      <div
+                        className="progress-fill"
+                        style={{ width: `${demo ? Math.max(0, Math.min(100, ((advice.pct ?? 0) / 50) * 100)) : Math.min(100, ((advice.pct ?? 0) / 50) * 100)}%` }}
+                      />
+                    </div>
+                  </div>}
                 </div>
-              </button>
-            ))}
-          </div>
-        </section>
-      )}
+              </div>
+            </button>
+          ))}
+        </div> : <p className="ta-detail-empty">이달에는 분석할 과소비 항목이 없어요. 다른 달의 소비도 확인해 보세요.</p>}
+      </section>
 
       {/* ===== 모달 ===== */}
       {open && (

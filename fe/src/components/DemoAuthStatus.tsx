@@ -3,8 +3,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { loginDemo, logoutDemo, manualCheckDemoReady, restoreDemo } from '../auth/demoCoordinator';
 import './DemoAuthStatus.css';
+import { isLocalDemo } from '../auth/authMode';
+import { useLocalDemoStore } from '../demo/localDemoStore';
+import LocalDemoNotice from '../demo/LocalDemoNotice';
 
 export default function DemoAuthStatus({ landing = false }: { landing?: boolean }) {
+  return isLocalDemo ? <LocalExperienceEntry landing={landing} /> : <RemoteDemoAuthStatus landing={landing} />;
+}
+
+function LocalExperienceEntry({ landing }: { landing: boolean }) {
+  const hasStarted = useLocalDemoStore(state => state.hasStarted);
+  const navigate = useNavigate();
+  const enter = () => {
+    useLocalDemoStore.getState().start();
+    navigate('/pot');
+  };
+  return <section className={landing ? 'demo-auth demo-auth-landing' : 'demo-auth'} aria-label="샘플 체험">
+    <button type="button" onClick={enter}>{hasStarted ? '체험 이어가기' : '샘플 데이터로 체험하기'}</button>
+    <LocalDemoNotice />
+    {!landing && <Link to="/">마당으로</Link>}
+  </section>;
+}
+
+function RemoteDemoAuthStatus({ landing = false }: { landing?: boolean }) {
   const { status, operation, message, recovery, loginRetryAt, readinessRetryAt } = useAuthStore();
   const navigate = useNavigate();
   const [now, setNow] = useState(Date.now);

@@ -12,7 +12,10 @@
     "test:demo": "vitest run --config vitest.demo.config.ts",
     "test:check": "tsc --project tsconfig.test.json --noEmit",
     "test:e2e": "playwright test",
-    "test:e2e:check": "tsc --project tsconfig.e2e.json --noEmit"
+    "test:e2e:check": "tsc --project tsconfig.e2e.json --noEmit",
+    "dev:demo-local": "vite --config vite.local.config.ts --host 127.0.0.1",
+    "build:demo-local": "tsc -b && vite build --config vite.local.config.ts",
+    "test:local": "vitest run --config vitest.local.config.ts"
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.2.6",

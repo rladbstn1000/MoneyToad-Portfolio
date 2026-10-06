@@ -56,7 +56,7 @@ describe('Chart mobile Select presentation contract', () => {
     expect(changed).not.toHaveBeenCalled();
   });
 
-  it('keeps desktop grid rules and confines stacked rows, scrolling and touch sizes to the small-screen rule', () => {
+  it('keeps desktop detail grid, mobile stacked rows and natural page scrolling', () => {
     // CSS structure is a regression guard only; actual viewport geometry is
     // verified separately by Chromium against the real application.
     const [desktop, mobile] = chartCss.split('@media (max-width: 900px)');
@@ -64,7 +64,13 @@ describe('Chart mobile Select presentation contract', () => {
     expect(mobile).toBeDefined();
     expect(mobile).toMatch(/\.jp-grid\s*\{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)/s);
     expect(mobile).toMatch(/#screen2\.jp-detail-screen\s*\{[^}]*overflow-y:\s*auto/s);
-    expect(mobile).toMatch(/#screen1\.jp-screen\s*\{[^}]*overflow:\s*auto/s);
+    // The heading and pond now use normal vertical flow inside the page's
+    // scroll container at every width; screen1 must not clip or shrink content.
+    expect(desktop).toMatch(/\.jp-wrap\s*\{[^}]*overflow-y:\s*auto/s);
+    expect(desktop).toMatch(/#screen1\.jp-screen\s*\{[^}]*flex-direction:\s*column/s);
+    const screenLayout = desktop.match(/#screen1\.jp-screen\s*\{([^}]*)\}/s)?.[1];
+    expect(screenLayout).toBeDefined();
+    expect(screenLayout).not.toMatch(/(?:^|;)\s*height:|overflow(?:-x|-y)?:\s*(?:hidden|clip)/);
     expect(mobile).toMatch(/\.jp-table tbody tr\s*\{[^}]*display:\s*grid/s);
     expect(mobile).toMatch(/\.jp-chart-select[^}]*min-height:\s*44px/s);
     expect(mobile).not.toMatch(/overflow(?:-x)?:\s*(?:hidden|clip)|transform:\s*scale/);

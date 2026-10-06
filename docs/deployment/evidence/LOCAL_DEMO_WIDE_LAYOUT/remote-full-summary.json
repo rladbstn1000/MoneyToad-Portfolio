@@ -1,0 +1,76 @@
+{
+  "status": "FAIL",
+  "cases": 1,
+  "retries": 0,
+  "failedCheck": {
+    "check": "mobile month pot panel stack does not overlap",
+    "phase": "pot-original"
+  },
+  "geometry": {
+    "stage": {
+      "left": 12,
+      "right": 378,
+      "top": 235,
+      "bottom": 575,
+      "width": 366,
+      "height": 340
+    },
+    "nav": {
+      "left": 0,
+      "right": 390,
+      "top": 97,
+      "bottom": 227,
+      "width": 390,
+      "height": 130
+    },
+    "panel": {
+      "left": 12,
+      "right": 378,
+      "top": 587,
+      "bottom": 1136,
+      "width": 366,
+      "height": 549
+    },
+    "pot": {
+      "left": 93.65384674072266,
+      "right": 296.3461685180664,
+      "top": 350.73077392578125,
+      "bottom": 566.5,
+      "width": 202.69232177734375,
+      "height": 215.76922607421875
+    },
+    "characters": [
+      {
+        "left": 12,
+        "right": 118.125,
+        "top": 415.8125,
+        "bottom": 575,
+        "width": 106.125,
+        "height": 159.1875,
+        "loaded": true
+      },
+      {
+        "left": 103.5,
+        "right": 173.03125,
+        "top": 505.46875,
+        "bottom": 575,
+        "width": 69.53125,
+        "height": 69.53125,
+        "loaded": true
+      }
+    ],
+    "viewportWidth": 390,
+    "viewportHeight": 844,
+    "potCenterVisible": true,
+    "potHitBelongsToStage": true,
+    "potIntersectsViewport": true,
+    "charactersInsideStage": true
+  },
+  "cleanup_complete": true,
+  "source_preserved": true,
+  "dependencies_preserved": true,
+  "external_attempts": 0,
+  "managed_provider_used": false,
+  "BE_test_suite_rerun": false,
+  "no_repeat": true
+}

@@ -1,0 +1,36 @@
+{
+  "past_evidence_preserved": true,
+  "attempts": [
+    {
+      "scope": "browser first",
+      "result": "FAIL",
+      "passed": 11,
+      "failed": 1,
+      "reason": "New path-only observer missed Lottie mask-painted solid rects. Independent visual review also confirmed actual maximum water clipping in the 520-unit frame.",
+      "cleanup_complete": true
+    },
+    {
+      "scope": "browser second",
+      "result": "FAIL",
+      "passed": 11,
+      "failed": 1,
+      "reason": "Rotating the alpha bounding rectangle counted transparent corners as spray. Corrected to transform painted pixels; product maximum spray had already been given measured space.",
+      "cleanup_complete": true
+    },
+    {
+      "scope": "browser final",
+      "result": "PASS",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "global_errors": 0,
+      "exit_code": 0,
+      "cleanup_complete": true
+    },
+    {
+      "scope": "preview observer",
+      "result": "CORRECTED",
+      "reason": "Initial private guard confused a static source auth module with an API path. Exact API boundary restored; final preview API and external attempts zero."
+    }
+  ]
+}

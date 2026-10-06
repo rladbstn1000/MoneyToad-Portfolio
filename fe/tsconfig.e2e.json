@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": { "types": ["node", "vite/client"] },
-  "include": ["e2e", "playwright.config.ts", "playwright.mobile.config.ts", "playwright.cold-start.config.ts", "playwright.full-experience.config.ts", "vite.config.ts"]
+  "include": ["e2e", "playwright.config.ts", "playwright.mobile.config.ts", "playwright.cold-start.config.ts", "playwright.full-experience.config.ts", "playwright.local.config.ts", "vite.config.ts"]
 }

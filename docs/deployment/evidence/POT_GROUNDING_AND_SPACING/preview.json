@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "frontendOnlyLocalObserved": true,
+  "serverReadyUiAbsent": true,
+  "configuredViewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "browserZoomMeasured": false,
+  "osScaleMeasured": false,
+  "userVisualApproval": "PENDING",
+  "viewport": {
+    "innerWidth": 1920,
+    "innerHeight": 1080,
+    "devicePixelRatio": 1
+  },
+  "pot": {
+    "pot": {
+      "width": 313.23834228515625,
+      "height": 356.8680419921875
+    },
+    "kongjwi": {
+      "width": 261.6875,
+      "height": 392.53125
+    },
+    "toad": {
+      "width": 152.671875,
+      "height": 152.671875
+    },
+    "paper": {
+      "width": 499.1875,
+      "height": 748.796875
+    },
+    "cracks": 1,
+    "waterStreams": 1,
+    "overflow": 0,
+    "verticalOverflow": 0
+  },
+  "advice": {
+    "firstSectionHeight": 1080,
+    "detailsStart": 1080,
+    "buttonHeight": 56.5,
+    "detailsInitiallyBelowViewport": true,
+    "detailsAlreadyMounted": true,
+    "overflow": 0
+  },
+  "detail": {
+    "headingTop": 112,
+    "headingFocused": true,
+    "cards": 1
+  },
+  "requests": {
+    "total": 121,
+    "api": 0,
+    "auth": 0,
+    "readiness": 0,
+    "external": 0,
+    "pageErrors": 0
+  },
+  "browserCleanup": "PASS",
+  "previewServerRetained": true
+}

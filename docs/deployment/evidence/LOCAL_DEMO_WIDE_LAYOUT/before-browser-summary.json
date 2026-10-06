@@ -1,0 +1,24 @@
+[
+  {
+    "status": "PASS",
+    "exit_code": 0,
+    "cleanup_complete": true,
+    "modes": [
+      {
+        "mode": "public-demo",
+        "status": "passed",
+        "cases": [
+          {
+            "test": "before wide layout observations",
+            "status": "passed"
+          }
+        ],
+        "networks": []
+      },
+      {
+        "mode": "local-demo",
+        "networks": []
+      }
+    ]
+  }
+]

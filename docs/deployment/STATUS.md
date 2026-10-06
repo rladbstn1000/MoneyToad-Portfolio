@@ -1,3 +1,129 @@
+## 최신 프런트엔드 전용 체험판 — 사용자 시각 승인 / 공개 전환 준비
+
+2026-10-06. 사용자가 25~30단계의 최신 미리보기를 확인하고 현재 시스템 글꼴 디자인을 승인했다. 저장소 1,262개 파일과 30단계 검증 사본의 bytes·mode·경로가 일치하며 사용자 미리보기 FE 220개도 일치한다. 원래 글꼴 추가나 디자인 변경은 하지 않는다.
+
+기존 FE573·타입4종·build3종·lint0/0·Chromium16 PASS는 30단계의 동일 소스 검증 근거이며 이번에 재실행한 결과가 아니다. 누적 변경의 공개 감사는 PASS다. 정적 빌드·Cloudflare 수동 배포·공개 정적 체험 검증은 다음 단계이며, 아래 과거 보고서와 당시 PENDING/FAIL 판정은 보존한다.
+
+```text
+USER_VISUAL_APPROVAL=APPROVED
+ORIGINAL_FONT_LOCAL_READY=false
+FRONTEND_ONLY_DEMO_PUBLIC_READY=false
+```
+
+Render·TiDB·Upstash 설정과 서버 연동 모드는 변경하지 않는다. 공개 검증 전 준비 상태를 배포 완료로 해석하지 않는다.
+
+---
+
+## 최신 장독대 하단 구도·상단 간격 — 로컬 PASS / 원본 폰트 적용 보류
+
+2026-10-06. 25~29 미커밋 작업을 보존했다. 실제 alpha 바닥은 desktop 약57~88px 하강, 장면은 가용 높이에 따라 약10~18% 축소했다. 실제 메뉴 기준 상단 간격30/20/36px(좁은 화면10/8/12px), 한 화면/목록 내부 스크롤과 기존 누수·조언·데이터/초기화 계약을 유지했다.
+
+FE573(OAuth267/remote245/local61), 타입4종·build3종·invalid mode5종·lint0/0, Chromium16·7viewport PASS. API/외부 runtime/page error0·소유 검증 자원 정리PASS. 실제물 모든29프레임 범위와19번 최대 프레임 회귀를 보강했다. 공식 원본 조선100년체와 이용조건은 확인했으나 현재 scanner의 모든font 금지 규칙을 변경할 승인 없이 적용하지 않았다. 폰트 로딩/실패 검증은미실행이며 기존fallback 유지다.
+
+[30 보고서](30-pot-grounding-spacing-and-original-font.md)에 위치/크기 비교·폰트 조건/보류 이유·검증과 재개 지점을 기록한다. 새 frontend-only 미리보기: [http://127.0.0.1:55421/](http://127.0.0.1:55421/).
+
+```text
+POT_GROUNDING_LOCAL_READY=true
+POT_TOP_SPACING_LOCAL_READY=true
+ORIGINAL_FONT_LOCAL_READY=false
+USER_VISUAL_APPROVAL=PENDING
+FRONTEND_ONLY_DEMO_PUBLIC_READY=false
+CURRENT_PUBLIC_DEPLOYMENT_UNCHANGED=true
+```
+
+HEAD/index·과거 자료·기존 공개 서비스는 유지한다. stage/commit/push/공개접속/배포/provider 변경0. 아래 기록은 당시 결과로 보존한다.
+
+---
+
+## 최신 장독대 하단 배치·상단 안내·월 표시 — 로컬 PASS
+
+2026-10-06. 25~28단계 미커밋 구현을 보존하고 local 장독대 CSS만 조정했다. 공통 그림의 크기·가로 위치와 두루마리를 유지한 채 남는 stage 공간 안에서 아래로 배치했다. 안내는 갈색/상아색 띠, 월은 별도 label 행과 약15% 아이콘 확대로 읽기 쉽게 했다. 모바일 선택 아이콘48px은 유지했다.
+
+FE573(OAuth267/remote245/local61), 타입4종·build3종·invalid mode5종·lint0/0 PASS. 기존 Chromium16개에 새 안내/월 검사를 추가해 전체PASS이며7viewport 외부XY0·목록내부스크롤·최대누수·6페이지·집계/초기화/조언전환 유지, API/외부/page error0·소유 검증 자원 정리PASS다. [29 보고서](29-pot-scene-position-and-month-navigation.md)에 전후 위치·크기, 최종 검사와 보존 근거를 저장한다.
+
+```text
+POT_VISUAL_POLISH_LOCAL_READY=true
+USER_VISUAL_APPROVAL=PENDING
+FRONTEND_ONLY_DEMO_PUBLIC_READY=false
+CURRENT_PUBLIC_DEPLOYMENT_UNCHANGED=true
+```
+
+새 frontend-only 미리보기는 [http://127.0.0.1:52658/](http://127.0.0.1:52658/)다. 최종220개FE파일과 일치하는 소유 사본을 제공한다. 기존 기록·HEAD/index와 현재 공개 서비스는 유지한다. 사용자 시각 승인은 미확인이고 stage/commit/push/공개접속/배포/provider 변경0이다. 아래 과거 결과는 당시 기록으로 보존한다.
+
+---
+
+## 최신 장독대 한 화면·슬라이더 전 구간·조언 구간 전환 — 로컬 PASS
+
+2026-10-06. 25~27단계 미커밋 구현을 보존했다. local 장독대를 실제 남은 viewport 높이에 배치하고 목록만 스크롤하도록 조정했다. local 누수 비율은 지출 대비 초과율로 전 구간 반응하며 remote/OAuth 곡선과 금액 계산은 보존했다. 조언에 작은 의도적 wheel 입력·CTA·키보드의 요약/상세 전환과 긴 본문/팝업 정상 읽기를 추가했다.
+
+FE573(OAuth267/remote245/local61), 타입4종·build3종·invalid mode5종·lint0/0 PASS. 실제 Chromium16개·7viewport·6페이지 여정·크기 왕복·키보드/관성/팝업 PASS, API/외부/page error0·소유 검증 자원 정리PASS. 실제 reduced-motion 키보드 경합과 관측기 준비 실패도 새 이력에 보존한다. 최종 공개 검사·보존·미리보기 일치 근거는 [28 보고서](28-pot-viewport-and-advice-paging.md)에 기록한다.
+
+```text
+POT_SINGLE_VIEWPORT_LOCAL_READY=true
+LEAK_SLIDER_RESPONSE_LOCAL_READY=true
+ADVICE_SECTION_PAGING_LOCAL_READY=true
+USER_VISUAL_APPROVAL=PENDING
+FRONTEND_ONLY_DEMO_PUBLIC_READY=false
+CURRENT_PUBLIC_DEPLOYMENT_UNCHANGED=true
+```
+
+새 frontend-only 미리보기는 [http://127.0.0.1:50164/](http://127.0.0.1:50164/)다. 최종FE220파일과 일치하는 소유 사본을 사용한다. 실제 모니터/배율/zoom 승인은 미확인이며 사용자 시각 확인이 필요하다. 랜딩·Chart·데이터·인증·BE·provider·README·과거 근거를 보존하고 stage/commit/push/공개접속/배포0이다. 아래 과거 판정은 당시 상태로 남긴다.
+
+---
+
+## 최신 장독대 비율·금액별 누수·조언 2단 구성 — 로컬 PASS
+
+2026-10-06. 25·26단계 미커밋 구현을 보존했다. 같은 viewport의 원본 시각 재구성·실제26단계·수정본을 비교해 장독대 상대 비중을 복원하고 비겹침을 유지했다. 카테고리별 원본 누수 곡선과 충분한 물줄기 표시 공간, 첫 화면과 다음 상세 섹션의 조언 흐름을 구현했다. 랜딩·샘플·집계·초기화·Chart·인증·BE·provider·README는 보존했다.
+
+FE552(OAuth252/remote245/local55), 타입4종·build3종·invalid mode5종·lint0/0 PASS. 정적 Chromium12개와7개viewport, 금액6종·대표 프레임3종·최대12개누수 PASS, API/외부/page error0·소유 검증 자원 정리PASS다. 최종 공개 scanner 미해결0·링크27개·미리보기217파일 일치도 PASS다. 초기 두 관측 실패와 교정 이유는 새 근거에 보존했다.
+
+```text
+POT_PROPORTIONS_LOCAL_READY=true
+LEAK_SEVERITY_VISUAL_LOCAL_READY=true
+ADVICE_TWO_SECTION_LOCAL_READY=true
+USER_VISUAL_APPROVAL=PENDING
+FRONTEND_ONLY_DEMO_PUBLIC_READY=false
+CURRENT_PUBLIC_DEPLOYMENT_UNCHANGED=true
+```
+
+[27 보고서](27-pot-proportions-and-advice-sections.md)와 [새 근거](evidence/POT_PROPORTIONS_AND_ADVICE_SECTIONS/) 참조. 새 미리보기는 [http://127.0.0.1:62002/](http://127.0.0.1:62002/)이며 최종 FE217파일과 일치한다. 실제 모니터·OS배율·브라우저zoom 승인을 대신하지 않는다. 기존25/26보고서·evidence와 아래 기록은 당시 상태로 보존한다. 이번 stage·commit·push·공개접속·재배포0.
+
+---
+
+## 최신 랜딩·장독대·조언 시각 개선 — 로컬 PASS
+
+2026-10-06. 25단계의 미커밋 작업 트리를 보존한 별도 사본에서 랜딩의 실제 그림 내부 overlay, 캐릭터/항아리 공간 분리, 카테고리별 고정 비대칭 구멍, 조언의 실제 상세 이동 버튼을 구현했다. demo/local의 공통 샘플·집계·초기화와 remote/OAuth 인증·API 계약, 종이 safe area·Chart 안내 분리는 유지했다. 원본 이미지·폰트·패키지·제품 seed는 변경하지 않았다.
+
+FE548(OAuth251/remote243/local54), 타입4종·build3종·invalid mode5종·lint0/0 PASS다. 정적 Chromium11개(기존 전체 여정1·7개viewport·직접 경로/복귀/자산 보류1 + 신규 구멍/조언 탐색2) 모두 PASS, global errors/API시도/외부/page error0·소유 자원 정리PASS다. 최종 문서/evidence scanner·링크·사용자용 미리보기 파일 checksum 대조도 PASS다. BE/공급자 전체는 변경이 없어 재실행하지 않았다. 이전 실패 및 교정 이력은 새 iteration 근거에 보존했다.
+
+```text
+VISUAL_REFINEMENT_LOCAL_READY=true
+USER_VISUAL_APPROVAL=PENDING
+FRONTEND_ONLY_DEMO_PUBLIC_READY=false
+CURRENT_PUBLIC_DEPLOYMENT_UNCHANGED=true
+```
+
+[26 보고서](26-local-demo-visual-refinement.md)를 참조한다. 새 사용자용 미리보기는 [http://127.0.0.1:58170/](http://127.0.0.1:58170/)이며 최종 FE 파일과 제공 복사본의 checksum이 일치한다. 390×844부터3840×2160과1920×900의 CSS viewport를 검증했으며 사용자의 실제 모니터 시각 승인을 의미하지 않는다. README·25단계 보고서·과거 evidence·공개 배포는 보존했다. 이번 stage·commit·push·재배포0이다. 아래 내용은 당시 결과 그대로 유지한다.
+
+---
+
+## 최신 프런트엔드 전용 체험·대형 레이아웃 — 로컬 PASS
+
+2026-10-03. main `f97bb5f5ba5e04d1f80666791f8986b3f8c236ac` 기준으로 명시적 demo/local을 추가했다. 기존6개화면에 중앙 V1 메모리 시나리오·즉시 예산/분류 집계·reload/reset/end 초기화를 연결했다. remote/OAuth 인증과 API·BE·gateway·provider는 보존했다. 랜딩 원본 비율·두루마리 safe area·Chart 독립 안내를390부터3840까지7개viewport에서 확인했다.
+
+FE524(OAuth241/remote235/local48), 전체 타입·3개build·invalidmode·lint0/0 PASS. 실제 정적 Chromium9PASS/API시도0/외부0, 기존 remote core독립2회각6PASS·전체여정3viewportPASS·소유자원정리PASS. strict scanner PASS·미해결0이다. 초기검증실패와 교정근거는 보존하며 BE전체·공급자·공개여정은 재실행하지 않았다. bfcache실사용은 NOT_OBSERVED로 lifecycle합성검사와 구분한다.
+
+```text
+FRONTEND_ONLY_DEMO_LOCAL_READY=true
+WIDE_SCREEN_LAYOUT_READY=true
+FRONTEND_ONLY_DEMO_PUBLIC_READY=false
+CURRENT_PUBLIC_DEPLOYMENT_UNCHANGED=true
+```
+
+[25 보고서](25-local-demo-and-wide-layout.md)와 [새 근거](evidence/LOCAL_DEMO_WIDE_LAYOUT/) 참조. 실행은 FE의 `npm run dev:demo-local`, 정적 결과는 `npm run build:demo-local`이다. 기존 공개 제품 `d020d837f2830125696d2038eb4a4c969864432e`와 README를 유지했다. 아래 공개 PASS는 기존 서버 연동 배포의 근거이며 새 local 버전 공개 완료를 의미하지 않는다. 이번 stage/commit/push/배포0. 다음은 별도 승인된 정적 산출물 검토·공개 전환이다.
+
+---
+
 ## 최신 전체 화면 공개 여정 — PASS
 
 2026-10-03. 실제 공개 제품 SHA는 `d020d837f2830125696d2038eb4a4c969864432e`, 검증기는 `public-harness-v2`다. 신규 방문자 1명·Chromium context 1개·실행 1회·자동 retry 0회로 마당·장독대·씀씀이·조언·곳간·정보 입력 전체 여정과 최종 outcome PASS를 확인했다.

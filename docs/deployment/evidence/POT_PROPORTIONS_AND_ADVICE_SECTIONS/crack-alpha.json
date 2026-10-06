@@ -1,0 +1,78 @@
+{
+  "method": "Native asset alpha >16 bounds projected using final Chromium CSS geometry; painted fracture footprint includes fine lines and the central dark shape, not an isolated dark-core measurement.",
+  "alpha": {
+    "broken": {
+      "nativeWidth": 565,
+      "nativeHeight": 442,
+      "alphaThreshold": 16,
+      "alphaPixels": 26394,
+      "bounds": {
+        "left": 115,
+        "top": 17,
+        "width": 335,
+        "height": 397
+      }
+    },
+    "pot": {
+      "nativeWidth": 280,
+      "nativeHeight": 319,
+      "alphaThreshold": 16,
+      "alphaPixels": 68029,
+      "bounds": {
+        "left": 5,
+        "top": 5,
+        "width": 271,
+        "height": 310
+      }
+    }
+  },
+  "samples": [
+    {
+      "amount": 0,
+      "visibleCrackAbsent": true
+    },
+    {
+      "amount": 10000,
+      "crackArtworkBoxWidth": 52.029052734375,
+      "crackArtworkBoxHeight": 40.702392578125,
+      "paintedFractureBBoxWidth": 30.849084364629423,
+      "paintedFractureBBoxHeight": 36.558483831483315,
+      "paintedFractureBBoxToPaintedPotWidth": 0.08040509532217589
+    },
+    {
+      "amount": 30000,
+      "crackArtworkBoxWidth": 76.804931640625,
+      "crackArtworkBoxHeight": 60.0845947265625,
+      "paintedFractureBBoxWidth": 45.5392072559458,
+      "paintedFractureBBoxHeight": 53.96738485621111,
+      "paintedFractureBBoxToPaintedPotWidth": 0.11869345154726542
+    },
+    {
+      "amount": 60000,
+      "crackArtworkBoxWidth": 113.968505859375,
+      "crackArtworkBoxHeight": 89.15771484375,
+      "paintedFractureBBoxWidth": 67.57424683697455,
+      "paintedFractureBBoxHeight": 80.08057192979355,
+      "paintedFractureBBoxToPaintedPotWidth": 0.17612560859280624
+    },
+    {
+      "amount": 120000,
+      "crackArtworkBoxWidth": 148.65478515625,
+      "crackArtworkBoxHeight": 116.2926025390625,
+      "paintedFractureBBoxWidth": 88.14044783600664,
+      "paintedFractureBBoxHeight": 104.45285793666926,
+      "paintedFractureBBoxToPaintedPotWidth": 0.22972938276635027
+    },
+    {
+      "amount": 300000,
+      "crackArtworkBoxWidth": 148.65478515625,
+      "crackArtworkBoxHeight": 116.2926025390625,
+      "paintedFractureBBoxWidth": 88.14044783600664,
+      "paintedFractureBBoxHeight": 104.45285793666926,
+      "paintedFractureBBoxToPaintedPotWidth": 0.22972938276635027
+    }
+  ],
+  "darkCoreMeasurement": "NOT_MEASURED: intensity threshold also selects connected dark fracture lines; no unambiguous automatic central-hole segmentation claimed.",
+  "apiOrExternalAttempts": 0,
+  "cleanup": "PASS"
+}

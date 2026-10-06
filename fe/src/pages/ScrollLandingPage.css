@@ -1,149 +1,108 @@
-/* 전역 보정 */
-html, body, #root { height: 100%; margin: 0; }
-body { overflow: hidden; } /* 바디 스크롤 잠금 */
-
-/* 컨테이너 */
+/* Only this storytelling viewport is locked; other pages keep their own scroll. */
 .dk-landing {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  position:relative;
+  width:100%;
+  height:100dvh;
+  overflow:hidden;
   font-family: var(--app-font);
-  background: #000;
+  background:#291b0e;
 }
-
-/* 로그인 버튼 */
 .dk-login {
-  position: fixed;
-  top: 24px;
-  right: 32px;
-  z-index: 30;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 10px 16px;
-  border: none;
-  cursor: pointer;
-  transition: transform .2s ease, background .2s ease;
-  background: none;
-  border-radius: 10px;
+  position:fixed; top:24px; right:32px; z-index:30;
+  min-height:44px; padding:10px 16px; border:0; border-radius:10px;
+  color:#fff; background:#244e3c; font-size:16px; font-weight:700;
+  cursor:pointer;
 }
-.dk-login:hover {
-  background: rgba(255,255,255,0.25);
-  transform: scale(1.04);
-}
-
-/* 트랙 */
+.dk-login:hover { background:#31654f; }
 .dk-track {
-  width: 100%;
-  will-change: transform;
-  transition: transform 700ms ease-in-out;
-
-  /* 동적 변수 */
-  height: var(--track-h, 100vh);
-  transform: translateY(calc(-1 * var(--offset, 0vh)));
+  width:100%; height:var(--track-h,100dvh);
+  will-change:transform;
+  transition:transform 700ms ease-in-out;
+  transform:translateY(calc(-1 * var(--offset,0dvh)));
 }
-
-/* 페이지 */
 .dk-page {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* 동적 배경 */
-  background-image: var(--bg, none);
+  position:relative; width:100%; height:100dvh;
+  isolation:isolate; box-sizing:border-box;
+  padding:108px 72px 64px;
+  display:grid; place-items:center;
 }
-
-/* 어둡게 오버레이 */
-.dk-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
+/* Only the decorative background fills the viewport. The foreground is never cropped. */
+.dk-page::before {
+  content:""; position:absolute; inset:0; z-index:-2;
+  background:var(--bg,none) center / cover no-repeat;
+  filter:blur(16px); opacity:.35;
 }
-
-/* 콘텐츠 */
+.dk-overlay { position:absolute; inset:0; z-index:-1; background:rgba(20,13,4,.42); }
+.dk-story-layout {
+  width:min(100%,3000px); height:100%; min-height:0;
+  display:grid; place-items:center; container-type:size;
+}
+/* Match each asset's own ratio, so percentages refer to drawn pixels, not letterboxing. */
+.dk-story-scene {
+  position:relative; width:min(100cqw,calc(100cqh * var(--scene-ratio)));
+  aspect-ratio:var(--scene-ratio); min-width:0; container-type:inline-size;
+}
+.dk-story-image { display:block; width:100%; height:auto; object-fit:contain; object-position:center; }
 .dk-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  max-width: 840px;
-  padding: 0 24px;
-  color: #fff;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .7s ease, transform .7s ease;
+  position:absolute; inset:0; color:#fff;
+  opacity:0; transition:opacity .7s ease;
 }
-.dk-content.show { opacity: 1; transform: translateY(0); }
-
-.dk-title {
-  margin: 0 0 24px;
-  font-weight: 800;
-  line-height: 1.1;
-  color: #fff;
-  font-size: clamp(44px, 8vw, 96px);
-  text-shadow: 0 6px 24px rgba(0,0,0,0.8);
+.dk-content.show { opacity:1; }
+.dk-title,.dk-desc {
+  position:absolute; box-sizing:border-box; margin:0; text-align:left;
+  text-shadow:0 2px 5px #241505,0 0 14px #241505b3;
+  isolation:isolate;
 }
-
-.dk-desc {
-  margin: 0 auto;
-  max-width: 840px;
-  white-space: pre-line;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.95);
-  font-size: clamp(16px, 2.2vw, 28px);
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+/* A feathered scrim stays local to the copy; the rest of the illustration remains clear. */
+.dk-title::before,.dk-desc::before {
+  content:""; position:absolute; inset:-.65em -.85em; z-index:-1;
+  background:radial-gradient(ellipse at center,rgba(33,19,6,.46),rgba(33,19,6,.18) 65%,transparent 78%);
+  pointer-events:none;
 }
-
-/* 네비게이션 점 */
-.dk-dots {
-  position: fixed;
-  right: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.dk-title { font-weight:800; line-height:1.2; color:#fff; font-size:clamp(28px,4cqw,72px); text-wrap:balance; }
+.dk-desc { white-space:pre-line; line-height:1.65; color:#fff8ef; font-size:clamp(16px,1.75cqw,30px); overflow-wrap:break-word; word-break:keep-all; }
+/* Coordinates are normalized to the entire image and avoid each scene's faces/action. */
+.dk-page--1 .dk-title { left:59%; top:29%; width:37%; }
+.dk-page--1 .dk-desc { left:59%; top:42%; width:37%; }
+.dk-page--2 .dk-title { left:4%; top:5%; width:38%; }
+.dk-page--2 .dk-desc { left:5%; bottom:4%; width:90%; text-align:center; }
+.dk-page--3 .dk-title { left:3%; top:15%; width:21%; font-size:clamp(26px,3.2cqw,58px); }
+.dk-page--3 .dk-desc { left:3%; top:35%; width:21%; font-size:clamp(16px,1.6cqw,28px); line-height:1.55; }
+.dk-page--4 .dk-title { left:47%; top:7%; width:49%; }
+.dk-page--4 .dk-desc { left:47%; top:21%; width:48%; }
+.dk-dots { position:fixed; right:12px; top:50%; transform:translateY(-50%); z-index:20; display:flex; flex-direction:column; gap:4px; }
+.dk-dot { position:relative; width:44px; height:44px; padding:0; border:0; background:transparent; cursor:pointer; border-radius:50%; }
+.dk-dot::before { content:""; position:absolute; width:10px; height:10px; left:17px; top:17px; border:1px solid #fff9; border-radius:50%; background:#ffffff70; box-sizing:border-box; }
+.dk-dot:hover::before { background:#ffffffba; }
+.dk-dot.active::before { background:#fff; transform:scale(1.25); }
+.dk-dot:focus-visible,.dk-login:focus-visible { outline:3px solid #ffdf8d; outline-offset:2px; }
+.dk-counter { position:fixed; left:32px; bottom:20px; z-index:20; color:#fff; font-weight:800; letter-spacing:.02em; }
+.dk-counter .cur { font-size:22px; }
+.dk-counter .sep { margin:0 8px; opacity:.7; }
+.dk-counter .tot { opacity:.85; }
+@media (max-width:900px) {
+  .dk-page { padding:150px 16px 92px; }
+  .dk-dots { right:16px; bottom:12px; top:auto; transform:none; flex-direction:row; }
+  .dk-counter { left:20px; bottom:24px; }
 }
-.dk-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.4);
-  box-shadow: none;
-  cursor: pointer;
-  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+@media (max-width:600px) {
+  .dk-page { padding:156px 8px 88px; }
+  .dk-title { font-size:25px; }
+  .dk-desc { font-size:16px; line-height:1.4; white-space:normal; word-break:normal; }
+  .dk-page--1 .dk-title { left:53%; top:7%; width:44%; }
+  .dk-page--1 .dk-desc { left:53%; top:25%; width:44%; }
+  .dk-page--2 .dk-title { left:4%; top:3%; width:88%; }
+  .dk-page--2 .dk-desc { left:4%; bottom:3%; width:92%; }
+  .dk-page--3 .dk-title { left:4%; top:3%; width:90%; font-size:25px; }
+  .dk-page--3 .dk-desc { left:4%; top:auto; bottom:3%; width:92%; font-size:16px; line-height:1.4; }
+  .dk-page--4 .dk-title { left:45%; top:5%; width:52%; }
+  .dk-page--4 .dk-desc { left:4%; top:auto; bottom:4%; width:37%; }
 }
-.dk-dot:hover { background: rgba(255,255,255,0.7); }
-.dk-dot.active {
-  background: #fff;
-  transform: scale(1.25);
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+@media (max-height:620px) and (min-width:901px) {
+  .dk-page { padding-top:72px; padding-bottom:52px; }
+  .dk-title { font-size:clamp(23px,4cqw,44px); }
+  .dk-desc { font-size:clamp(14px,1.75cqw,20px); }
 }
-
-/* 페이지 카운터 */
-.dk-counter {
-  position: fixed;
-  left: 32px;
-  bottom: 32px;
-  z-index: 20;
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: .02em;
-}
-.dk-counter .cur { font-size: 22px; }
-.dk-counter .sep { margin: 0 8px; opacity: .7; }
-.dk-counter .tot { opacity: .85; }
-
-/* 접근성: 모션 줄이기 */
-@media (prefers-reduced-motion: reduce) {
-  .dk-track { transition: none; }
-  .dk-content { transition: none; }
+@media (prefers-reduced-motion:reduce) {
+  .dk-track,.dk-content { transition:none; }
 }

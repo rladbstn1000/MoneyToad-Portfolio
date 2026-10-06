@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { AxiosRequestConfig } from 'axios';
 import { setupAuthInterceptor } from './interceptors';
 import { setupDemoInterceptor } from './demoInterceptors';
-import { authMode } from '../auth/authMode';
+import { authMode, isLocalDemo } from '../auth/authMode';
 import { DemoAuthError } from '../auth/demoCoordinator';
 const installAuth = authMode === 'demo' ? setupDemoInterceptor : setupAuthInterceptor;
 
@@ -19,14 +19,15 @@ export const REQUEST_METHOD = {
 } as const;
 
 // axios 인스턴스 생성
-const axiosInstance = axios.create({
+const rejectLocalNetwork = () => Promise.reject(new Error('Server API is unavailable in local demo'));
+const axiosInstance = axios.create(isLocalDemo ? { adapter: rejectLocalNetwork } : {
   baseURL: import.meta.env.VITE_BACK_URL,
   headers: defaultHeaders,
   withCredentials: true,
 });
 
 // 인증 인터셉터 설정
-installAuth(axiosInstance);
+if (!isLocalDemo) installAuth(axiosInstance);
 
 // 공통 응답 타입 (백엔드에 상황 보고 조정)
 type ApiResponseForm<T> = {
@@ -46,6 +47,7 @@ type ApiError = {
 const request = async <ResponseType, RequestType = unknown>(
   options: AxiosRequestConfig<RequestType>,
 ) => {
+  if (isLocalDemo) throw new Error('Server API is unavailable in local demo');
   try {
     const { data } =
       await axiosInstance.request<ResponseType>(options);
@@ -71,19 +73,20 @@ const request = async <ResponseType, RequestType = unknown>(
 };
 
 // AI API 전용 axios 인스턴스 (쿠키 전송하지 않음)
-const aiAxiosInstance = axios.create({
+const aiAxiosInstance = axios.create(isLocalDemo ? { adapter: rejectLocalNetwork } : {
   baseURL: import.meta.env.VITE_BACK_URL,
   headers: defaultHeaders,
   withCredentials: false,
 });
 
 // AI API 인스턴스에도 인증 인터셉터 설정
-installAuth(aiAxiosInstance);
+if (!isLocalDemo) installAuth(aiAxiosInstance);
 
 // AI API 전용 request 함수 (인증 없이)
 const aiRequest = async <ResponseType, RequestType = unknown>(
   options: AxiosRequestConfig<RequestType>,
 ) => {
+  if (isLocalDemo) throw new Error('Server API is unavailable in local demo');
   try {
     const { data } =
       await aiAxiosInstance.request<ResponseType>(options);

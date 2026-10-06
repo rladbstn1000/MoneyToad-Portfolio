@@ -4,7 +4,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import LeakPotPage from '../../src/pages/LeakPotPage';
+import LeakPotPage, { PotVisualization } from '../../src/pages/LeakPotPage';
 import { adaptDemoBudgets, DEMO_BUDGET_CATEGORIES, parseDemoBudgetMonth } from '../../src/demo/demoBudgetPresentation';
 import { monthlyBudgetQueryKeys, transactionQueryKeys } from '../../src/api/queryKeys';
 import { useAuthStore } from '../../src/store/authStore';
@@ -96,6 +96,105 @@ describe('demo budget presentation boundary', () => {
 });
 
 describe('real demo budget query and mutation flow', () => {
+  it('keeps title, scrollable list and total inside the native paper safe area', async () => {
+    const view = mount(); await cafe();
+    const panel = screen.getByRole('region', { name: '카테고리별 소비 한도' });
+    const sheet = panel.querySelector('.demo-paper-safe-area');
+    const decoration = panel.querySelector('.demo-paper-decoration');
+    const list = panel.querySelector<HTMLElement>('.sliders-container');
+    expect(decoration).toHaveAttribute('width', '500');
+    expect(decoration).toHaveAttribute('height', '750');
+    expect(decoration).toHaveAttribute('aria-hidden', 'true');
+    expect(sheet).toContainElement(panel.querySelector('.panel-title'));
+    expect(sheet).toContainElement(list);
+    expect(sheet).toContainElement(panel.querySelector('.summary'));
+    expect(list).toHaveAttribute('tabindex', '0');
+    expect(list).toHaveAttribute('aria-label', '스크롤 가능한 예산 목록');
+    expect(list).not.toContainElement(panel.querySelector('.summary'));
+    expect(list?.querySelectorAll('.demo-budget-row')).toHaveLength(12);
+    expect(view.container.querySelectorAll('.demo-paper-safe-area')).toHaveLength(1);
+  });
+  it('reserves sibling areas for the two characters and the pot without moving paper content', async () => {
+    const view = mount(); await cafe();
+    const stage = view.container.querySelector('.demo-pot-stage');
+    const visual = stage?.querySelector('.pot-visualization');
+    const characters = visual?.querySelector('.characters');
+    const pot = visual?.querySelector('.pot-svg-container');
+    expect(characters?.parentElement).toBe(visual);
+    expect(pot?.parentElement).toBe(visual);
+    expect(characters?.querySelectorAll('img')).toHaveLength(2);
+    expect(pot).toContainElement(visual?.querySelector('#pot-body') ?? null);
+    expect(pot).toContainElement(visual?.querySelector('#puddle-group') ?? null);
+    expect(pot).toContainElement(visual?.querySelector('#waters') ?? null);
+    expect(visual?.querySelector('.pot-svg')).toHaveAttribute('viewBox', '0 0 500 700');
+    expect(stage).not.toContainElement(view.container.querySelector('.demo-paper-safe-area'));
+  });
+  it.each([1, 3, 5, 12])('renders exactly %i real category leaks with matching water origins', async count => {
+    rows = DEMO_BUDGET_CATEGORIES.map((category, index) => ({ id: index + 1, category,
+      budget: index < count ? 0 : 150000, spending: 100000, initialBudget: 0 }));
+    const view = mount(); await cafe();
+    const cracks = [...view.container.querySelectorAll('.crack')];
+    const streams = [...view.container.querySelectorAll('.pot-leak-stream')];
+    expect(cracks).toHaveLength(count); expect(streams).toHaveLength(count);
+    for (const crack of cracks) {
+      const stream = streams.find(node => node.getAttribute('data-category') === crack.getAttribute('data-category'));
+      expect(stream).toBeDefined();
+      for (const name of ['data-anchor-u', 'data-anchor-v', 'data-origin-x', 'data-origin-y']) {
+        expect(stream).toHaveAttribute(name, crack.getAttribute(name));
+      }
+      expect(stream).toHaveAttribute('x', crack.getAttribute('data-origin-x'));
+      expect(stream).toHaveAttribute('y', crack.getAttribute('data-origin-y'));
+    }
+  });
+  it('keeps category positions after another leak disappears, rows reorder, and the month changes', async () => {
+    rows = DEMO_BUDGET_CATEGORIES.map((category, index) => ({ id: index + 1, category,
+      budget: 0, spending: 100000 + index * 2000, initialBudget: 0 }));
+    const view = mount(); await cafe();
+    const position = (category: string) => {
+      const crack = [...view.container.querySelectorAll('.crack')].find(node => node.getAttribute('data-category') === category);
+      return crack ? [crack.getAttribute('data-origin-x'), crack.getAttribute('data-origin-y')] : null;
+    };
+    const before = position('카페');
+    fireEvent.change(screen.getByRole('slider', { name: '식비 한도' }), { target: { value: '600000' } });
+    expect(position('식비')).toBeNull(); expect(position('카페')).toEqual(before);
+    expect(view.container.querySelectorAll('.crack')).toHaveLength(11);
+    expect(view.container.querySelectorAll('.pot-leak-stream')).toHaveLength(11);
+    rows = rows.slice().reverse().map((row, index) => ({ ...row, id: index + 101, spending: 200000 - index * 3000 }));
+    fireEvent.click(screen.getByText('11월').closest('button')!);
+    await waitFor(() => expect(requests).toContain('/api/budgets/2024/11'));
+    await waitFor(() => expect(view.container.querySelectorAll('.crack')).toHaveLength(12));
+    expect(position('카페')).toEqual(before);
+    expect(patches).toHaveLength(0);
+  });
+  it('uses each category amount for crack and water severity, including zero removal', () => {
+    const formatter = new Intl.NumberFormat('ko-KR');
+    const categories = (cafeLeak: number) => [
+      { id: 1, name: '카페', spending: 40000 + cafeLeak, threshold: 40000, initialBudget: 0 },
+      { id: 2, name: '식비', spending: 10000, threshold: 0, initialBudget: 0 },
+    ];
+    const view = render(<PotVisualization leakingCategories={categories(0)} totalLeak={10000} formatter={formatter} />);
+    expect(view.container.querySelector('.crack[data-category="카페"]')).toBeNull();
+    expect(view.container.querySelector('.pot-leak-stream[data-category="카페"]')).toBeNull();
+    const foodWidth = view.container.querySelector('.crack[data-category="식비"]')?.getAttribute('width');
+    const widths: number[] = [], waterWidths: number[] = [];
+    let anchor: string[] | undefined;
+    for (const amount of [10000, 30000, 60000, 120000, 300000]) {
+      view.rerender(<PotVisualization leakingCategories={categories(amount)} totalLeak={amount + 10000} formatter={formatter} />);
+      const crack = view.container.querySelector('.crack[data-category="카페"]')!;
+      const stream = view.container.querySelector('.pot-leak-stream[data-category="카페"]')!;
+      widths.push(Number(crack.getAttribute('width')));
+      waterWidths.push(Number(stream.getAttribute('data-water-width')));
+      const point = ['data-origin-x', 'data-origin-y'].map(name => crack.getAttribute(name)!);
+      anchor ??= point; expect(point).toEqual(anchor);
+      expect(['data-origin-x', 'data-origin-y'].map(name => stream.getAttribute(name)!)).toEqual(anchor);
+      expect(stream).toHaveAttribute('data-leak-amount', String(amount));
+      expect(view.container.querySelector('.crack[data-category="식비"]')).toHaveAttribute('width', foodWidth);
+    }
+    expect(widths[1]).toBeGreaterThan(widths[0]); expect(widths[2]).toBeGreaterThan(widths[1]);
+    expect(widths[4]).toBe(widths[3]);
+    for (let index = 1; index < waterWidths.length; index++) expect(waterWidths[index]).toBeGreaterThan(waterWidths[index - 1]);
+    expect(patches).toHaveLength(0);
+  });
   it('uses the stored API anchor, shows twelve rows, six readonly, crack and water', async () => {
     const view = mount('/pot'); await cafe();
     expect(requests).toContain('/api/budgets/2024/12');

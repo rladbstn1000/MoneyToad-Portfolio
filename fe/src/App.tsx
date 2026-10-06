@@ -1,8 +1,9 @@
 import { scrollLandingAssets, leakPotAssets, userInfoAssets, chartAssets, mypageAssets, notFoundAssets, toadAdviceAssets } from "./assets/pageAssets";
-import { authMode } from './auth/authMode';
+import { authMode, isLocalDemo } from './auth/authMode';
 import DemoPeriodEntry from './demo/DemoPeriodEntry';
 import DemoExperienceProvider from './demo/DemoExperienceProvider';
 import { demoPageAssets } from './demo/demoPageAssets';
+import { useLocalDemoStore } from './demo/localDemoStore';
 import { useAuthStore } from './store/authStore';
 import { useEffect, useState } from "react";
 import { useLocation, Routes, Route, Navigate } from "react-router-dom";
@@ -30,10 +31,15 @@ const allAssets = [
 
 export default function App() {
   const location = useLocation();
-  const generation = useAuthStore(state => state.generation);
+  const authGeneration = useAuthStore(state => state.generation);
+  const localGeneration = useLocalDemoStore(state => state.generation);
+  const generation = isLocalDemo ? localGeneration : authGeneration;
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // Local pages render immediately; their normal image elements load per route.
+    // Decorative image failure must never hold the entire experience hostage.
+    if (isLocalDemo) return;
     if (authMode !== 'demo' && location.pathname.startsWith("/pot/")) {
       setLoading(false);         
       return;

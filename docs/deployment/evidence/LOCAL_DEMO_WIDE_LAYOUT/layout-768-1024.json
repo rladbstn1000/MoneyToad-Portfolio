@@ -1,0 +1,386 @@
+{
+  "status": "PASS",
+  "viewport": {
+    "width": 768,
+    "height": 1024
+  },
+  "landing": {
+    "fit": "contain",
+    "naturalWidth": 1549,
+    "naturalHeight": 1033,
+    "imageInsideViewport": true,
+    "textSeparate": true,
+    "width": 768,
+    "height": 1024,
+    "dpr": 1
+  },
+  "paper": {
+    "art": {
+      "left": 134,
+      "right": 634,
+      "top": 273.5,
+      "bottom": 1023.5,
+      "width": 500,
+      "height": 750
+    },
+    "safe": {
+      "left": 214,
+      "right": 554,
+      "top": 356,
+      "bottom": 933.5,
+      "width": 340,
+      "height": 577.5
+    },
+    "title": {
+      "left": 214,
+      "right": 554,
+      "top": 356,
+      "bottom": 384,
+      "width": 340,
+      "height": 28
+    },
+    "list": {
+      "left": 214,
+      "right": 554,
+      "top": 442.296875,
+      "bottom": 889.5,
+      "width": 340,
+      "height": 447.203125
+    },
+    "sum": {
+      "left": 214,
+      "right": 554,
+      "top": 897.5,
+      "bottom": 933.5,
+      "width": 340,
+      "height": 36
+    },
+    "controls": [
+      {
+        "left": 236,
+        "right": 524,
+        "top": 513.6875,
+        "bottom": 561.6875,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 669.578125,
+        "bottom": 717.578125,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 825.46875,
+        "bottom": 873.46875,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 981.359375,
+        "bottom": 1029.359375,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 1137.25,
+        "bottom": 1185.25,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 1293.140625,
+        "bottom": 1341.140625,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 1449.03125,
+        "bottom": 1497.03125,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 1604.921875,
+        "bottom": 1652.921875,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 1760.8125,
+        "bottom": 1808.8125,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 1916.703125,
+        "bottom": 1964.703125,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 2072.59375,
+        "bottom": 2120.59375,
+        "width": 288,
+        "height": 48
+      },
+      {
+        "left": 236,
+        "right": 524,
+        "top": 2228.484375,
+        "bottom": 2276.484375,
+        "width": 288,
+        "height": 48
+      }
+    ],
+    "text": [
+      {
+        "left": 214,
+        "right": 282.03125,
+        "top": 456.296875,
+        "bottom": 478.6875,
+        "width": 68.03125,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 433.8125,
+        "top": 484.6875,
+        "bottom": 505.6875,
+        "width": 219.8125,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 241.6875,
+        "top": 612.1875,
+        "bottom": 634.578125,
+        "width": 27.6875,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 431.171875,
+        "top": 640.578125,
+        "bottom": 661.578125,
+        "width": 217.171875,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 295.875,
+        "top": 768.078125,
+        "bottom": 790.46875,
+        "width": 81.875,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 421.96875,
+        "top": 796.46875,
+        "bottom": 817.46875,
+        "width": 207.96875,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 282.03125,
+        "top": 923.96875,
+        "bottom": 946.359375,
+        "width": 68.03125,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 415.3125,
+        "top": 952.359375,
+        "bottom": 973.359375,
+        "width": 201.3125,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 241.6875,
+        "top": 1079.859375,
+        "bottom": 1102.25,
+        "width": 27.6875,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 415.296875,
+        "top": 1108.25,
+        "bottom": 1129.25,
+        "width": 201.296875,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 269.375,
+        "top": 1235.75,
+        "bottom": 1258.140625,
+        "width": 55.375,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 414.65625,
+        "top": 1264.140625,
+        "bottom": 1285.140625,
+        "width": 200.65625,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 282.03125,
+        "top": 1391.640625,
+        "bottom": 1414.03125,
+        "width": 68.03125,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 360.859375,
+        "top": 1420.03125,
+        "bottom": 1441.03125,
+        "width": 146.859375,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 269.375,
+        "top": 1547.53125,
+        "bottom": 1569.921875,
+        "width": 55.375,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 360.859375,
+        "top": 1575.921875,
+        "bottom": 1596.921875,
+        "width": 146.859375,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 282.03125,
+        "top": 1703.421875,
+        "bottom": 1725.8125,
+        "width": 68.03125,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 360.859375,
+        "top": 1731.8125,
+        "bottom": 1752.8125,
+        "width": 146.859375,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 241.6875,
+        "top": 1859.3125,
+        "bottom": 1881.703125,
+        "width": 27.6875,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 360.859375,
+        "top": 1887.703125,
+        "bottom": 1908.703125,
+        "width": 146.859375,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 295.875,
+        "top": 2015.203125,
+        "bottom": 2037.59375,
+        "width": 81.875,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 360.859375,
+        "top": 2043.59375,
+        "bottom": 2064.59375,
+        "width": 146.859375,
+        "height": 21
+      },
+      {
+        "left": 214,
+        "right": 241.6875,
+        "top": 2171.09375,
+        "bottom": 2193.484375,
+        "width": 27.6875,
+        "height": 22.390625
+      },
+      {
+        "left": 214,
+        "right": 360.859375,
+        "top": 2199.484375,
+        "bottom": 2220.484375,
+        "width": 146.859375,
+        "height": 21
+      }
+    ],
+    "titleFont": 20,
+    "listOverflow": "auto",
+    "safeInsidePaper": true,
+    "titleBeforeList": true,
+    "listBeforeSum": true,
+    "rowsWithinPaper": true,
+    "thumbsWithinPaper": true
+  },
+  "chart": {
+    "title": {
+      "left": 12,
+      "right": 756,
+      "top": 80,
+      "bottom": 281,
+      "width": 744,
+      "height": 201
+    },
+    "stage": {
+      "left": 64,
+      "right": 704,
+      "top": 297,
+      "bottom": 1059.5,
+      "width": 640,
+      "height": 762.5
+    },
+    "plot": {
+      "left": 64,
+      "right": 704,
+      "top": 739.5,
+      "bottom": 1059.5,
+      "width": 640,
+      "height": 320
+    },
+    "separate": true,
+    "plotInsideStage": true
+  }
+}

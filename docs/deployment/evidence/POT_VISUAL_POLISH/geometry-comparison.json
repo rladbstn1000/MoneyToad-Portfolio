@@ -1,0 +1,1632 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "common_downward_shift": 8.0,
+      "unchanged_panel_and_main": true,
+      "figures": [
+        {
+          "element": ".pot-visualization",
+          "before": {
+            "x": 47.8125,
+            "y": 208.984375,
+            "width": 294.359375,
+            "height": 210.453125,
+            "bottom": 419.4375
+          },
+          "after": {
+            "x": 47.8125,
+            "y": 216.984375,
+            "width": 294.359375,
+            "height": 210.453125,
+            "bottom": 427.4375
+          }
+        },
+        {
+          "element": ".pot-svg",
+          "before": {
+            "x": 191.84375,
+            "y": 208.984375,
+            "width": 150.328125,
+            "height": 210.453125,
+            "bottom": 419.4375
+          },
+          "after": {
+            "x": 191.84375,
+            "y": 216.984375,
+            "width": 150.328125,
+            "height": 210.453125,
+            "bottom": 427.4375
+          }
+        },
+        {
+          "element": "#pot-body image",
+          "before": {
+            "x": 220.407470703125,
+            "y": 247.11289978027344,
+            "width": 93.20068359375,
+            "height": 106.18220520019531,
+            "bottom": 353.29510498046875
+          },
+          "after": {
+            "x": 220.407470703125,
+            "y": 255.11289978027344,
+            "width": 93.20068359375,
+            "height": 106.18220520019531,
+            "bottom": 361.29510498046875
+          }
+        },
+        {
+          "element": ".characters",
+          "before": {
+            "x": 47.8125,
+            "y": 247.1875,
+            "width": 128.03125,
+            "height": 172.25,
+            "bottom": 419.4375
+          },
+          "after": {
+            "x": 47.8125,
+            "y": 255.1875,
+            "width": 128.03125,
+            "height": 172.25,
+            "bottom": 427.4375
+          }
+        },
+        {
+          "element": ".kongjwi",
+          "before": {
+            "x": 47.8125,
+            "y": 247.1875,
+            "width": 70.75,
+            "height": 106.125,
+            "bottom": 353.3125
+          },
+          "after": {
+            "x": 47.8125,
+            "y": 255.1875,
+            "width": 70.75,
+            "height": 106.125,
+            "bottom": 361.3125
+          }
+        },
+        {
+          "element": ".toad",
+          "before": {
+            "x": 134.5625,
+            "y": 312.046875,
+            "width": 41.265625,
+            "height": 41.265625,
+            "bottom": 353.3125
+          },
+          "after": {
+            "x": 134.5625,
+            "y": 320.046875,
+            "width": 41.265625,
+            "height": 41.265625,
+            "bottom": 361.3125
+          }
+        }
+      ],
+      "notice": {
+        "x": 48.65625,
+        "y": 44,
+        "width": 292.671875,
+        "height": 23,
+        "right": 341.328125,
+        "bottom": 67,
+        "scrollWidth": 291,
+        "scrollHeight": 21,
+        "clientWidth": 291,
+        "clientHeight": 21,
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontSize": "15px",
+        "lineHeight": "21px",
+        "color": "rgb(255, 244, 214)",
+        "backgroundColor": "rgba(58, 35, 13, 0.86)",
+        "borderColor": "rgb(190, 161, 106)"
+      },
+      "months": [
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": true,
+          "height_before": 48,
+          "height_after": 48,
+          "height_ratio": 1.0,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        }
+      ],
+      "outside_overflow_x": 0,
+      "outside_overflow_y": 0
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "common_downward_shift": 8.5625,
+      "unchanged_panel_and_main": true,
+      "figures": [
+        {
+          "element": ".pot-visualization",
+          "before": {
+            "x": 194.703125,
+            "y": 209.546875,
+            "width": 378.59375,
+            "height": 274.125,
+            "bottom": 483.671875
+          },
+          "after": {
+            "x": 194.703125,
+            "y": 218.109375,
+            "width": 378.59375,
+            "height": 274.125,
+            "bottom": 492.234375
+          }
+        },
+        {
+          "element": ".pot-svg",
+          "before": {
+            "x": 377.484375,
+            "y": 209.546875,
+            "width": 195.8125,
+            "height": 274.125,
+            "bottom": 483.671875
+          },
+          "after": {
+            "x": 377.484375,
+            "y": 218.109375,
+            "width": 195.8125,
+            "height": 274.125,
+            "bottom": 492.234375
+          }
+        },
+        {
+          "element": "#pot-body image",
+          "before": {
+            "x": 414.6915283203125,
+            "y": 259.2110595703125,
+            "width": 121.398193359375,
+            "height": 138.3072509765625,
+            "bottom": 397.518310546875
+          },
+          "after": {
+            "x": 414.6915283203125,
+            "y": 267.7735595703125,
+            "width": 121.398193359375,
+            "height": 138.3072509765625,
+            "bottom": 406.080810546875
+          }
+        },
+        {
+          "element": ".characters",
+          "before": {
+            "x": 194.703125,
+            "y": 254.703125,
+            "width": 166.78125,
+            "height": 228.96875,
+            "bottom": 483.671875
+          },
+          "after": {
+            "x": 194.703125,
+            "y": 263.265625,
+            "width": 166.78125,
+            "height": 228.96875,
+            "bottom": 492.234375
+          }
+        },
+        {
+          "element": ".kongjwi",
+          "before": {
+            "x": 194.703125,
+            "y": 254.703125,
+            "width": 95.21875,
+            "height": 142.828125,
+            "bottom": 397.53125
+          },
+          "after": {
+            "x": 194.703125,
+            "y": 263.265625,
+            "width": 95.21875,
+            "height": 142.828125,
+            "bottom": 406.09375
+          }
+        },
+        {
+          "element": ".toad",
+          "before": {
+            "x": 305.921875,
+            "y": 341.96875,
+            "width": 55.5625,
+            "height": 55.5625,
+            "bottom": 397.53125
+          },
+          "after": {
+            "x": 305.921875,
+            "y": 350.53125,
+            "width": 55.5625,
+            "height": 55.5625,
+            "bottom": 406.09375
+          }
+        }
+      ],
+      "notice": {
+        "x": 237.65625,
+        "y": 44,
+        "width": 292.671875,
+        "height": 23,
+        "right": 530.328125,
+        "bottom": 67,
+        "scrollWidth": 291,
+        "scrollHeight": 21,
+        "clientWidth": 291,
+        "clientHeight": 21,
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontSize": "15px",
+        "lineHeight": "21px",
+        "color": "rgb(255, 244, 214)",
+        "backgroundColor": "rgba(58, 35, 13, 0.86)",
+        "borderColor": "rgb(190, 161, 106)"
+      },
+      "months": [
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": true,
+          "height_before": 48,
+          "height_after": 48,
+          "height_ratio": 1.0,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        },
+        {
+          "active": false,
+          "height_before": 34.546875,
+          "height_after": 40,
+          "height_ratio": 1.1578471279963818,
+          "font_before": "12px",
+          "font_after": "13px"
+        }
+      ],
+      "outside_overflow_x": 0,
+      "outside_overflow_y": 0
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1
+      },
+      "common_downward_shift": 16.90625,
+      "unchanged_panel_and_main": true,
+      "figures": [
+        {
+          "element": ".pot-visualization",
+          "before": {
+            "x": 20,
+            "y": 219.90625,
+            "width": 1009.609375,
+            "height": 751.1875,
+            "bottom": 971.09375
+          },
+          "after": {
+            "x": 20,
+            "y": 236.8125,
+            "width": 1009.609375,
+            "height": 751.1875,
+            "bottom": 988
+          }
+        },
+        {
+          "element": ".pot-svg",
+          "before": {
+            "x": 493.046875,
+            "y": 219.90625,
+            "width": 536.5625,
+            "height": 751.1875,
+            "bottom": 971.09375
+          },
+          "after": {
+            "x": 493.046875,
+            "y": 236.8125,
+            "width": 536.5625,
+            "height": 751.1875,
+            "bottom": 988
+          }
+        },
+        {
+          "element": "#pot-body image",
+          "before": {
+            "x": 594.9937744140625,
+            "y": 356.0014953613281,
+            "width": 332.668701171875,
+            "height": 379.0047302246094,
+            "bottom": 735.0062255859375
+          },
+          "after": {
+            "x": 594.9937744140625,
+            "y": 372.9077453613281,
+            "width": 332.668701171875,
+            "height": 379.0047302246094,
+            "bottom": 751.9124755859375
+          }
+        },
+        {
+          "element": ".characters",
+          "before": {
+            "x": 20,
+            "y": 317.21875,
+            "width": 457.046875,
+            "height": 653.875,
+            "bottom": 971.09375
+          },
+          "after": {
+            "x": 20,
+            "y": 334.125,
+            "width": 457.046875,
+            "height": 653.875,
+            "bottom": 988
+          }
+        },
+        {
+          "element": ".kongjwi",
+          "before": {
+            "x": 20,
+            "y": 317.21875,
+            "width": 278.546875,
+            "height": 417.8125,
+            "bottom": 735.03125
+          },
+          "after": {
+            "x": 20,
+            "y": 334.125,
+            "width": 278.546875,
+            "height": 417.8125,
+            "bottom": 751.9375
+          }
+        },
+        {
+          "element": ".toad",
+          "before": {
+            "x": 314.546875,
+            "y": 572.546875,
+            "width": 162.484375,
+            "height": 162.484375,
+            "bottom": 735.03125
+          },
+          "after": {
+            "x": 314.546875,
+            "y": 589.453125,
+            "width": 162.484375,
+            "height": 162.484375,
+            "bottom": 751.9375
+          }
+        }
+      ],
+      "notice": {
+        "x": 558.828125,
+        "y": 48,
+        "width": 322.34375,
+        "height": 34,
+        "right": 881.171875,
+        "bottom": 82,
+        "scrollWidth": 320,
+        "scrollHeight": 32,
+        "clientWidth": 320,
+        "clientHeight": 32,
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "color": "rgb(255, 244, 214)",
+        "backgroundColor": "rgba(58, 35, 13, 0.86)",
+        "borderColor": "rgb(190, 161, 106)"
+      },
+      "months": [
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": true,
+          "height_before": 72,
+          "height_after": 83,
+          "height_ratio": 1.1527777777777777,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        }
+      ],
+      "outside_overflow_x": 0,
+      "outside_overflow_y": 0
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "common_downward_shift": 13.484375,
+      "unchanged_panel_and_main": true,
+      "figures": [
+        {
+          "element": ".pot-visualization",
+          "before": {
+            "x": 140.15625,
+            "y": 216.484375,
+            "width": 1124.5,
+            "height": 838.03125,
+            "bottom": 1054.515625
+          },
+          "after": {
+            "x": 140.15625,
+            "y": 229.96875,
+            "width": 1124.5,
+            "height": 838.03125,
+            "bottom": 1068
+          }
+        },
+        {
+          "element": ".pot-svg",
+          "before": {
+            "x": 666.0625,
+            "y": 216.484375,
+            "width": 598.59375,
+            "height": 838.03125,
+            "bottom": 1054.515625
+          },
+          "after": {
+            "x": 666.0625,
+            "y": 229.96875,
+            "width": 598.59375,
+            "height": 838.03125,
+            "bottom": 1068
+          }
+        },
+        {
+          "element": "#pot-body image",
+          "before": {
+            "x": 779.7952880859375,
+            "y": 368.31341552734375,
+            "width": 371.128173828125,
+            "height": 422.82098388671875,
+            "bottom": 791.1343994140625
+          },
+          "after": {
+            "x": 779.7952880859375,
+            "y": 381.79779052734375,
+            "width": 371.128173828125,
+            "height": 422.82098388671875,
+            "bottom": 804.6187744140625
+          }
+        },
+        {
+          "element": ".characters",
+          "before": {
+            "x": 140.15625,
+            "y": 323.234375,
+            "width": 509.90625,
+            "height": 731.28125,
+            "bottom": 1054.515625
+          },
+          "after": {
+            "x": 140.15625,
+            "y": 336.71875,
+            "width": 509.90625,
+            "height": 731.28125,
+            "bottom": 1068
+          }
+        },
+        {
+          "element": ".kongjwi",
+          "before": {
+            "x": 140.15625,
+            "y": 323.234375,
+            "width": 311.9375,
+            "height": 467.90625,
+            "bottom": 791.140625
+          },
+          "after": {
+            "x": 140.15625,
+            "y": 336.71875,
+            "width": 311.9375,
+            "height": 467.90625,
+            "bottom": 804.625
+          }
+        },
+        {
+          "element": ".toad",
+          "before": {
+            "x": 468.09375,
+            "y": 609.171875,
+            "width": 181.96875,
+            "height": 181.96875,
+            "bottom": 791.140625
+          },
+          "after": {
+            "x": 468.09375,
+            "y": 622.65625,
+            "width": 181.96875,
+            "height": 181.96875,
+            "bottom": 804.625
+          }
+        }
+      ],
+      "notice": {
+        "x": 798.828125,
+        "y": 48,
+        "width": 322.34375,
+        "height": 34,
+        "right": 1121.171875,
+        "bottom": 82,
+        "scrollWidth": 320,
+        "scrollHeight": 32,
+        "clientWidth": 320,
+        "clientHeight": 32,
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "color": "rgb(255, 244, 214)",
+        "backgroundColor": "rgba(58, 35, 13, 0.86)",
+        "borderColor": "rgb(190, 161, 106)"
+      },
+      "months": [
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": true,
+          "height_before": 72,
+          "height_after": 83,
+          "height_ratio": 1.1527777777777777,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        }
+      ],
+      "outside_overflow_x": 0,
+      "outside_overflow_y": 0
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 900,
+        "dpr": 1
+      },
+      "common_downward_shift": 11.9375,
+      "unchanged_panel_and_main": true,
+      "figures": [
+        {
+          "element": ".pot-visualization",
+          "before": {
+            "x": 257.15625,
+            "y": 214.9375,
+            "width": 890.5,
+            "height": 661.125,
+            "bottom": 876.0625
+          },
+          "after": {
+            "x": 257.15625,
+            "y": 226.875,
+            "width": 890.5,
+            "height": 661.125,
+            "bottom": 888
+          }
+        },
+        {
+          "element": ".pot-svg",
+          "before": {
+            "x": 675.421875,
+            "y": 214.9375,
+            "width": 472.234375,
+            "height": 661.125,
+            "bottom": 876.0625
+          },
+          "after": {
+            "x": 675.421875,
+            "y": 226.875,
+            "width": 472.234375,
+            "height": 661.125,
+            "bottom": 888
+          }
+        },
+        {
+          "element": "#pot-body image",
+          "before": {
+            "x": 765.1470947265625,
+            "y": 334.7158203125,
+            "width": 292.783935546875,
+            "height": 333.5645751953125,
+            "bottom": 668.2803955078125
+          },
+          "after": {
+            "x": 765.1470947265625,
+            "y": 346.6533203125,
+            "width": 292.783935546875,
+            "height": 333.5645751953125,
+            "bottom": 680.2178955078125
+          }
+        },
+        {
+          "element": ".characters",
+          "before": {
+            "x": 257.15625,
+            "y": 302.375,
+            "width": 402.265625,
+            "height": 573.6875,
+            "bottom": 876.0625
+          },
+          "after": {
+            "x": 257.15625,
+            "y": 314.3125,
+            "width": 402.265625,
+            "height": 573.6875,
+            "bottom": 888
+          }
+        },
+        {
+          "element": ".kongjwi",
+          "before": {
+            "x": 257.15625,
+            "y": 302.375,
+            "width": 243.953125,
+            "height": 365.921875,
+            "bottom": 668.296875
+          },
+          "after": {
+            "x": 257.15625,
+            "y": 314.3125,
+            "width": 243.953125,
+            "height": 365.921875,
+            "bottom": 680.234375
+          }
+        },
+        {
+          "element": ".toad",
+          "before": {
+            "x": 517.109375,
+            "y": 526,
+            "width": 142.296875,
+            "height": 142.296875,
+            "bottom": 668.296875
+          },
+          "after": {
+            "x": 517.109375,
+            "y": 537.9375,
+            "width": 142.296875,
+            "height": 142.296875,
+            "bottom": 680.234375
+          }
+        }
+      ],
+      "notice": {
+        "x": 798.828125,
+        "y": 48,
+        "width": 322.34375,
+        "height": 34,
+        "right": 1121.171875,
+        "bottom": 82,
+        "scrollWidth": 320,
+        "scrollHeight": 32,
+        "clientWidth": 320,
+        "clientHeight": 32,
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "color": "rgb(255, 244, 214)",
+        "backgroundColor": "rgba(58, 35, 13, 0.86)",
+        "borderColor": "rgb(190, 161, 106)"
+      },
+      "months": [
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": true,
+          "height_before": 72,
+          "height_after": 83,
+          "height_ratio": 1.1527777777777777,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        }
+      ],
+      "outside_overflow_x": 0,
+      "outside_overflow_y": 0
+    },
+    {
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "dpr": 1
+      },
+      "common_downward_shift": 16.59375,
+      "unchanged_panel_and_main": true,
+      "figures": [
+        {
+          "element": ".pot-visualization",
+          "before": {
+            "x": 175.75,
+            "y": 219.578125,
+            "width": 1592.5,
+            "height": 1191.828125,
+            "bottom": 1411.40625
+          },
+          "after": {
+            "x": 175.75,
+            "y": 236.171875,
+            "width": 1592.5,
+            "height": 1191.828125,
+            "bottom": 1428
+          }
+        },
+        {
+          "element": ".pot-svg",
+          "before": {
+            "x": 916.9375,
+            "y": 219.578125,
+            "width": 851.3125,
+            "height": 1191.828125,
+            "bottom": 1411.40625
+          },
+          "after": {
+            "x": 916.9375,
+            "y": 236.171875,
+            "width": 851.3125,
+            "height": 1191.828125,
+            "bottom": 1428
+          }
+        },
+        {
+          "element": "#pot-body image",
+          "before": {
+            "x": 1078.68896484375,
+            "y": 435.5057373046875,
+            "width": 527.8095703125,
+            "height": 601.3260498046875,
+            "bottom": 1036.831787109375
+          },
+          "after": {
+            "x": 1078.68896484375,
+            "y": 452.0994873046875,
+            "width": 527.8095703125,
+            "height": 601.3260498046875,
+            "bottom": 1053.425537109375
+          }
+        },
+        {
+          "element": ".characters",
+          "before": {
+            "x": 175.75,
+            "y": 460.84375,
+            "width": 725.1875,
+            "height": 950.5625,
+            "bottom": 1411.40625
+          },
+          "after": {
+            "x": 175.75,
+            "y": 477.4375,
+            "width": 725.1875,
+            "height": 950.5625,
+            "bottom": 1428
+          }
+        },
+        {
+          "element": ".kongjwi",
+          "before": {
+            "x": 207.703125,
+            "y": 460.84375,
+            "width": 384,
+            "height": 576,
+            "bottom": 1036.84375
+          },
+          "after": {
+            "x": 207.703125,
+            "y": 477.4375,
+            "width": 384,
+            "height": 576,
+            "bottom": 1053.4375
+          }
+        },
+        {
+          "element": ".toad",
+          "before": {
+            "x": 658.296875,
+            "y": 812.84375,
+            "width": 224,
+            "height": 224,
+            "bottom": 1036.84375
+          },
+          "after": {
+            "x": 658.296875,
+            "y": 829.4375,
+            "width": 224,
+            "height": 224,
+            "bottom": 1053.4375
+          }
+        }
+      ],
+      "notice": {
+        "x": 1118.828125,
+        "y": 48,
+        "width": 322.34375,
+        "height": 34,
+        "right": 1441.171875,
+        "bottom": 82,
+        "scrollWidth": 320,
+        "scrollHeight": 32,
+        "clientWidth": 320,
+        "clientHeight": 32,
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "color": "rgb(255, 244, 214)",
+        "backgroundColor": "rgba(58, 35, 13, 0.86)",
+        "borderColor": "rgb(190, 161, 106)"
+      },
+      "months": [
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": true,
+          "height_before": 72,
+          "height_after": 83,
+          "height_ratio": 1.1527777777777777,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        }
+      ],
+      "outside_overflow_x": 0,
+      "outside_overflow_y": 0
+    },
+    {
+      "viewport": {
+        "width": 3840,
+        "height": 2160,
+        "dpr": 1
+      },
+      "common_downward_shift": 373.75,
+      "unchanged_panel_and_main": true,
+      "figures": [
+        {
+          "element": ".pot-visualization",
+          "before": {
+            "x": 812,
+            "y": 576.734375,
+            "width": 1600,
+            "height": 1197.515625,
+            "bottom": 1774.25
+          },
+          "after": {
+            "x": 812,
+            "y": 950.484375,
+            "width": 1600,
+            "height": 1197.515625,
+            "bottom": 2148
+          }
+        },
+        {
+          "element": ".pot-svg",
+          "before": {
+            "x": 1556.625,
+            "y": 576.734375,
+            "width": 855.375,
+            "height": 1197.515625,
+            "bottom": 1774.25
+          },
+          "after": {
+            "x": 1556.625,
+            "y": 950.484375,
+            "width": 855.375,
+            "height": 1197.515625,
+            "bottom": 2148
+          }
+        },
+        {
+          "element": "#pot-body image",
+          "before": {
+            "x": 1719.1483154296875,
+            "y": 793.6924438476562,
+            "width": 530.3282470703125,
+            "height": 604.1954956054688,
+            "bottom": 1397.887939453125
+          },
+          "after": {
+            "x": 1719.1483154296875,
+            "y": 1167.4423828125,
+            "width": 530.3282470703125,
+            "height": 604.195556640625,
+            "bottom": 1771.637939453125
+          }
+        },
+        {
+          "element": ".characters",
+          "before": {
+            "x": 812,
+            "y": 821.90625,
+            "width": 728.625,
+            "height": 952.34375,
+            "bottom": 1774.25
+          },
+          "after": {
+            "x": 812,
+            "y": 1195.65625,
+            "width": 728.625,
+            "height": 952.34375,
+            "bottom": 2148
+          }
+        },
+        {
+          "element": ".kongjwi",
+          "before": {
+            "x": 845.03125,
+            "y": 821.90625,
+            "width": 384,
+            "height": 576,
+            "bottom": 1397.90625
+          },
+          "after": {
+            "x": 845.03125,
+            "y": 1195.65625,
+            "width": 384,
+            "height": 576,
+            "bottom": 1771.65625
+          }
+        },
+        {
+          "element": ".toad",
+          "before": {
+            "x": 1297.34375,
+            "y": 1173.90625,
+            "width": 224,
+            "height": 224,
+            "bottom": 1397.90625
+          },
+          "after": {
+            "x": 1297.34375,
+            "y": 1547.65625,
+            "width": 224,
+            "height": 224,
+            "bottom": 1771.65625
+          }
+        }
+      ],
+      "notice": {
+        "x": 1758.828125,
+        "y": 48,
+        "width": 322.34375,
+        "height": 34,
+        "right": 2081.171875,
+        "bottom": 82,
+        "scrollWidth": 320,
+        "scrollHeight": 32,
+        "clientWidth": 320,
+        "clientHeight": 32,
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "color": "rgb(255, 244, 214)",
+        "backgroundColor": "rgba(58, 35, 13, 0.86)",
+        "borderColor": "rgb(190, 161, 106)"
+      },
+      "months": [
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": true,
+          "height_before": 72,
+          "height_after": 83,
+          "height_ratio": 1.1527777777777777,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        },
+        {
+          "active": false,
+          "height_before": 51.828125,
+          "height_after": 59.75,
+          "height_ratio": 1.1528489599035272,
+          "font_before": "14px",
+          "font_after": "16px"
+        }
+      ],
+      "outside_overflow_x": 0,
+      "outside_overflow_y": 0
+    }
+  ],
+  "api_attempts": 0,
+  "external_attempts": 0,
+  "page_errors": 0
+}

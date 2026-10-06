@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "viewports": [
+    [
+      390,
+      844
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1440,
+      1000
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      2560,
+      1440
+    ],
+    [
+      3840,
+      2160
+    ],
+    [
+      1920,
+      900
+    ]
+  ],
+  "devicePixelRatio": 1,
+  "browser_zoom": "NOT_MEASURED",
+  "os_scaling": "NOT_MEASURED",
+  "physical_monitor": "NOT_REPRODUCED",
+  "user_visual_approval": "PENDING",
+  "direct_screenshot_review": true,
+  "severity_frames": [
+    5,
+    12,
+    20
+  ],
+  "amounts": [
+    0,
+    10000,
+    30000,
+    60000,
+    120000,
+    300000
+  ],
+  "original_reference": "read-only visual reconstruction; not full original application",
+  "max_decorative_overlap_allowed": true,
+  "dark_centers_body_contract_retained": true
+}

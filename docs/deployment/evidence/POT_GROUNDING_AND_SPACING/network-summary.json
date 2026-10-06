@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "cases": 16,
+  "api_attempts": 0,
+  "external_runtime_attempts": 0,
+  "page_errors": 0,
+  "backend_started": false,
+  "provider_connections": 0,
+  "official_font_preparation": "separate official notice and original font download only",
+  "retry": 0
+}

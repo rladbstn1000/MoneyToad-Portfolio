@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "local automated viewport rendering plus direct screenshot inspection; user approval pending",
+  "viewports": [
+    [
+      390,
+      844
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1440,
+      1000
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      2560,
+      1440
+    ],
+    [
+      3840,
+      2160
+    ],
+    [
+      1920,
+      900
+    ]
+  ],
+  "devicePixelRatio": 1,
+  "browserZoom": "NOT_MEASURED",
+  "osDisplayScaling": "NOT_MEASURED",
+  "physical32InchMonitor": "NOT_REPRODUCED",
+  "landing_scenes": 4,
+  "pot_states": [
+    0,
+    1,
+    3,
+    5,
+    12
+  ],
+  "non_overlapping_characters": true,
+  "stable_category_anchors": true,
+  "advice_action_visible": true,
+  "known_original_image_cropping": "Original asset boundaries unchanged; CSS adds no main-image crop."
+}

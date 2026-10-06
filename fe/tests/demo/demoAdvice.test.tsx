@@ -60,6 +60,36 @@ afterEach(async () => {
 function mount() { return render(<QueryClientProvider client={client}><MemoryRouter><ToadAdvice /></MemoryRouter></QueryClientProvider>); }
 
 describe('prepared demo advice with actual authenticated query/API layer', () => {
+  it('keeps queried cards below the overview in document flow before navigation', async () => {
+    mount();
+    const card = await screen.findByRole('button', { name: /카페.*냥|냥.*카페/ });
+    const overview = screen.getByRole('region', { name: '두꺼비의 소비내역 조언소' });
+    const details = screen.getByRole('region', { name: '12월 과소비 요약' });
+    expect(overview.nextElementSibling).toBe(details);
+    expect(overview.lastElementChild).toBe(screen.getByRole('button', { name: '카테고리별 소비 조언 보기 ↓' }).parentElement);
+    expect(details).toContainElement(card);
+    expect(overview).not.toContainElement(card);
+    const completedPaths = [...paths];
+    fireEvent.click(screen.getByRole('button', { name: '카테고리별 소비 조언 보기 ↓' }));
+    expect(screen.getByRole('button', { name: /카페.*냥|냥.*카페/ })).toBe(card);
+    expect(paths).toEqual(completedPaths);
+  });
+  it('moves to the current detail heading without another remote request', async () => {
+    mount(); await screen.findByRole('heading', { name: '카페' });
+    const completedPaths = [...paths];
+    fireEvent.click(screen.getByRole('button', { name: '카테고리별 소비 조언 보기 ↓' }));
+    expect(screen.getByRole('heading', { name: '12월 과소비 요약' })).toHaveFocus();
+    expect(paths).toEqual(completedPaths);
+  });
+  it('links successful empty remote data to a real result instead of announcing absent cards', async () => {
+    monthBudgets = []; monthRows = []; mount();
+    await screen.findByText('축하하오! 과소비 항목이 없소!');
+    const completedPaths = [...paths];
+    expect(screen.queryByRole('button', { name: '카테고리별 소비 조언 보기 ↓' })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '이번 달 소비 결과 보기 ↓' }));
+    expect(screen.getByRole('heading', { name: '12월 소비 확인 결과' })).toHaveFocus();
+    expect(paths).toEqual(completedPaths);
+  });
   it('uses the stored twelve months and actual money without any AI or budget-year request', async () => {
     const view = mount(); await screen.findByRole('heading', { name: '카페' });
     expect(view.container.querySelector('[data-demo-page="advice"]')).not.toBeNull();

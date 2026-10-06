@@ -1,0 +1,9 @@
+{
+  "cases": 9,
+  "static_requests": 335,
+  "api_attempts": 0,
+  "external_attempts": 0,
+  "page_errors": 0,
+  "same_origin_assets_only": true,
+  "owned_away_origin_used_for_history": true
+}

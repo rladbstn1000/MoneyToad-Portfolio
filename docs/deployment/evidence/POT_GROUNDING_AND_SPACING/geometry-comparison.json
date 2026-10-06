@@ -1,0 +1,511 @@
+{
+  "before_network": {
+    "api": 0,
+    "external": 0,
+    "pageErrors": 0
+  },
+  "after_network": {
+    "api": 0,
+    "external": 0,
+    "pageErrors": 0
+  },
+  "rows": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "illustrations": {
+        ".kongjwi": {
+          "before": {
+            "left": 47.8125,
+            "right": 113.18688725490196,
+            "top": 258.48223039215685,
+            "bottom": 359.75183823529414
+          },
+          "after": {
+            "left": 54.84375,
+            "right": 116.44986979166667,
+            "top": 294.0733251633987,
+            "bottom": 389.49816176470586
+          },
+          "floor_delta": 29.746,
+          "width_ratio": 0.9424,
+          "height_ratio": 0.9423
+        },
+        ".toad": {
+          "before": {
+            "left": 134.5625,
+            "right": 175.828125,
+            "top": 323.21057291666665,
+            "bottom": 360.3496354166667
+          },
+          "after": {
+            "left": 137.515625,
+            "right": 176.421875,
+            "top": 355.0453125,
+            "bottom": 390.0609375
+          },
+          "floor_delta": 29.711,
+          "width_ratio": 0.9428,
+          "height_ratio": 0.9428
+        },
+        "#pot-body image": {
+          "before": {
+            "left": 222.07176862444197,
+            "right": 312.27671595982144,
+            "top": 256.7771976674238,
+            "bottom": 359.96366667074847
+          },
+          "after": {
+            "left": 221.12501089913505,
+            "right": 306.7691441127232,
+            "top": 291.7183640817863,
+            "bottom": 389.6876622501959
+          },
+          "floor_delta": 29.724,
+          "width_ratio": 0.9494,
+          "height_ratio": 0.9494
+        }
+      },
+      "top_gaps": {
+        "header_to_notice": 6,
+        "notice_to_label": 8,
+        "icons_to_stage": 12
+      },
+      "panel_delta_y": 19.188,
+      "main_top": 227,
+      "document_overflow": {
+        "Width": 0,
+        "Height": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "illustrations": {
+        ".kongjwi": {
+          "before": {
+            "left": 194.703125,
+            "right": 282.6871170343137,
+            "top": 267.69983149509807,
+            "bottom": 403.99333639705884
+          },
+          "after": {
+            "left": 201.71875,
+            "right": 285.93447457107845,
+            "top": 305.58780126633985,
+            "bottom": 436.0365349264706
+          },
+          "floor_delta": 32.043,
+          "width_ratio": 0.9572,
+          "height_ratio": 0.9571
+        },
+        ".toad": {
+          "before": {
+            "left": 305.921875,
+            "right": 361.484375,
+            "top": 354.7910416666667,
+            "bottom": 404.79729166666664
+          },
+          "after": {
+            "left": 308.859375,
+            "right": 362.03125,
+            "top": 388.9515104166667,
+            "bottom": 436.8061979166667
+          },
+          "floor_delta": 32.009,
+          "width_ratio": 0.957,
+          "height_ratio": 0.957
+        },
+        "#pot-body image": {
+          "before": {
+            "left": 416.8593532017299,
+            "right": 534.3554617745535,
+            "top": 269.94138482072884,
+            "bottom": 404.3465503465419
+          },
+          "after": {
+            "left": 415.8981023515974,
+            "right": 528.8467769077846,
+            "top": 307.1540843042834,
+            "bottom": 436.35739661907326
+          },
+          "floor_delta": 32.011,
+          "width_ratio": 0.9613,
+          "height_ratio": 0.9613
+        }
+      },
+      "top_gaps": {
+        "header_to_notice": 6,
+        "notice_to_label": 8,
+        "icons_to_stage": 12
+      },
+      "panel_delta_y": 19.203,
+      "main_top": 227,
+      "document_overflow": {
+        "Width": 0,
+        "Height": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1
+      },
+      "illustrations": {
+        ".kongjwi": {
+          "before": {
+            "left": 20,
+            "right": 277.3827742034314,
+            "top": 347.09630310457516,
+            "bottom": 745.7931985294117
+          },
+          "after": {
+            "left": 97,
+            "right": 313.04733455882354,
+            "top": 471.3570772058824,
+            "bottom": 806.0298713235295
+          },
+          "floor_delta": 60.237,
+          "width_ratio": 0.8394,
+          "height_ratio": 0.8394
+        },
+        ".toad": {
+          "before": {
+            "left": 314.546875,
+            "right": 477.03125,
+            "top": 601.9102604166667,
+            "bottom": 748.1461979166667
+          },
+          "after": {
+            "left": 346.8125,
+            "right": 483.203125,
+            "top": 685.2534895833334,
+            "bottom": 808.0050520833333
+          },
+          "floor_delta": 59.859,
+          "width_ratio": 0.8394,
+          "height_ratio": 0.8394
+        },
+        "#pot-body image": {
+          "before": {
+            "left": 600.9342869349888,
+            "right": 922.9100655691964,
+            "top": 378.848258374253,
+            "bottom": 747.1600651755975
+          },
+          "after": {
+            "left": 590.3730359758649,
+            "right": 862.4277308872768,
+            "top": 495.9511611603644,
+            "bottom": 807.1576501732709
+          },
+          "floor_delta": 59.998,
+          "width_ratio": 0.845,
+          "height_ratio": 0.845
+        }
+      },
+      "top_gaps": {
+        "header_to_notice": 24,
+        "notice_to_label": 20,
+        "icons_to_stage": 36
+      },
+      "panel_delta_y": 36.0,
+      "main_top": 267,
+      "document_overflow": {
+        "Width": 0,
+        "Height": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "illustrations": {
+        ".kongjwi": {
+          "before": {
+            "left": 140.15625,
+            "right": 428.3926164215686,
+            "top": 351.2452512254902,
+            "bottom": 797.7440257352941
+          },
+          "after": {
+            "left": 226.609375,
+            "right": 468.413756127451,
+            "top": 490.63955269607845,
+            "bottom": 865.2118566176471
+          },
+          "floor_delta": 67.468,
+          "width_ratio": 0.8389,
+          "height_ratio": 0.8389
+        },
+        ".toad": {
+          "before": {
+            "left": 468.09375,
+            "right": 650.0625,
+            "top": 636.6071875,
+            "bottom": 800.3790625
+          },
+          "after": {
+            "left": 504.296875,
+            "right": 656.96875,
+            "top": 730.01734375,
+            "bottom": 867.42203125
+          },
+          "floor_delta": 67.043,
+          "width_ratio": 0.839,
+          "height_ratio": 0.839
+        },
+        "#pot-body image": {
+          "before": {
+            "left": 786.4225769042969,
+            "right": 1145.621630859375,
+            "top": 388.4250786760384,
+            "bottom": 799.3169438951068
+          },
+          "after": {
+            "left": 774.5602776663644,
+            "right": 1077.7302446637834,
+            "top": 519.677283212309,
+            "bottom": 866.4769478442154
+          },
+          "floor_delta": 67.16,
+          "width_ratio": 0.844,
+          "height_ratio": 0.844
+        }
+      },
+      "top_gaps": {
+        "header_to_notice": 24,
+        "notice_to_label": 20,
+        "icons_to_stage": 36
+      },
+      "panel_delta_y": 36.0,
+      "main_top": 267,
+      "document_overflow": {
+        "Width": 0,
+        "Height": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 900,
+        "dpr": 1
+      },
+      "illustrations": {
+        ".kongjwi": {
+          "before": {
+            "left": 257.15625,
+            "right": 482.57372089460785,
+            "top": 325.67281964869284,
+            "bottom": 674.8531709558824
+          },
+          "after": {
+            "left": 334.609375,
+            "right": 518.4315257352941,
+            "top": 447.3267463235294,
+            "bottom": 732.0804227941177
+          },
+          "floor_delta": 57.227,
+          "width_ratio": 0.8155,
+          "height_ratio": 0.8155
+        },
+        ".toad": {
+          "before": {
+            "left": 517.109375,
+            "right": 659.40625,
+            "top": 548.8469270833333,
+            "bottom": 676.9141145833333
+          },
+          "after": {
+            "left": 549.546875,
+            "right": 665.59375,
+            "top": 629.3188020833334,
+            "bottom": 733.7609895833333
+          },
+          "floor_delta": 56.847,
+          "width_ratio": 0.8155,
+          "height_ratio": 0.8155
+        },
+        "#pot-body image": {
+          "before": {
+            "left": 770.3753792898996,
+            "right": 1053.7484026227678,
+            "top": 351.88160519016947,
+            "bottom": 676.035267605677
+          },
+          "after": {
+            "left": 759.7478419712612,
+            "right": 992.9250906808036,
+            "top": 466.2696026171263,
+            "bottom": 733.0038247422365
+          },
+          "floor_delta": 56.969,
+          "width_ratio": 0.8229,
+          "height_ratio": 0.8229
+        }
+      },
+      "top_gaps": {
+        "header_to_notice": 24,
+        "notice_to_label": 20,
+        "icons_to_stage": 36
+      },
+      "panel_delta_y": 72,
+      "main_top": 267,
+      "document_overflow": {
+        "Width": 0,
+        "Height": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "dpr": 1
+      },
+      "illustrations": {
+        ".kongjwi": {
+          "before": {
+            "left": 207.703125,
+            "right": 562.5266544117648,
+            "top": 495.31985294117646,
+            "bottom": 1044.9669117647059
+          },
+          "after": {
+            "left": 301,
+            "right": 620.3354013480392,
+            "top": 637.7032015931372,
+            "bottom": 1132.3766084558824
+          },
+          "floor_delta": 87.41,
+          "width_ratio": 0.9,
+          "height_ratio": 0.9
+        },
+        ".toad": {
+          "before": {
+            "left": 658.296875,
+            "right": 882.296875,
+            "top": 846.6108333333333,
+            "bottom": 1048.2108333333333
+          },
+          "after": {
+            "left": 695.53125,
+            "right": 897.125,
+            "top": 953.8617708333334,
+            "bottom": 1135.2961458333334
+          },
+          "floor_delta": 87.085,
+          "width_ratio": 0.9,
+          "height_ratio": 0.9
+        },
+        "#pot-body image": {
+          "before": {
+            "left": 1088.1141357421875,
+            "right": 1598.9583984375,
+            "top": 461.52466049911834,
+            "bottom": 1045.8853985538303
+          },
+          "after": {
+            "left": 1073.7789611816406,
+            "right": 1516.934423828125,
+            "top": 626.5083313944945,
+            "bottom": 1133.4389403531545
+          },
+          "floor_delta": 87.554,
+          "width_ratio": 0.8675,
+          "height_ratio": 0.8675
+        }
+      },
+      "top_gaps": {
+        "header_to_notice": 24,
+        "notice_to_label": 20,
+        "icons_to_stage": 36
+      },
+      "panel_delta_y": 36.0,
+      "main_top": 267,
+      "document_overflow": {
+        "Width": 0,
+        "Height": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 3840,
+        "height": 2160,
+        "dpr": 1
+      },
+      "illustrations": {
+        ".kongjwi": {
+          "before": {
+            "left": 845.03125,
+            "right": 1199.8547794117649,
+            "top": 1213.5386029411766,
+            "bottom": 1763.1856617647059
+          },
+          "after": {
+            "left": 921,
+            "right": 1240.3354013480393,
+            "top": 1345.8282015931372,
+            "bottom": 1840.5016084558824
+          },
+          "floor_delta": 77.316,
+          "width_ratio": 0.9,
+          "height_ratio": 0.9
+        },
+        ".toad": {
+          "before": {
+            "left": 1297.34375,
+            "right": 1521.34375,
+            "top": 1564.8295833333334,
+            "bottom": 1766.4295833333333
+          },
+          "after": {
+            "left": 1328.515625,
+            "right": 1530.109375,
+            "top": 1661.9867708333334,
+            "bottom": 1843.4211458333334
+          },
+          "floor_delta": 76.992,
+          "width_ratio": 0.9,
+          "height_ratio": 0.9
+        },
+        "#pot-body image": {
+          "before": {
+            "left": 1728.6184626988002,
+            "right": 2241.90044468471,
+            "top": 1176.9125326031053,
+            "bottom": 1764.0618196206406
+          },
+          "after": {
+            "left": 1717.65425327846,
+            "right": 2179.079673549107,
+            "top": 1313.4585749228547,
+            "bottom": 1841.2884134992164
+          },
+          "floor_delta": 77.227,
+          "width_ratio": 0.899,
+          "height_ratio": 0.899
+        }
+      },
+      "top_gaps": {
+        "header_to_notice": 24,
+        "notice_to_label": 20,
+        "icons_to_stage": 36
+      },
+      "panel_delta_y": 36.0,
+      "main_top": 267,
+      "document_overflow": {
+        "Width": 0,
+        "Height": 0
+      }
+    }
+  ]
+}

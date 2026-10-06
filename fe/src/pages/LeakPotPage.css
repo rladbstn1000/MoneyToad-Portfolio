@@ -172,8 +172,8 @@
   width:100%;
   height:100%;
   position:relative;
-  /* 물줄기 기준축은 JS에서 상단 중앙으로 잡아줌 */
-  transform-origin:50% 50%;
+  /* The wrapper starts at the category anchor; mirroring keeps that origin. */
+  transform-origin:0 0;
   pointer-events:none;
   opacity: 0.55; /* WATER_ALPHA */
 }
@@ -333,45 +333,192 @@
 .summary-leak{ font-weight:bold; color:#a12a2a; }
 .summary-good{ font-weight:bold; color:#166534; }
 
-/* Demo retains the pot scene while giving every control its own readable space. */
-.demo-pot-page { overflow-y:auto; overflow-x:clip; min-height:100dvh; height:100dvh; }
-.demo-pot-notice { margin:8px 20px; text-align:center; font-size:14px; }
-.demo-pot-page .main-container { min-height:660px; align-items:stretch; gap:0; }
-.demo-pot-stage { position:relative; flex:1; min-width:0; min-height:620px; margin-right:540px; }
-.demo-pot-stage .pot-container { position:absolute; }
-.demo-pot-stage .characters { width:100%; pointer-events:none; }
-.demo-pot-stage .kongjwi { width:min(36%, 328px); }
-.demo-pot-stage .toad { width:min(23%, 192px); margin-left:-4%; }
-.demo-pot-page .control-panel { box-sizing:border-box; min-width:0; width:500px; height:640px; right:20px; bottom:0; }
-.demo-pot-page .panel-title { margin-top:48px; font-size:24px; }
-.demo-pot-anchor { margin:6px 36px; text-align:center; font-size:13px; }
-.demo-pot-page .sliders-container { padding:10px 40px; }
-.demo-pot-page .slider-header { flex-wrap:wrap; }
-.demo-budget-state { margin:0 0 12px; font-size:13px; line-height:1.5; }
+/* Demo: the paper asset keeps its native 500:750 proportions. Its visible
+   sheet occupies x=13..87%, y=11..89%; content uses a narrower inset. */
+.demo-pot-page { overflow-y:auto; min-height:100dvh; height:100dvh; }
+.demo-pot-page *, .demo-pot-page *::before, .demo-pot-page *::after { box-sizing:border-box; }
+.demo-pot-notice { margin:8px 20px; text-align:center; font-size:14px; line-height:1.5; }
+.demo-pot-page .month-navigation { width:min(100%,1440px); margin-inline:auto; padding:8px 24px; }
+.demo-pot-page .month-grid { grid-template-columns:repeat(12,minmax(0,1fr)); gap:6px; }
+.demo-pot-page .month-button { min-height:44px; min-width:0; }
+.demo-pot-page .main-container {
+  flex:none; display:grid; grid-template-columns:minmax(0,1fr) clamp(360px,26vw,500px);
+  align-items:end; justify-content:normal; gap:24px;
+  width:min(100%,2880px); margin-inline:auto; padding:16px 24px 32px;
+}
+/* Character and pot columns reserve real layout space; neither overlays the other.
+   The shared floor is at SVG y=480. The 700-unit demo frame reserves the
+   maximum rotated water path (observed below y=663) without shrinking the pot. */
+.demo-pot-stage { position:relative; min-width:0; min-height:390px; align-self:end; display:flex; align-items:end; }
+.demo-pot-stage .pot-visualization {
+  position:relative; inset:auto; width:100%; display:grid;
+  grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr); align-items:end; gap:16px;
+}
+.demo-pot-stage .characters {
+  position:relative; inset:auto; min-width:0; width:100%; display:grid; align-items:end;
+  grid-template-columns:minmax(0,12fr) minmax(0,7fr); justify-items:center;
+  gap:16px; padding-bottom:51.652174%; pointer-events:none;
+}
+.demo-pot-stage .kongjwi { width:100%; max-width:384px; min-width:0; }
+.demo-pot-stage .toad { width:100%; max-width:224px; min-width:0; margin:0; }
+.demo-pot-stage .pot-svg-container { width:100%; height:auto; aspect-ratio:500 / 700; min-width:0; }
+.demo-pot-stage .pot-svg { display:block; position:relative; overflow:hidden; }
+/* Turn both streams downward about the shared hole origin. This keeps maximum
+   spray inside its own SVG column rather than over characters or the paper. */
+.demo-pot-stage .water-animation { transform:rotate(25deg); }
+.demo-pot-stage .water-animation.flip { transform:scaleX(-1) rotate(25deg); }
+.demo-pot-page .control-panel {
+  position:relative; inset:auto; display:block;
+  width:100%; max-width:500px; min-width:0; height:auto; max-height:none;
+  aspect-ratio:2 / 3; padding:0; background:none; justify-self:center; align-self:start;
+}
+.demo-paper-decoration { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; }
+.demo-paper-safe-area { position:absolute; inset:11% 16% 12%; display:flex; flex-direction:column; min-width:0; min-height:0; }
+.demo-pot-page .panel-title { margin:0; padding:0; font-size:clamp(20px,2vw,24px); line-height:1.4; overflow-wrap:break-word; word-break:keep-all; }
+.demo-pot-anchor { flex-shrink:0; margin:8px 0; text-align:center; font-size:13px; line-height:1.5; }
+.demo-panel-scroll-hint { flex-shrink:0; margin:0 0 6px; font-size:12px; text-align:center; color:#5b4a30; line-height:1.4; }
+.demo-pot-page .sliders-container {
+  min-width:0; min-height:0; flex:1; padding:0 8px 8px 0;
+  overflow:auto; scrollbar-width:thin; scrollbar-color:#8b6d3b #e3d3ac;
+  scrollbar-gutter:stable; overscroll-behavior:contain;
+}
+.demo-pot-page .sliders-container::-webkit-scrollbar { display:block; width:8px; }
+.demo-pot-page .sliders-container::-webkit-scrollbar-thumb { background:#8b6d3b; border-radius:6px; }
+.demo-pot-page .sliders-container::-webkit-scrollbar-track { background:#e3d3ac; }
+.demo-pot-page .sliders-container:focus-visible { outline:2px solid #28427b; outline-offset:2px; }
+.demo-pot-page .slider-item { min-width:0; padding:14px 0 4px; }
+.demo-pot-page .slider-header { flex-direction:column; align-items:flex-start; gap:6px; }
+.demo-pot-page .slider-label { font-size:16px; line-height:1.4; overflow-wrap:break-word; }
+.demo-pot-page .slider-legend { display:flex; flex-wrap:wrap; min-width:0; font-size:14px; line-height:1.5; gap:4px 6px; }
+.demo-pot-page .slider-legend .legend-value { white-space:nowrap; }
+/* Reserve half the decorative thumb at each edge, including value 0/max. */
+.demo-pot-page .slider-container { --thumb-size:44px; height:48px; margin-inline:22px; }
+.demo-budget-state { margin:0 0 12px; font-size:13px; line-height:1.5; overflow-wrap:break-word; }
 .demo-budget-error { color:#8d2020; font-size:14px; }
-.demo-pot-page .summary { margin-bottom:40px; }
+.demo-pot-page .summary { margin:8px 0 0; padding-top:8px; border-top:1px solid #9c895355; font-size:18px; line-height:1.5; }
+.demo-pot-page .summary p { margin:0; }
 .demo-pot-page .custom-slider:focus-visible { outline:3px solid #28427b; outline-offset:3px; border-radius:6px; }
 .demo-pot-page .custom-slider:disabled { cursor:not-allowed; }
 .demo-pot-page .custom-slider:disabled + .coin-thumb { opacity:.55; }
 .demo-pot-page .month-button:focus-visible { outline:3px solid #28427b; outline-offset:2px; }
 @media (max-width:900px) {
-  /* Natural page flow prevents the tall panel from being centered above the pot. */
   .demo-pot-page { display:block; }
-  .demo-pot-page .month-navigation { padding:8px 16px; }
+  .demo-pot-page .month-navigation { padding:8px 16px; max-width:640px; }
   .demo-pot-page .month-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; }
-  .demo-pot-page .month-button { min-height:44px; min-width:0; aspect-ratio:1; }
+  .demo-pot-page .month-button { aspect-ratio:1; }
   .demo-pot-page .month-badge { font-size:12px; padding:3px; right:0; top:0; }
-  .demo-pot-page .main-container { display:flex; flex:none; flex-direction:column; min-height:0; align-items:stretch; justify-content:flex-start; }
-  .demo-pot-stage { flex:none; margin-right:0; height:400px; min-height:0; width:100%; }
-  .demo-pot-stage .characters { z-index:1; }
-  .demo-pot-stage .kongjwi { width:29%; }
-  .demo-pot-stage .toad { width:19%; }
-  .demo-pot-page .control-panel { position:relative; flex:none; inset:auto; width:100%; max-width:none; height:auto; max-height:none; padding:16px; background-size:100% 100%; }
-  .demo-pot-page .panel-title { margin-top:28px; padding-top:0; font-size:23px; }
-  .demo-pot-anchor { margin:8px 16px; }
-  .demo-pot-page .sliders-container { overflow:visible; padding:12px 18px; }
-  .demo-pot-page .slider-header { align-items:flex-start; }
-  .demo-pot-page .slider-label { font-size:16px; }
-  .demo-pot-page .slider-legend { font-size:13px; flex-wrap:wrap; }
-  .demo-pot-page .summary { margin:12px 0 32px; font-size:18px; }
+  .demo-pot-page .main-container { grid-template-columns:minmax(0,1fr); padding:8px 12px 24px; gap:12px; }
+  .demo-pot-page .panel-title { font-size:20px; }
+}
+
+/* Below this width the paper keeps its readable size on a following row. */
+@media (max-width:1199px) {
+  .demo-pot-page .main-container { grid-template-columns:minmax(0,1fr); }
+  .demo-pot-stage { width:100%; max-width:1040px; justify-self:center; }
+}
+/* A narrow viewport gets two substantial illustration areas, not tiny figures. */
+@media (max-width:600px) {
+  .demo-pot-stage .pot-visualization { grid-template-columns:minmax(0,1fr); gap:8px; }
+  .demo-pot-stage .pot-svg-container { grid-row:1; width:min(100%,440px); justify-self:center; }
+  .demo-pot-stage .characters { grid-row:2; display:flex; justify-content:center; gap:24px; padding:0 8px 12px; }
+  .demo-pot-stage .kongjwi { width:174px; max-width:54%; flex-shrink:0; }
+  .demo-pot-stage .toad { width:116px; max-width:36%; flex-shrink:0; }
+}
+
+@media (min-width:2200px) {
+  .demo-pot-page .control-panel { align-self:center; }
+}
+
+/* Local experience: allocate the actual remainder after header, notice and
+   months. Only the paper list scrolls; no external content is clipped to fit. */
+.local-pot-page {
+  display:grid; grid-template-rows:auto auto auto minmax(0,1fr);
+  width:100%; height:100dvh; min-height:0; overflow:visible;
+}
+/* Three independent, auto-sized top rows. Their real heights determine the
+   stage remainder; spacing is reduced only on narrow screens. */
+.local-pot-page .app-header { min-height:0; padding-block:6px; }
+.local-pot-page .demo-pot-notice {
+  justify-self:center; max-width:calc(100% - 32px); margin:24px 16px 20px;
+  padding:4px 16px; border:1px solid #bea16a; border-radius:6px;
+  background:rgba(58,35,13,.86); color:#fff4d6; font-size:16px; line-height:24px;
+}
+.local-pot-page .month-navigation {
+  --month-icon-height:83px; --month-label-height:20px;
+  --month-height:calc(var(--month-icon-height) + var(--month-label-height));
+  padding:0 16px 28px;
+}
+.local-pot-page .month-grid { grid-auto-rows:var(--month-height); }
+.local-pot-page .month-button {
+  height:var(--month-height); aspect-ratio:auto;
+  grid-template-rows:var(--month-label-height) var(--month-icon-height);
+}
+.local-pot-page .month-badge {
+  position:static; grid-row:1; font-size:16px; line-height:18px; padding:1px 4px;
+  width:max-content; max-width:100%; white-space:nowrap;
+}
+.local-pot-page .month-img {
+  grid-row:2; width:auto; height:calc(var(--month-icon-height) * .72);
+  max-width:100%; object-fit:contain;
+}
+.local-pot-page .month-button.active .month-img { width:auto; height:var(--month-icon-height); }
+.local-pot-page .main-container {
+  --paper-width:clamp(360px,26vw,600px);
+  display:grid; grid-template-columns:minmax(0,1fr) var(--paper-width);
+  grid-template-rows:minmax(0,1fr); min-height:0; height:100%;
+  width:min(100%,2880px); padding:8px 20px 12px; gap:16px;
+  align-items:center;
+}
+.local-pot-page .demo-pot-stage {
+  height:100%; min-height:0; max-width:none; align-self:stretch;
+  container-type:size; display:grid; place-items:end center;
+}
+.local-pot-page .pot-visualization {
+  width:min(100%,120cqh,1440px); min-height:0; height:auto;
+  grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);
+  gap:16px; align-items:end;
+}
+.local-pot-page .characters {
+  grid-row:auto; display:grid; grid-template-columns:minmax(0,12fr) minmax(0,7fr);
+  gap:16px; padding:0 0 45.782609%;
+}
+.local-pot-page .kongjwi { width:100%; max-width:345.6px; min-width:0; }
+.local-pot-page .toad { width:100%; max-width:201.6px; min-width:0; }
+.local-pot-page .pot-svg-container {
+  /* Local framing omits only the final 25 transparent SVG units. All 29 real
+     frames of the six editable categories stay within y=666 at maximum scale.
+     The original 500 × 700 coordinate system, anchors and animations remain
+     unchanged. Remote and the 12-category rendering fixture retain 700 units. */
+  grid-row:auto; width:100%; height:auto; aspect-ratio:500 / 675; overflow:clip;
+}
+.local-pot-page .pot-svg { position:absolute; inset:0 auto auto 0; height:calc(100% * 700 / 675); }
+.local-pot-page .control-panel {
+  width:100%; max-width:600px; height:min(100%,calc(var(--paper-width) * 1.5));
+  min-height:0; max-height:none; aspect-ratio:auto; align-self:center;
+}
+.local-pot-page .demo-paper-decoration { object-fit:fill; }
+.local-pot-page .sliders-container { overflow:auto; }
+@media (max-width:900px) {
+  .local-pot-page { display:grid; }
+  .local-pot-page .app-header { padding:4px 12px; }
+  .local-pot-page .demo-pot-notice { margin:6px 16px 8px; padding:0 10px; font-size:15px; line-height:21px; }
+  .local-pot-page .month-navigation {
+    /* The selected icon stays compact so two labelled rows keep the same height. */
+    --month-icon-height:48px; --month-label-height:16px; max-width:640px; padding:0 12px 8px;
+  }
+  .local-pot-page .month-badge { font-size:13px; line-height:16px; padding:0; }
+  .local-pot-page .month-img { height:40px; }
+  .local-pot-page .month-grid { gap:2px 4px; }
+  .local-pot-page .month-button { min-height:44px; }
+  .local-pot-page .main-container {
+    grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,0.36fr) minmax(0,0.64fr);
+    padding:4px 12px 8px; gap:6px;
+  }
+  .local-pot-page .pot-visualization { width:min(100%,130cqh); }
+  .local-pot-page .control-panel { width:min(100%,500px); height:100%; }
+  .local-pot-page .panel-title { font-size:20px; line-height:1.3; }
+  .local-pot-page .demo-pot-anchor { margin:4px 0; font-size:12px; }
+  .local-pot-page .demo-panel-scroll-hint { margin-bottom:4px; }
+  .local-pot-page .summary { margin-top:4px; padding-top:4px; font-size:16px; }
+  .local-pot-page .demo-budget-state { margin-bottom:6px; }
 }

@@ -1,0 +1,10 @@
+{
+  "modified_code_test_runner_files": [
+    "fe/src/pages/LeakPotPage.css",
+    "fe/e2e/local-demo.spec.ts"
+  ],
+  "new_code_test_files": [],
+  "product_scope": "local pot CSS only",
+  "previous_uncommitted_work_and_evidence_preserved": true,
+  "scanner_policy_unchanged": true
+}

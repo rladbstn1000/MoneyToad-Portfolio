@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "phase": "browser",
+  "checks": [
+    {
+      "check": "static-local-build",
+      "status": "PASS",
+      "backend_env_provided": false,
+      "function_artifacts_present": false
+    },
+    {
+      "check": "chromium-static",
+      "status": "PASS",
+      "cases": 11,
+      "global_errors": 0,
+      "exit_code": 0
+    },
+    {
+      "check": "static-server-boundary",
+      "status": "PASS"
+    }
+  ],
+  "backend_started": false,
+  "provider_connections": 0,
+  "api_attempts_at_static_server": 0,
+  "cancelled_static_responses": 0,
+  "static_handler_errors": 0,
+  "cleanup_complete": true,
+  "input_copy_preserved": true
+}

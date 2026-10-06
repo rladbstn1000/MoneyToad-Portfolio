@@ -1,0 +1,54 @@
+{
+  "status": "OFFICIAL_SOURCE_AND_UNMODIFIED_TTF_CONFIRMED",
+  "original_baseline": "ade12429242ff3653f4050bec14ce373ac666832",
+  "original_alias": "Joseon100Years",
+  "original_postscript_family": "ChosunCentennial",
+  "original_cdn_restored": false,
+  "font_name": "조선100년체 / Chosun Centennial",
+  "rights_holder": "방일영문화재단 / Bang Il Young Foundation",
+  "official_notice": "https://event.chosun.com/100/100font.html",
+  "official_download": "https://fontdown.chosun.com/100/ChosunCentennial_ttf.zip",
+  "license_summary": [
+    "개인 및 기업 사용자에게 무료 제공",
+    "타인에게 자유롭게 재배포 가능",
+    "복사 또는 배포의 대가를 요구할 수 없음",
+    "권리자 이외 사용자의 수정 판매 금지",
+    "배포된 형태 그대로 사용해야 함"
+  ],
+  "embedded_license_confirmed": true,
+  "separate_license_file_in_archive": false,
+  "archive_members": [
+    "ChosunCentennial_ttf.ttf"
+  ],
+  "font": {
+    "format": "TrueType sfnt",
+    "original_filename": "ChosunCentennial_ttf.ttf",
+    "bytes": 5120116,
+    "sha256": "d620604fbf9eab138612753c9317162aa7a748f97ca53ea61d2860a9a727ba1f",
+    "weight": 400,
+    "style": "normal",
+    "version": "1.020; Build 20200304",
+    "modified": false,
+    "converted": false,
+    "subsetted": false,
+    "os2_fsType": 4
+  },
+  "archive": {
+    "bytes": 2203969,
+    "sha256": "0d2c22481e1c2a7178b4e9940f08869d175ac2497e61cfbed5429eacae9e4b20"
+  },
+  "official_html_sha256": "cb89ff1c8636f03d3993c02dc7935502bd5756a4699bcc9d029b5a7933c5c119",
+  "baseline_scope": {
+    "global": "Joseon100Years / serif, global *",
+    "landing": "Joseon100Years / sans-serif explicit",
+    "leak_pot": "Joseon100Years / serif explicit",
+    "mypage": "system stack for page, monospace card"
+  },
+  "scanner": {
+    "current_result_for_font": "excluded-artifact",
+    "source_review_can_exempt_binary": false,
+    "asset_review_registry_exists": false,
+    "policy_changed": false
+  },
+  "application_or_provider_requests": 0
+}

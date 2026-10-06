@@ -5,6 +5,7 @@ import AuthProvider from './auth/AuthProvider'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import App from './App.tsx'
 import './index.css'
+import { isLocalDemo } from './auth/authMode'
 
 
 
@@ -13,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <AuthProvider>
         <App />
-        <ReactQueryDevtools initialIsOpen={false} />
+        {!isLocalDemo && <ReactQueryDevtools initialIsOpen={false} />}
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>,

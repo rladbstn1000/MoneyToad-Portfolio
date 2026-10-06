@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "url": "http://127.0.0.1:62002/",
+  "matched_fe_files": 217,
+  "source_bytes_match": true,
+  "development_cleanup": {
+    "owned_development_server_stopped": true,
+    "dependency_manifest_match": true,
+    "dependencies_preserved": true,
+    "overlay_removed": true
+  },
+  "observations": {
+    "status": "PASS",
+    "frontendOnlyLocalObserved": true,
+    "serverReadyUiAbsent": true,
+    "configuredViewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "browserZoomMeasured": false,
+    "osScaleMeasured": false,
+    "userVisualApproval": "PENDING",
+    "viewport": {
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "devicePixelRatio": 1
+    },
+    "pot": {
+      "pot": {
+        "width": 446.22015380859375,
+        "height": 508.3721923828125
+      },
+      "kongjwi": {
+        "width": 377.109375,
+        "height": 565.65625
+      },
+      "toad": {
+        "width": 219.984375,
+        "height": 219.984375
+      },
+      "paper": {
+        "width": 499.1875,
+        "height": 748.78125
+      },
+      "cracks": 1,
+      "waterStreams": 1,
+      "overflow": 0
+    },
+    "advice": {
+      "firstSectionHeight": 1080,
+      "detailsStart": 1080,
+      "buttonHeight": 56.5,
+      "detailsInitiallyBelowViewport": true,
+      "detailsAlreadyMounted": true,
+      "overflow": 0
+    },
+    "detail": {
+      "headingTop": 112,
+      "headingFocused": true,
+      "cards": 1
+    },
+    "requests": {
+      "total": 120,
+      "api": 0,
+      "auth": 0,
+      "readiness": 0,
+      "external": 0,
+      "pageErrors": 0
+    },
+    "browserCleanup": "PASS",
+    "previewServerRetained": true
+  }
+}

@@ -7,10 +7,11 @@ interface RouteGuardProps {
   children: React.ReactNode;
 }
 
-import { authMode } from '../auth/authMode';
+import { authMode, isLocalDemo } from '../auth/authMode';
 import DemoAuthStatus from './DemoAuthStatus';
 
 export default function RouteGuard(props: RouteGuardProps) {
+  if (isLocalDemo) return <>{props.children}</>;
   return authMode === 'demo' ? <DemoGuard {...props} /> : <OAuthGuard {...props} />;
 }
 

@@ -1,0 +1,82 @@
+{
+  "rows": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "menuBottom": 48,
+      "headerBottom": 52,
+      "noticeTop": 58,
+      "menuToNotice": 10
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "dpr": 1
+      },
+      "menuBottom": 48,
+      "headerBottom": 52,
+      "noticeTop": 58,
+      "menuToNotice": 10
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1
+      },
+      "menuBottom": 52,
+      "headerBottom": 58,
+      "noticeTop": 82,
+      "menuToNotice": 30
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "menuBottom": 52,
+      "headerBottom": 58,
+      "noticeTop": 82,
+      "menuToNotice": 30
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 900,
+        "dpr": 1
+      },
+      "menuBottom": 52,
+      "headerBottom": 58,
+      "noticeTop": 82,
+      "menuToNotice": 30
+    },
+    {
+      "viewport": {
+        "width": 2560,
+        "height": 1440,
+        "dpr": 1
+      },
+      "menuBottom": 52,
+      "headerBottom": 58,
+      "noticeTop": 82,
+      "menuToNotice": 30
+    },
+    {
+      "viewport": {
+        "width": 3840,
+        "height": 2160,
+        "dpr": 1
+      },
+      "menuBottom": 52,
+      "headerBottom": 58,
+      "noticeTop": 82,
+      "menuToNotice": 30
+    }
+  ],
+  "apiExternalBlocked": 0
+}

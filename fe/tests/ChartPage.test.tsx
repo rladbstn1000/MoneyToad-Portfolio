@@ -213,6 +213,17 @@ function expectNoDisplayedSample() {
 }
 
 describe('ChartPage data boundary through actual hooks, request and JPSelect', () => {
+  it('keeps the complete heading and feedback outside the pond plotting stage', async () => {
+    mountChart(); await settle();
+    const heading = screen.getByRole('heading', { name: '월간 소비 비교' }).closest<HTMLElement>('.jp-page-title-section');
+    const stage = document.querySelector('.jp-stage');
+    expect(heading?.nextElementSibling).toBe(stage);
+    expect(heading).toContainElement(document.querySelector('.jp-query-status'));
+    expect(stage).not.toContainElement(heading);
+    expect(stage).toContainElement(screen.getByRole('img', { name: 'Water' }));
+    expect(stage).toContainElement(document.querySelector('.jp-linechart-wrap'));
+    expect(stage?.nextElementSibling).toBe(screen.getByRole('navigation', { name: '월별 상세 보기' }));
+  });
   it('empty response never lets the generated 1-0 sample become PATCH transaction 1', async () => {
     scenario.months.set(MONTH_KEY, []);
     const user = mountChart();

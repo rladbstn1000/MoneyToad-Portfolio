@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "viewports": [
+    [
+      390,
+      844
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1440,
+      1000
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1920,
+      900
+    ],
+    [
+      2560,
+      1440
+    ],
+    [
+      3840,
+      2160
+    ]
+  ],
+  "dpr": 1,
+  "browser_zoom": "NOT_MEASURED",
+  "os_scaling": "NOT_MEASURED",
+  "user_physical_monitor": "NOT_REPRODUCED",
+  "user_visual_approval": "PENDING",
+  "before_and_after_source_images_unchanged": true,
+  "actual_illustration_rectangles_compared": true,
+  "seven_viewport_normal_max_leak_regression": true,
+  "stage_28_assertions_removed": 0
+}

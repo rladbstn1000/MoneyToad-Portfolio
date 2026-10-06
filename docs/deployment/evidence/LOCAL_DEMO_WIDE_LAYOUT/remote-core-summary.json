@@ -1,0 +1,203 @@
+{
+  "status": "PASS",
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "runs": [
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "cleanup_complete": true,
+      "modes": [
+        {
+          "mode": "public-demo",
+          "status": "passed",
+          "cases": [
+            {
+              "test": "real demo visit: login, Chart, reload and revoke",
+              "status": "passed"
+            },
+            {
+              "test": "separate browser CORS allow and reject",
+              "status": "passed"
+            },
+            {
+              "test": "gateway scope and bounded login manual retry",
+              "status": "passed"
+            }
+          ],
+          "cookie_attributes": {
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax",
+            "path": "/api/auth/demo",
+            "domainAttributeAbsent": true,
+            "sentOnReissue": true,
+            "jsVisible": false,
+            "absoluteExpiryUnchanged": true,
+            "removedOnLogout": true,
+            "browserClockValidity": true,
+            "login_max_age": 3599,
+            "reissue_max_age": 3597,
+            "logout_max_age": 0
+          },
+          "chart": {
+            "total_before": 908000,
+            "leaked_before": true,
+            "total_after": 908000,
+            "leak_before": 18000,
+            "leak_after": 0,
+            "leaked_after": false
+          },
+          "cors": {
+            "allowedStatus": 201,
+            "deniedPreflightStatus": 403,
+            "deniedActualPostCount": 0
+          },
+          "external_attempts": 0,
+          "unexpected_backend_attempts": 0
+        },
+        {
+          "mode": "local-demo",
+          "status": "passed",
+          "cases": [
+            {
+              "test": "real demo visit: login, Chart, reload and revoke",
+              "status": "passed"
+            },
+            {
+              "test": "separate browser CORS allow and reject",
+              "status": "passed"
+            },
+            {
+              "test": "gateway scope and bounded login manual retry",
+              "status": "passed"
+            }
+          ],
+          "cookie_attributes": {
+            "httpOnly": true,
+            "secure": false,
+            "sameSite": "Lax",
+            "path": "/api/auth/demo",
+            "domainAttributeAbsent": true,
+            "sentOnReissue": true,
+            "jsVisible": false,
+            "absoluteExpiryUnchanged": true,
+            "removedOnLogout": true,
+            "browserClockValidity": true,
+            "login_max_age": 3599,
+            "reissue_max_age": 3599,
+            "logout_max_age": 0
+          },
+          "chart": {},
+          "cors": {
+            "allowedStatus": 201,
+            "deniedPreflightStatus": 403,
+            "deniedActualPostCount": 0
+          },
+          "external_attempts": 0,
+          "unexpected_backend_attempts": 0
+        }
+      ]
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "cleanup_complete": true,
+      "modes": [
+        {
+          "mode": "public-demo",
+          "status": "passed",
+          "cases": [
+            {
+              "test": "real demo visit: login, Chart, reload and revoke",
+              "status": "passed"
+            },
+            {
+              "test": "separate browser CORS allow and reject",
+              "status": "passed"
+            },
+            {
+              "test": "gateway scope and bounded login manual retry",
+              "status": "passed"
+            }
+          ],
+          "cookie_attributes": {
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax",
+            "path": "/api/auth/demo",
+            "domainAttributeAbsent": true,
+            "sentOnReissue": true,
+            "jsVisible": false,
+            "absoluteExpiryUnchanged": true,
+            "removedOnLogout": true,
+            "browserClockValidity": true,
+            "login_max_age": 3599,
+            "reissue_max_age": 3597,
+            "logout_max_age": 0
+          },
+          "chart": {
+            "total_before": 908000,
+            "leaked_before": true,
+            "total_after": 908000,
+            "leak_before": 18000,
+            "leak_after": 0,
+            "leaked_after": false
+          },
+          "cors": {
+            "allowedStatus": 201,
+            "deniedPreflightStatus": 403,
+            "deniedActualPostCount": 0
+          },
+          "external_attempts": 0,
+          "unexpected_backend_attempts": 0
+        },
+        {
+          "mode": "local-demo",
+          "status": "passed",
+          "cases": [
+            {
+              "test": "real demo visit: login, Chart, reload and revoke",
+              "status": "passed"
+            },
+            {
+              "test": "separate browser CORS allow and reject",
+              "status": "passed"
+            },
+            {
+              "test": "gateway scope and bounded login manual retry",
+              "status": "passed"
+            }
+          ],
+          "cookie_attributes": {
+            "httpOnly": true,
+            "secure": false,
+            "sameSite": "Lax",
+            "path": "/api/auth/demo",
+            "domainAttributeAbsent": true,
+            "sentOnReissue": true,
+            "jsVisible": false,
+            "absoluteExpiryUnchanged": true,
+            "removedOnLogout": true,
+            "browserClockValidity": true,
+            "login_max_age": 3599,
+            "reissue_max_age": 3599,
+            "logout_max_age": 0
+          },
+          "chart": {},
+          "cors": {
+            "allowedStatus": 201,
+            "deniedPreflightStatus": 403,
+            "deniedActualPostCount": 0
+          },
+          "external_attempts": 0,
+          "unexpected_backend_attempts": 0
+        }
+      ]
+    }
+  ],
+  "managed_provider_used": false,
+  "BE_test_suite_rerun": false,
+  "local_resources_only": true
+}

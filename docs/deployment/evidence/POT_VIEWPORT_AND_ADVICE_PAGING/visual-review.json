@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "viewports": [
+    [
+      390,
+      844
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1440,
+      1000
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1920,
+      900
+    ],
+    [
+      2560,
+      1440
+    ],
+    [
+      3840,
+      2160
+    ]
+  ],
+  "devicePixelRatio": 1,
+  "browser_zoom": "NOT_MEASURED",
+  "os_scaling": "NOT_MEASURED",
+  "physical_monitor": "NOT_REPRODUCED",
+  "user_visual_approval": "PENDING",
+  "direct_screenshot_review": true,
+  "water_frames": [
+    5,
+    12,
+    20
+  ],
+  "leak_ratios": [
+    0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1
+  ],
+  "animated_pixels_measured": true,
+  "whole_animation_exhaustively_checked": false,
+  "native_keyboard_and_wheel_checked": true,
+  "physical_trackpad": "NOT_MEASURED"
+}

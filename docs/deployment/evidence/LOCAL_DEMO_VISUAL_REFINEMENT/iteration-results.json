@@ -1,0 +1,48 @@
+{
+  "historical_results_preserved": true,
+  "final_fe": "PASS",
+  "final_browser": "PASS",
+  "iterations": [
+    {
+      "scope": "updated unit contracts",
+      "result": "FAIL_THEN_CORRECTED",
+      "reason": "Old separate-column assertion replaced by required overlay; anchor shoulder bound adjusted; advice fixture updates use existing cache publication."
+    },
+    {
+      "scope": "fe first full run",
+      "result": "FAIL",
+      "tests_passed": 548,
+      "reason": "React-refresh export rule in new browser fixture; component exported; final lint zero."
+    },
+    {
+      "scope": "browser preparation 1",
+      "result": "FAIL",
+      "reason": "Test-only bundle asset import unresolved; exact asset path marked external."
+    },
+    {
+      "scope": "browser run 2",
+      "result": "FAIL",
+      "reason": "Test clicked already-active landing page before next scene during the existing 700ms input lock; waits for scene and transition completion."
+    },
+    {
+      "scope": "browser run 3",
+      "result": "FAIL",
+      "passed_cases": 9,
+      "reason": "Overbroad fixture external path also externalized source imports; narrowed to existing pot asset prefix. Two blocked internal module requests; no backend API or external request."
+    },
+    {
+      "scope": "browser run 4",
+      "result": "FAIL",
+      "passed_cases": 9,
+      "reason": "Test-only esbuild selected Lottie UMD default object. Use provided ESM entry; product Vite and library version unchanged."
+    },
+    {
+      "scope": "browser final",
+      "result": "PASS",
+      "passed_cases": 11,
+      "global_errors": 0,
+      "exit_code": 0,
+      "cleanup_complete": true
+    }
+  ]
+}

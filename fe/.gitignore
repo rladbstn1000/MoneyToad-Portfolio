@@ -27,3 +27,6 @@ claude.md
 *.njsproj
 *.sln
 *.sw?
+
+# Standalone local demo build artifact
+dist-local/

@@ -1,3 +1,6 @@
+import { isLocalDemo } from '../auth/authMode';
+import { useLocalDemoStore } from './localDemoStore';
+import { refreshLocalDemoQueries } from './localDemoQueries';
 import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateBudget } from '../api/services/budgets';
@@ -20,6 +23,7 @@ export function useDemoBudgetChanges(year: number, month: number, generation: nu
   const mounted = useRef(false);
   const sameVisit = () => {
     const state = useAuthStore.getState();
+    if (isLocalDemo) return useLocalDemoStore.getState().generation === generation;
     return state.generation === generation && state.status === 'authenticated' && state.operation !== 'logout';
   };
 
@@ -27,10 +31,14 @@ export function useDemoBudgetChanges(year: number, month: number, generation: nu
     mounted.current = true;
     const ownedTimers = timers.current;
     const cancel = () => { ownedTimers.forEach(window.clearTimeout); ownedTimers.clear(); };
+    const unsubscribeLocal = useLocalDemoStore.subscribe(state => {
+      if (isLocalDemo && state.generation !== generation) cancel();
+    });
     const unsubscribe = useAuthStore.subscribe(state => {
+      if (isLocalDemo) return;
       if (state.generation !== generation || state.status !== 'authenticated' || state.operation === 'logout') cancel();
     });
-    return () => { mounted.current = false; cancel(); unsubscribe(); };
+    return () => { mounted.current = false; cancel(); unsubscribe(); unsubscribeLocal(); };
   }, [generation, year, month]);
 
   const change = (id: number, amount: number) => {
@@ -40,6 +48,10 @@ export function useDemoBudgetChanges(year: number, month: number, generation: nu
     const query = client.getQueryState(queryKey);
     const rows = adaptDemoBudgets(query?.data);
     if (query?.status !== 'success' || !rows?.some(row => row.id === id)) return;
+    if (isLocalDemo) {
+      if (useLocalDemoStore.getState().updateBudget({ id, amount, year, month, generation })) refreshLocalDemoQueries(client, generation);
+      return;
+    }
     const revision = (revisions.current.get(id) ?? 0) + 1;
     revisions.current.set(id, revision);
     window.clearTimeout(timers.current.get(id));

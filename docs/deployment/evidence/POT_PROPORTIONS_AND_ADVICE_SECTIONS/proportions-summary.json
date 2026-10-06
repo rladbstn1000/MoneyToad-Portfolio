@@ -1,0 +1,205 @@
+{
+  "originalRevision": "ade12429242ff3653f4050bec14ce373ac666832",
+  "measurement": "Asset alpha >16 bounds transformed into CSS pixels; excludes CSS drop shadows. SVG image default meet accounted for. Scene union is the bounding rectangle of four visible artworks, not painted pixel area.",
+  "originalLimitation": "Reconstructed original visual fixture, not a full original application run. Original CSS/Header/global layout, asset files and SVG geometry; system fallback font, inert navigation/panel, no API/animation execution.",
+  "networkApiAttempts": 0,
+  "externalAttempts": 0,
+  "rows": [
+    {
+      "label": "original-reconstruction-1920-leaking",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "visibleHeights": {
+        "pot": 505.183,
+        "kongjwi": 548.706,
+        "toad": 200.853,
+        "paper": 688.464
+      },
+      "relativeToPot": {
+        "kongjwi": 1.0862,
+        "toad": 0.3976,
+        "paper": 1.3628
+      },
+      "sceneUnionViewportFraction": {
+        "width": 0.9645,
+        "height": 0.6859
+      }
+    },
+    {
+      "label": "original-reconstruction-1920-normal",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "visibleHeights": {
+        "pot": 505.183,
+        "kongjwi": 539.294,
+        "toad": 216.527,
+        "paper": 688.464
+      },
+      "relativeToPot": {
+        "kongjwi": 1.0675,
+        "toad": 0.4286,
+        "paper": 1.3628
+      },
+      "sceneUnionViewportFraction": {
+        "width": 0.9616,
+        "height": 0.6893
+      }
+    },
+    {
+      "label": "original-reconstruction-1440-leaking",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1
+      },
+      "visibleHeights": {
+        "pot": 480.514,
+        "kongjwi": 548.706,
+        "toad": 200.853,
+        "paper": 637.467
+      },
+      "relativeToPot": {
+        "kongjwi": 1.1419,
+        "toad": 0.418,
+        "paper": 1.3266
+      },
+      "sceneUnionViewportFraction": {
+        "width": 0.9527,
+        "height": 0.6872
+      }
+    },
+    {
+      "label": "original-reconstruction-1440-normal",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1
+      },
+      "visibleHeights": {
+        "pot": 480.514,
+        "kongjwi": 539.294,
+        "toad": 216.527,
+        "paper": 637.467
+      },
+      "relativeToPot": {
+        "kongjwi": 1.1223,
+        "toad": 0.4506,
+        "paper": 1.3266
+      },
+      "sceneUnionViewportFraction": {
+        "width": 0.9488,
+        "height": 0.691
+      }
+    },
+    {
+      "label": "original-reconstruction-3840-leaking",
+      "viewport": {
+        "width": 3840,
+        "height": 2160,
+        "dpr": 1
+      },
+      "visibleHeights": {
+        "pot": 1072.557,
+        "kongjwi": 548.706,
+        "toad": 200.853,
+        "paper": 728.533
+      },
+      "relativeToPot": {
+        "kongjwi": 0.5116,
+        "toad": 0.1873,
+        "paper": 0.6792
+      },
+      "sceneUnionViewportFraction": {
+        "width": 0.9823,
+        "height": 0.5203
+      }
+    },
+    {
+      "label": "original-reconstruction-3840-normal",
+      "viewport": {
+        "width": 3840,
+        "height": 2160,
+        "dpr": 1
+      },
+      "visibleHeights": {
+        "pot": 1072.557,
+        "kongjwi": 539.294,
+        "toad": 216.527,
+        "paper": 728.533
+      },
+      "relativeToPot": {
+        "kongjwi": 0.5028,
+        "toad": 0.2019,
+        "paper": 0.6792
+      },
+      "sceneUnionViewportFraction": {
+        "width": 0.9808,
+        "height": 0.5221
+      }
+    },
+    {
+      "label": "stage26-1920-leaking",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "visibleHeights": {
+        "pot": 321.66,
+        "kongjwi": 339.637,
+        "toad": 116.875,
+        "paper": 683
+      },
+      "relativeToPot": {
+        "kongjwi": 1.0559,
+        "toad": 0.3633,
+        "paper": 2.1234
+      },
+      "sceneUnionViewportFraction": {
+        "width": 0.7106,
+        "height": 0.6324
+      }
+    },
+    {
+      "label": "stage26-1920-normal",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "visibleHeights": {
+        "pot": 321.66,
+        "kongjwi": 333.811,
+        "toad": 125.993,
+        "paper": 683
+      },
+      "relativeToPot": {
+        "kongjwi": 1.0378,
+        "toad": 0.3917,
+        "paper": 2.1234
+      },
+      "sceneUnionViewportFraction": {
+        "width": 0.7088,
+        "height": 0.6324
+      }
+    }
+  ],
+  "originalAssetsMatchCurrent": {
+    "pot": true,
+    "cryingKongjwi": true,
+    "happyKongjwi": true,
+    "angryToad": true,
+    "happyToad": true,
+    "paper": true,
+    "joseon-bg": true,
+    "good": true,
+    "bad": true,
+    "good_gray": true
+  }
+}

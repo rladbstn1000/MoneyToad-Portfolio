@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "phase": "fe",
+  "checks": [
+    {
+      "check": "scenario-generation",
+      "status": "PASS"
+    },
+    {
+      "check": "oauth",
+      "status": "PASS",
+      "tests": 251,
+      "passed": 251,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "check": "remote-demo",
+      "status": "PASS",
+      "tests": 243,
+      "passed": 243,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "check": "local-demo",
+      "status": "PASS",
+      "tests": 54,
+      "passed": 54,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "check": "product-types",
+      "status": "PASS"
+    },
+    {
+      "check": "test-types",
+      "status": "PASS"
+    },
+    {
+      "check": "e2e-types",
+      "status": "PASS"
+    },
+    {
+      "check": "functions-types",
+      "status": "PASS"
+    },
+    {
+      "check": "lint",
+      "status": "PASS",
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "oauth-build",
+      "status": "PASS"
+    },
+    {
+      "check": "remote-demo-build",
+      "status": "PASS"
+    },
+    {
+      "check": "invalid-mode-0",
+      "status": "PASS"
+    },
+    {
+      "check": "invalid-mode-1",
+      "status": "PASS"
+    },
+    {
+      "check": "invalid-mode-2",
+      "status": "PASS"
+    },
+    {
+      "check": "invalid-mode-3",
+      "status": "PASS"
+    },
+    {
+      "check": "invalid-mode-4",
+      "status": "PASS"
+    },
+    {
+      "check": "static-local-build",
+      "status": "PASS",
+      "backend_env_provided": false,
+      "function_artifacts_present": false
+    }
+  ],
+  "backend_started": false,
+  "provider_connections": 0,
+  "cleanup_complete": true,
+  "input_copy_preserved": true
+}

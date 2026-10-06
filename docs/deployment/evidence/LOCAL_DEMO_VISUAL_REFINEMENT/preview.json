@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "url": "http://127.0.0.1:58170/",
+  "served_fe_files_match": 217,
+  "frontend_only": true,
+  "env_files_loaded": false,
+  "dedicated_owned_server": true,
+  "verification_clients_stopped": true,
+  "development_preview_stopped": true,
+  "user_preview_intentionally_running": true,
+  "apiAttempts": 0,
+  "externalAttempts": 0,
+  "measured": {
+    "innerWidth": 1920,
+    "innerHeight": 1080,
+    "devicePixelRatio": 1,
+    "overflow": 0
+  },
+  "frontendOnly": true,
+  "browserZoom": "NOT_MEASURED",
+  "osDisplayScale": "NOT_MEASURED"
+}
