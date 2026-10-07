@@ -1,0 +1,78 @@
+{
+  "status": "FAIL",
+  "failed_phase": "PUBLIC_STATIC_ARTIFACT_GET",
+  "source_sha": "050b65b9517dfedbb0c231cfd979eb75936a2697",
+  "deployment": {
+    "deployment_id": "b9d82297-67c3-4d44-94c2-79bcdf6e2075",
+    "source_sha": "050b65b9517dfedbb0c231cfd979eb75936a2697",
+    "production": true,
+    "status": "success",
+    "uses_functions": false,
+    "automatic_production_off": true,
+    "automatic_preview_off": true,
+    "previous_deployment_id": "93044e65-2456-4356-9112-04d0af2f65d1"
+  },
+  "build": {
+    "status": "PASS",
+    "script": "npm run build:demo-local",
+    "source_sha": "050b65b9517dfedbb0c231cfd979eb75936a2697",
+    "mode": "demo/local",
+    "env_files_loaded": false,
+    "injected_backend_or_gateway_values": false,
+    "static_files": 58,
+    "artifact_bytes": 6389613,
+    "functions_worker_fixture_count": 0,
+    "spa_fallback": true,
+    "dependency_cleanup": {
+      "dependency_manifest_match": true,
+      "dependencies_preserved": true,
+      "overlay_removed": true
+    },
+    "manifest_sha256": "d8e7bb7e6198c8ca6cf4f754a85298d233ea9c81990781358698eb71171c5bcc"
+  },
+  "upload": {
+    "exit_code": 0,
+    "static_files_uploaded": 3,
+    "static_files_already_uploaded": 54,
+    "redirect_configuration_uploaded": true,
+    "functions_compilation_or_upload_observed": false
+  },
+  "artifact_verification": {
+    "status": "FAIL",
+    "files": [
+      {
+        "path": "404.webp",
+        "status": "FAIL",
+        "error_class": "HTTPError"
+      }
+    ],
+    "config_not_http_served": [
+      "_redirects"
+    ],
+    "redirect_followed": false,
+    "api_requests": 0,
+    "external_app_requests": 0
+  },
+  "http_status": "NOT_CAPTURED",
+  "failure_cause": "UNKNOWN",
+  "public_browser": "NOT_RUN",
+  "public_browser_marker_consumed": false,
+  "deployment_attempts": 1,
+  "rollback_attempts": 0,
+  "readme_changed": false,
+  "provider_connections": 0,
+  "automatic_retry": 0,
+  "local_harness_preparation": {
+    "cases": 8,
+    "passed": 8,
+    "api_attempts": 0,
+    "external_attempts": 0,
+    "cleanup": "PASS"
+  },
+  "flags": {
+    "USER_VISUAL_APPROVAL": "APPROVED",
+    "ORIGINAL_FONT_LOCAL_READY": false,
+    "FRONTEND_ONLY_DEMO_PUBLIC_READY": false,
+    "PUBLIC_DEPLOYMENT_READY": false
+  }
+}

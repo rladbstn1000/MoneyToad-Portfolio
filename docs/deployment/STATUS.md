@@ -1,3 +1,43 @@
+## 최신 프런트엔드 전용 공개 체험 — 전체 여정 PASS
+
+2026-10-07. 배포 제품 `050b65b9517dfedbb0c231cfd979eb75936a2697`의 정적 체험을 `mypage38-readiness-full-eight`로 공개1회·자동 retry0 검증해 **8/8 PASS**를 확인했다. 원래 artifact의 서빙57/57 body·MIME·크기·SHA 일치, 랜딩20/20·장독대28/28·geometry12회×105조건·곳간37/37(이미지44건) PASS다. 자연 정적GET355+마지막 감사18=373, requestfailed/API/외부/금지/필수 미관측/pending0, onEnd passed·실제exit0·소유 자원 cleanup PASS다.
+
+현재 공개 체험은 Cloudflare 정적 파일과 탭 메모리에서 거래·예산 수정과 재집계를 처리한다. 별도 로그인·백엔드 준비가 없으며 새로고침·처음부터 다시하기·체험 종료 시 초기화된다. 시스템 글꼴을 사용한다. 서버 연동 모드와 그 과거 검증은 별도로 보존한다.
+
+[최종 공개 검증 요약·manifest·한계](frontend-only-public-verified.md)에 실제 공개 실행 범위를 기록했다. 이번 문서 마무리는 제품·설정·배포 변경0, 재빌드·공개 재접속·브라우저 재검증·공급자 접속·재배포0이다. 문서 commit과 배포 제품 SHA가 달라도 제품 SHA를 맞추기 위해 재배포하지 않는다.
+
+```text
+USER_VISUAL_APPROVAL=APPROVED
+FRONTEND_ONLY_DEMO_PUBLIC_READY=true
+PUBLIC_DEPLOYMENT_READY=true
+ORIGINAL_FONT_LOCAL_READY=false
+NON_BROWSER_403_CAUSE=UNKNOWN
+HISTORICAL_HTTP_ERROR_CAUSE=UNKNOWN
+```
+
+정상 여정에서 각 중간 장면이 준비되고 보임을 확인한 결과이며 모든 빠른 연속 클릭/이미지 취소의 안전성을 보장하지 않는다. 과거 ERR_ABORTED의 직접 원인·무해성은 미확정이다. 아래31단계와 그 이전 FAIL·UNKNOWN·false는 당시 기록 그대로 보존한다. FE573·타입·build·lint·scanner는 해당 이전 실행 근거와 구분하며 이번 공개 suite에 합산하지 않는다. 과거 자연 cold-start NOT_OBSERVED와 공급자 장애전환 미확인 상태도 승격하지 않는다.
+
+---
+
+## 최신 정적 체험판 공개 전환 — 배포 성공 / 공개 파일 검증 실패로 중단
+
+2026-10-06. 사용자가 승인한 시스템 글꼴 버전을 `050b65b9517dfedbb0c231cfd979eb75936a2697`로 commit·일반 push했다. Cloudflare production `b9d82297-67c3-4d44-94c2-79bcdf6e2075`는 success, uses_functions=false, 자동 production/preview OFF를 확인했다. Render·TiDB·Upstash는 접속/변경하지 않았다.
+
+공개 정적 파일 checksum 대조의 첫 `/404.webp` GET에서 HTTPError가 발생했다. 상태 코드는 관측 결과에 미기록이며 원인은 UNKNOWN이다. 불명확한 실패 중단 지시에 따라 공개 브라우저 여정·추가 요청·재배포·rollback은 하지 않았다. 새 정적 배포가 마지막 확인된 production이며 공개 준비 PASS가 아니다. README는 공개 PASS 전이므로 보존했다.
+
+[31단계 배포·실패·재개 근거](31-static-demo-public-release.md). 기존 로컬8개 준비 검사 PASS와 실제 공개 미실행을 구분한다. 과거 보고서의 PASS/FAIL/PENDING/UNKNOWN은 당시 기록으로 유지한다.
+
+```text
+USER_VISUAL_APPROVAL=APPROVED
+ORIGINAL_FONT_LOCAL_READY=false
+FRONTEND_ONLY_DEMO_PUBLIC_READY=false
+PUBLIC_DEPLOYMENT_READY=false
+```
+
+다음은 첫 정적 파일 응답의 최소 비파괴 진단이며 이번 실행에서는 추가 수행하지 않는다.
+
+---
+
 ## 최신 프런트엔드 전용 체험판 — 사용자 시각 승인 / 공개 전환 준비
 
 2026-10-06. 사용자가 25~30단계의 최신 미리보기를 확인하고 현재 시스템 글꼴 디자인을 승인했다. 저장소 1,262개 파일과 30단계 검증 사본의 bytes·mode·경로가 일치하며 사용자 미리보기 FE 220개도 일치한다. 원래 글꼴 추가나 디자인 변경은 하지 않는다.
