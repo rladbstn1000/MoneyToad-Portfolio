@@ -1,17 +1,39 @@
-# Source and contribution boundary
+# 기여 범위와 출처
 
-The source project is [MoneyToad](https://github.com/rladbstn1000/MoneyToad). The reviewed original baseline is commit `c35d37e82d7273733d45100492b87f12d73fd92b`.
+## 팀 프로젝트에서 맡은 역할
 
-## Existing team-project functionality
+김윤수는 MoneyToad 팀 프로젝트에서 Spring Boot 백엔드를 담당했다. 인증과 토큰 관리, 소비 내역·예산 API, 월별·카테고리별 집계, AI 분석 결과 연동이 담당 범위다.
 
-The original project already contained SSAFY OAuth, JWT authentication, refresh storage, transaction and budget APIs, repository aggregation, card/CSV/AI integration and the frontend visual design. These are not presented as newly created individual features.
+서비스 콘셉트와 전체 사용자 경험은 팀 공동 결과이며, 프런트엔드 화면·시각 자산과 AI 분석 서비스 구현을 개인 단독 성과로 표기하지 않는다. AI 결과 연동은 AI 모델이나 분석 서비스 자체의 구현과 구분한다.
 
-## Post-project portfolio changes
+본인 역할 기록과 다음 원본 변경 이력을 함께 참고한다. 커밋 작성자나 blame 줄 수만으로 전체 단독 설계·개인 기여율을 산정하지 않는다.
 
-The cumulative follow-up adds ownership regression fixes, the general 404 contract, configurable CsvClient addressing, explicit demo authentication profiles, visitor sessions and HTTP boundaries, deterministic code-authored demo Chart data, single-tab frontend demo authentication, Chart data safety, lint cleanup and isolated browser verification.
+| 담당 영역 | 원본 변경 기록 |
+| --- | --- |
+| JWT·Redis 토큰 관리 | `cdf9d6f9dc9281f7d26bc4d6b72987e4a82c1b42` |
+| 거래 API·소비 집계 | `42c0293ed70ef9149777be788105596c704ce9a3` |
+| 누수 기준 AI 결과 연동 | `625b8b6bf63dc29e8bc780749c7f2cd555d5349e` |
 
-This boundary describes observed source differences and the user's project context. Committer names alone are not used to infer individual team responsibility. No blanket new license is asserted over team code or visual assets. Confirmation of permitted portfolio republication remains a release gate unless separately documented by the owner.
+원본은 `rladbstn1000/MoneyToad`, 검토한 기준 커밋은 `c35d37e82d7273733d45100492b87f12d73fd92b`다. 위 해시는 이력 식별자이며 원본의 현재 보안 상태를 보증하지 않는다. 현재 구현은 이 포트폴리오 저장소의 코드 링크를 우선한다.
 
-This snapshot excludes all original Git history. Unverified source CSVs and the porting PDF remain outside it. Historic credentials are neither copied nor reproduced. Their revocation status is an external owner check, not something inferred from absence in this snapshot.
+## 프로젝트 종료 후 개인 개선
 
-The exact per-file provenance and final inclusion decisions are in [the file manifest](final-manifest.md). Commit 1 imports reviewed HEAD bytes and adds only the public root ignore policy. Later cumulative snapshots separate personal follow-up by dependency; environment examples are introduced with the relevant follow-up configuration. Shared files have multiple recorded transitions, so their final filename alone is not used to claim authorship.
+2026년 후속 작업은 다음 범위다.
+
+- 예산·카드 소유권 검사, CSV 외부 연동 경계, 일반적인 404 응답과 회귀 테스트.
+- demo/OAuth 모드 분리, 방문자별 세션, 원자적 RT 회전·재사용 폐기·절대 만료, 결정적 샘플 데이터와 서버 연동 검증.
+- 원래 6개 화면의 공개 체험 복원, 반응형 배치, 브라우저 메모리 기반 정적 체험과 초기화, 타입·lint·브라우저 검증.
+
+원본에도 인증·토큰 재발급·거래·예산 API와 DB 집계가 존재했다. 이를 후속 작업에서 처음 만든 기능처럼 소개하지 않는다. 현재 정적 공개 링크와 별도 서버 연동 모드의 동작도 구분한다.
+
+후속 구현·테스트·검증 자동화·문서 작성에 GPT·Codex를 보조 도구로 사용했다. 도구 사용을 숨기거나 모든 코드를 수작업으로 작성한 것처럼 표기하지 않는다.
+
+## 코드·자산과 공개 확인 범위
+
+검토한 팀 baseline을 초기 커밋으로 가져왔으며 원본 저장소의 Git 이력 전체는 복사하지 않았다. 파일별 출처와 초기 포함 결정은 [기존 manifest](final-manifest.md)에 보존한다. 후속 변경은 각 커밋과 단계 문서로 구분한다.
+
+팀 코드·시각 자산 전체에 새로운 포괄 라이선스를 부여하지 않는다. 재게시 허락과 출처 사용 범위는 권리자 확인 사항이다. 이 문서 정리에서는 새로운 허락 증빙을 확보하지 않았으며, 별도 확인 없이 허락 완료로 기록하지 않는다.
+
+기존 스냅샷은 출처 미확인 CSV와 원본 포팅 PDF를 제외했다. 원본 이력의 자격증명을 복사하지 않았다는 사실은 해당 계정의 폐기·회전 완료를 의미하지 않는다. 유효성이나 폐기 여부는 소유자가 별도로 확인해야 한다. 접속정보를 사용해 확인하거나 값을 문서에 재게시하지 않는다.
+
+[백엔드 사례](backend-cases.md) · [검증 요약](verification-index.md)
