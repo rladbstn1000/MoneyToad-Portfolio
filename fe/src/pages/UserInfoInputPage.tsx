@@ -43,7 +43,6 @@ function OAuthUserInfoInput() {
   const [gender, setGender] = useState<Gender>("");
   const [age, setAge] = useState("");
   const [account, setAccount] = useState("");
-  const [cvc, setCvc] = useState("");
   const [step, setStep] = useState<Step>("intro");
   const [touched, setTouched] = useState(false);
 
@@ -61,7 +60,7 @@ function OAuthUserInfoInput() {
       case "age":
         return "다음은 나이를 입력하거라. 숫자만! 예: 20";
       case "account":
-        return "마지막으로 카드 정보다.\n카드번호(4-4-4-4)와\nCVC(3자리)만 적어주면 된다.";
+        return "마지막으로 카드 정보다.\n카드번호(4-4-4-4)를 적어주면 된다.";
       default:
         return "";
     }
@@ -98,8 +97,7 @@ function OAuthUserInfoInput() {
     () => /^\d{4}-\d{4}-\d{4}-\d{4}$/.test(account),
     [account]
   );
-  const cvcValid = useMemo(() => /^\d{3}$/.test(cvc), [cvc]);
-  const allValid = gender !== "" && ageValid && accountValid && cvcValid;
+  const allValid = gender !== "" && ageValid && accountValid;
 
   // 이동
   const toNext = () => {
@@ -129,7 +127,6 @@ function OAuthUserInfoInput() {
     try {
       await registerCardMutation.mutateAsync({
         cardNo: account,
-        cvc
       });
 
       await updateUserBasicInfoMutation.mutateAsync({
@@ -140,8 +137,8 @@ function OAuthUserInfoInput() {
       // 성공 후 페이지 이동
       const month = new Date().getMonth() + 1; // 1~12
       navigate(`/pot/${month}`);
-    } catch (error) {
-      console.error('API 호출 실패:', error);
+    } catch {
+      console.error('정보 등록에 실패했습니다.');
       alert('정보 등록 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
@@ -259,23 +256,6 @@ function OAuthUserInfoInput() {
                 <small className="help">
                   숫자만 입력되고, 자동으로 하이픈이 들어가요.
                 </small>
-              </div>
-
-              {/* 단락 2: CVC */}
-              <div className="bubble kong tail-left center appear">
-                <label>
-                  <span className="label">CVC</span>
-                  <input
-                    className={`input ${touched && !cvcValid ? "err" : ""}`}
-                    placeholder="000"
-                    inputMode="numeric"
-                    maxLength={3}
-                    value={cvc}
-                    onChange={(e) => setCvc(digitsOnly(e.target.value, 3))}
-                    onBlur={() => setTouched(true)}
-                    aria-invalid={touched && !cvcValid}
-                  />
-                </label>
               </div>
 
               {/* 버튼 */}

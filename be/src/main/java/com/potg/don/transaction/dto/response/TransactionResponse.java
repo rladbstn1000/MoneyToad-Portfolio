@@ -2,6 +2,7 @@ package com.potg.don.transaction.dto.response;
 
 import java.time.LocalDateTime;
 
+import com.potg.don.transaction.TransactionCategories;
 import com.potg.don.transaction.entity.Transaction;
 
 import lombok.Builder;
@@ -22,7 +23,7 @@ public class TransactionResponse {
 			.transactionDateTime(transaction.getTransactionDateTime())
 			.amount(transaction.getAmount())
 			.merchantName(transaction.getMerchantName())
-			.category(transaction.getCategory())
+			.category(TransactionCategories.normalizeLegacy(transaction.getCategory()))
 			.build();
 	}
 }

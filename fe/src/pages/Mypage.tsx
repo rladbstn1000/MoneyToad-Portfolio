@@ -18,7 +18,6 @@ type LocalUserInfo = {
   gender: Gender;
   age: number | null;
   account?: string; // 저장/표시는 하이픈 포함 “0000-0000-0000-0000”
-  cvc?: string;     // 저장/표시는 숫자 3자리
 };
 
 const IMG_CLOSE  = "/mypage/close.webp";
@@ -49,7 +48,6 @@ const loadUser = (apiUserData?: ApiUserInfo, cardData?: CardInfo): LocalUserInfo
       gender: gender || "",
       age: age || null,
       account: cardData?.account, // 서버가 전체 번호를 내려준다는 전제. 마스킹이면 재입력하게 됨.
-      cvc: cardData?.cvc,
     };
   }
   return { gender: "", age: null };
@@ -76,7 +74,6 @@ function OAuthMyPage() {
   // 편집 중 인풋(마스킹 없이 보여줄 실제 값)
   // account는 digits만 보관하고 화면에선 하이픈 넣어 표시
   const [accountDigits, setAccountDigits] = useState("");
-  const [cvcDigits, setCvcDigits] = useState("");
 
   // PAPER 열릴 때 폼 초기화
   const prevPhase = useRef<Phase>(phase);
@@ -89,7 +86,6 @@ function OAuthMyPage() {
       // 편집값 초기화
       setIsCardEditing(false);
       setAccountDigits("");
-      setCvcDigits("");
     }
     prevPhase.current = phase;
   }, [phase, userData, cardData]);
@@ -102,7 +98,6 @@ function OAuthMyPage() {
 
   // 유효성
   const accountValid = useMemo(() => accountDigits.length === 16, [accountDigits]);
-  const cvcValid = useMemo(() => cvcDigits.length === 3, [cvcDigits]);
   const ageValid = useMemo(
     () => /^\d+$/.test(ageEditing) && Number(ageEditing) > 0,
     [ageEditing]
@@ -128,21 +123,16 @@ function OAuthMyPage() {
     // 서버에서 받은 번호가 있다면 그걸로 프리필 (마스킹이 아닌 전체가 왔다는 전제)
     const initialDigits = user.account ? digitsOnly(user.account, 16) : "";
     setAccountDigits(initialDigits);
-    setCvcDigits(user.cvc ? digitsOnly(user.cvc, 3) : "");
   };
 
   const handleCancelCardEdit = () => {
     setIsCardEditing(false);
     setAccountDigits("");
-    setCvcDigits("");
   };
 
   // 카드 입력 onChange (간단/견고)
   const onChangeAccount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccountDigits(digitsOnly(e.target.value, 16));
-  };
-  const onChangeCvc = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCvcDigits(digitsOnly(e.target.value, 3));
   };
 
   // 표시용 포맷
@@ -153,31 +143,28 @@ function OAuthMyPage() {
 
   // 저장 (변경 / 등록 공용)
   const submitCard = (mode: "update" | "register") => {
-    if (!accountValid || !cvcValid) return;
+    if (!accountValid) return;
 
     const cardNo = formatAccountByDigits(accountDigits); // 하이픈 포함
-    const cvc = cvcDigits;
 
     // 낙관적 업데이트
-    setUser((u) => ({ ...u, account: cardNo, cvc }));
+    setUser((u) => ({ ...u, account: cardNo }));
     setIsCardEditing(false);
     setAccountDigits("");
-    setCvcDigits("");
 
     const mutateFn =
       mode === "update" ? updateCardMutation.mutate : registerCardMutation.mutate;
 
     mutateFn(
-      { cardNo, cvc },
+      { cardNo },
       {
-        onError: (error) => {
-          console.error(mode === "update" ? "카드 수정 실패:" : "카드 등록 실패:", error);
+        onError: () => {
+          console.error(mode === "update" ? "카드 수정에 실패했습니다." : "카드 등록에 실패했습니다.");
           // 롤백
           setUser(loadUser(userData, cardData));
           // 편집모드로 복귀 + 입력값 복구
           setIsCardEditing(true);
           setAccountDigits(digitsOnly(cardNo, 16));
-          setCvcDigits(cvc);
         },
       }
     );
@@ -291,10 +278,6 @@ function OAuthMyPage() {
                             <span className="k">카드번호</span>
                             <span className="v mono">{maskAccount(user.account)}</span>
                           </div>
-                          <div className="kv">
-                            <span className="k">CVC</span>
-                            <span className="v mono">***</span>
-                          </div>
                         </div>
                         <button className="btn primary" onClick={handleEditCard}>
                           카드 변경
@@ -315,17 +298,6 @@ function OAuthMyPage() {
                               onChange={onChangeAccount}
                             />
                           </label>
-                          <label className="field">
-                            <span>CVC</span>
-                            <input
-                              className={`input ${cvcDigits && !cvcValid ? "err" : ""}`}
-                              placeholder="000"
-                              inputMode="numeric"
-                              maxLength={3}
-                              value={cvcDigits}
-                              onChange={onChangeCvc}
-                            />
-                          </label>
                         </div>
 
                         <div className="row-end appear">
@@ -337,7 +309,7 @@ function OAuthMyPage() {
                           <button
                             className="btn primary"
                             onClick={user.account ? handleUpdateCard : handleRegisterCard}
-                            disabled={!accountValid || !cvcValid}
+                            disabled={!accountValid}
                           >
                             {user.account ? "카드 변경" : "카드 등록"}
                           </button>

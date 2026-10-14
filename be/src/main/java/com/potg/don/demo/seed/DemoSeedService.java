@@ -68,7 +68,7 @@ public class DemoSeedService {
 	private LocalDate validateComplete(Card card, List<Budget> actualBudgets) {
         List<Transaction> actual = transactions.findAllByCard_IdOrderByTransactionDateTimeAsc(card.getId());
         return DemoDatasetValidator.validate(
-            List.of(new DemoDatasetValidator.CardData(card.getCardNo(), card.getCvc())),
+            List.of(new DemoDatasetValidator.CardData(card.getCardNo(), card.hasLegacyCvc())),
             actual.stream().map(row -> new DemoDatasetValidator.TransactionData(
                 row.getTransactionDateTime(), row.getAmount(), row.getMerchantName())).toList(),
             actualBudgets.stream().map(row -> new DemoDatasetValidator.BudgetData(

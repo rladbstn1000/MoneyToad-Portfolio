@@ -127,7 +127,18 @@ final class CleanupSyntheticJdbc implements CleanupTiDbProbe.ConnectionFactory {
         String columns=q.substring(7,from).strip();
         if(columns.equalsIgnoreCase("COUNT(*)"))return List.of(row("count",(long)selected.size()));
         if(columns.equals("*"))return selected;
-        List<Map<String,Object>> out=new ArrayList<>();for(var item:selected){Map<String,Object> values=new LinkedHashMap<>();for(String name:columns.split(","))values.put(name.strip(),item.get(name.strip().toLowerCase(Locale.ROOT)));out.add(values);}return out;
+        List<Map<String,Object>> out=new ArrayList<>();
+        for(var item:selected){
+            Map<String,Object> values=new LinkedHashMap<>();
+            for(String name:columns.split(",")){
+                String column=name.strip();
+                Object value=column.equalsIgnoreCase("(cvc IS NOT NULL)")
+                    ? (item.get("cvc")!=null?1:0) : item.get(column.toLowerCase(Locale.ROOT));
+                values.put(column,value);
+            }
+            out.add(values);
+        }
+        return out;
     }
     private Map<String,Object> relation(String table,String col,String parent){return row("TABLE_NAME",table,"COLUMN_NAME",col,"REFERENCED_TABLE_NAME",parent,"REFERENCED_COLUMN_NAME","id","DELETE_RULE","RESTRICT","UPDATE_RULE","RESTRICT","REFERENCED_TABLE_SCHEMA",schema,"CONSTRAINT_SCHEMA",schema);}
     private int change(Client c,String sql,Object[] args,long[] generated)throws SQLException {

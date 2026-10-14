@@ -1317,7 +1317,7 @@
       "line": 72,
       "category": "credential-assignment",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "42441d827384c68e59288d5b8a56cad9927ca8fe19c4ae1d0cc11e5715dd5730",
+      "file_digest": "55d26166f5431226b19a0b03ef7fbbd919cd4e48f66222dbb8a65b512584ff04",
       "content_digest": "4b5b9ee1f5fffd9ca75ec267c62c1c88eda58e27a05cb67f0c160d806d97a11a",
       "semantic_category": "runtime-credential-expression",
       "expected_construct": [
@@ -2145,10 +2145,10 @@
     },
     {
       "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
-      "line": 177,
+      "line": 188,
       "category": "identity-field",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "3b7d68b83b95189cdf9ac38d1763e00b9cb074a62756ab0aab9ef4ba52c9bea6",
+      "file_digest": "5d55ec1bd8e7a189a39cd3a0c64ddbe65ad09b52faca548f7d673d82dd6c0b60",
       "content_digest": "4299f526327a5eac505a0fa608af376dac65054490b47472636c03100b3b87c2",
       "semantic_category": "sql-column-selector",
       "expected_construct": [
@@ -2243,10 +2243,10 @@
     },
     {
       "file": "be/src/test/java/com/potg/verification/cleanupremote/CleanupSyntheticJdbc.java",
-      "line": 185,
+      "line": 196,
       "category": "identity-field",
       "classification": "B_NON_SECRET_SOURCE_PATTERN",
-      "file_digest": "3b7d68b83b95189cdf9ac38d1763e00b9cb074a62756ab0aab9ef4ba52c9bea6",
+      "file_digest": "5d55ec1bd8e7a189a39cd3a0c64ddbe65ad09b52faca548f7d673d82dd6c0b60",
       "content_digest": "822152999196f49820f53898d05a80981c729d2ca987f9a10a1555d42c7b82bb",
       "semantic_category": "sql-column-selector",
       "expected_construct": [

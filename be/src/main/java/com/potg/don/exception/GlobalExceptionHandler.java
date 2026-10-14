@@ -5,10 +5,13 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+
+import com.potg.don.transaction.exception.InvalidTransactionCategoryException;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +19,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+	@ExceptionHandler(InvalidTransactionCategoryException.class)
+	public ResponseEntity<Map<String, Object>> handleInvalidTransactionCategory() {
+		return createErrorResponse(HttpStatus.BAD_REQUEST, "지원하는 거래 카테고리를 입력해 주세요.");
+	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ResponseEntity<Map<String, Object>> handleUnreadableRequestBody() {
+		// Parser exceptions can contain submitted values. Do not log or return their message/cause.
+		return createErrorResponse(HttpStatus.BAD_REQUEST, "요청 본문 형식이 올바르지 않습니다.");
+	}
 
 	@ExceptionHandler({NoResourceFoundException.class, NoHandlerFoundException.class})
 	public ResponseEntity<Map<String, Object>> handleMissingResource() {

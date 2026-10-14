@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "title": "local complete journey and memory reset",
+      "status": "passed",
+      "milliseconds": 11004
+    },
+    {
+      "title": "local geometry 390x844",
+      "status": "passed",
+      "milliseconds": 7541
+    },
+    {
+      "title": "local geometry 768x1024",
+      "status": "passed",
+      "milliseconds": 8258
+    },
+    {
+      "title": "local geometry 1440x1000",
+      "status": "passed",
+      "milliseconds": 9141
+    },
+    {
+      "title": "local geometry 1920x1080",
+      "status": "passed",
+      "milliseconds": 8315
+    },
+    {
+      "title": "local geometry 2560x1440",
+      "status": "passed",
+      "milliseconds": 10498
+    },
+    {
+      "title": "local geometry 3840x2160",
+      "status": "passed",
+      "milliseconds": 16397
+    },
+    {
+      "title": "local geometry 1920x900",
+      "status": "passed",
+      "milliseconds": 7736
+    },
+    {
+      "title": "local direct route external-history return and no asset blocking",
+      "status": "passed",
+      "milliseconds": 454
+    },
+    {
+      "title": "local fixed crack anchors at one three five and maximum categories",
+      "status": "passed",
+      "milliseconds": 4900
+    },
+    {
+      "title": "local advice keyboard wheel reduced motion and empty result navigation",
+      "status": "passed",
+      "milliseconds": 520
+    },
+    {
+      "title": "local slider full range changes visible severity and preserves Lottie instance",
+      "status": "passed",
+      "milliseconds": 6377
+    },
+    {
+      "title": "local actual budget sliders span housing range without external scroll",
+      "status": "passed",
+      "milliseconds": 2552
+    },
+    {
+      "title": "local advice intentional gesture paging no-preference",
+      "status": "passed",
+      "milliseconds": 7751
+    },
+    {
+      "title": "local advice intentional gesture paging reduce",
+      "status": "passed",
+      "milliseconds": 1739
+    },
+    {
+      "title": "local advice long content and modal retain internal reading",
+      "status": "passed",
+      "milliseconds": 2113
+    }
+  ],
+  "globalErrors": 0,
+  "verification_source_manifest_sha256": "d34be787a22a523f3e73298009620faa9027ac2d55eeed80a8ca8903ca7f1ae8",
+  "verification_sources_unchanged": true
+}

@@ -71,7 +71,6 @@ class CardControllerCsvContractTest {
 
 	private static final String SYNTHETIC_SECRET = UUID.randomUUID().toString();
 	private static final String CARD_MARKER = "synthetic-card-marker";
-	private static final String CVC_MARKER = "not-a-cvc";
 
 	@Configuration(proxyBeanMethods = false)
 	@Import({CardController.class, SecurityConfig.class, JwtAuthenticationFilter.class,
@@ -168,10 +167,10 @@ class CardControllerCsvContractTest {
 		assertThat(handler.getBeanType()).isEqualTo(CardController.class);
 		assertThat(handler.getMethod().getName()).isEqualTo(registration ? "registerCard" : "updateCard");
 		JsonNode response = responseJson(result);
-		assertThat(response.size()).isEqualTo(3);
+		assertThat(response.size()).isEqualTo(2);
 		assertThat(response.path("cardId").asLong()).isEqualTo(cardId);
 		assertThat(response.path("cardNo").asText()).isEqualTo(CARD_MARKER);
-		assertThat(response.path("cvc").asText()).isEqualTo(CVC_MARKER);
+		assertThat(response.has("cvc")).isFalse();
 
 		ArgumentCaptor<CardRequest> forwardedRequest = ArgumentCaptor.forClass(CardRequest.class);
 		InOrder order = inOrder(cardService, dummyService, csvService, analysisJobService);
@@ -193,7 +192,8 @@ class CardControllerCsvContractTest {
 		verify(userRepository).findById(userId);
 		verifyNoMoreInteractions(userRepository);
 		assertThat(forwardedRequest.getValue().getCardNo()).isEqualTo(CARD_MARKER);
-		assertThat(forwardedRequest.getValue().getCvc()).isEqualTo(CVC_MARKER);
+		JsonNode forwardedJson = objectMapper.valueToTree(forwardedRequest.getValue());
+		assertThat(forwardedJson).isEqualTo(objectMapper.valueToTree(Map.of("cardNo", CARD_MARKER)));
 		verifyNoInteractions(oAuth2UserService, successHandler);
 
 		// IDs and status only; request headers, token, card fields and user data are excluded.
@@ -208,7 +208,7 @@ class CardControllerCsvContractTest {
 	}
 
 	private String cardPayload() throws Exception {
-		return objectMapper.writeValueAsString(Map.of("cardNo", CARD_MARKER, "cvc", CVC_MARKER));
+		return objectMapper.writeValueAsString(Map.of("cardNo", CARD_MARKER));
 	}
 
 	private JsonNode responseJson(MvcResult result) throws Exception {

@@ -127,8 +127,8 @@ class DemoChartSeedHttpIntegrationTest {
             var foreignPatch = s.mvc.perform(patch("/api/transactions/" + bTransaction + "/category").contextPath("/api")
                 .header("Authorization", "Bearer " + a.access()).contentType("application/json")
                 .content("{\"category\":\"카페\"}")).andReturn();
-            // Preserve the known original NoSuchElementException -> generic 500 contract in this scoped change.
-            assertThat(foreignPatch.getResponse().getStatus()).isEqualTo(500);
+            // A foreign transaction shares the same generic missing-resource contract as an absent transaction.
+            assertThat(foreignPatch.getResponse().getStatus()).isEqualTo(404);
             assertThat(allBeforeForbidden.equals(DemoAuthHttpTestSupport.snapshot(s.jdbc))).isTrue();
             assertThat(jsonGet(s, b, "/transactions").get(11).path("leaked").asBoolean()).isTrue();
             s.evidence("actual_chart_patch_isolation", Map.of("users", 2, "cards", 2, "transactions", 480, "budgets", 144,
@@ -153,7 +153,7 @@ class DemoChartSeedHttpIntegrationTest {
             assertThat(before.equals(DemoAuthHttpTestSupport.snapshot(s.jdbc))).isTrue();
             var card = jsonGet(s, visitor, "/cards");
             assertThat(card.path("cardNo").isNull()).isTrue();
-            assertThat(card.path("cvc").isNull()).isTrue();
+            assertThat(card.has("cvc")).isFalse();
             s.evidence("demo_card_mutation_blocked", Map.of("authenticated403", 3, "anonymous401", true,
                 "databaseEveryColumnUnchanged", true, "cardFinancialFieldsNull", true));
         }

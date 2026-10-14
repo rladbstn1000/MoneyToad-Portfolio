@@ -136,10 +136,10 @@ public final class DemoCleanupService {
         }
         List<Long> cards = new ArrayList<>();
         List<DemoDatasetValidator.CardData> cardData = new ArrayList<>();
-        try (var statement = connection.prepareStatement("SELECT id,card_no,cvc FROM cards WHERE user_id=? ORDER BY id" + lock(lock))) {
+        try (var statement = connection.prepareStatement("SELECT id,card_no,(cvc IS NOT NULL) FROM cards WHERE user_id=? ORDER BY id" + lock(lock))) {
             statement.setLong(1, candidate.user());
             try (var rows = query(statement, lock)) {
-                while (rows.next()) { cards.add(rows.getLong(1)); cardData.add(new DemoDatasetValidator.CardData(rows.getString(2), rows.getString(3))); }
+                while (rows.next()) { cards.add(rows.getLong(1)); cardData.add(new DemoDatasetValidator.CardData(rows.getString(2), rows.getInt(3) != 0)); }
             }
         }
         if (cards.size() != 1) throw failure(Code.UNSAFE_BATCH);

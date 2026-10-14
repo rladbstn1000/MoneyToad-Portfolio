@@ -35,7 +35,7 @@ final class CleanupReadOnlyGuard {
         "SELECT UTC_TIMESTAMP(6)",
         "SELECT user_id,created_at,scenario_version,session_expires_at FROM demo_visit WHERE created_at<=? AND session_expires_at<? ORDER BY created_at,user_id LIMIT ?",
         "SELECT id,file_id FROM users WHERE id=?",
-        "SELECT id,card_no,cvc FROM cards WHERE user_id=? ORDER BY id",
+        "SELECT id,card_no,(cvc IS NOT NULL) FROM cards WHERE user_id=? ORDER BY id",
         "SELECT id,transaction_date_time,amount,merchant_name FROM transactions WHERE card_id=? ORDER BY id",
         "SELECT id,budget_date,category,initial_amount,initial_file_id,predicted_at FROM budgets WHERE user_id=? ORDER BY id",
         "SELECT COUNT(*) FROM analysis_job WHERE user_id=?"

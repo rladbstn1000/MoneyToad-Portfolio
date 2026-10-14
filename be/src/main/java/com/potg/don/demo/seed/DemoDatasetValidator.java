@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public final class DemoDatasetValidator {
     private DemoDatasetValidator() { }
 
-    public record CardData(String cardNo, String cvc) { }
+    public record CardData(String cardNo, boolean legacyCvcPresent) { }
     public record TransactionData(LocalDateTime dateTime, Integer amount, String merchantName) { }
     public record BudgetData(LocalDate date, String category, Integer initialAmount,
         String initialFileId, LocalDateTime predictedAt) { }
@@ -21,7 +21,7 @@ public final class DemoDatasetValidator {
     public static LocalDate validate(List<CardData> cards, List<TransactionData> transactions,
         List<BudgetData> budgets) {
         if (cards == null || transactions == null || budgets == null || cards.size() != 1
-            || cards.getFirst() == null || cards.getFirst().cardNo() != null || cards.getFirst().cvc() != null
+            || cards.getFirst() == null || cards.getFirst().cardNo() != null || cards.getFirst().legacyCvcPresent()
             || transactions.size() != DemoSeedScenario.TRANSACTION_COUNT
             || budgets.size() != DemoSeedScenario.BUDGET_COUNT) throw incomplete();
         for (TransactionData row : transactions) {

@@ -64,6 +64,23 @@ class CleanupReadOnlyGuardTest {
         verify(f.statement(),never()).executeUpdate();
     }
 
+    @Test void cardPresenceProjectionUsesExistingIntegerReadAndRejectsRawLegacyColumn() throws Exception {
+        String presence="SELECT id,card_no,(cvc IS NOT NULL) FROM cards WHERE user_id=? ORDER BY id";
+        String raw="SELECT id,card_no,cvc FROM cards WHERE user_id=? ORDER BY id";
+        Fixture f=fixture(); when(f.rows().next()).thenReturn(true,false); when(f.rows().getInt(3)).thenReturn(1);
+        assertThat(CleanupReadOnlyGuard.allowedSelect(presence)).isTrue();
+        assertThat(CleanupReadOnlyGuard.allowedSelect(raw)).isFalse();
+        try(PreparedStatement query=f.guarded().prepareStatement(presence)) {
+            query.setLong(1,17L);
+            try(ResultSet rows=query.executeQuery()) {
+                assertThat(rows.next()).isTrue(); assertThat(rows.getInt(3)!=0).isTrue(); assertThat(rows.next()).isFalse();
+            }
+        }
+        rejected(()->f.guarded().prepareStatement(raw));
+        verify(f.raw()).prepareStatement(presence); verify(f.raw(),never()).prepareStatement(raw);
+        verify(f.rows()).getInt(3); verify(f.rows(),never()).getString(3);
+    }
+
     @Test void harmlessWhitespaceCaseAreAcceptedWithoutBroadeningSql() {
         assertThat(CleanupReadOnlyGuard.allowedSelect(" \nselect UTC_TIMESTAMP(6)\t")).isTrue();
         assertThat(CleanupReadOnlyGuard.allowedSelect(null)).isFalse();

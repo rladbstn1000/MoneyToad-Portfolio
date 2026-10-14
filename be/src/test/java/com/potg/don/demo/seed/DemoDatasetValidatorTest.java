@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class DemoDatasetValidatorTest {
     private final DemoSeedScenario.Scenario scenario = DemoSeedScenario.generate(LocalDate.of(2026, 9, 10));
     private List<DemoDatasetValidator.CardData> cards() {
-        return List.of(new DemoDatasetValidator.CardData(null, null));
+        return List.of(new DemoDatasetValidator.CardData(null, false));
     }
     private List<DemoDatasetValidator.TransactionData> transactions() {
         return scenario.transactions().stream().map(t ->
@@ -25,8 +25,8 @@ class DemoDatasetValidatorTest {
     }
     @Test void cardCountAndFinancialFieldsAreMandatory() {
         for (var invalid : List.of(List.<DemoDatasetValidator.CardData>of(),
-            List.of(new DemoDatasetValidator.CardData("synthetic-invalid", null)),
-            List.of(new DemoDatasetValidator.CardData(null, "synthetic-invalid")),
+            List.of(new DemoDatasetValidator.CardData("synthetic-invalid", false)),
+            List.of(new DemoDatasetValidator.CardData(null, true)),
             List.of(cards().getFirst(), cards().getFirst()))) {
             assertThatThrownBy(() -> DemoDatasetValidator.validate(invalid, transactions(), budgets()))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("DEMO_SEED_INCOMPLETE");

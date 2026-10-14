@@ -1,0 +1,294 @@
+{
+  "phase": "be",
+  "focused": true,
+  "status": "PASS",
+  "managed_provider_used": false,
+  "provider_connections_attempted": 0,
+  "source_preserved": true,
+  "historical_evidence_preserved": true,
+  "cleanup_complete": true,
+  "selected_test_classes": [
+    "com.potg.don.auth.DemoChartSeedHttpIntegrationTest",
+    "com.potg.don.auth.TransactionCategoryContractIntegrationTest",
+    "com.potg.don.card.controller.CardControllerCsvContractTest",
+    "com.potg.don.demo.seed.DemoDatasetValidatorTest",
+    "com.potg.don.maintenance.DemoCleanupMySqlTest"
+  ],
+  "render_test_classes_in_separate_phase": [
+    "com.potg.don.auth.RenderRuntimeIntegrationTest",
+    "com.potg.don.auth.demo.RenderDemoBoundaryTest",
+    "com.potg.don.global.config.RenderRuntimeConfigurationTest"
+  ],
+  "exit_code": 0,
+  "checks": {
+    "status": "PASS",
+    "exit_code": 0,
+    "cleanup_complete": true,
+    "suites": [
+      {
+        "test": "com.potg.don.auth.DemoChartSeedHttpIntegrationTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "realLoginRepositoryAndChartPatchPreserveTotalsAndOtherVisitorEveryColumn()",
+            "status": "PASS"
+          },
+          {
+            "test": "loginMakesTheAnnualChartReadyWithTwelveSeededMonths()",
+            "status": "PASS"
+          },
+          {
+            "test": "demoCardMutationEndpointsDenyBeforeAnyDummyCsvOrJobWork()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.auth.TransactionCategoryContractIntegrationTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "legacyNullAndEmptyRowsAreMergedIntoOthersWithoutLosingAmountsOrIncludingInsuranceInLeak()",
+            "status": "PASS"
+          },
+          {
+            "test": "trailingJsonOverRealLoopbackHttpIs400WithoutEchoOrCommittedMutation()",
+            "status": "PASS"
+          },
+          {
+            "test": "foreignAndAbsentTransactionsShareGeneric404AndAnonymousRemains401()",
+            "status": "PASS"
+          },
+          {
+            "test": "everySupportedCategoryChangesOnlyTheOwnedTransactionCategory()",
+            "status": "PASS"
+          },
+          {
+            "test": "invalidValuesAndJsonAre400WithoutEchoOrCommittedSideEffects()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.card.controller.CardControllerCsvContractTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "absentBearerStopsBothCardMutationsAtExistingJwtFilter()",
+            "status": "PASS"
+          },
+          {
+            "test": "patchKeepsUser202AndCard101InTheirOwnArgumentsAndUsesUpload()",
+            "status": "PASS"
+          },
+          {
+            "test": "postKeepsUser101AndCard202InTheirOwnArguments()",
+            "status": "PASS"
+          },
+          {
+            "test": "postKeepsUser202AndCard101InTheirOwnArguments()",
+            "status": "PASS"
+          },
+          {
+            "test": "patchKeepsUser101AndCard202InTheirOwnArgumentsAndUsesUpload()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.demo.seed.DemoDatasetValidatorTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "missingAndCorruptedImmutableTransactionsAreRejected()",
+            "status": "PASS"
+          },
+          {
+            "test": "unchangedAuthoredShapeHasNoMutableCategoryOrBudgetAmountDependency()",
+            "status": "PASS"
+          },
+          {
+            "test": "cardCountAndFinancialFieldsAreMandatory()",
+            "status": "PASS"
+          },
+          {
+            "test": "duplicateBudgetSlotsAndPredictionFieldsCannotLookLikeCompleteSeed()",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "test": "com.potg.don.maintenance.DemoCleanupMySqlTest",
+        "tests": 36,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "cases": [
+          {
+            "test": "categoryBudgetAndProfileEditsRemainSafeWithoutUsingEmailForProvenance()",
+            "status": "PASS"
+          },
+          {
+            "test": "commitAcknowledgementLossIsUnknownAndIsNeverAutomaticallyRetriedOrRefunded()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-3",
+            "status": "PASS"
+          },
+          {
+            "test": "case-4",
+            "status": "PASS"
+          },
+          {
+            "test": "oldestFirstLimitOnlyDeletesSelectedVisitAndNeverMoreThan100()",
+            "status": "PASS"
+          },
+          {
+            "test": "unexpectedMarkerDeletionDetectedByFinalCountRollsBackWholeBatch()",
+            "status": "PASS"
+          },
+          {
+            "test": "candidateAt24HourBoundaryUsesDatabaseUtcAndIsEligible()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-8",
+            "status": "PASS"
+          },
+          {
+            "test": "case-9",
+            "status": "PASS"
+          },
+          {
+            "test": "youngVisitAndUnexpiredSessionRemainUntouched()",
+            "status": "PASS"
+          },
+          {
+            "test": "unsupportedVersionAbortsInsteadOfSkippingOldCandidate()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-12",
+            "status": "PASS"
+          },
+          {
+            "test": "case-13",
+            "status": "PASS"
+          },
+          {
+            "test": "cleanupVersusCleanupNowaitLoserPerformsNoWrites()",
+            "status": "PASS"
+          },
+          {
+            "test": "actualCleanupTransactionBlocksActualLoginWithoutUserOrRedisCreation()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-16",
+            "status": "PASS"
+          },
+          {
+            "test": "case-17",
+            "status": "PASS"
+          },
+          {
+            "test": "case-18",
+            "status": "PASS"
+          },
+          {
+            "test": "case-19",
+            "status": "PASS"
+          },
+          {
+            "test": "case-20",
+            "status": "PASS"
+          },
+          {
+            "test": "affectedRowMismatchAfterActualDeleteRollsBackAllRowsAndMarkers()",
+            "status": "PASS"
+          },
+          {
+            "test": "unexpectedForeignKeyOrExtraTableIsRejectedBeforeDelete()",
+            "status": "PASS"
+          },
+          {
+            "test": "legacyUserAndCompleteUnmarkedDatasetRemainEveryColumnUnchanged()",
+            "status": "PASS"
+          },
+          {
+            "test": "analysisJobWithoutForeignKeyAbortsWholeBatch()",
+            "status": "PASS"
+          },
+          {
+            "test": "markerCountAboveMatchingMaximumIsRejectedBeforeAnyDelete()",
+            "status": "PASS"
+          },
+          {
+            "test": "visibleCrossSchemaCascadeIsRejectedWithoutReadingOrDeletingOtherSchemaRows()",
+            "status": "PASS"
+          },
+          {
+            "test": "oldSafeDatasetDeletesExactRowsAndMarkerCountWithoutFurtherDeleteOnRepeat()",
+            "status": "PASS"
+          },
+          {
+            "test": "dryRunAndVerifyIssueNoDmlAndPreserveEveryColumn()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-29",
+            "status": "PASS"
+          },
+          {
+            "test": "case-30",
+            "status": "PASS"
+          },
+          {
+            "test": "case-31",
+            "status": "PASS"
+          },
+          {
+            "test": "maxMismatchMissingAndMultipleCapacityRowsFailClosed()",
+            "status": "PASS"
+          },
+          {
+            "test": "case-33",
+            "status": "PASS"
+          },
+          {
+            "test": "case-34",
+            "status": "PASS"
+          },
+          {
+            "test": "case-35",
+            "status": "PASS"
+          },
+          {
+            "test": "realMidDeleteSqlFailureRollsBackAlreadyDeletedTransactions()",
+            "status": "PASS"
+          }
+        ]
+      }
+    ],
+    "tests": 53,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS"
+  },
+  "verification_source_manifest_sha256": "c677d4f2b4d4c585081a07ebb999092d3cb51ce2a1303627245959441aa70fdc",
+  "verification_sources_unchanged": true
+}

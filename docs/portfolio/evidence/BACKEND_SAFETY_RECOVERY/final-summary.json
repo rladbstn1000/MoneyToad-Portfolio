@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "baseline_commit": "40cf4bab33c9407659be8e48493103e24a6c2ebd",
+  "verification_source_manifest_sha256": "d34be787a22a523f3e73298009620faa9027ac2d55eeed80a8ca8903ca7f1ae8",
+  "backend": {
+    "general": 645,
+    "render_configuration": 86,
+    "actual_local_tls": 6,
+    "total": 737,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frontend": {
+    "oauth": 275,
+    "remote_demo": 245,
+    "local_demo": 61,
+    "total": 581,
+    "failed": 0,
+    "skipped": 0,
+    "todo": 0,
+    "all_types": "PASS",
+    "three_builds": "PASS",
+    "invalid_modes": "PASS",
+    "lint_errors": 0,
+    "lint_warnings": 0
+  },
+  "chromium": {
+    "static_cases": 16,
+    "static_api_attempts": 0,
+    "external_attempts": 0,
+    "server_independent_runs": 2,
+    "server_cases_each": 6,
+    "retries": 0,
+    "product_api_mocks": false
+  },
+  "scanner_regression_tests": 55,
+  "all_final_owned_resource_cleanup": "PASS",
+  "providers_or_production_accessed": false,
+  "legacy_actual_database_deletion": "NOT_RUN",
+  "old_missing_report_recovered": false,
+  "historical_results_reused_as_current": false,
+  "mandatory_local_checks_not_run": [],
+  "outside_scope_not_run": [
+    "managed-provider tests",
+    "public-site tests",
+    "legacy production value removal",
+    "deployment"
+  ],
+  "preserved_failures": [
+    "category-reconstructed-01",
+    "cvc-reconstructed-01",
+    "frontend-final-01"
+  ],
+  "strict_public_scan": "PASS",
+  "report_links": "PASS",
+  "source_manifest_unchanged": true
+}

@@ -1,0 +1,65 @@
+{
+  "status": "FAIL",
+  "phase": "fe",
+  "failure_stage": "dependency_overlay_cleanup",
+  "failure_code": "DEPENDENCY_OVERLAY_PRESERVATION_FAILED",
+  "exact_cause": "UNKNOWN",
+  "observed_unit_results": [
+    {
+      "mode": "oauth",
+      "tests": 275,
+      "passed": 275,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "mode": "remote-demo",
+      "tests": 245,
+      "passed": 245,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "mode": "local-demo",
+      "tests": 61,
+      "passed": 61,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "observed_total_tests": 581,
+  "observed_total_passed": 581,
+  "observed_lint": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "observed_build_completion": {
+    "oauth": true,
+    "remote-demo": true,
+    "local-demo": true
+  },
+  "overlay_removed": true,
+  "runtime_children_ended": true,
+  "process_check": {
+    "scope": "ps command lines matching the exact owned work directory; current diagnostic ancestors excluded",
+    "matching_processes": 0
+  },
+  "cleanup_complete": false,
+  "dependency_preservation_confirmed": false,
+  "source_edited_during_diagnosis": false,
+  "recovery_note": "Original runner raised in finally before summary write; this is a sanitized reconstruction from preserved reports and read-only process observation, not a successful rerun.",
+  "observed_environment": {
+    "dependency_directory_mtime_changes_after_test_end": true,
+    "file_or_link_mtime_changes_since_run_start_observed": false,
+    "idle_observation_seconds": 5,
+    "idle_changed_directories": 6,
+    "idle_added_entries": 0,
+    "idle_removed_entries": 0,
+    "exact_writer": "UNKNOWN"
+  },
+  "verification_source_manifest_sha256": "d34be787a22a523f3e73298009620faa9027ac2d55eeed80a8ca8903ca7f1ae8",
+  "verification_sources_unchanged": true
+}

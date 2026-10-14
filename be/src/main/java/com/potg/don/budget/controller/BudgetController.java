@@ -23,6 +23,7 @@ import com.potg.don.budget.dto.response.BudgetUpdateResponse;
 import com.potg.don.budget.dto.response.IsLeakedResponse;
 import com.potg.don.budget.entity.Budget;
 import com.potg.don.budget.service.BudgetService;
+import com.potg.don.transaction.TransactionCategories;
 import com.potg.don.transaction.dto.response.TransactionResponse;
 import com.potg.don.transaction.service.TransactionService;
 
@@ -92,7 +93,7 @@ public class BudgetController {
 	private static final Set<String> HIDDEN_CATEGORIES = Set.of("보험 / 세금");
 
 	private static boolean visible(String category) {
-		return !HIDDEN_CATEGORIES.contains(category);
+		return !HIDDEN_CATEGORIES.contains(TransactionCategories.normalizeLegacy(category));
 	}
 
 	// 고정 순서 정의에서 '보험 / 세금' 제거 (이미 제거되어 있음)
@@ -108,7 +109,7 @@ public class BudgetController {
 		// 1) 지출 합계 (숨김 제외)
 		Map<String, Integer> spentByCategory = transactionResponses.stream()
 			.filter(tr -> visible(tr.getCategory()))
-			.collect(Collectors.groupingBy(TransactionResponse::getCategory,
+			.collect(Collectors.groupingBy(tr -> TransactionCategories.normalizeLegacy(tr.getCategory()),
 				Collectors.summingInt(TransactionResponse::getAmount)));
 
 		// 2) 예산 맵 (숨김 제외)

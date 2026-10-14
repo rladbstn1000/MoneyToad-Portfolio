@@ -6,12 +6,14 @@
 
 | 대상 | 저장된 결과 | 기준과 근거 |
 | --- | --- | --- |
-| 서버 백엔드 | 724 PASS | [22단계](../deployment/22-cookie-e2e-time-basis.md): 일반 632와 별도 Render/TLS 92를 포함한 당시 전체 회귀 |
-| 프런트엔드 | 573 PASS | [30단계](../deployment/30-pot-grounding-spacing-and-original-font.md): OAuth 267, remote 245, local 61. 타입·3개 빌드·lint도 당시 PASS |
-| 현재 정적 공개 체험 | 8/8 PASS | 제품 `050b65b9517dfedbb0c231cfd979eb75936a2697`의 [공개 결과](../deployment/frontend-only-public-verified.md) |
+| 최신 로컬 백엔드 | 737 PASS | [재구성 후보 검증](backend-safety-followup.md): 일반 645 + 설정 86 + 실제 로컬 TLS 6 |
+| 최신 로컬 프런트엔드 | 581 PASS | 같은 고정 후보의 OAuth 275, remote 245, local 61. 타입·3종 빌드·lint PASS |
+| 과거 서버 백엔드 | 724 PASS | [22단계](../deployment/22-cookie-e2e-time-basis.md): 일반 632와 별도 Render/TLS 92를 포함한 당시 전체 회귀 |
+| 과거 프런트엔드 | 573 PASS | [30단계](../deployment/30-pot-grounding-spacing-and-original-font.md): OAuth 267, remote 245, local 61. 타입·3개 빌드·lint도 당시 PASS |
+| 기존 정적 공개 체험 | 8/8 PASS | 제품 `050b65b9517dfedbb0c231cfd979eb75936a2697`의 [공개 결과](../deployment/frontend-only-public-verified.md) |
 | 과거 서버 연동 공개 체험 | 전체 여정 PASS | 제품 `d020d837f2830125696d2038eb4a4c969864432e`의 [서버 공개 결과](../deployment/public-full-experience-verified.md) |
 
-백엔드 724를 최신 문서 커밋에서 다시 실행한 결과로 설명하지 않는다. 최신 FE 및 공개 체험과 동일한 실행 환경·날짜로 묶지도 않는다. 파일 무결성·요청 수·세부 이미지 검사·과거 실패는 각 결과 문서에서 확인한다.
+최신 로컬 결과는 남은 중간 소스를 보존하고 누락분을 새로 재구성한 후보의 검증이다. 사라진 과거 최종본을 복원한 것으로 설명하지 않는다. 이번 commit/push에서는 검증 소스 manifest의 일치를 확인하고 전체 회귀를 다시 실행하지 않는다. 과거 BE 724·FE 573과 공개 8/8은 당시 환경·제품의 결과로 보존하며, 이번 로컬 후보의 배포나 공개 재검증을 뜻하지 않는다. 파일 무결성·요청 수·세부 이미지 검사·과거 실패는 각 결과 문서에서 확인한다.
 
 초기 BE 275·FE 176과 이후 AGENTS에 있었던 FE 252는 당시 단계의 값이다. [초기 검증 정책](verification-summary.md)과 [초기 BE](evidence/be-regression-summary.json) / [초기 FE](evidence/fe-regression-summary.json)를 보존한다.
 
@@ -37,7 +39,7 @@ npm run build:demo-local
 
 ## 서버와 초기 스냅샷의 재현
 
-현재 서버 연동 검증은 [22단계 재현 안내](../deployment/22-cookie-e2e-time-basis.md)를 기준으로 명시적 로컬 자원을 사용한다. 클라우드 계정이나 팀 서버를 자동 연결하지 않는다. 준비되지 않은 환경에서는 실행하지 않고 환경 미충족을 별도로 기록한다.
+최신 서버 연동 검증은 [백엔드 안전 보강 보고서](backend-safety-followup.md)의 `backend_safety_recovery.py` 진입점으로 명시적 전용 로컬 자원을 사용한다. 기존 실행기와 [22단계 재현 안내](../deployment/22-cookie-e2e-time-basis.md)는 과거 근거로 보존한다. 클라우드 계정이나 팀 서버를 자동 연결하지 않는다. 준비되지 않은 환경에서는 실행하지 않고 환경 미충족을 별도로 기록한다.
 
 초기 `public_snapshot.py`와 일부 이전 runner는 당시 테스트 집합·개수를 고정한다. 초기 결과를 재현할 때는 `a750718033e51041015d5809b60c841d37e5c8ba`의 별도 스냅샷을 사용한다. 현재 main에 그 기대값을 강제하거나 기대 개수를 낮춰 통과시키지 않는다. 초기 전체 명령은 [정리 전 README의 고정 버전](https://github.com/rladbstn1000/MoneyToad-Portfolio/blob/8d5a1a18bc19326af6f8fd31b80cb5ad33987bb3/README.md#로컬-실행과-재현)에 남아 있다.
 

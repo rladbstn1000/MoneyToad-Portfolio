@@ -1,9 +1,11 @@
 package com.potg.don.card.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.potg.don.card.dto.request.CardRequest;
 import com.potg.don.global.entity.BaseTimeEntity;
 import com.potg.don.user.entity.User;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.AccessLevel;
 import lombok.Getter;
 
 @Entity
@@ -30,13 +33,21 @@ public class Card extends BaseTimeEntity {
 
 	private String cardNo;
 
+	/** Existing values remain detectable but are never inserted, updated or exposed. */
+	@Column(insertable = false, updatable = false)
+	@Getter(AccessLevel.NONE)
+	@JsonIgnore
 	private String cvc;
+
+	@JsonIgnore
+	public boolean hasLegacyCvc() {
+		return cvc != null;
+	}
 
 	public static Card createCard(CardRequest cardRequest, User user) {
 		Card card = new Card();
 		card.user = user;
 		card.cardNo = cardRequest.getCardNo();
-		card.cvc = cardRequest.getCvc();
 		return card;
 	}
 
@@ -49,7 +60,6 @@ public class Card extends BaseTimeEntity {
 
 	public Card updateCard(CardRequest cardRequest) {
 		this.cardNo = cardRequest.getCardNo();
-		this.cvc = cardRequest.getCvc();
 		return this;
 	}
 }

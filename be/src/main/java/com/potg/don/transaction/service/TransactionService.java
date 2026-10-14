@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -17,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.potg.don.card.repository.CardRepository;
 import com.potg.don.global.util.LeakCategories;
+import com.potg.don.transaction.TransactionCategories;
 import com.potg.don.transaction.dto.request.UpdateCategoryRequest;
 import com.potg.don.transaction.dto.response.MonthlyCategorySpendingResponse;
 import com.potg.don.transaction.dto.response.TransactionResponse;
@@ -71,11 +71,15 @@ public class TransactionService {
 		List<CategoryTotalProjection> rows =
 			transactionRepository.aggregateCategoryTotals(userId, start, end);
 
-		return rows.stream()
-			.map(r -> new MonthlyCategorySpendingResponse(
-				Optional.ofNullable(r.getCategory()).orElse("미분류"),
-				Math.toIntExact(Optional.ofNullable(r.getTotal()).orElse(0L))
-			))
+		Map<String, Long> totals = new HashMap<>();
+		for (CategoryTotalProjection row : rows) {
+			totals.merge(TransactionCategories.normalizeLegacy(row.getCategory()),
+				Optional.ofNullable(row.getTotal()).orElse(0L), Math::addExact);
+		}
+		return totals.entrySet().stream()
+			.sorted(Map.Entry.<String, Long>comparingByValue().reversed()
+				.thenComparing(Map.Entry.comparingByKey()))
+			.map(row -> new MonthlyCategorySpendingResponse(row.getKey(), Math.toIntExact(row.getValue())))
 			.toList();
 	}
 
@@ -87,9 +91,10 @@ public class TransactionService {
 	@Transactional
 	public TransactionResponse updateTransactionCategory(Long userId, Long transactionId,
 		UpdateCategoryRequest request) {
+		String category = TransactionCategories.requireEditable(request == null ? null : request.getCategory());
 		Transaction tx = transactionRepository.findByIdAndCard_User_Id(transactionId, userId)
-			.orElseThrow(() -> new NoSuchElementException("거래내역을 찾을 수 없거나 권한이 없습니다."));
-		tx.update(request.getCategory());
+			.orElseThrow(() -> new EntityNotFoundException("거래내역을 찾을 수 없습니다."));
+		tx.update(category);
 		return TransactionResponse.from(transactionRepository.save(tx));
 	}
 
@@ -99,7 +104,7 @@ public class TransactionService {
 			.transactionDateTime(t.getTransactionDateTime())
 			.amount(t.getAmount())
 			.merchantName(t.getMerchantName())
-			.category(t.getCategory())
+			.category(TransactionCategories.normalizeLegacy(t.getCategory()))
 			.build();
 	}
 

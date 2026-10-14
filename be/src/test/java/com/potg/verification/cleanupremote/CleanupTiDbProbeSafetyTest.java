@@ -99,6 +99,25 @@ class CleanupTiDbProbeSafetyTest {
         };
         var result=probe.syntheticExecute();return new Run(result,probe.testBudget(),jdbc,work.get(),cleanup.get(),fired.get());
     }
+    @Test void syntheticPresenceProjectionDistinguishesNullEmptyAndLegacyValues() throws Exception {
+        var jdbc=new CleanupSyntheticJdbc(valid());
+        jdbc.tables.put("cards",List.of(
+            CleanupSyntheticJdbc.row("id",1L,"user_id",17L,"card_no",null,"cvc",null),
+            CleanupSyntheticJdbc.row("id",2L,"user_id",17L,"card_no",null,"cvc",""),
+            CleanupSyntheticJdbc.row("id",3L,"user_id",17L,"card_no",null,"cvc","synthetic-legacy-marker")));
+        try(Connection connection=jdbc.new Client("cleanup",true).connection;
+            PreparedStatement query=connection.prepareStatement("SELECT id,card_no,(cvc IS NOT NULL) FROM cards WHERE user_id=? ORDER BY id")) {
+            query.setLong(1,17L);
+            try(ResultSet rows=query.executeQuery()) {
+                for(int expected:List.of(0,1,1)) {
+                    assertThat(rows.next()).isTrue(); assertThat(rows.getInt(3)).isEqualTo(expected);
+                    assertThat(rows.wasNull()).isFalse();
+                }
+                assertThat(rows.next()).isFalse();
+            }
+        }
+    }
+
     @Test void actualNormalWorkflowFitsFiniteBudgetAndUsesTwoClients() throws Exception {
         Run run=exercise(-1,false,false);
         assertThat(run.result()).as("actual synthetic cleanup %s",run.result()).containsEntry("status","PASS").containsEntry("cleanupComplete",true)
